@@ -144,6 +144,53 @@ Think of it as a universal adapter. Write one MCP server exposing your database,
 MCP is attempting to be the 'HTTP of AI integrations' - a standard protocol that everyone can build on.
 This brings us to our deep dive. Let's see how MCP actually works."
 
+You're absolutely right! Slide 8 is missing. Let me create it - it should bridge from the three approaches to actually introducing MCP as the solution.
+
+SLIDE 8: The Need for Standardization
+Visual suggestion:
+
+Left side: "Before MCP" - chaos diagram showing:
+
+Multiple LLMs (GPT, Claude, Llama icons)
+Multiple tools/services (DB, Files, APIs)
+Spaghetti of custom connections between them (messy lines)
+
+
+Right side: "With MCP" - clean diagram showing:
+
+Same LLMs
+MCP Protocol layer in the middle (clean horizontal bar)
+Same tools/services
+Clean, standardized connections through MCP
+
+
+Visual metaphor: Like the shift from proprietary phone chargers to USB-C
+
+Script (2 min):
+"So we've seen RAG works for retrieval, function calling enables actions, but we're stuck in a fragmentation nightmare. Let me illustrate the problem.
+Imagine you're building an AI coding assistant. You need to integrate with:
+
+Multiple file systems - local, cloud storage, git repositories
+Various databases - PostgreSQL, MongoDB, vector databases for code search
+Development tools - linters, formatters, test runners
+External APIs - documentation sites, package registries
+
+Now multiply this across different LLM providers. Your OpenAI integration looks different from your Anthropic integration, which differs from your local Llama setup. Every combination requires custom code.
+When a new model comes out? You rewrite integrations. When a tool updates its API? You patch every integration that uses it. Testing? Good luck - you're testing N models times M tools different connection patterns.
+This is exactly where web development was before HTTP standardized communication, or mobile before USB-C standardized charging.
+What we need is a protocol layer - a standard interface that sits between LLMs and tools. The LLM speaks MCP. The tools speak MCP. They don't need to know about each other's internals.
+This is what Anthropic proposed with the Model Context Protocol in late 2024, and it's rapidly gaining adoption. It's not the only approach - OpenAI has their GPT actions, LangChain has their tool abstractions - but MCP is notable for being:
+
+LLM-agnostic - works with any model
+Open standard - not locked to one vendor
+Comprehensive - handles both retrieval (resources) and actions (tools)
+Production-ready - already shipping in real applications
+
+Think of MCP as the standardization layer we've been missing. Instead of M times N integrations, you write M servers and N clients, and they all interoperate.
+Now let's see exactly how this works under the hood."
+
+Transition to Slide 9:
+This naturally flows into "What is MCP?" where we start the technical deep dive.
 
 SLIDE 9: What is MCP?
 Visual suggestion:
