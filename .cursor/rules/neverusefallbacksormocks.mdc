@@ -1,0 +1,5 @@
+---
+alwaysApply: true
+---
+You must never use a fallback or mock. We shall fail loudly and dont want any surprises. if you see any trace of a mock or fallback immediately tell the Product owner.
+We must not use any hard coded values in the code. All parameters should be set in config files, normally in docker-compose.yml

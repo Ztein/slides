@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Slide 15: Code Example</title>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif;
+            background: #1a2332;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 40px;
+            color: #e2e8f0;
+        }
+
+        .slide {
+            max-width: 1400px;
+            width: 100%;
+        }
+
+        h1 {
+            text-align: center;
+            color: #ffffff;
+            font-size: 3.5em;
+            margin-bottom: 30px;
+            font-weight: 600;
+            letter-spacing: -0.02em;
+        }
+
+        .subtitle {
+            text-align: center;
+            font-size: 1.3em;
+            color: #94a3b8;
+            margin-bottom: 50px;
+        }
+
+        .code-container {
+            max-width: 1100px;
+            margin: 0 auto;
+            background: #0f172a;
+            border: 3px solid #2dd4bf;
+            border-radius: 12px;
+            overflow: hidden;
+        }
+
+        .code-header {
+            background: #2dd4bf;
+            padding: 20px 30px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .header-icon {
+            font-size: 32px;
+            color: #1a2332;
+        }
+
+        .header-title {
+            font-size: 1.4em;
+            color: #1a2332;
+            font-weight: 600;
+        }
+
+        .code-block {
+            padding: 40px;
+            font-family: 'Courier New', monospace;
+            font-size: 1.05em;
+            line-height: 1.9;
+            color: #e2e8f0;
+            overflow-x: auto;
+        }
+
+        .code-comment {
+            color: #64748b;
+        }
+
+        .code-decorator {
+            color: #fbbf24;
+        }
+
+        .code-keyword {
+            color: #c084fc;
+        }
+
+        .code-class {
+            color: #60a5fa;
+            font-weight: 600;
+        }
+
+        .code-function {
+            color: #2dd4bf;
+        }
+
+        .code-string {
+            color: #fbbf24;
+        }
+
+        .code-number {
+            color: #fb923c;
+        }
+
+        .code-variable {
+            color: #e2e8f0;
+        }
+
+        .key-points {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+            max-width: 1100px;
+            margin: 50px auto 0;
+        }
+
+        .point {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 15px;
+            padding: 25px;
+            background: #0f172a;
+            border: 2px solid #2dd4bf;
+            border-radius: 8px;
+            text-align: center;
+        }
+
+        .point-icon {
+            font-size: 48px;
+            color: #2dd4bf;
+        }
+
+        .point-text {
+            font-size: 1.1em;
+            color: #e2e8f0;
+            line-height: 1.5;
+        }
+
+        /* Responsive design */
+        @media (max-width: 1200px) {
+            h1 {
+                font-size: 2.5em;
+            }
+
+            .code-block {
+                padding: 30px;
+                font-size: 0.95em;
+            }
+
+            .key-points {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Navigation Controls */
+        .nav-controls {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            z-index: 1000;
+            background: rgba(15, 23, 42, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 15px 20px;
+            border-radius: 50px;
+            border: 2px solid #2dd4bf;
+            box-shadow: 0 4px 20px rgba(45, 212, 191, 0.3);
+        }
+
+        .nav-button {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: #2dd4bf;
+            border: none;
+            color: #1a2332;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            font-size: 0;
+        }
+
+        .nav-button:hover:not(:disabled) {
+            background: #14b8a6;
+            transform: scale(1.1);
+            box-shadow: 0 4px 15px rgba(45, 212, 191, 0.5);
+        }
+
+        .nav-button:disabled {
+            background: #475569;
+            cursor: not-allowed;
+            opacity: 0.4;
+        }
+
+        .nav-button .material-icons {
+            font-size: 32px;
+            color: #1a2332;
+        }
+
+        .nav-button:disabled .material-icons {
+            color: #64748b;
+        }
+
+        .slide-indicator {
+            color: #e2e8f0;
+            font-size: 1.1em;
+            font-weight: 600;
+            padding: 0 10px;
+            min-width: 80px;
+            text-align: center;
+        }
+
+        @media (max-width: 768px) {
+            .nav-controls {
+                bottom: 20px;
+                right: 20px;
+                padding: 12px 15px;
+            }
+
+            .nav-button {
+                width: 45px;
+                height: 45px;
+            }
+
+            .nav-button .material-icons {
+                font-size: 28px;
+            }
+
+            .slide-indicator {
+                font-size: 0.95em;
+                min-width: 70px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="slide">
+        <h1>Code Example</h1>
+        <div class="subtitle">Minimal Weather MCP Server in Python</div>
+        
+        <div class="code-container">
+            <div class="code-header">
+                <span class="material-icons header-icon">code</span>
+                <div class="header-title">weather_server.py</div>
+            </div>
+            
+            <div class="code-block"><span class="code-keyword">from</span> mcp.server <span class="code-keyword">import</span> Server
+<span class="code-keyword">import</span> mcp.types <span class="code-keyword">as</span> types
+
+app = <span class="code-function">Server</span>(<span class="code-string">"weather-server"</span>)
+
+<span class="code-comment"># Define a resource for current temperature</span>
+<span class="code-decorator">@app.resource</span>(<span class="code-string">"weather://temperature/{location}"</span>)
+<span class="code-keyword">async def</span> <span class="code-function">get_temperature</span>(location: <span class="code-class">str</span>) -> types.<span class="code-class">Resource</span>:
+    <span class="code-comment"># Fetch temperature data</span>
+    temp = <span class="code-keyword">await</span> <span class="code-function">fetch_temperature</span>(location)
+    <span class="code-keyword">return</span> types.<span class="code-function">Resource</span>(
+        uri=<span class="code-string">f"weather://temperature/{location}"</span>,
+        name=<span class="code-string">f"Temperature for {location}"</span>,
+        content=<span class="code-string">f"{temp}°C"</span>
+    )
+
+<span class="code-comment"># Define a tool for forecast</span>
+<span class="code-decorator">@app.tool</span>()
+<span class="code-keyword">async def</span> <span class="code-function">get_forecast</span>(
+    location: <span class="code-class">str</span>,
+    days: <span class="code-class">int</span> = <span class="code-number">5</span>
+) -> <span class="code-class">str</span>:
+    <span class="code-string">"""Get weather forecast for a location"""</span>
+    forecast = <span class="code-keyword">await</span> <span class="code-function">fetch_forecast</span>(location, days)
+    <span class="code-keyword">return</span> <span class="code-function">format_forecast</span>(forecast)
+
+<span class="code-comment"># Run the server</span>
+<span class="code-keyword">if</span> __name__ == <span class="code-string">"__main__"</span>:
+    app.<span class="code-function">run</span>(transport=<span class="code-string">"stdio"</span>)</div>
+        </div>
+
+        <div class="key-points">
+            <div class="point">
+                <span class="material-icons point-icon">emoji_objects</span>
+                <div class="point-text">
+                    Focus on business logic, not protocol details
+                </div>
+            </div>
+
+            <div class="point">
+                <span class="material-icons point-icon">cable</span>
+                <div class="point-text">
+                    MCP SDK handles all communication (stdio/SSE)
+                </div>
+            </div>
+
+            <div class="point">
+                <span class="material-icons point-icon">apps</span>
+                <div class="point-text">
+                    Works with any MCP-compatible client
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Navigation Controls -->
+    <div class="nav-controls">
+        <button class="nav-button" id="prevBtn">
+            <span class="material-icons">arrow_back</span>
+        </button>
+        <div class="slide-indicator" id="slideIndicator">15 / 11</div>
+        <button class="nav-button" id="nextBtn">
+            <span class="material-icons">arrow_forward</span>
+        </button>
+    </div>
+
+    <script src="navigation.js"></script>
+</body>
+</html>
+

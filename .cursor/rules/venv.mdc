@@ -1,0 +1,6 @@
+---
+description: 
+globs: 
+alwaysApply: true
+---
+if we are working with python, make sure that we use a venv. Make sure we dont create new venvs if we alrady have one. one venv is what we need. not two or three.
