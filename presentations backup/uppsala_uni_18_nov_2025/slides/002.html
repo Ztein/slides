@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Slide 2: What is a Large Language Model?</title>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif;
+            background: #1a2332;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 40px;
+            color: #e2e8f0;
+        }
+
+        .slide {
+            max-width: 1400px;
+            width: 100%;
+        }
+
+        h1 {
+            text-align: center;
+            color: #ffffff;
+            font-size: 3.5em;
+            margin-bottom: 60px;
+            font-weight: 600;
+            letter-spacing: -0.02em;
+        }
+
+        .flow-diagram {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 40px;
+            margin: 60px 0;
+            flex-wrap: wrap;
+        }
+
+        .flow-box {
+            padding: 30px 50px;
+            background: #0f172a;
+            border: 3px solid #2dd4bf;
+            border-radius: 12px;
+            font-size: 1.5em;
+            color: #ffffff;
+            font-weight: 600;
+            min-width: 200px;
+            text-align: center;
+        }
+
+        .flow-arrow {
+            font-size: 60px;
+            color: #2dd4bf;
+        }
+
+        .characteristics {
+            max-width: 1000px;
+            margin: 60px auto 0;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+        }
+
+        .characteristic {
+            background: #0f172a;
+            border: 2px solid #2dd4bf;
+            border-radius: 12px;
+            padding: 30px;
+            text-align: center;
+        }
+
+        .characteristic-icon {
+            font-size: 60px;
+            color: #2dd4bf;
+            margin-bottom: 20px;
+        }
+
+        .characteristic-title {
+            font-size: 1.3em;
+            color: #2dd4bf;
+            font-weight: 600;
+            margin-bottom: 15px;
+        }
+
+        .characteristic-text {
+            font-size: 1.1em;
+            color: #e2e8f0;
+            line-height: 1.6;
+        }
+
+        /* Navigation Controls */
+        .nav-controls {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            z-index: 1000;
+            background: rgba(15, 23, 42, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 15px 20px;
+            border-radius: 50px;
+            border: 2px solid #2dd4bf;
+            box-shadow: 0 4px 20px rgba(45, 212, 191, 0.3);
+        }
+
+        .nav-button {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: #2dd4bf;
+            border: none;
+            color: #1a2332;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            font-size: 0;
+        }
+
+        .nav-button:hover:not(:disabled) {
+            background: #14b8a6;
+            transform: scale(1.1);
+            box-shadow: 0 4px 15px rgba(45, 212, 191, 0.5);
+        }
+
+        .nav-button:disabled {
+            background: #475569;
+            cursor: not-allowed;
+            opacity: 0.4;
+        }
+
+        .nav-button .material-icons {
+            font-size: 32px;
+            color: #1a2332;
+        }
+
+        .nav-button:disabled .material-icons {
+            color: #64748b;
+        }
+
+        .slide-indicator {
+            color: #e2e8f0;
+            font-size: 1.1em;
+            font-weight: 600;
+            padding: 0 10px;
+            min-width: 80px;
+            text-align: center;
+        }
+
+        @media (max-width: 1200px) {
+            .flow-diagram {
+                flex-direction: column;
+            }
+
+            .flow-arrow {
+                transform: rotate(90deg);
+            }
+
+            .characteristics {
+                grid-template-columns: 1fr;
+            }
+
+            h1 {
+                font-size: 2.5em;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-controls {
+                bottom: 20px;
+                right: 20px;
+                padding: 12px 15px;
+            }
+
+            .nav-button {
+                width: 45px;
+                height: 45px;
+            }
+
+            .nav-button .material-icons {
+                font-size: 28px;
+            }
+
+            .slide-indicator {
+                font-size: 0.95em;
+                min-width: 70px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="slide">
+        <h1>What is a Large Language Model?</h1>
+        
+        <div class="flow-diagram">
+            <div class="flow-box">Input Text</div>
+            <span class="material-icons flow-arrow">arrow_forward</span>
+            <div class="flow-box" style="background: #2dd4bf; color: #1a2332;">
+                Neural Network<br><small style="font-size: 0.7em;">(Black Box)</small>
+            </div>
+            <span class="material-icons flow-arrow">arrow_forward</span>
+            <div class="flow-box">Output Text</div>
+        </div>
+
+        <div class="characteristics">
+            <div class="characteristic">
+                <span class="material-icons characteristic-icon">memory</span>
+                <div class="characteristic-title">Billions of Parameters</div>
+                <div class="characteristic-text">
+                    Hundreds of billions of weights learned during training
+                </div>
+            </div>
+
+            <div class="characteristic">
+                <span class="material-icons characteristic-icon">database</span>
+                <div class="characteristic-title">Massive Training Data</div>
+                <div class="characteristic-text">
+                    Trained on internet text, books, code repositories, and more
+                </div>
+            </div>
+
+            <div class="characteristic">
+                <span class="material-icons characteristic-icon">trending_up</span>
+                <div class="characteristic-title">Next Token Prediction</div>
+                <div class="characteristic-text">
+                    Core operation: predict the next token in a sequence
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Navigation Controls -->
+    <div class="nav-controls">
+        <button class="nav-button" id="prevBtn">
+            <span class="material-icons">arrow_back</span>
+        </button>
+        <div class="slide-indicator" id="slideIndicator">2/19</div>
+        <button class="nav-button" id="nextBtn">
+            <span class="material-icons">arrow_forward</span>
+        </button>
+    </div>
+
+    <script src="navigation.js"></script>
+</body>
+</html>
+

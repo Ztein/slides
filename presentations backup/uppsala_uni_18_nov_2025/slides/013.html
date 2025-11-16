@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Slide 13: Use Case - File System Server</title>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif;
+            background: #1a2332;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 40px;
+            color: #e2e8f0;
+        }
+
+        .slide {
+            max-width: 1400px;
+            width: 100%;
+        }
+
+        h1 {
+            text-align: center;
+            color: #ffffff;
+            font-size: 3.5em;
+            margin-bottom: 60px;
+            font-weight: 600;
+            letter-spacing: -0.02em;
+        }
+
+        .split-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            max-width: 1300px;
+            margin: 0 auto;
+        }
+
+        .panel {
+            background: #0f172a;
+            border: 3px solid #2dd4bf;
+            border-radius: 12px;
+            padding: 30px;
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+        }
+
+        .panel-title {
+            font-size: 1.8em;
+            color: #2dd4bf;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .panel-title .material-icons {
+            font-size: 40px;
+        }
+
+        .code-block {
+            background: #1a2332;
+            border-radius: 8px;
+            padding: 25px;
+            font-family: 'Courier New', monospace;
+            font-size: 0.95em;
+            line-height: 1.8;
+            color: #e2e8f0;
+            overflow-x: auto;
+        }
+
+        .code-comment {
+            color: #64748b;
+        }
+
+        .code-keyword {
+            color: #2dd4bf;
+        }
+
+        .code-string {
+            color: #fbbf24;
+        }
+
+        .code-function {
+            color: #60a5fa;
+        }
+
+        .workflow {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .step {
+            display: flex;
+            align-items: flex-start;
+            gap: 20px;
+            padding: 20px;
+            background: #1a2332;
+            border-radius: 8px;
+            border-left: 4px solid #2dd4bf;
+        }
+
+        .step-number {
+            min-width: 40px;
+            height: 40px;
+            background: #2dd4bf;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            color: #1a2332;
+            font-size: 1.2em;
+        }
+
+        .step-content {
+            flex: 1;
+        }
+
+        .step-title {
+            font-size: 1.2em;
+            color: #ffffff;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+
+        .step-description {
+            font-size: 1em;
+            color: #94a3b8;
+            line-height: 1.5;
+        }
+
+        .step-icon {
+            font-size: 32px;
+            color: #2dd4bf;
+        }
+
+        .tools-section {
+            background: #1e293b;
+            padding: 20px;
+            border-radius: 8px;
+            margin-top: 10px;
+        }
+
+        .tools-title {
+            font-size: 1.1em;
+            color: #2dd4bf;
+            font-weight: 600;
+            margin-bottom: 12px;
+        }
+
+        .tool-list {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .tool-item {
+            font-size: 1em;
+            color: #e2e8f0;
+            font-family: 'Courier New', monospace;
+            padding: 8px 12px;
+            background: #0f172a;
+            border-radius: 4px;
+        }
+
+        /* Responsive design */
+        @media (max-width: 1200px) {
+            .split-container {
+                grid-template-columns: 1fr;
+            }
+
+            h1 {
+                font-size: 2.5em;
+            }
+        }
+
+        /* Navigation Controls */
+        .nav-controls {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            z-index: 1000;
+            background: rgba(15, 23, 42, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 15px 20px;
+            border-radius: 50px;
+            border: 2px solid #2dd4bf;
+            box-shadow: 0 4px 20px rgba(45, 212, 191, 0.3);
+        }
+
+        .nav-button {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: #2dd4bf;
+            border: none;
+            color: #1a2332;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            font-size: 0;
+        }
+
+        .nav-button:hover:not(:disabled) {
+            background: #14b8a6;
+            transform: scale(1.1);
+            box-shadow: 0 4px 15px rgba(45, 212, 191, 0.5);
+        }
+
+        .nav-button:disabled {
+            background: #475569;
+            cursor: not-allowed;
+            opacity: 0.4;
+        }
+
+        .nav-button .material-icons {
+            font-size: 32px;
+            color: #1a2332;
+        }
+
+        .nav-button:disabled .material-icons {
+            color: #64748b;
+        }
+
+        .slide-indicator {
+            color: #e2e8f0;
+            font-size: 1.1em;
+            font-weight: 600;
+            padding: 0 10px;
+            min-width: 80px;
+            text-align: center;
+        }
+
+        @media (max-width: 768px) {
+            .nav-controls {
+                bottom: 20px;
+                right: 20px;
+                padding: 12px 15px;
+            }
+
+            .nav-button {
+                width: 45px;
+                height: 45px;
+            }
+
+            .nav-button .material-icons {
+                font-size: 28px;
+            }
+
+            .slide-indicator {
+                font-size: 0.95em;
+                min-width: 70px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="slide">
+        <h1>Use Case: File System Server</h1>
+        
+        <div class="split-container">
+            <!-- Left Panel: Code -->
+            <div class="panel">
+                <div class="panel-title">
+                    <span class="material-icons">code</span>
+                    Server Implementation
+                </div>
+                
+                <div class="code-block">
+<span class="code-comment"># File System MCP Server</span>
+
+<span class="code-keyword">class</span> <span class="code-function">FileSystemServer</span>:
+    <span class="code-comment"># Resources - Read files</span>
+    <span class="code-keyword">def</span> <span class="code-function">list_resources</span>():
+        <span class="code-keyword">return</span> [
+            <span class="code-string">"file:///project/src/main.py"</span>,
+            <span class="code-string">"file:///project/src/utils.py"</span>,
+            ...
+        ]
+    
+    <span class="code-comment"># Tools - Modify files</span>
+    tools = [
+        <span class="code-string">"create_file"</span>,
+        <span class="code-string">"edit_file"</span>,
+        <span class="code-string">"delete_file"</span>,
+        <span class="code-string">"search_files"</span>
+    ]
+                </div>
+
+                <div class="tools-section">
+                    <div class="tools-title">Available Tools:</div>
+                    <div class="tool-list">
+                        <div class="tool-item">create_file(path, content)</div>
+                        <div class="tool-item">edit_file(path, changes)</div>
+                        <div class="tool-item">delete_file(path)</div>
+                        <div class="tool-item">search_files(pattern)</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right Panel: Workflow -->
+            <div class="panel">
+                <div class="panel-title">
+                    <span class="material-icons">account_tree</span>
+                    Example Interaction
+                </div>
+
+                <div class="workflow">
+                    <div class="step">
+                        <div class="step-number">1</div>
+                        <span class="material-icons step-icon">visibility</span>
+                        <div class="step-content">
+                            <div class="step-title">Read File</div>
+                            <div class="step-description">
+                                LLM requests file resource:<br>
+                                <code>file:///project/src/main.py</code>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="step">
+                        <div class="step-number">2</div>
+                        <span class="material-icons step-icon">psychology</span>
+                        <div class="step-content">
+                            <div class="step-title">Analyze & Plan</div>
+                            <div class="step-description">
+                                LLM reasons about refactoring into smaller, focused functions
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="step">
+                        <div class="step-number">3</div>
+                        <span class="material-icons step-icon">note_add</span>
+                        <div class="step-content">
+                            <div class="step-title">Create New Files</div>
+                            <div class="step-description">
+                                Calls <code>create_file()</code> for new modules
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="step">
+                        <div class="step-number">4</div>
+                        <span class="material-icons step-icon">edit</span>
+                        <div class="step-content">
+                            <div class="step-title">Modify Existing</div>
+                            <div class="step-description">
+                                Calls <code>edit_file()</code> to update imports and references
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="tools-section">
+                    <div class="tools-title">💡 Used by:</div>
+                    <div class="step-description" style="color: #e2e8f0; padding-top: 8px;">
+                        Cursor, Windsurf, and similar AI coding assistants use this pattern to give LLMs controlled access to your codebase.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Navigation Controls -->
+    <div class="nav-controls">
+        <button class="nav-button" id="prevBtn">
+            <span class="material-icons">arrow_back</span>
+        </button>
+        <div class="slide-indicator" id="slideIndicator">13 / 11</div>
+        <button class="nav-button" id="nextBtn">
+            <span class="material-icons">arrow_forward</span>
+        </button>
+    </div>
+
+    <script src="navigation.js"></script>
+</body>
+</html>
+

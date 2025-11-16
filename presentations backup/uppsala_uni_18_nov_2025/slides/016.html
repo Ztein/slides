@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Slide 16: Security Considerations</title>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif;
+            background: #1a2332;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 40px;
+            color: #e2e8f0;
+        }
+
+        .slide {
+            max-width: 1400px;
+            width: 100%;
+        }
+
+        h1 {
+            text-align: center;
+            color: #ffffff;
+            font-size: 3.5em;
+            margin-bottom: 30px;
+            font-weight: 600;
+            letter-spacing: -0.02em;
+        }
+
+        .subtitle {
+            text-align: center;
+            font-size: 1.3em;
+            color: #94a3b8;
+            margin-bottom: 60px;
+            line-height: 1.6;
+        }
+
+        .security-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 35px;
+            max-width: 1200px;
+            margin: 0 auto 50px;
+        }
+
+        .security-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 25px;
+            padding: 35px 25px;
+            background: #0f172a;
+            border: 3px solid #2dd4bf;
+            border-radius: 12px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .security-item:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 10px 40px rgba(45, 212, 191, 0.3);
+        }
+
+        .security-icon-container {
+            width: 120px;
+            height: 120px;
+            background: linear-gradient(135deg, #2dd4bf 0%, #14b8a6 100%);
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .material-icons {
+            font-size: 70px;
+            color: #1a2332;
+        }
+
+        .security-title {
+            font-size: 1.6em;
+            color: #ffffff;
+            font-weight: 600;
+            text-align: center;
+        }
+
+        .security-description {
+            font-size: 1.05em;
+            color: #94a3b8;
+            text-align: center;
+            line-height: 1.6;
+        }
+
+        .highlight-box {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 30px 40px;
+            background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+            border: 3px solid #ef4444;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            gap: 25px;
+        }
+
+        .highlight-icon {
+            font-size: 60px;
+            color: #ef4444;
+            min-width: 60px;
+        }
+
+        .highlight-text {
+            font-size: 1.25em;
+            color: #e2e8f0;
+            line-height: 1.7;
+        }
+
+        .highlight-emphasis {
+            color: #ef4444;
+            font-weight: 700;
+        }
+
+        /* Responsive design */
+        @media (max-width: 1200px) {
+            h1 {
+                font-size: 2.5em;
+            }
+
+            .security-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .security-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .highlight-box {
+                flex-direction: column;
+                text-align: center;
+            }
+        }
+
+        /* Navigation Controls */
+        .nav-controls {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            z-index: 1000;
+            background: rgba(15, 23, 42, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 15px 20px;
+            border-radius: 50px;
+            border: 2px solid #2dd4bf;
+            box-shadow: 0 4px 20px rgba(45, 212, 191, 0.3);
+        }
+
+        .nav-button {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: #2dd4bf;
+            border: none;
+            color: #1a2332;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            font-size: 0;
+        }
+
+        .nav-button:hover:not(:disabled) {
+            background: #14b8a6;
+            transform: scale(1.1);
+            box-shadow: 0 4px 15px rgba(45, 212, 191, 0.5);
+        }
+
+        .nav-button:disabled {
+            background: #475569;
+            cursor: not-allowed;
+            opacity: 0.4;
+        }
+
+        .nav-button .material-icons {
+            font-size: 32px;
+            color: #1a2332;
+        }
+
+        .nav-button:disabled .material-icons {
+            color: #64748b;
+        }
+
+        .slide-indicator {
+            color: #e2e8f0;
+            font-size: 1.1em;
+            font-weight: 600;
+            padding: 0 10px;
+            min-width: 80px;
+            text-align: center;
+        }
+
+        @media (max-width: 768px) {
+            .nav-controls {
+                bottom: 20px;
+                right: 20px;
+                padding: 12px 15px;
+            }
+
+            .nav-button {
+                width: 45px;
+                height: 45px;
+            }
+
+            .nav-button .material-icons {
+                font-size: 28px;
+            }
+
+            .slide-indicator {
+                font-size: 0.95em;
+                min-width: 70px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="slide">
+        <h1>Security Considerations</h1>
+        <div class="subtitle">
+            The MCP server is your security boundary - implement these protections
+        </div>
+        
+        <div class="security-grid">
+            <!-- Authentication -->
+            <div class="security-item">
+                <div class="security-icon-container">
+                    <span class="material-icons">verified_user</span>
+                </div>
+                <div class="security-title">Authentication</div>
+                <div class="security-description">
+                    Control who can connect using API keys, OAuth tokens, or secure channels
+                </div>
+            </div>
+
+            <!-- Authorization -->
+            <div class="security-item">
+                <div class="security-icon-container">
+                    <span class="material-icons">admin_panel_settings</span>
+                </div>
+                <div class="security-title">Authorization</div>
+                <div class="security-description">
+                    Implement least privilege - expose only necessary resources and tools
+                </div>
+            </div>
+
+            <!-- Input Validation -->
+            <div class="security-item">
+                <div class="security-icon-container">
+                    <span class="material-icons">rule</span>
+                </div>
+                <div class="security-title">Input Validation</div>
+                <div class="security-description">
+                    Never trust LLM output - validate all parameters, sanitize inputs
+                </div>
+            </div>
+
+            <!-- Rate Limiting -->
+            <div class="security-item">
+                <div class="security-icon-container">
+                    <span class="material-icons">speed</span>
+                </div>
+                <div class="security-title">Rate Limiting</div>
+                <div class="security-description">
+                    Prevent abuse and system overload from excessive LLM calls
+                </div>
+            </div>
+
+            <!-- Audit Logging -->
+            <div class="security-item">
+                <div class="security-icon-container">
+                    <span class="material-icons">description</span>
+                </div>
+                <div class="security-title">Audit Logging</div>
+                <div class="security-description">
+                    Log all operations for accountability, debugging, and compliance
+                </div>
+            </div>
+
+            <!-- Sandboxing -->
+            <div class="security-item">
+                <div class="security-icon-container">
+                    <span class="material-icons">lock</span>
+                </div>
+                <div class="security-title">Isolation</div>
+                <div class="security-description">
+                    Run servers in sandboxed environments with minimal permissions
+                </div>
+            </div>
+        </div>
+
+        <div class="highlight-box">
+            <span class="material-icons highlight-icon">warning</span>
+            <div class="highlight-text">
+                <span class="highlight-emphasis">Critical:</span> The protocol itself is just transport. You must implement security in your server logic. The MCP server is your security boundary!
+            </div>
+        </div>
+    </div>
+
+    <!-- Navigation Controls -->
+    <div class="nav-controls">
+        <button class="nav-button" id="prevBtn">
+            <span class="material-icons">arrow_back</span>
+        </button>
+        <div class="slide-indicator" id="slideIndicator">16 / 11</div>
+        <button class="nav-button" id="nextBtn">
+            <span class="material-icons">arrow_forward</span>
+        </button>
+    </div>
+
+    <script src="navigation.js"></script>
+</body>
+</html>
+
