@@ -11,20 +11,23 @@ body {
     justify-content: center;
     align-items: center;
     min-height: 100vh;
-    padding: 40px;
+    padding: 1vh 4vw;
     color: #e2e8f0;
 }
 
 .slide {
-    max-width: 1400px;
+    max-width: min(1400px, calc(100vw - 2 * clamp(20px, 2vw, 40px)));
     width: 100%;
+    display: flex;
+    flex-direction: column;
+    max-height: 96vh;
 }
 
 h1 {
     text-align: center;
     color: #ffffff;
-    font-size: 3.5em;
-    margin-bottom: 80px;
+    font-size: clamp(1.8rem, 4vh, 3rem);
+    margin-bottom: 2vh;
     font-weight: 600;
     letter-spacing: -0.02em;
 }
@@ -34,7 +37,7 @@ h1 {
     justify-content: center;
     align-items: center;
     gap: 60px;
-    margin: 100px 0;
+    margin: clamp(40px, 8vh, 100px) 0;
 }
 
 .component {
@@ -45,8 +48,8 @@ h1 {
 }
 
 .box {
-    width: 280px;
-    height: 280px;
+    width: clamp(200px, 18vw, 280px);
+    height: clamp(200px, 18vw, 280px);
     background: #1a2332;
     border: 3px solid #2dd4bf;
     border-radius: 12px;
@@ -62,7 +65,7 @@ h1 {
 }
 
 .material-icons {
-    font-size: 120px;
+    font-size: clamp(60px, 8vw, 120px);
     color: #2dd4bf;
 }
 
@@ -278,11 +281,20 @@ h1 {
 
 /* Slide 010 - MCP Architecture specific styles */
 
+/* Override material-icons size for slide 010 (needs 80px, not 120px) */
+/* In 010, material-icons directly in layer-box should be 80px */
+.layer-box > .material-icons {
+    font-size: clamp(35px, 5vw, 80px) !important;
+}
+
 .architecture {
     display: flex;
     flex-direction: column;
-    gap: 50px;
-    max-width: 1200px;
+    flex: 1;
+    min-height: 0;
+    gap: 1vh;
+    max-height: 80vh;
+    max-width: min(1200px, calc(100vw - 2 * clamp(20px, 2vw, 40px) - 100px));
     margin: 0 auto;
 }
 
@@ -290,19 +302,19 @@ h1 {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 20px;
+    gap: 0.8vh;
 }
 
 .layer-box {
     width: 100%;
-    padding: 40px;
+    padding: 1vh 2vw;
     background: #0f172a;
     border: 3px solid #2dd4bf;
     border-radius: 12px;
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 30px;
+    gap: clamp(12px, 1.5vw, 30px);
     position: relative;
 }
 
@@ -313,7 +325,7 @@ h1 {
 }
 
 .layer-title {
-    font-size: 1.8em;
+    font-size: clamp(1.2em, 2.5vw, 1.8em);
     color: #ffffff;
     font-weight: 600;
     text-align: center;
@@ -322,7 +334,7 @@ h1 {
 .servers-row {
     display: flex;
     justify-content: center;
-    gap: 40px;
+    gap: 2vw;
     flex-wrap: wrap;
 }
 
@@ -330,12 +342,12 @@ h1 {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 15px;
+    gap: 0.5vh;
 }
 
 .server-icon {
-    width: 100px;
-    height: 100px;
+    width: clamp(70px, 8vw, 100px);
+    height: clamp(70px, 8vw, 100px);
     background: #1a2332;
     border: 2px solid #2dd4bf;
     border-radius: 8px;
@@ -345,11 +357,11 @@ h1 {
 }
 
 .server-icon .material-icons {
-    font-size: 60px;
+    font-size: clamp(40px, 6vw, 60px);
 }
 
 .server-label {
-    font-size: 1.1em;
+    font-size: clamp(0.9em, 1.5vw, 1.1em);
     color: #94a3b8;
     text-align: center;
 }
@@ -358,12 +370,12 @@ h1 {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 8px;
-    margin: -20px 0;
+    gap: 0;
+    margin: -1vh 0;
 }
 
 .connection-arrow .material-icons {
-    font-size: 48px;
+    font-size: clamp(32px, 4vw, 48px);
     color: #2dd4bf;
 }
 
@@ -411,8 +423,8 @@ h1 {
 .transport-info {
     text-align: center;
     color: #64748b;
-    font-size: 1em;
-    margin-top: -35px;
+    font-size: clamp(0.75em, 1vw, 0.9em);
+    margin-top: 0.5vh;
 }
 
 @media (max-width: 1200px) {
@@ -429,6 +441,29 @@ h1 {
     .servers-row {
         flex-direction: column;
         align-items: center;
+    }
+}
+
+/* MacBook Pro specific adjustments (16:10 aspect ratio, max-height: 2000px) */
+@media (max-height: 2000px) and (min-width: 2000px) {
+    .architecture {
+        gap: clamp(10px, 1.5vh, 30px);
+    }
+    
+    .layer {
+        gap: clamp(5px, 1vh, 15px);
+    }
+    
+    .layer-box {
+        padding: clamp(10px, 1.5vh, 30px);
+    }
+    
+    h1 {
+        margin-bottom: clamp(15px, 2.5vh, 60px);
+    }
+    
+    .connection-arrow {
+        margin: clamp(-10px, -1.5vh, -15px) 0;
     }
 }
 
