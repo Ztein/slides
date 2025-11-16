@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Presentation</title>
+    
+    <!-- Reveal.js CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@4.6.1/dist/reveal.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@4.6.1/dist/theme/black.css">
+    
+    <style>
+        .reveal .slides section {
+            text-align: left;
+        }
+        .reveal h1, .reveal h2, .reveal h3 {
+            color: #2dd4bf;
+        }
+        .reveal .notes {
+            display: none;
+        }
+        .reveal .slides section[data-markdown] {
+            text-align: center;
+        }
+        /* Custom styling for slides */
+        .reveal .slides section.title-slide {
+            text-align: center;
+        }
+        .reveal .slides section.title-slide h1 {
+            font-size: 3em;
+            margin-bottom: 0.5em;
+        }
+        .reveal .slides section.title-slide h2 {
+            font-size: 1.5em;
+            color: #94a3b8;
+        }
+    </style>
+</head>
+<body>
+    <div class="reveal">
+        <div class="slides">
+            <!-- 
+                Add your slides here as <section> elements
+                Example:
+                
+                <section>
+                    <h2>Slide Title</h2>
+                    <p>Content here</p>
+                    <aside class="notes">
+                        Your speaker notes will be loaded here automatically
+                    </aside>
+                </section>
+            -->
+            
+            <section class="title-slide">
+                <h1>Presentation Title</h1>
+                <h2>Subtitle</h2>
+                <p>Date and Location</p>
+            </section>
+            
+            <!-- More slides will be added here -->
+        </div>
+    </div>
+
+    <!-- Reveal.js JS -->
+    <script src="https://cdn.jsdelivr.net/npm/reveal.js@4.6.1/dist/reveal.js"></script>
+    
+    <script>
+        // Initialize Reveal.js
+        Reveal.initialize({
+            hash: true,
+            controls: true,
+            progress: true,
+            center: true,
+            touch: true,
+            loop: false,
+            rtl: false,
+            navigationMode: 'default',
+            shuffle: false,
+            fragments: true,
+            fragmentInURL: true,
+            embedded: false,
+            help: true,
+            pause: true,
+            showNotes: false,
+            autoPlayMedia: null,
+            preloadIframes: null,
+            autoAnimate: true,
+            autoAnimateMatcher: null,
+            autoAnimateEasing: 'ease',
+            autoAnimateDuration: 1.0,
+            autoAnimateUnmatched: true,
+            autoSlide: 0,
+            autoSlideStoppable: true,
+            autoSlideMethod: null,
+            defaultTiming: null,
+            mouseWheel: false,
+            previewLinks: false,
+            postMessage: true,
+            postMessageEvents: false,
+            focusBodyOnPageVisibilityChange: true,
+            transition: 'slide',
+            transitionSpeed: 'default',
+            backgroundTransition: 'fade',
+            view: null,
+            viewDistance: 3,
+            parallaxBackgroundImage: '',
+            parallaxBackgroundSize: '',
+            parallaxBackgroundRepeat: '',
+            parallaxBackgroundPosition: '',
+            parallaxBackgroundHorizontal: null,
+            parallaxBackgroundVertical: null,
+            // Presenter mode configuration
+            keyboard: {
+                83: () => {
+                    // Press 'S' to open presenter mode (reveal.js default)
+                    // Reveal.js handles this automatically via postMessage
+                }
+            }
+        });
+
+        // Get presentation name from URL path
+        function getPresentationName() {
+            const path = window.location.pathname;
+            const match = path.match(/\/presentations\/([^\/]+)/);
+            return match ? match[1] : null;
+        }
+
+        // Load notes from API and inject into slides
+        async function loadNotes() {
+            const presentationName = getPresentationName();
+            if (!presentationName) return;
+
+            try {
+                const response = await fetch(`/api/presentations/${presentationName}/notes`);
+                const data = await response.json();
+                
+                if (data.notes && data.notes.length > 0) {
+                    // Inject notes into corresponding slides
+                    data.notes.forEach(noteData => {
+                        const slideIndex = noteData.slide - 1; // Convert to 0-based index
+                        const slides = document.querySelectorAll('.reveal .slides section');
+                        
+                        if (slides[slideIndex]) {
+                            let notesElement = slides[slideIndex].querySelector('aside.notes');
+                            
+                            if (!notesElement) {
+                                notesElement = document.createElement('aside');
+                                notesElement.className = 'notes';
+                                slides[slideIndex].appendChild(notesElement);
+                            }
+                            
+                            // Convert markdown notes to HTML
+                            if (noteData.notes) {
+                                // Simple markdown to HTML conversion for basic formatting
+                                let htmlNotes = noteData.notes
+                                    .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
+                                    .replace(/\*(.*?)\*/g, '<em>$1</em>')
+                                    .replace(/`(.*?)`/g, '<code>$1</code>')
+                                    .replace(/\n\n/g, '</p><p>')
+                                    .replace(/\n/g, '<br>');
+                                
+                                if (!htmlNotes.startsWith('<p>')) {
+                                    htmlNotes = '<p>' + htmlNotes;
+                                }
+                                if (!htmlNotes.endsWith('</p>')) {
+                                    htmlNotes = htmlNotes + '</p>';
+                                }
+                                
+                                notesElement.innerHTML = htmlNotes;
+                            }
+                        }
+                    });
+                    
+                    // Trigger Reveal.js to update notes if already initialized
+                    if (Reveal.isReady()) {
+                        Reveal.sync();
+                    }
+                }
+            } catch (error) {
+                console.error('Error loading notes:', error);
+            }
+        }
+
+        // Load notes after Reveal.js is initialized
+        Reveal.addEventListener('ready', () => {
+            loadNotes();
+        });
+        
+        // Also load notes when slides change (for presenter view)
+        Reveal.addEventListener('slidechanged', () => {
+            // Notes will already be injected, but we ensure they're visible in presenter mode
+        });
+
+        // Check if we should open in presenter mode
+        const urlParams = new URLSearchParams(window.location.search);
+        if (urlParams.get('view') === 'speaker') {
+            // This is the presenter view window
+            // Reveal.js will handle the presenter mode automatically
+        }
+
+        // Keyboard shortcuts
+        document.addEventListener('keydown', (e) => {
+            // Prevent default behavior for presentation navigation
+            if (['ArrowRight', 'ArrowLeft', 'Space', 'PageDown', 'PageUp'].includes(e.key)) {
+                // Reveal.js handles these
+            }
+        });
+    </script>
+</body>
+</html>
+

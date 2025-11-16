@@ -1,0 +1,18 @@
+{
+  "name": "presentation-app",
+  "version": "1.0.0",
+  "description": "Simple presentation app with reveal.js and presenter mode",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "present": "node scripts/open-presentation.js"
+  },
+  "keywords": ["presentation", "reveal.js"],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.18.2",
+    "marked": "^11.1.0"
+  }
+}
+
