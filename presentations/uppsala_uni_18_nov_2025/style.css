@@ -276,3 +276,159 @@ h1 {
     }
 }
 
+/* Slide 010 - MCP Architecture specific styles */
+
+.architecture {
+    display: flex;
+    flex-direction: column;
+    gap: 50px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.layer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+}
+
+.layer-box {
+    width: 100%;
+    padding: 40px;
+    background: #0f172a;
+    border: 3px solid #2dd4bf;
+    border-radius: 12px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 30px;
+    position: relative;
+}
+
+.layer-highlight {
+    background: linear-gradient(135deg, #0f172a 0%, #1e3a5f 100%);
+    border-color: #2dd4bf;
+    box-shadow: 0 0 30px rgba(45, 212, 191, 0.3);
+}
+
+.layer-title {
+    font-size: 1.8em;
+    color: #ffffff;
+    font-weight: 600;
+    text-align: center;
+}
+
+.servers-row {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    flex-wrap: wrap;
+}
+
+.server-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+}
+
+.server-icon {
+    width: 100px;
+    height: 100px;
+    background: #1a2332;
+    border: 2px solid #2dd4bf;
+    border-radius: 8px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.server-icon .material-icons {
+    font-size: 60px;
+}
+
+.server-label {
+    font-size: 1.1em;
+    color: #94a3b8;
+    text-align: center;
+}
+
+.connection-arrow {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    margin: -20px 0;
+}
+
+.connection-arrow .material-icons {
+    font-size: 48px;
+    color: #2dd4bf;
+}
+
+.arrow-down {
+    animation: pulseDown 2s ease-in-out infinite;
+}
+
+.arrow-up {
+    animation: pulseUp 2s ease-in-out infinite;
+}
+
+@keyframes pulseDown {
+    0%, 100% {
+        opacity: 0.4;
+        transform: translateY(-5px);
+    }
+    50% {
+        opacity: 1;
+        transform: translateY(5px);
+    }
+}
+
+@keyframes pulseUp {
+    0%, 100% {
+        opacity: 0.4;
+        transform: translateY(5px);
+    }
+    50% {
+        opacity: 1;
+        transform: translateY(-5px);
+    }
+}
+
+.protocol-badge {
+    position: absolute;
+    top: -15px;
+    background: #2dd4bf;
+    color: #1a2332;
+    padding: 8px 20px;
+    border-radius: 20px;
+    font-size: 0.9em;
+    font-weight: 600;
+}
+
+.transport-info {
+    text-align: center;
+    color: #64748b;
+    font-size: 1em;
+    margin-top: -35px;
+}
+
+@media (max-width: 1200px) {
+    .layer-box {
+        padding: 30px;
+    }
+
+    .servers-row {
+        gap: 30px;
+    }
+}
+
+@media (max-width: 768px) {
+    .servers-row {
+        flex-direction: column;
+        align-items: center;
+    }
+}
+

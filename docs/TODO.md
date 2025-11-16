@@ -40,10 +40,13 @@ VI vill inte att varje html-fil ska behöve ha all css etc utan vi ska göra en 
 2.1. Skapa filen `presentations/uppsala_uni_18_nov_2025/style.css` (tom fil först). ✅ KLAR
 2.2. Flytta över ALLA CSS-regler från 009.html:s `<style>`-tag till `style.css`. Kopiera exakt, ändra inget ännu. ✅ KLAR
 2.3. Testa: Uppdatera 009.html så att den länkar till `style.css` istället för att ha inline `<style>`. Verifiera att slide 009 ser exakt likadan ut som innan. ✅ KLAR (validerad med screenshot och network requests)
+
+**FAS 2.1-2.3 KLAR - Committad och mergad till main**
+
+2.4. Om 009 ser bra ut: Uppdatera 010.html så att den också länkar till `style.css`. Lägg till eventuella nya CSS-regler från 010 som inte fanns i 009 till `style.css`. ✅ KLAR
+2.5. Testa: Verifiera att både 009 och 010 ser bra ut och fungerar. ✅ KLAR (validerad med screenshots och network requests, inga console-fel)
+2.6. **Cleanup:** Ta bort `docs/common-css-list.md` när `style.css` är skapad och CSS:en är flyttad (filen var bara tillfällig analys för att hjälpa till att skapa style.css). ✅ KLAR
 <VI ÄR HÄR I ARBETET (FLYTTA EFTER DENNA MARKERING I TAKT MED EN GREJ BLIR KLAR)>
-2.4. Om 009 ser bra ut: Uppdatera 010.html så att den också länkar till `style.css`. Lägg till eventuella nya CSS-regler från 010 som inte fanns i 009 till `style.css`.
-2.5. Testa: Verifiera att både 009 och 010 ser bra ut och fungerar.
-2.6. **Cleanup:** Ta bort `docs/common-css-list.md` när `style.css` är skapad och CSS:en är flyttad (filen var bara tillfällig analys för att hjälpa till att skapa style.css).
 
 **FAS 3: Identifiera återanvändbara klasser (ANALYS, INGA FÄNDRINGAR)**
 3.1. Gå igenom CSS:en i `style.css`. Identifiera regler som är identiska eller nästan identiska mellan 009 och 010.
