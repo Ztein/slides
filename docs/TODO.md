@@ -46,6 +46,9 @@ VI vill inte att varje html-fil ska behöve ha all css etc utan vi ska göra en 
 2.4. Om 009 ser bra ut: Uppdatera 010.html så att den också länkar till `style.css`. Lägg till eventuella nya CSS-regler från 010 som inte fanns i 009 till `style.css`. ✅ KLAR
 2.5. Testa: Verifiera att både 009 och 010 ser bra ut och fungerar. ✅ KLAR (validerad med screenshots och network requests, inga console-fel)
 2.6. **Cleanup:** Ta bort `docs/common-css-list.md` när `style.css` är skapad och CSS:en är flyttad (filen var bara tillfällig analys för att hjälpa till att skapa style.css). ✅ KLAR
+
+**FAS 2 KLAR - Committad och mergad till main**
+
 <VI ÄR HÄR I ARBETET (FLYTTA EFTER DENNA MARKERING I TAKT MED EN GREJ BLIR KLAR)>
 
 **FAS 3: Identifiera återanvändbara klasser (ANALYS, INGA FÄNDRINGAR)**
