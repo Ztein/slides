@@ -1,0 +1,11 @@
+---
+alwaysApply: true
+---
+Avoid creating clutter.
+1. Skapa inte filer för mellanresultat – Om informationen redan finns i källkod eller kommer att flyttas dit, skapa inte en separat fil.
+2. En fil per syfte – Undvik duplicering. Om två filer innehåller samma information, behåll en.
+3. Dokumentation ska vara permanent – Skapa dokumentation om den behövs långsiktigt. Analysfiler och tillfälliga anteckningar hör hemma i chatten eller tas bort när de inte längre behövs.
+4. Fråga dig: "Behöver någon detta om 3 månader?" – Om svaret är nej, skapa inte filen.
+5. Källkoden är källan – Om CSS:en finns i HTML-filerna, skapa inte en separat analysfil. Extrahera direkt till gemensam CSS istället.
+6. TODO/plan är undantag – Aktiva TODO-listor och planer kan vara temporära men behövs under arbetet.
+7. När du är osäker: fråga eller vänta – Skapa inte filer "för säkerhets skull". Det är lättare att skapa en fil senare än att ta bort många.
