@@ -33,12 +33,14 @@ VI vill inte att varje html-fil ska behöve ha all css etc utan vi ska göra en 
 1.1. Läs igenom `presentations/uppsala_uni_18_nov_2025/slides/009.html` - dokumentera alla CSS-regler som finns i `<style>`-taggen. Lista alla klasser och ID:n som används. ✅ KLAR
 1.2. Läs igenom `presentations/uppsala_uni_18_nov_2025/slides/010.html` - dokumentera alla CSS-regler. Jämför med 009: vilka regler är identiska? Vilka är liknande men olika? Vilka är helt unika? ✅ KLAR
 1.3. Skriv ner en lista över gemensamma CSS-regler (t.ex. body, h1, .slide, .nav-controls) som kan flyttas till gemensam CSS. ✅ KLAR
-<VI ÄR HÄR I ARBETET (FLYTTA EFTER DENNA MARKERING I TAKT MED EN GREJ BLIR KLAR)>
+
+**FAS 1 KLAR - Committad och mergad till main**
 
 **FAS 2: Skapa gemensam CSS-fil (EN FIL I TAGET)**
-2.1. Skapa filen `presentations/uppsala_uni_18_nov_2025/style.css` (tom fil först).
-2.2. Flytta över ALLA CSS-regler från 009.html:s `<style>`-tag till `style.css`. Kopiera exakt, ändra inget ännu.
-2.3. Testa: Uppdatera 009.html så att den länkar till `style.css` istället för att ha inline `<style>`. Verifiera att slide 009 ser exakt likadan ut som innan.
+2.1. Skapa filen `presentations/uppsala_uni_18_nov_2025/style.css` (tom fil först). ✅ KLAR
+2.2. Flytta över ALLA CSS-regler från 009.html:s `<style>`-tag till `style.css`. Kopiera exakt, ändra inget ännu. ✅ KLAR
+2.3. Testa: Uppdatera 009.html så att den länkar till `style.css` istället för att ha inline `<style>`. Verifiera att slide 009 ser exakt likadan ut som innan. ✅ KLAR (validerad med screenshot och network requests)
+<VI ÄR HÄR I ARBETET (FLYTTA EFTER DENNA MARKERING I TAKT MED EN GREJ BLIR KLAR)>
 2.4. Om 009 ser bra ut: Uppdatera 010.html så att den också länkar till `style.css`. Lägg till eventuella nya CSS-regler från 010 som inte fanns i 009 till `style.css`.
 2.5. Testa: Verifiera att både 009 och 010 ser bra ut och fungerar.
 2.6. **Cleanup:** Ta bort `docs/common-css-list.md` när `style.css` är skapad och CSS:en är flyttad (filen var bara tillfällig analys för att hjälpa till att skapa style.css).
