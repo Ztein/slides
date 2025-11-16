@@ -1,0 +1,12 @@
+---
+alwaysApply: true
+---
+1. Make a plan for the feature that the user wants you to implement.
+2. Create a branch.
+3. Consider how to test the feature once it is implemented.
+4. Create the tests that can be used to verify this feature.
+5. Run all tests. Make sure that all test cases that existed before 4 are green and that all cases added in 4 are red.
+6. For each test case, implement code that will turn it green. 
+    6a. Run all tests, make sure none of the old cases are red. make sure the selected case from 6 is green
+    6b. repeat until feature is complete and all tests are green.
+7. If user is happy with your work he will ask you to comitt and push and merge to main. Never ever do this without his expressed permission.s
