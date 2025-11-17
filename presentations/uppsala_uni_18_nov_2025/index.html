@@ -16,10 +16,22 @@
     <link rel="stylesheet" href="style.css">
     
     <style>
-        /* Reveal.js specific overrides */
+        /* Reveal.js specific overrides - FIX SYSTEMISKA PROBLEM */
+        
+        /* FAS 2.1: Fix section display - ändra från flex till block */
         .reveal .slides section {
-            text-align: left;
+            display: block !important;  /* Ändra från flex som skapade vertikal staplning */
+            text-align: left !important;
+            height: auto !important;
         }
+        
+        /* Låt .slide wrapper hantera layout */
+        .reveal .slides section .slide {
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+        }
+        
         .reveal h1, .reveal h2, .reveal h3 {
             color: #ffffff;
         }
