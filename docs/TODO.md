@@ -141,16 +141,32 @@ VI vill inte att varje html-fil ska behöve ha all css etc utan vi ska göra en 
    - CSS organiserad i sektioner: `/* === GEMENSAMMA STILAR === */`, `/* === POTENTIELLT GEMENSAMMA KLASSER === */`, `/* === SLIDE 009 === */`, `/* === SLIDE 010 === */`, `/* === NAVIGATION === */`
    - Validerad: Slides 009 och 010 ser bra ut efter organisering
 
-<VI ÄR HÄR I ARBETET (FLYTTA EFTER DENNA MARKERING I TAKT MED EN GREJ BLIR KLAR)>
-**NÄSTA ÅTGÄRD: FAS 5.3 - Fortsätt migrera övriga slides (005, 006, etc.)**
-
-**FAS 5: Migrera övriga slides (EN SLIDE I TAGET)**
+**FAS 5: Migrera övriga slides (EN SLIDE I TAGET)** ✅ KLAR
 5.1. Ta slide 001. Lägg till länk till `style.css`. Lägg till eventuella nya CSS-regler som behövs i `style.css`. Testa att 001 fungerar. ✅ KLAR
 5.2. Ta slide 002. Samma process. Testa. ✅ KLAR
 5.3. Fortsätt med 003, 004, 005... EN I TAGET. Efter varje slide: testa att den fungerar innan du går vidare.
    - ✅ Slide 003: Migrerad till style.css med kompakt lista-liknande design (pilar på höger sida utanför items)
    - ✅ Slide 004: Migrerad till style.css med kompakt design (fast padding, mindre gaps)
    - ✅ Slide 005: Migrerad till style.css med kompakt design (mindre LLM-bubbla, fast gaps och padding)
+   - ✅ Slide 006: Migrerad till style.css med kompakt design
+   - ✅ Slide 007: Migrerad till style.css med kompakt design
+   - ✅ Slide 008: Migrerad till style.css med kompakt design
+   - ✅ Slide 009: Redan migrerad i FAS 2
+   - ✅ Slide 010: Redan migrerad i FAS 2
+   - ✅ Slide 011: Migrerad till style.css med kompakt design
+   - ✅ Slide 012: Migrerad till style.css med kompakt design
+   - ✅ Slide 013: Migrerad till style.css med kompakt design
+   - ✅ Slide 014: Migrerad till style.css med kompakt design (fixat CSS-konflikt med slide 003)
+   - ✅ Slide 015: Migrerad till style.css med kompakt design (fixat kodformatering med <br> och &nbsp;)
+   - ✅ Slide 016: Migrerad till style.css med kompakt design
+   - ✅ Slide 017: Migrerad till style.css med kompakt design
+   - ✅ Slide 018: Migrerad till style.css med kompakt design
+   - ✅ Slide 019: Migrerad till style.css med kompakt lista-design (utan stora boxar)
+
+**FAS 5 KLAR - Committad och mergad till main**
+
+<VI ÄR HÄR I ARBETET (FLYTTA EFTER DENNA MARKERING I TAKT MED EN GREJ BLIR KLAR)>
+**NÄSTA ÅTGÄRD: FAS 6 - Säkerställ 16:9 och scroll**
 
 **FAS 6: Säkerställ 16:9 och scroll (EN ÄNDRING I TAGET)**
 6.1. Lägg till CSS-regel för att säkerställa 16:9-aspekt. Testa på en slide.
@@ -176,6 +192,7 @@ VI vill inte att varje html-fil ska behöve ha all css etc utan vi ska göra en 
 9.4. Lägg till sektion om presenter mode. Testa.
 
 y. Navigationspilarna på slajdsen ska bara visas vid hover.
+z. Det ska vara enkelt att ändra ordning på slajdsen, eller ta bort en, eller lägga till en. Dvs vi kan inte längre ha filnamn med index i.
 
 x. Vidareutveckla presentatörsvyn till en riktigt proffsig lösning (timer, nästa slide, tydligare manuslayout, snabbnavigation m.m.)
 
