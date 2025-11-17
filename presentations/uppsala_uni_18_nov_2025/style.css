@@ -259,9 +259,21 @@ h1 {
 
 /* === SLIDE 002 - LLM FLOW DIAGRAM (specifik för 002) === */
 
-/* Flow diagram */
+/* Flow diagram - FAS 2.3: Force horizontal layout för Reveal.js */
+.reveal .slides section .flow-diagram {
+    display: flex !important;
+    flex-direction: row !important;  /* Force horizontal */
+    justify-content: center !important;
+    align-items: center !important;
+    gap: clamp(25px, 3vw, 40px);
+    margin: clamp(30px, 6vh, 60px) 0;
+    flex-wrap: wrap;
+}
+
+/* Fallback för non-Reveal contexts */
 .flow-diagram {
     display: flex;
+    flex-direction: row;
     justify-content: center;
     align-items: center;
     gap: clamp(25px, 3vw, 40px);
