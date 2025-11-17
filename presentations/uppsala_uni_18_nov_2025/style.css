@@ -11,20 +11,25 @@
 body {
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif;
     background: #1a2332;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
-    padding: 1vh 4vw;
     color: #e2e8f0;
 }
 
-.slide {
+/* Reveal.js section styling - applies to all slides */
+.reveal .slides section {
     max-width: min(1400px, calc(100vw - 2 * clamp(20px, 2vw, 40px)));
     width: 100%;
     display: flex;
     flex-direction: column;
     max-height: 96vh;
+    padding: 2vh 2vw;
+}
+
+/* Legacy .slide class for backward compatibility with existing HTML */
+.slide {
+    max-width: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
 }
 
 /* Rubrikstilar */
@@ -173,70 +178,8 @@ h1 {
 /* Media queries för diagram-layout */
 /* OBS: Ingen responsive layout för smala skärmar - presentationer är designade för liggande 16:9/16:10 */
 
-/* === NAVIGATION (gemensam för alla slides) === */
-
-.nav-controls {
-    position: fixed;
-    bottom: 30px;
-    right: 30px;
-    display: flex;
-    align-items: center;
-    gap: 15px;
-    z-index: 1000;
-    background: rgba(15, 23, 42, 0.95);
-    backdrop-filter: blur(10px);
-    padding: 15px 20px;
-    border-radius: 50px;
-    border: 2px solid #2dd4bf;
-    box-shadow: 0 4px 20px rgba(45, 212, 191, 0.3);
-}
-
-.nav-button {
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-    background: #2dd4bf;
-    border: none;
-    color: #1a2332;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: all 0.3s ease;
-    font-size: 0;
-}
-
-.nav-button:hover:not(:disabled) {
-    background: #14b8a6;
-    transform: scale(1.1);
-    box-shadow: 0 4px 15px rgba(45, 212, 191, 0.5);
-}
-
-.nav-button:disabled {
-    background: #475569;
-    cursor: not-allowed;
-    opacity: 0.4;
-}
-
-.nav-button .material-icons {
-    font-size: 32px;
-    color: #1a2332;
-}
-
-.nav-button:disabled .material-icons {
-    color: #64748b;
-}
-
-.slide-indicator {
-    color: #e2e8f0;
-    font-size: 1.1em;
-    font-weight: 600;
-    padding: 0 10px;
-    min-width: 80px;
-    text-align: center;
-}
-
-/* OBS: Ingen responsive layout för smala skärmar - presentationer är designade för liggande 16:9/16:10 */
+/* === NAVIGATION === */
+/* Navigation removed - Reveal.js handles navigation controls */
 
 /* === SLIDE 001 - TITLE SLIDE (specifik för 001) === */
 
