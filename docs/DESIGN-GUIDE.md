@@ -348,7 +348,7 @@ När du skapar eller fixar en slide, kontrollera:
 
 ```css
 .title-slide-h1 {
-    font-size: clamp(1.3rem, 2.5vh, 2rem) !important;
+    font-size: clamp(1.8rem, 3.5vh, 2.8rem) !important;
     margin-bottom: clamp(10px, 1.5vh, 18px) !important;
     text-align: center;
     color: #ffffff;
