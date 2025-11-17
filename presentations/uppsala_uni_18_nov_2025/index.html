@@ -20,23 +20,37 @@
         /* Detta måste komma EFTER reveal.css och black.css för att override:a dem */
         
         /* FAS 2.1 + 2.2: Fix section display och override black theme */
-        /* Reveal.js skapar .slide-background wrappers - vi måste rikta CSS mot dessa */
-        .reveal .slides section,
-        .reveal .slides section.present,
-        .reveal .slides section .slide-background {
-            display: block !important;
+        /* Innehållet ligger DIREKT i section - rikta CSS mot section och dess direkta barn */
+        
+        /* Section styling */
+        .reveal .slides section {
             text-align: left !important;
-            height: auto !important;
-            background: transparent !important;  /* Override black theme */
+            background: transparent !important;
             color: #e2e8f0 !important;
-            padding: 0 !important;
-            margin: 0 !important;
+            padding: 2vh 2vw !important;
+            max-width: min(1400px, calc(100vw - 2 * clamp(20px, 2vw, 40px))) !important;
             width: 100% !important;
-            max-width: 100% !important;
+            height: auto !important;
+            max-height: 96vh !important;
+            margin: 0 auto !important;
+            display: flex !important;
+            flex-direction: column !important;
+            align-items: flex-start !important;
+            justify-content: flex-start !important;
         }
         
-        /* Innehållet ligger nu DIREKT i section (ingen .slide wrapper) */
-        /* Reveal.js skapar .slide-background-content wrappers runt innehållet */
+        /* Override Reveal.js black theme för section */
+        .reveal .slides section.present {
+            background: transparent !important;
+            color: #e2e8f0 !important;
+        }
+        
+        /* Override .slide-background om Reveal.js skapar den */
+        .reveal .slides section .slide-background {
+            display: none !important;  /* Göm bakgrundselement */
+        }
+        
+        /* .slide-background-content om Reveal.js skapar den */
         .reveal .slides section .slide-background-content {
             display: flex !important;
             flex-direction: column !important;

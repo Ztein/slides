@@ -15,8 +15,8 @@ body {
 }
 
 /* Reveal.js section styling - applies to all slides */
-/* REMOVED: Old flex layout that conflicted - now handled in index.html inline styles */
-/* Reveal.js skapar .slide-background-content wrappers - CSS finns i index.html */
+/* CSS för Reveal.js finns i index.html inline styles */
+/* Detta filen innehåller CSS för slide-specifika klasser (flow-diagram, characteristics, etc.) */
 
 /* Legacy .slide class for backward compatibility with existing HTML */
 .slide {
