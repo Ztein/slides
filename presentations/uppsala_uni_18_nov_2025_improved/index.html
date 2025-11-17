@@ -1,0 +1,1836 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Advanced Software Design: Building Scalable AI Integrations with MCP - Uppsala University</title>
+    
+    <!-- Material Icons -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    
+    <!-- Reveal.js CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@4.6.1/dist/reveal.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@4.6.1/dist/theme/black.css">
+    
+    <!-- Custom presentation CSS -->
+    <link rel="stylesheet" href="style.css">
+    
+    <style>
+        /* Reveal.js specific overrides */
+        .reveal .slides section {
+            text-align: left !important;
+            background: transparent !important;
+            color: #e2e8f0 !important;
+            padding: clamp(10px, 1.5vh, 20px) clamp(15px, 2vw, 30px) !important;
+            max-width: min(1400px, calc(100vw - 2 * clamp(20px, 2vw, 40px))) !important;
+            width: 100% !important;
+            max-width: 100% !important;
+            height: auto !important;
+            min-height: auto !important;
+            max-height: 96vh !important;
+            overflow: hidden !important;
+            margin: 0 auto !important;
+            display: flex !important;
+            flex-direction: column !important;
+            align-items: flex-start !important;
+            justify-content: flex-start !important;
+        }
+        
+        .reveal .slides section[style] {
+            display: flex !important;
+            width: 100% !important;
+            max-width: 100% !important;
+            height: auto !important;
+            min-height: 96vh !important;
+            max-height: none !important;
+        }
+        
+        .reveal .slides section.present {
+            background: transparent !important;
+            color: #e2e8f0 !important;
+        }
+        
+        .reveal .slides section h1,
+        .reveal .slides section h2,
+        .reveal .slides section h3 {
+            color: #ffffff !important;
+            text-align: left !important;
+            font-size: clamp(2.5rem, 5vh, 4rem) !important;
+            margin-bottom: clamp(15px, 2vh, 25px) !important;
+            line-height: 1.2 !important;
+        }
+        
+        .reveal .slides section h1.title-slide-h1 {
+            font-size: clamp(2.5rem, 5vh, 4rem) !important;
+        }
+        
+        .reveal .slides section * {
+            box-sizing: border-box !important;
+        }
+        
+        .reveal .notes {
+            display: none;
+        }
+        
+        .reveal .slides section {
+            font-size: 0.85em !important;
+        }
+        
+        .reveal .slides section .material-icons {
+            font-size: clamp(24px, 3vw, 36px) !important;
+        }
+    </style>
+</head>
+<body>
+    <div class="reveal">
+        <div class="slides">
+            
+            <!-- Slide 1: Title & Personal Introduction -->
+            <section>
+                <h1 class="title-slide-h1">Advanced Software Design:<br>Building Scalable AI Integrations</h1>
+                <div class="subtitle-large">with the Model Context Protocol</div>
+                
+                <div class="presenter-info">
+                    Joel Stenberg, AI Specialist, Knowit<br>
+                    Uppsala University Master Class<br>
+                    November 18, 2025
+                </div>
+                
+                <div class="agenda">
+                    <div class="agenda-title">Today's Journey</div>
+                    <div class="agenda-item">
+                        <span class="material-icons agenda-icon">error_outline</span>
+                        <div>Real Problems: When RAG Fails</div>
+                    </div>
+                    <div class="agenda-item">
+                        <span class="material-icons agenda-icon">architecture</span>
+                        <div>Software Architecture Principles</div>
+                    </div>
+                    <div class="agenda-item">
+                        <span class="material-icons agenda-icon">electrical_services</span>
+                        <div>MCP: Protocol-Based Design</div>
+                    </div>
+                    <div class="agenda-item">
+                        <span class="material-icons agenda-icon">security</span>
+                        <div>Production Patterns & Security</div>
+                    </div>
+                </div>
+                <aside class="notes"></aside>
+            </section>
+            
+            <!-- Slide 2: A Real Problem - RAG Failure (Forestry Company) -->
+            <section>
+                <h1>A Real Problem: When RAG Meets Reality</h1>
+                
+                <div class="flow-diagram">
+                    <div class="flow-box">10,000+<br>Research<br>Documents</div>
+                    <span class="material-icons flow-arrow">arrow_forward</span>
+                    <div class="flow-box flow-box-highlight">RAG<br>System</div>
+                    <span class="material-icons flow-arrow">arrow_forward</span>
+                    <div class="flow-box" style="border-color: #ef4444; color: #ef4444;">❌<br>Failed</div>
+                </div>
+                
+                <div class="characteristics">
+                    <div class="characteristic">
+                        <span class="material-icons characteristic-icon" style="color: #ef4444;">business</span>
+                        <div class="characteristic-title" style="color: #ef4444;">The Client</div>
+                        <div class="characteristic-text">
+                            Major Swedish forestry company with 100+ years of research history
+                        </div>
+                    </div>
+                    
+                    <div class="characteristic">
+                        <span class="material-icons characteristic-icon" style="color: #ef4444;">help_outline</span>
+                        <div class="characteristic-title" style="color: #ef4444;">The Questions</div>
+                        <div class="characteristic-text">
+                            "How many articles about lignin 1930-1980?"<br>
+                            "Compare reasoning in these two 30-page papers"
+                        </div>
+                    </div>
+                    
+                    <div class="characteristic">
+                        <span class="material-icons characteristic-icon" style="color: #ef4444;">cancel</span>
+                        <div class="characteristic-title" style="color: #ef4444;">Why It Failed</div>
+                        <div class="characteristic-text">
+                            RAG returns random chunks. Can't count articles, can't compare full documents
+                        </div>
+                    </div>
+                </div>
+                <aside class="notes"></aside>
+            </section>
+            
+            <!-- Slide 3: Another Failure - Insurance Agreement Nightmare -->
+            <section>
+                <h1>Another Failure: Insurance Agreement Nightmare</h1>
+                
+                <div class="isolation-container">
+                    <div class="flow-diagram">
+                        <div class="flow-box">30 Union<br>Agreements<br>(95% Similar)</div>
+                        <span class="material-icons flow-arrow">arrow_forward</span>
+                        <div class="flow-box flow-box-highlight">RAG<br>System</div>
+                        <span class="material-icons flow-arrow">arrow_forward</span>
+                        <div class="flow-box" style="border-color: #ef4444; color: #ef4444;">❌<br>Wrong<br>Document</div>
+                    </div>
+                </div>
+                
+                <div class="solutions-grid" style="grid-template-columns: 1fr 1fr;">
+                    <div class="solution" style="border-color: #ef4444;">
+                        <div class="solution-header">
+                            <span class="material-icons solution-icon">description</span>
+                            <div class="solution-title">The Problem</div>
+                        </div>
+                        <div class="solution-description">
+                            Query: "What's the deductible for electricians union 2024?"
+                        </div>
+                        <div class="problems-list">
+                            <div class="problem-item">
+                                <span class="material-icons problem-icon">close</span>
+                                <div>RAG returns chunks from plumbers 2024</div>
+                            </div>
+                            <div class="problem-item">
+                                <span class="material-icons problem-icon">close</span>
+                                <div>Also returns electricians 2023</div>
+                            </div>
+                            <div class="problem-item">
+                                <span class="material-icons problem-icon">close</span>
+                                <div>Sometimes metalworkers 2024</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="solution" style="border-color: #ef4444;">
+                        <div class="solution-header">
+                            <span class="material-icons solution-icon">search</span>
+                            <div class="solution-title">Why RAG Fails</div>
+                        </div>
+                        <div class="solution-description">
+                            Semantic similarity is TOO HIGH
+                        </div>
+                        <div class="problems-list">
+                            <div class="problem-item">
+                                <span class="material-icons problem-icon">close</span>
+                                <div>All agreements use similar language</div>
+                            </div>
+                            <div class="problem-item">
+                                <span class="material-icons problem-icon">close</span>
+                                <div>Chunks from wrong documents look "relevant"</div>
+                            </div>
+                            <div class="problem-item">
+                                <span class="material-icons problem-icon">close</span>
+                                <div>Need exact document retrieval, not semantic search</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <aside class="notes"></aside>
+            </section>
+            
+            <!-- Slide 4: Why RAG Fails - Architectural Limitations -->
+            <section>
+                <h1>Why RAG Fails: Architectural Limitations</h1>
+                
+                <div class="comparison-container">
+                    <table class="comparison-table">
+                        <thead>
+                            <tr>
+                                <th>Capability</th>
+                                <th style="background: rgba(45, 212, 191, 0.3);">What RAG Can Do</th>
+                                <th style="background: rgba(239, 68, 68, 0.3);">What RAG Cannot Do</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><span class="material-icons row-icon">search</span> Search</td>
+                                <td style="color: #2dd4bf;">Find relevant passages for factual questions</td>
+                                <td style="color: #ef4444;">Count or aggregate across documents</td>
+                            </tr>
+                            <tr>
+                                <td><span class="material-icons row-icon">description</span> Documents</td>
+                                <td style="color: #2dd4bf;">Retrieve specific information chunks</td>
+                                <td style="color: #ef4444;">Compare full documents (needs entire context)</td>
+                            </tr>
+                            <tr>
+                                <td><span class="material-icons row-icon">content_copy</span> Similarity</td>
+                                <td style="color: #2dd4bf;">Works for diverse content</td>
+                                <td style="color: #ef4444;">Breaks with near-duplicate content</td>
+                            </tr>
+                            <tr>
+                                <td><span class="material-icons row-icon">security</span> Security</td>
+                                <td style="color: #2dd4bf;">Basic filtering possible</td>
+                                <td style="color: #ef4444;">Complex role-based access control</td>
+                            </tr>
+                            <tr>
+                                <td><span class="material-icons row-icon">build</span> Actions</td>
+                                <td style="color: #2dd4bf;">Augment context for answers</td>
+                                <td style="color: #ef4444;">Execute tools, actions, stateful operations</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                
+                <div class="highlight-box">
+                    <span class="material-icons highlight-icon">lightbulb</span>
+                    <div class="highlight-text">
+                        <span class="highlight-emphasis">Key Insight:</span> RAG gives you semantic search. Enterprise AI needs so much more: tools, actions, stateful operations, security boundaries. This is where proper software architecture comes in.
+                    </div>
+                </div>
+                <aside class="notes"></aside>
+            </section>
+            
+            <!-- Slide 5: The Solution We Built - Agent Orchestration -->
+            <section>
+                <h1>The Solution We Built: Agent Orchestration</h1>
+                
+                <div class="split-container">
+                    <div class="panel">
+                        <div class="panel-title">
+                            <span class="material-icons">nature</span>
+                            Forestry Company Solution
+                        </div>
+                        
+                        <div class="workflow">
+                            <div class="step">
+                                <div class="step-number">1</div>
+                                <span class="material-icons step-icon">search</span>
+                                <div class="step-content">
+                                    <div class="step-title">Document Finder Agent</div>
+                                    <div class="step-description">Uses metadata to find exact documents, not chunks</div>
+                                </div>
+                            </div>
+                            
+                            <div class="step">
+                                <div class="step-number">2</div>
+                                <span class="material-icons step-icon">description</span>
+                                <div class="step-content">
+                                    <div class="step-title">Document Reader Agent</div>
+                                    <div class="step-description">Loads entire documents into context for analysis</div>
+                                </div>
+                            </div>
+                            
+                            <div class="step">
+                                <div class="step-number">3</div>
+                                <span class="material-icons step-icon">analytics</span>
+                                <div class="step-content">
+                                    <div class="step-title">Analysis Agent</div>
+                                    <div class="step-description">Counts, compares, aggregates across documents</div>
+                                </div>
+                            </div>
+                            
+                            <div class="step">
+                                <div class="step-number">4</div>
+                                <span class="material-icons step-icon">integration_instructions</span>
+                                <div class="step-content">
+                                    <div class="step-title">Synthesis Agent</div>
+                                    <div class="step-description">Combines results and answers original question</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="panel">
+                        <div class="panel-title">
+                            <span class="material-icons">business_center</span>
+                            Insurance Company Solution
+                        </div>
+                        
+                        <div class="workflow">
+                            <div class="step">
+                                <div class="step-number">1</div>
+                                <span class="material-icons step-icon">filter_list</span>
+                                <div class="step-content">
+                                    <div class="step-title">Agreement Selector Tool</div>
+                                    <div class="step-description">Uses structured metadata to find exact agreement</div>
+                                </div>
+                            </div>
+                            
+                            <div class="step">
+                                <div class="step-number">2</div>
+                                <span class="material-icons step-icon">file_download</span>
+                                <div class="step-content">
+                                    <div class="step-title">Full Document Loader</div>
+                                    <div class="step-description">Retrieves complete agreement, not chunks</div>
+                                </div>
+                            </div>
+                            
+                            <div class="step">
+                                <div class="step-number">3</div>
+                                <span class="material-icons step-icon">compare</span>
+                                <div class="step-content">
+                                    <div class="step-title">Comparison Tool</div>
+                                    <div class="step-description">Loads multiple full agreements for side-by-side analysis</div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="highlight-box" style="margin-top: 20px;">
+                            <span class="material-icons highlight-icon">check_circle</span>
+                            <div class="highlight-text">
+                                It worked! But we had to build custom integrations for each client, each LLM provider, each use case. No standardization.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <aside class="notes"></aside>
+            </section>
+            
+            <!-- Slide 6: LLMs as a Software Component -->
+            <section>
+                <h1>LLMs as a Software Component</h1>
+                
+                <div class="diagram">
+                    <div class="component">
+                        <div class="box">
+                            <span class="material-icons" style="font-size: 60px;">input</span>
+                        </div>
+                        <div class="label">Inputs<br><small style="color: #94a3b8;">Text: prompts, context</small></div>
+                    </div>
+                    
+                    <div class="arrow-container">
+                        <span class="material-icons arrow arrow-right">arrow_forward</span>
+                    </div>
+                    
+                    <div class="component">
+                        <div class="box box-highlight">
+                            <span class="material-icons icon-highlight" style="font-size: 60px;">psychology</span>
+                        </div>
+                        <div class="label">LLM<br><small style="color: #1a2332;">Reasoning Engine</small></div>
+                    </div>
+                    
+                    <div class="arrow-container">
+                        <span class="material-icons arrow arrow-right">arrow_forward</span>
+                    </div>
+                    
+                    <div class="component">
+                        <div class="box">
+                            <span class="material-icons" style="font-size: 60px;">output</span>
+                        </div>
+                        <div class="label">Outputs<br><small style="color: #94a3b8;">Text: predictions, data</small></div>
+                    </div>
+                </div>
+                
+                <div class="characteristics">
+                    <div class="characteristic">
+                        <span class="material-icons characteristic-icon">check_circle</span>
+                        <div class="characteristic-title">Capabilities</div>
+                        <div class="characteristic-text">
+                            Reasoning, generation, analysis, pattern matching
+                        </div>
+                    </div>
+                    
+                    <div class="characteristic">
+                        <span class="material-icons characteristic-icon">block</span>
+                        <div class="characteristic-title">Limitations</div>
+                        <div class="characteristic-text">
+                            No execution, no data access, no persistence, stateless
+                        </div>
+                    </div>
+                    
+                    <div class="characteristic">
+                        <span class="material-icons characteristic-icon">extension</span>
+                        <div class="characteristic-title">Integration Need</div>
+                        <div class="characteristic-text">
+                            Must compose with databases, APIs, file systems
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="highlight-box" style="margin-top: 30px;">
+                    <span class="material-icons highlight-icon">architecture</span>
+                    <div class="highlight-text">
+                        <span class="highlight-emphasis">The Challenge:</span> How do we integrate this isolated component with the rest of our systems? The answer isn't the "God Prompt" anti-pattern. It's proper interfaces.
+                    </div>
+                </div>
+                <aside class="notes"></aside>
+            </section>
+            
+            <!-- Slide 7: The Integration Anti-Patterns -->
+            <section>
+                <h1>The Integration Anti-Patterns</h1>
+                
+                <div class="solutions-grid" style="grid-template-columns: 1fr 1fr; gap: clamp(15px, 2vw, 20px);">
+                    <div class="solution">
+                        <div class="solution-header">
+                            <span class="material-icons solution-icon">code</span>
+                            <div class="solution-title">1. The God Prompt</div>
+                        </div>
+                        <div class="code-block" style="font-size: 0.7em;">
+<span class="code-keyword">prompt</span> = <span class="code-string">f'''Here's my entire database: 
+{dump_database()}
+Here's all my files: {read_all_files()}
+Here's the user question: {question}'''</span></div>
+                        <div class="problems-list">
+                            <div class="problem-item">
+                                <span class="material-icons problem-icon">close</span>
+                                <div>Violates Single Responsibility</div>
+                            </div>
+                            <div class="problem-item">
+                                <span class="material-icons problem-icon">close</span>
+                                <div>Resource inefficient</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="solution">
+                        <div class="solution-header">
+                            <span class="material-icons solution-icon">search</span>
+                            <div class="solution-title">2. The Naive RAG</div>
+                        </div>
+                        <div class="code-block" style="font-size: 0.7em;">
+<span class="code-comment"># Always returns 3 chunks</span>
+<span class="code-variable">chunks</span> = vector_db.<span class="code-function">search</span>(query, k=<span class="code-number">3</span>)
+<span class="code-variable">context</span> = <span class="code-string">''</span>.<span class="code-function">join</span>(chunks)
+<span class="code-variable">answer</span> = llm.<span class="code-function">complete</span>(context + question)</div>
+                        <div class="problems-list">
+                            <div class="problem-item">
+                                <span class="material-icons problem-icon">close</span>
+                                <div>No quality control</div>
+                            </div>
+                            <div class="problem-item">
+                                <span class="material-icons problem-icon">close</span>
+                                <div>No full document access</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="solution">
+                        <div class="solution-header">
+                            <span class="material-icons solution-icon">lock_open</span>
+                            <div class="solution-title">3. Security Afterthought</div>
+                        </div>
+                        <div class="code-block" style="font-size: 0.7em;">
+<span class="code-keyword">def</span> <span class="code-function">get_data</span>(user_query):
+    data = database.<span class="code-function">query</span>(user_query)
+    <span class="code-comment"># No access control!</span>
+    <span class="code-keyword">return</span> data</div>
+                        <div class="problems-list">
+                            <div class="problem-item">
+                                <span class="material-icons problem-icon">close</span>
+                                <div>Violates Least Privilege</div>
+                            </div>
+                            <div class="problem-item">
+                                <span class="material-icons problem-icon">close</span>
+                                <div>Security by hope</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="solution">
+                        <div class="solution-header">
+                            <span class="material-icons solution-icon">psychology</span>
+                            <div class="solution-title">4. LLM-Specific Code</div>
+                        </div>
+                        <div class="code-block" style="font-size: 0.7em;">
+<span class="code-keyword">if</span> llm_type == <span class="code-string">"gpt4"</span>:
+    response = openai_format(data)
+<span class="code-keyword">elif</span> llm_type == <span class="code-string">"claude"</span>:
+    response = anthropic_format(data)</div>
+                        <div class="problems-list">
+                            <div class="problem-item">
+                                <span class="material-icons problem-icon">close</span>
+                                <div>Violates DRY principle</div>
+                            </div>
+                            <div class="problem-item">
+                                <span class="material-icons problem-icon">close</span>
+                                <div>No Interface Segregation</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="highlight-box" style="margin-top: 20px;">
+                    <span class="material-icons highlight-icon">warning</span>
+                    <div class="highlight-text">
+                        Each project repeated these mistakes. We needed architectural patterns, not just better prompts.
+                    </div>
+                </div>
+                <aside class="notes"></aside>
+            </section>
+            
+            <!-- Slide 8: The Security Challenge - "On Behalf Of" Pattern -->
+            <section>
+                <h1>The Security Challenge: "On Behalf Of" Pattern</h1>
+                
+                <div class="diagram-container">
+                    <div class="architecture-flow">
+                        <div class="component-box">
+                            <span class="material-icons component-icon">person</span>
+                            <div class="component-title">User</div>
+                        </div>
+                        <span class="material-icons arrow">arrow_forward</span>
+                        <div class="component-box box-highlight" style="background: #2dd4bf;">
+                            <span class="material-icons component-icon" style="color: #1a2332;">smart_toy</span>
+                            <div class="component-title" style="color: #1a2332;">AI System</div>
+                        </div>
+                        <span class="material-icons arrow">arrow_forward</span>
+                        <div class="component-box security-boundary">
+                            <span class="material-icons component-icon security-icon">storage</span>
+                            <div class="component-title">Data</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="code-container" style="margin-top: 20px;">
+                    <div class="code-header">
+                        <span class="material-icons header-icon">security</span>
+                        <div class="header-title">The "On Behalf Of" Pattern</div>
+                    </div>
+                    <div class="code-block" style="font-size: 0.75em; line-height: 1.5;">
+<span class="code-comment"># The WRONG way</span>
+<span class="code-keyword">def</span> <span class="code-function">get_budget_data</span>(query):
+    <span class="code-keyword">return</span> database.<span class="code-function">query</span>(query)  <span class="code-comment"># AI sees everything!</span>
+
+<span class="code-comment"># The RIGHT way (but complex without a standard)</span>
+<span class="code-keyword">def</span> <span class="code-function">get_budget_data</span>(query, user_context):
+    <span class="code-comment"># 1. Validate user permissions</span>
+    <span class="code-keyword">if not</span> user_context.<span class="code-function">has_role</span>(<span class="code-string">'economy_chief'</span>):
+        <span class="code-keyword">raise</span> <span class="code-function">PermissionError</span>()
+    
+    <span class="code-comment"># 2. Add row-level security</span>
+    query = <span class="code-function">add_department_filter</span>(query, user_context)
+    
+    <span class="code-comment"># 3. Audit the access</span>
+    audit_log.<span class="code-function">record</span>(user_context, query)
+    
+    <span class="code-comment"># 4. Execute with user's permissions, not AI's</span>
+    <span class="code-keyword">with</span> database.<span class="code-function">as_user</span>(user_context):
+        <span class="code-keyword">return</span> database.<span class="code-function">query</span>(query)</div>
+                </div>
+                
+                <div class="security-note" style="margin-top: 20px;">
+                    <div class="security-header">
+                        <span class="material-icons" style="font-size: 40px; color: #ef4444;">policy</span>
+                        <div class="security-title">The Challenge</div>
+                    </div>
+                    <div class="security-text">
+                        Every tool, every resource needs this pattern. Without standardization, every team implements it differently. Some forget. Security audits become nightmares. <strong>MCP provides a standard way to pass user context through the entire chain.</strong>
+                    </div>
+                </div>
+                <aside class="notes"></aside>
+            </section>
+            
+            <!-- Slide 9: Enter the Model Context Protocol -->
+            <section>
+                <h1>Enter the Model Context Protocol</h1>
+                
+                <div class="diagram">
+                    <div class="component">
+                        <div class="box box-highlight">
+                            <span class="material-icons icon-highlight" style="font-size: 80px;">electrical_services</span>
+                        </div>
+                        <div class="label">MCP<br><small style="color: #1a2332;">The USB-C for AI</small></div>
+                    </div>
+                </div>
+                
+                <div class="primitives-grid">
+                    <div class="primitive">
+                        <div class="primitive-icon">
+                            <span class="material-icons">layers</span>
+                        </div>
+                        <div class="primitive-title">Protocol-Oriented Design</div>
+                        <div class="primitive-description">
+                            Like HTTP for web, SMTP for email - one standard interface
+                        </div>
+                    </div>
+                    
+                    <div class="primitive">
+                        <div class="primitive-icon">
+                            <span class="material-icons">hub</span>
+                        </div>
+                        <div class="primitive-title">Service-Oriented Architecture</div>
+                        <div class="primitive-description">
+                            Loosely coupled services, composable solutions
+                        </div>
+                    </div>
+                    
+                    <div class="primitive">
+                        <div class="primitive-icon">
+                            <span class="material-icons">verified_user</span>
+                        </div>
+                        <div class="primitive-title">Capability-Based Security</div>
+                        <div class="primitive-description">
+                            Explicit permissions and boundaries built-in
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="highlight-box" style="margin-top: 30px;">
+                    <span class="material-icons highlight-icon">lightbulb</span>
+                    <div class="highlight-text">
+                        <span class="highlight-emphasis">Key Insight:</span> MCP isn't AI-specific innovation. It's classical software architecture applied correctly. Before MCP, every AI integration was a custom cable. After MCP? One standard, infinite possibilities.
+                    </div>
+                </div>
+                <aside class="notes"></aside>
+            </section>
+            
+            <!-- Slide 10: The Protocol Layer - Separation of Concerns -->
+            <section>
+                <h1>The Protocol Layer: Separation of Concerns</h1>
+                
+                <div class="architecture-flow">
+                    <div class="flow-row">
+                        <div class="flow-item">
+                            <span class="material-icons flow-icon">web</span>
+                            <div class="flow-content">
+                                <div class="flow-title">Layer 1: Application</div>
+                                <div class="flow-description">Business logic, UI, workflow orchestration</div>
+                            </div>
+                        </div>
+                        <span class="material-icons flow-arrow">arrow_downward</span>
+                    </div>
+                    
+                    <div class="flow-row">
+                        <div class="flow-item flow-highlight">
+                            <span class="material-icons flow-icon">electrical_services</span>
+                            <div class="flow-content">
+                                <div class="flow-title">Layer 2: MCP Client</div>
+                                <div class="flow-description">Connection management, message serialization, protocol state machine</div>
+                            </div>
+                        </div>
+                        <span class="material-icons flow-arrow">arrow_downward</span>
+                    </div>
+                    
+                    <div class="flow-row">
+                        <div class="flow-item">
+                            <span class="material-icons flow-icon">wifi</span>
+                            <div class="flow-content">
+                                <div class="flow-title">Layer 3: Transport</div>
+                                <div class="flow-description">Byte transmission, connection lifecycle (stdio, SSE, WebSocket)</div>
+                            </div>
+                        </div>
+                        <span class="material-icons flow-arrow">arrow_downward</span>
+                    </div>
+                    
+                    <div class="flow-row">
+                        <div class="flow-item flow-highlight">
+                            <span class="material-icons flow-icon">dns</span>
+                            <div class="flow-content">
+                                <div class="flow-title">Layer 4: MCP Server</div>
+                                <div class="flow-description">Resource exposure, tool execution, security enforcement</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="highlight-box" style="margin-top: 25px;">
+                    <span class="material-icons highlight-icon">check_circle</span>
+                    <div class="highlight-text">
+                        <span class="highlight-emphasis">Textbook Separation:</span> Each layer has one job. Change your database? Only the server layer changes. Switch LLMs? Only the client configuration changes.
+                    </div>
+                </div>
+                <aside class="notes"></aside>
+            </section>
+            
+            <!-- Slide 11: The Three Primitives - Domain Modeling -->
+            <section>
+                <h1>The Three Primitives: Domain Modeling</h1>
+                
+                <div class="primitives-grid">
+                    <div class="primitive">
+                        <div class="primitive-icon">
+                            <span class="material-icons">description</span>
+                        </div>
+                        <div class="primitive-title">Resources</div>
+                        <div class="primitive-description">
+                            Static or dynamic data that can be read
+                        </div>
+                        <div class="primitive-example">
+                            <div class="example-label">Interface</div>
+                            <div class="example-text" style="font-size: 0.75em;">
+uri: string<br>
+name: string<br>
+mimeType: string<br>
+getText(): string
+                            </div>
+                        </div>
+                        <div class="primitive-example" style="margin-top: 10px;">
+                            <div class="example-label">Examples</div>
+                            <div class="example-text">
+• File contents<br>
+• DB query results<br>
+• API responses
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="primitive">
+                        <div class="primitive-icon">
+                            <span class="material-icons">build</span>
+                        </div>
+                        <div class="primitive-title">Tools</div>
+                        <div class="primitive-description">
+                            Functions the LLM can execute
+                        </div>
+                        <div class="primitive-example">
+                            <div class="example-label">Interface</div>
+                            <div class="example-text" style="font-size: 0.75em;">
+name: string<br>
+description: string<br>
+inputSchema: JSONSchema<br>
+execute(params): Promise
+                            </div>
+                        </div>
+                        <div class="primitive-example" style="margin-top: 10px;">
+                            <div class="example-label">Examples</div>
+                            <div class="example-text">
+• execute_query()<br>
+• create_file()<br>
+• send_email()
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="primitive">
+                        <div class="primitive-icon">
+                            <span class="material-icons">psychology</span>
+                        </div>
+                        <div class="primitive-title">Prompts</div>
+                        <div class="primitive-description">
+                            Templated instructions for common tasks
+                        </div>
+                        <div class="primitive-example">
+                            <div class="example-label">Interface</div>
+                            <div class="example-text" style="font-size: 0.75em;">
+name: string<br>
+template: string<br>
+arguments: Schema[]
+                            </div>
+                        </div>
+                        <div class="primitive-example" style="margin-top: 10px;">
+                            <div class="example-label">Examples</div>
+                            <div class="example-text">
+• Code review<br>
+• Analysis prompt<br>
+• Workflow instructions
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="highlight-box" style="margin-top: 20px;">
+                    <span class="material-icons highlight-icon">architecture</span>
+                    <div class="highlight-text">
+                        <span class="highlight-emphasis">Domain-Driven Design:</span> Each primitive has identity, contract, and single responsibility. Minimal yet complete.
+                    </div>
+                </div>
+                <aside class="notes"></aside>
+            </section>
+            
+            <!-- Slide 12: Real Solution - Forestry Research with MCP -->
+            <section>
+                <h1>Real Solution: Forestry Research with MCP</h1>
+                
+                <div class="split-container">
+                    <div class="panel">
+                        <div class="panel-title">
+                            <span class="material-icons">cancel</span>
+                            Before (RAG only)
+                        </div>
+                        <div class="code-block" style="font-size: 0.75em;">
+<span class="code-comment"># Question: "How many articles about lignin 1930-1980?"</span>
+chunks = vector_db.<span class="code-function">search</span>(<span class="code-string">"lignin"</span>, k=<span class="code-number">3</span>)
+<span class="code-comment"># Gets 3 random chunks</span>
+
+answer = llm.<span class="code-function">complete</span>(chunks + question)
+<span class="code-comment"># Can't count, wrong answer ❌</span></div>
+                        
+                        <div class="problems-list" style="margin-top: 15px;">
+                            <div class="problem-item">
+                                <span class="material-icons problem-icon">close</span>
+                                <div>Only retrieves 3 random chunks</div>
+                            </div>
+                            <div class="problem-item">
+                                <span class="material-icons problem-icon">close</span>
+                                <div>Cannot count documents</div>
+                            </div>
+                            <div class="problem-item">
+                                <span class="material-icons problem-icon">close</span>
+                                <div>Cannot load full documents</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="panel" style="border-color: #2dd4bf;">
+                        <div class="panel-title">
+                            <span class="material-icons">check_circle</span>
+                            After (MCP)
+                        </div>
+                        <div class="code-block" style="font-size: 0.7em; line-height: 1.4;">
+<span class="code-comment"># MCP Server exposes multiple tools</span>
+<span class="code-decorator">@expose_tool</span>(<span class="code-string">"search_documents"</span>)
+<span class="code-keyword">async def</span> <span class="code-function">search_documents</span>(
+    query: <span class="code-class">str</span>, 
+    start_year: <span class="code-class">int</span>, 
+    end_year: <span class="code-class">int</span>
+):
+    <span class="code-keyword">return</span> database.<span class="code-function">query</span>(
+        <span class="code-string">"SELECT * FROM research 
+         WHERE content LIKE %s 
+         AND year BETWEEN %s AND %s"</span>,
+        [query, start_year, end_year]
+    )
+
+<span class="code-decorator">@expose_tool</span>(<span class="code-string">"analyze_document"</span>)
+<span class="code-keyword">async def</span> <span class="code-function">analyze_document</span>(doc_id: <span class="code-class">str</span>):
+    <span class="code-comment"># Loads ENTIRE document</span>
+    <span class="code-keyword">return</span> <span class="code-function">load_full_document</span>(doc_id)</div>
+                        
+                        <div class="workflow" style="margin-top: 15px;">
+                            <div class="step">
+                                <div class="step-number">✓</div>
+                                <div class="step-content">
+                                    <div class="step-description">Find ALL lignin articles 1930-1980</div>
+                                </div>
+                            </div>
+                            <div class="step">
+                                <div class="step-number">✓</div>
+                                <div class="step-content">
+                                    <div class="step-description">Count them accurately</div>
+                                </div>
+                            </div>
+                            <div class="step">
+                                <div class="step-number">✓</div>
+                                <div class="step-content">
+                                    <div class="step-description">Load full documents for comparison</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="highlight-box" style="margin-top: 20px;">
+                    <span class="material-icons highlight-icon">check_circle</span>
+                    <div class="highlight-text">
+                        Same LLM, proper tools. Problem solved.
+                    </div>
+                </div>
+                <aside class="notes"></aside>
+            </section>
+            
+            <!-- Slide 13: Protocol Design - Message Passing -->
+            <section>
+                <h1>Protocol Design: Message Passing</h1>
+                
+                <div class="split-container">
+                    <div class="panel">
+                        <div class="panel-title">
+                            <span class="material-icons">message</span>
+                            JSON-RPC 2.0 Request
+                        </div>
+                        <div class="code-block" style="font-size: 0.75em; line-height: 1.5;">
+{
+  <span class="code-string">"jsonrpc"</span>: <span class="code-string">"2.0"</span>,
+  <span class="code-string">"id"</span>: <span class="code-number">1</span>,
+  <span class="code-string">"method"</span>: <span class="code-string">"tools/call"</span>,
+  <span class="code-string">"params"</span>: {
+    <span class="code-string">"name"</span>: <span class="code-string">"search_documents"</span>,
+    <span class="code-string">"arguments"</span>: {
+      <span class="code-string">"query"</span>: <span class="code-string">"lignin"</span>,
+      <span class="code-string">"start_year"</span>: <span class="code-number">1930</span>,
+      <span class="code-string">"end_year"</span>: <span class="code-number">1980</span>
+    }
+  }
+}</div>
+                        <div class="workflow" style="margin-top: 15px;">
+                            <div class="step">
+                                <div class="step-number">✓</div>
+                                <div class="step-content">
+                                    <div class="step-title">Request-response correlation</div>
+                                    <div class="step-description">via ID field</div>
+                                </div>
+                            </div>
+                            <div class="step">
+                                <div class="step-number">✓</div>
+                                <div class="step-content">
+                                    <div class="step-title">Language agnostic</div>
+                                    <div class="step-description">Just JSON</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="panel">
+                        <div class="panel-title">
+                            <span class="material-icons">check_circle</span>
+                            JSON-RPC 2.0 Response
+                        </div>
+                        <div class="code-block" style="font-size: 0.75em; line-height: 1.5;">
+{
+  <span class="code-string">"jsonrpc"</span>: <span class="code-string">"2.0"</span>,
+  <span class="code-string">"id"</span>: <span class="code-number">1</span>,
+  <span class="code-string">"result"</span>: {
+    <span class="code-string">"documents"</span>: [
+      <span class="code-comment">/* 47 documents */</span>
+    ],
+    <span class="code-string">"count"</span>: <span class="code-number">47</span>
+  }
+}</div>
+                        <div class="workflow" style="margin-top: 15px;">
+                            <div class="step">
+                                <div class="step-number">✓</div>
+                                <div class="step-content">
+                                    <div class="step-title">Standardized error handling</div>
+                                    <div class="step-description">error field instead of result</div>
+                                </div>
+                            </div>
+                            <div class="step">
+                                <div class="step-number">✓</div>
+                                <div class="step-content">
+                                    <div class="step-title">Extensibility</div>
+                                    <div class="step-description">Additional fields ignored</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="highlight-box" style="margin-top: 20px;">
+                    <span class="material-icons highlight-icon">architecture</span>
+                    <div class="highlight-text">
+                        <span class="highlight-emphasis">Why JSON-RPC?</span> Compare to REST where you'd need URL structures, HTTP verbs, status codes. JSON-RPC gives us everything in a simple, proven pattern.
+                    </div>
+                </div>
+                <aside class="notes"></aside>
+            </section>
+            
+            <!-- Slide 14: Real Implementation - Solving RBAC with MCP -->
+            <section>
+                <h1>Real Implementation: Solving RBAC with MCP</h1>
+                
+                <div class="code-container">
+                    <div class="code-header">
+                        <span class="material-icons header-icon">security</span>
+                        <div class="header-title">SecureDataServer with Full RBAC</div>
+                    </div>
+                    <div class="code-block" style="font-size: 0.7em; line-height: 1.5;">
+<span class="code-keyword">from</span> mcp.server <span class="code-keyword">import</span> Server, Tool, UserContext
+
+<span class="code-keyword">class</span> <span class="code-class">SecureDataServer</span>(Server):
+    <span class="code-decorator">@expose_tool</span>(<span class="code-string">"query_budget"</span>, auth_required=<span class="code-keyword">True</span>)
+    <span class="code-keyword">async def</span> <span class="code-function">query_budget</span>(
+        self, 
+        department: <span class="code-class">str</span>,
+        user_context: <span class="code-class">UserContext</span>  <span class="code-comment"># Passed automatically by MCP</span>
+    ) -> dict:
+        <span class="code-comment"># Layer 1: Authentication (handled by MCP transport)</span>
+        <span class="code-keyword">if not</span> user_context.authenticated:
+            <span class="code-keyword">raise</span> <span class="code-function">AuthenticationError</span>()
+            
+        <span class="code-comment"># Layer 2: Authorization</span>
+        <span class="code-keyword">if</span> department != user_context.department:
+            <span class="code-keyword">if</span> <span class="code-string">'economy_chief'</span> <span class="code-keyword">not in</span> user_context.roles:
+                <span class="code-keyword">raise</span> <span class="code-function">PermissionError</span>(
+                    <span class="code-string">f"User </span>{user_context.id}<span class="code-string"> cannot access </span>{department}<span class="code-string">"</span>
+                )
+        
+        <span class="code-comment"># Layer 3: Row-level security in query</span>
+        query = <span class="code-string">"""
+            SELECT * FROM budgets 
+            WHERE department = %s
+            AND classification <= %s
+        """</span>
+        
+        <span class="code-comment"># Layer 4: Audit trail</span>
+        <span class="code-keyword">await</span> self.audit_log.<span class="code-function">record</span>(
+            user=user_context.id,
+            action=<span class="code-string">"budget_query"</span>,
+            department=department
+        )
+        
+        <span class="code-comment"># Layer 5: Execute as user, not as system</span>
+        <span class="code-keyword">async with</span> self.pool.<span class="code-function">acquire</span>() <span class="code-keyword">as</span> conn:
+            results = <span class="code-keyword">await</span> conn.<span class="code-function">fetch</span>(
+                query, 
+                department,
+                user_context.security_clearance
+            )
+                
+        <span class="code-keyword">return</span> {<span class="code-string">"data"</span>: results, <span class="code-string">"user"</span>: user_context.id}</div>
+                </div>
+                
+                <div class="security-grid" style="margin-top: 20px;">
+                    <div class="security-item">
+                        <div class="security-icon-container">
+                            <span class="material-icons">verified_user</span>
+                        </div>
+                        <div class="security-title">Authentication</div>
+                        <div class="security-description">MCP transport handles tokens automatically</div>
+                    </div>
+                    <div class="security-item">
+                        <div class="security-icon-container">
+                            <span class="material-icons">admin_panel_settings</span>
+                        </div>
+                        <div class="security-title">Authorization</div>
+                        <div class="security-description">Role-based and department-based checks</div>
+                    </div>
+                    <div class="security-item">
+                        <div class="security-icon-container">
+                            <span class="material-icons">article</span>
+                        </div>
+                        <div class="security-title">Audit Trail</div>
+                        <div class="security-description">Every action logged with user context</div>
+                    </div>
+                </div>
+                
+                <div class="highlight-box" style="margin-top: 20px;">
+                    <span class="material-icons highlight-icon">check_circle</span>
+                    <div class="highlight-text">
+                        Every MCP server gets user context automatically. Uppsala Kommun can now safely let department heads query their own budgets through AI, while the economy chief sees everything.
+                    </div>
+                </div>
+                <aside class="notes"></aside>
+            </section>
+            
+            <!-- Slide 15: Composition Pattern - Building Complete Solutions -->
+            <section>
+                <h1>Composition Pattern: Building Complete Solutions</h1>
+                
+                <div class="code-container">
+                    <div class="code-header">
+                        <span class="material-icons header-icon">hub</span>
+                        <div class="header-title">Composing Multiple MCP Servers</div>
+                    </div>
+                    <div class="code-block" style="font-size: 0.65em; line-height: 1.4;">
+<span class="code-keyword">class</span> <span class="code-class">EnterpriseAIApplication</span>:
+    <span class="code-keyword">def</span> <span class="code-function">__init__</span>(self):
+        self.mcp_client = <span class="code-function">MCPClient</span>()
+        
+        <span class="code-comment"># Compose different capabilities</span>
+        self.servers = [
+            <span class="code-comment"># Replaces failed RAG with proper document handling</span>
+            <span class="code-function">DocumentAnalysisServer</span>(      
+                full_document_retrieval=<span class="code-keyword">True</span>,  <span class="code-comment"># Not chunks!</span>
+                metadata_search=<span class="code-keyword">True</span>,           <span class="code-comment"># Find exact docs</span>
+                aggregation_tools=<span class="code-keyword">True</span>          <span class="code-comment"># Count, compare</span>
+            ),
+            
+            <span class="code-comment"># Handles the RBAC complexity</span>
+            <span class="code-function">SecureDataServer</span>(
+                user_context_passthrough=<span class="code-keyword">True</span>,  <span class="code-comment"># On behalf of</span>
+                row_level_security=<span class="code-keyword">True</span>,        <span class="code-comment"># Department filtering</span>
+                audit_logging=<span class="code-keyword">True</span>               <span class="code-comment"># Compliance</span>
+            ),
+            
+            <span class="code-comment"># Traditional RAG where it actually works</span>
+            <span class="code-function">KnowledgeBaseServer</span>(
+                vector_search=<span class="code-keyword">True</span>,              <span class="code-comment"># For diverse content</span>
+                chunk_size=<span class="code-number">512</span>,                  <span class="code-comment"># When appropriate</span>
+            ),
+            
+            <span class="code-comment"># External integrations</span>
+            <span class="code-function">WeatherAPIServer</span>(),
+            <span class="code-function">NotificationServer</span>()
+        ]
+        
+    <span class="code-keyword">async def</span> <span class="code-function">handle_query</span>(self, query: <span class="code-class">str</span>, user: User):
+        <span class="code-comment"># The LLM orchestrates across ALL servers</span>
+        response = <span class="code-keyword">await</span> self.llm.<span class="code-function">complete</span>(
+            query, 
+            available_tools=self.<span class="code-function">get_all_tools</span>(),
+            user_context=user  <span class="code-comment"># Passed to all servers</span>
+        )
+        <span class="code-keyword">return</span> response</div>
+                </div>
+                
+                <div class="key-points" style="margin-top: 20px;">
+                    <div class="point">
+                        <span class="material-icons point-icon">check_circle</span>
+                        <div class="point-text">
+                            <strong>Use RAG where it works</strong><br>
+                            Diverse knowledge base queries
+                        </div>
+                    </div>
+                    <div class="point">
+                        <span class="material-icons point-icon">build</span>
+                        <div class="point-text">
+                            <strong>Use tools where RAG fails</strong><br>
+                            Counting, aggregation, exact retrieval
+                        </div>
+                    </div>
+                    <div class="point">
+                        <span class="material-icons point-icon">security</span>
+                        <div class="point-text">
+                            <strong>Every server respects security</strong><br>
+                            User context flows through all
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="highlight-box" style="margin-top: 20px;">
+                    <span class="material-icons highlight-icon">architecture</span>
+                    <div class="highlight-text">
+                        This solved all three client problems: forestry research, insurance agreements, and Uppsala's security requirements.
+                    </div>
+                </div>
+                <aside class="notes"></aside>
+            </section>
+            
+            <!-- Slide 16: Security Architecture - Defense in Depth -->
+            <section>
+                <h1>Security Architecture: Defense in Depth</h1>
+                
+                <div class="code-container">
+                    <div class="code-header">
+                        <span class="material-icons header-icon">shield</span>
+                        <div class="header-title">Seven Layers of Security</div>
+                    </div>
+                    <div class="code-block" style="font-size: 0.65em; line-height: 1.4;">
+<span class="code-keyword">class</span> <span class="code-class">SecureMCPServer</span>(Server):
+    <span class="code-keyword">async def</span> <span class="code-function">handle_request</span>(self, request, user_context):
+        <span class="code-comment"># Layer 1: Transport Security</span>
+        <span class="code-comment"># TLS, API keys, OAuth handled by protocol</span>
+        
+        <span class="code-comment"># Layer 2: Authentication</span>
+        <span class="code-keyword">if not await</span> self.<span class="code-function">validate_token</span>(user_context.token):
+            <span class="code-keyword">raise</span> <span class="code-function">AuthenticationError</span>(<span class="code-string">"Invalid session"</span>)
+        
+        <span class="code-comment"># Layer 3: Authorization - RBAC</span>
+        resource = request.resource
+        <span class="code-keyword">if</span> resource.<span class="code-function">startswith</span>(<span class="code-string">"budget://"</span>):
+            <span class="code-keyword">if</span> <span class="code-string">"economy"</span> <span class="code-keyword">not in</span> user_context.roles:
+                <span class="code-keyword">raise</span> <span class="code-function">PermissionError</span>(<span class="code-string">"Budget access denied"</span>)
+                
+        <span class="code-comment"># Layer 4: Data Classification</span>
+        doc_classification = self.<span class="code-function">get_classification</span>(resource)
+        <span class="code-keyword">if</span> doc_classification == <span class="code-string">"SECRET"</span>:
+            <span class="code-keyword">if</span> user_context.clearance < SecurityLevel.SECRET:
+                <span class="code-keyword">raise</span> <span class="code-function">SecurityError</span>(<span class="code-string">"Insufficient clearance"</span>)
+                
+        <span class="code-comment"># Layer 5: Input Validation</span>
+        <span class="code-keyword">if</span> request.method == <span class="code-string">"sql_query"</span>:
+            sanitized = self.<span class="code-function">sanitize_sql</span>(request.params.query)
+            request.params.query = sanitized
+            
+        <span class="code-comment"># Layer 6: Rate Limiting</span>
+        <span class="code-keyword">if not</span> self.rate_limiter.<span class="code-function">check</span>(user_context, request):
+            <span class="code-keyword">raise</span> <span class="code-function">RateLimitError</span>(<span class="code-string">"Too many requests"</span>)
+            
+        <span class="code-comment"># Layer 7: Audit Everything</span>
+        <span class="code-keyword">await</span> self.audit_log.<span class="code-function">record</span>({
+            <span class="code-string">'user'</span>: user_context.id,
+            <span class="code-string">'action'</span>: request.method,
+            <span class="code-string">'resource'</span>: resource,
+            <span class="code-string">'result'</span>: <span class="code-string">'pending'</span>
+        })
+        
+        result = <span class="code-keyword">await</span> self.<span class="code-function">execute_as_user</span>(request, user_context)
+        <span class="code-keyword">return</span> result</div>
+                </div>
+                
+                <div class="highlight-box" style="margin-top: 20px;">
+                    <span class="material-icons highlight-icon">check_circle</span>
+                    <div class="highlight-text">
+                        <span class="highlight-emphasis">Security Review Approved:</span> This architecture passed security review at Uppsala Kommun. Every request is authenticated, authorized, validated, rate-limited, and audited. The LLM never gets more access than the user asking the question.
+                    </div>
+                </div>
+                <aside class="notes"></aside>
+            </section>
+            
+            <!-- Slide 17: Protocol Design - Message Passing (Sequence Diagram) -->
+            <section>
+                <h1>Protocol In Action: Message Flow</h1>
+                
+                <div class="sequence-diagram">
+                    <div class="participants">
+                        <div class="participant">
+                            <div class="participant-box">
+                                <span class="material-icons participant-icon">person</span>
+                                <div class="participant-name">User</div>
+                            </div>
+                            <div class="lifeline"></div>
+                        </div>
+                        
+                        <div class="participant">
+                            <div class="participant-box">
+                                <span class="material-icons participant-icon">psychology</span>
+                                <div class="participant-name">LLM</div>
+                            </div>
+                            <div class="lifeline"></div>
+                        </div>
+                        
+                        <div class="participant">
+                            <div class="participant-box">
+                                <span class="material-icons participant-icon">electrical_services</span>
+                                <div class="participant-name">MCP Client</div>
+                            </div>
+                            <div class="lifeline"></div>
+                        </div>
+                        
+                        <div class="participant">
+                            <div class="participant-box">
+                                <span class="material-icons participant-icon">dns</span>
+                                <div class="participant-name">MCP Server</div>
+                            </div>
+                            <div class="lifeline"></div>
+                        </div>
+                    </div>
+                    
+                    <div class="interactions">
+                        <div class="message">
+                            <div class="message-number">1</div>
+                            <span class="material-icons message-arrow">arrow_forward</span>
+                            <div class="message-content">
+                                <div class="message-from-to">User → LLM</div>
+                                <div class="message-text">"How many lignin articles 1930-1980?"</div>
+                            </div>
+                        </div>
+                        
+                        <div class="message">
+                            <div class="message-number">2</div>
+                            <span class="material-icons message-arrow">arrow_forward</span>
+                            <div class="message-content">
+                                <div class="message-from-to">LLM → MCP Client</div>
+                                <div class="message-text">tools/call: search_documents(query="lignin", ...)</div>
+                            </div>
+                        </div>
+                        
+                        <div class="note">
+                            <div class="note-text">MCP Client serializes request to JSON-RPC</div>
+                        </div>
+                        
+                        <div class="message">
+                            <div class="message-number">3</div>
+                            <span class="material-icons message-arrow">arrow_forward</span>
+                            <div class="message-content">
+                                <div class="message-from-to">MCP Client → MCP Server</div>
+                                <div class="message-text">{"jsonrpc":"2.0", "id":1, "method":"tools/call"}</div>
+                            </div>
+                        </div>
+                        
+                        <div class="note">
+                            <div class="note-text">Server validates, executes with user context, returns result</div>
+                        </div>
+                        
+                        <div class="message">
+                            <div class="message-number">4</div>
+                            <span class="material-icons message-arrow">arrow_back</span>
+                            <div class="message-content">
+                                <div class="message-from-to">MCP Server → MCP Client</div>
+                                <div class="message-text">{"result": {"documents": [...], "count": 47}}</div>
+                            </div>
+                        </div>
+                        
+                        <div class="message">
+                            <div class="message-number">5</div>
+                            <span class="material-icons message-arrow">arrow_back</span>
+                            <div class="message-content">
+                                <div class="message-from-to">MCP Client → LLM</div>
+                                <div class="message-text">Return 47 documents with full metadata</div>
+                            </div>
+                        </div>
+                        
+                        <div class="message">
+                            <div class="message-number">6</div>
+                            <span class="material-icons message-arrow">arrow_back</span>
+                            <div class="message-content">
+                                <div class="message-from-to">LLM → User</div>
+                                <div class="message-text">"Found 47 articles about lignin between 1930-1980"</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <aside class="notes"></aside>
+            </section>
+            
+            <!-- Slide 18: Production Case Study - Three Success Stories -->
+            <section>
+                <h1>Production Case Study: Three Success Stories</h1>
+                
+                <div class="content-grid" style="grid-template-columns: 1fr;">
+                    <div class="section">
+                        <div class="section-title">
+                            <span class="material-icons section-icon">nature</span>
+                            Forestry Company Research Database
+                        </div>
+                        <div class="workflow">
+                            <div class="step" style="margin-bottom: 10px;">
+                                <div class="step-content">
+                                    <div class="step-title">Before</div>
+                                    <div class="step-description">RAG returned random chunks, couldn't count or compare</div>
+                                </div>
+                            </div>
+                            <div class="step" style="margin-bottom: 10px;">
+                                <div class="step-content">
+                                    <div class="step-title">Solution</div>
+                                    <div class="step-description">MCP server with metadata search, full document loading, aggregation tools</div>
+                                </div>
+                            </div>
+                            <div class="step">
+                                <div class="step-content">
+                                    <div class="step-title">Results</div>
+                                    <div class="step-description">✓ Accurate document counting • ✓ Full document comparison • ✓ 100+ years accessible</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="section">
+                        <div class="section-title">
+                            <span class="material-icons section-icon">business_center</span>
+                            Insurance Company Agreement Management
+                        </div>
+                        <div class="workflow">
+                            <div class="step" style="margin-bottom: 10px;">
+                                <div class="step-content">
+                                    <div class="step-title">Before</div>
+                                    <div class="step-description">RAG confused 30 nearly-identical agreements</div>
+                                </div>
+                            </div>
+                            <div class="step" style="margin-bottom: 10px;">
+                                <div class="step-content">
+                                    <div class="step-title">Solution</div>
+                                    <div class="step-description">Structured metadata selector + full document loader</div>
+                                </div>
+                            </div>
+                            <div class="step">
+                                <div class="step-content">
+                                    <div class="step-title">Results</div>
+                                    <div class="step-description">✓ Correct version selection • ✓ 80% fewer support calls • ✓ Audit trail for compliance</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="section">
+                        <div class="section-title">
+                            <span class="material-icons section-icon">account_balance</span>
+                            Uppsala Kommun Budget System
+                        </div>
+                        <div class="workflow">
+                            <div class="step" style="margin-bottom: 10px;">
+                                <div class="step-content">
+                                    <div class="step-title">Before</div>
+                                    <div class="step-description">No AI access due to security concerns</div>
+                                </div>
+                            </div>
+                            <div class="step" style="margin-bottom: 10px;">
+                                <div class="step-content">
+                                    <div class="step-title">Solution</div>
+                                    <div class="step-description">RBAC-enabled MCP servers with user context passthrough</div>
+                                </div>
+                            </div>
+                            <div class="step">
+                                <div class="step-content">
+                                    <div class="step-title">Results</div>
+                                    <div class="step-description">✓ Department heads query safely • ✓ Complete audit trail • ✓ Passed security audit first try</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="highlight-box" style="margin-top: 20px;">
+                    <span class="material-icons highlight-icon">architecture</span>
+                    <div class="highlight-text">
+                        <span class="highlight-emphasis">Key Lesson:</span> The same MCP protocol solved three completely different problems. Good architecture is reusable.
+                    </div>
+                </div>
+                <aside class="notes"></aside>
+            </section>
+            
+            <!-- Slide 19: Common Pitfalls and How to Avoid Them -->
+            <section>
+                <h1>Common Pitfalls and How to Avoid Them</h1>
+                
+                <div class="comparison-container">
+                    <table class="comparison-table">
+                        <thead>
+                            <tr>
+                                <th>Pitfall</th>
+                                <th style="background: rgba(239, 68, 68, 0.3);">❌ Bad Practice</th>
+                                <th style="background: rgba(45, 212, 191, 0.3);">✅ Good Practice</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><span class="material-icons row-icon">search</span> Everything RAG</td>
+                                <td style="color: #ef4444;">Force RAG for counting/aggregation tasks</td>
+                                <td style="color: #2dd4bf;">Use tools for analysis, RAG for retrieval</td>
+                            </tr>
+                            <tr>
+                                <td><span class="material-icons row-icon">person_off</span> User Context</td>
+                                <td style="color: #ef4444;">Server has full database access</td>
+                                <td style="color: #2dd4bf;">Every request includes user context</td>
+                            </tr>
+                            <tr>
+                                <td><span class="material-icons row-icon">code</span> SQL Trust</td>
+                                <td style="color: #ef4444;">execute(llm_generated_sql)</td>
+                                <td style="color: #2dd4bf;">Parameterized queries with validation</td>
+                            </tr>
+                            <tr>
+                                <td><span class="material-icons row-icon">description</span> Documents</td>
+                                <td style="color: #ef4444;">Always chunk everything to 512 tokens</td>
+                                <td style="color: #2dd4bf;">Provide both chunked and full document access</td>
+                            </tr>
+                            <tr>
+                                <td><span class="material-icons row-icon">security</span> Security</td>
+                                <td style="color: #ef4444;">"We'll add authentication later"</td>
+                                <td style="color: #2dd4bf;">Security in every layer from day one</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                
+                <div class="code-container" style="margin-top: 20px;">
+                    <div class="code-header">
+                        <span class="material-icons header-icon">verified_user</span>
+                        <div class="header-title">Good Error Handling for Users</div>
+                    </div>
+                    <div class="code-block" style="font-size: 0.7em; line-height: 1.5;">
+<span class="code-decorator">@expose_tool</span>(<span class="code-string">"analyze_data"</span>)
+<span class="code-keyword">async def</span> <span class="code-function">analyze</span>(self, dataset: <span class="code-class">str</span>, user_context: UserContext) -> dict:
+    <span class="code-keyword">try</span>:
+        <span class="code-comment"># Check permissions FIRST</span>
+        <span class="code-keyword">if not</span> self.<span class="code-function">can_access</span>(dataset, user_context):
+            <span class="code-keyword">return</span> {
+                <span class="code-string">"error"</span>: <span class="code-string">"Access denied"</span>,
+                <span class="code-string">"reason"</span>: <span class="code-string">f"Dataset requires </span>{self.<span class="code-function">get_required_role</span>(dataset)}<span class="code-string"> role"</span>,
+                <span class="code-string">"action"</span>: <span class="code-string">"Contact your administrator for access"</span>
+            }
+        
+        data = <span class="code-keyword">await</span> self.<span class="code-function">load_dataset</span>(dataset, user_context)
+        <span class="code-keyword">return</span> {<span class="code-string">"success"</span>: <span class="code-keyword">True</span>, <span class="code-string">"data"</span>: data}
+        
+    <span class="code-keyword">except</span> DatasetNotFoundError:
+        <span class="code-keyword">return</span> {
+            <span class="code-string">"error"</span>: <span class="code-string">"Dataset not found"</span>,
+            <span class="code-string">"suggestion"</span>: <span class="code-string">f"Available: </span>{self.<span class="code-function">list_available</span>(user_context)}<span class="code-string">"</span>,
+            <span class="code-string">"action"</span>: <span class="code-string">"Check dataset name and try again"</span>
+        }</div>
+                </div>
+                
+                <div class="highlight-box" style="margin-top: 20px;">
+                    <span class="material-icons highlight-icon">psychology</span>
+                    <div class="highlight-text">
+                        The LLM can reason about errors and guide users appropriately. Much better UX than generic "Access Denied"!
+                    </div>
+                </div>
+                <aside class="notes"></aside>
+            </section>
+            
+            <!-- Slide 20: Architectural Implications -->
+            <section>
+                <h1>Architectural Implications: Evolution of AI Systems</h1>
+                
+                <div class="architecture-flow">
+                    <div class="flow-row">
+                        <div class="flow-item">
+                            <span class="material-icons flow-icon">edit_note</span>
+                            <div class="flow-content">
+                                <div class="flow-title">Generation 1: Prompt Engineering</div>
+                                <div class="flow-description">Everything crammed in prompt • Limited by context window • No real integration</div>
+                            </div>
+                        </div>
+                        <span class="material-icons flow-arrow">arrow_downward</span>
+                    </div>
+                    
+                    <div class="flow-row">
+                        <div class="flow-item">
+                            <span class="material-icons flow-icon">search</span>
+                            <div class="flow-content">
+                                <div class="flow-title">Generation 2: RAG Era</div>
+                                <div class="flow-description">Semantic search for retrieval • Works for some cases • Fails for aggregation, comparison, security</div>
+                            </div>
+                        </div>
+                        <span class="material-icons flow-arrow">arrow_downward</span>
+                    </div>
+                    
+                    <div class="flow-row">
+                        <div class="flow-item">
+                            <span class="material-icons flow-icon">build</span>
+                            <div class="flow-content">
+                                <div class="flow-title">Generation 3: Custom Tool Calling</div>
+                                <div class="flow-description">Each vendor's proprietary approach • Solves problems but fragments ecosystem</div>
+                            </div>
+                        </div>
+                        <span class="material-icons flow-arrow">arrow_downward</span>
+                    </div>
+                    
+                    <div class="flow-row">
+                        <div class="flow-item flow-highlight">
+                            <span class="material-icons flow-icon">electrical_services</span>
+                            <div class="flow-content">
+                                <div class="flow-title">Generation 4: Protocol-Based (MCP)</div>
+                                <div class="flow-description">Standardized interfaces • Composable services • Security built-in • Write once, use everywhere</div>
+                            </div>
+                        </div>
+                        <span class="material-icons flow-arrow">arrow_downward</span>
+                    </div>
+                    
+                    <div class="flow-row">
+                        <div class="flow-item" style="border-left-color: #c084fc;">
+                            <span class="material-icons flow-icon" style="color: #c084fc;">auto_awesome</span>
+                            <div class="flow-content">
+                                <div class="flow-title" style="color: #c084fc;">Generation 5: What's Next?</div>
+                                <div class="flow-description">Multi-agent protocols? • Distributed reasoning? • Autonomous service discovery?</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="highlight-box" style="margin-top: 20px;">
+                    <span class="material-icons highlight-icon">history_edu</span>
+                    <div class="highlight-text">
+                        <span class="highlight-emphasis">Historical Parallel:</span> This evolution mirrors the web: static HTML → CGI scripts → REST APIs → GraphQL → microservices. We're applying decades of distributed systems wisdom to AI.
+                    </div>
+                </div>
+                <aside class="notes"></aside>
+            </section>
+            
+            <!-- Slide 21: Research Opportunities & The Bigger Picture -->
+            <section>
+                <h1>Research Opportunities & The Bigger Picture</h1>
+                
+                <div class="content-container">
+                    <div class="mind-map">
+                        <div class="direction">
+                            <div class="direction-icon-container">
+                                <span class="material-icons">api</span>
+                            </div>
+                            <div class="direction-title">Protocol Design</div>
+                            <div class="direction-desc">Real-time streaming • Formal security properties • P2P communication</div>
+                        </div>
+                        
+                        <div class="direction">
+                            <div class="direction-icon-container">
+                                <span class="material-icons">speed</span>
+                            </div>
+                            <div class="direction-title">Performance</div>
+                            <div class="direction-desc">Optimal caching • Predictive prefetching • Distributed transactions</div>
+                        </div>
+                        
+                        <div class="direction">
+                            <div class="direction-icon-container">
+                                <span class="material-icons">shield</span>
+                            </div>
+                            <div class="direction-title">Security</div>
+                            <div class="direction-desc">Formal verification • Homomorphic encryption • Zero-knowledge proofs</div>
+                        </div>
+                        
+                        <div class="direction">
+                            <div class="direction-icon-container">
+                                <span class="material-icons">code</span>
+                            </div>
+                            <div class="direction-title">Code Generation</div>
+                            <div class="direction-desc">Auto-generate from OpenAPI • Testing strategies • Debugging tools</div>
+                        </div>
+                        
+                        <div class="direction">
+                            <div class="direction-icon-container">
+                                <span class="material-icons">schema</span>
+                            </div>
+                            <div class="direction-title">Distributed Systems</div>
+                            <div class="direction-desc">Consensus protocols • Fault tolerance • Service discovery</div>
+                        </div>
+                    </div>
+                    
+                    <div class="research-section">
+                        <div class="research-header">
+                            <span class="material-icons research-icon">school</span>
+                            <div class="research-title">Key Insight for Researchers</div>
+                        </div>
+                        <div class="research-questions">
+                            <div class="question">
+                                <span class="material-icons question-icon">help_outline</span>
+                                <div class="question-text">
+                                    These aren't just AI problems - they're classical distributed systems challenges in a new context
+                                </div>
+                            </div>
+                            <div class="question">
+                                <span class="material-icons question-icon">lightbulb</span>
+                                <div class="question-text">
+                                    MCP provides a laboratory for testing decades of CS theory in AI-driven systems
+                                </div>
+                            </div>
+                            <div class="question">
+                                <span class="material-icons question-icon">trending_up</span>
+                                <div class="question-text">
+                                    Opportunity: formal methods, protocol design, security analysis, performance optimization
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <aside class="notes"></aside>
+            </section>
+            
+            <!-- Slide 22: Q&A and Discussion / Practical Takeaways -->
+            <section>
+                <h1>Practical Takeaways for Your Projects</h1>
+                
+                <div class="content-wrapper">
+                    <div class="takeaways">
+                        <div class="takeaway">
+                            <div class="takeaway-icon-container">
+                                <span class="material-icons">architecture</span>
+                            </div>
+                            <div class="takeaway-text">
+                                <strong>Start with separation:</strong> LLM for reasoning, MCP servers for capabilities. Clear boundaries prevent architectural debt.
+                            </div>
+                        </div>
+                        
+                        <div class="takeaway">
+                            <div class="takeaway-icon-container">
+                                <span class="material-icons">category</span>
+                            </div>
+                            <div class="takeaway-text">
+                                <strong>Design domain model first:</strong> What are your Resources and Tools? Get the abstractions right before implementation.
+                            </div>
+                        </div>
+                        
+                        <div class="takeaway">
+                            <div class="takeaway-icon-container">
+                                <span class="material-icons">security</span>
+                            </div>
+                            <div class="takeaway-text">
+                                <strong>Security from day one:</strong> Validate everything. User context flows through. Defense in depth is non-negotiable.
+                            </div>
+                        </div>
+                        
+                        <div class="takeaway">
+                            <div class="takeaway-icon-container">
+                                <span class="material-icons">science</span>
+                            </div>
+                            <div class="takeaway-text">
+                                <strong>Test with mocks:</strong> Don't rely on LLM behavior in tests. Mock the protocol layer, test business logic separately.
+                            </div>
+                        </div>
+                        
+                        <div class="takeaway">
+                            <div class="takeaway-icon-container">
+                                <span class="material-icons">hub</span>
+                            </div>
+                            <div class="takeaway-text">
+                                <strong>Compose, don't integrate:</strong> Build independent servers, let the protocol handle communication. Loose coupling wins.
+                            </div>
+                        </div>
+                        
+                        <div class="takeaway">
+                            <div class="takeaway-icon-container">
+                                <span class="material-icons">balance</span>
+                            </div>
+                            <div class="takeaway-text">
+                                <strong>Use RAG wisely:</strong> It's one tool, not the solution. Combine with structured tools for complete solutions.
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="cta-section">
+                        <div class="cta-title">Resources & Next Steps</div>
+                        <div class="cta-text">
+                            Explore the protocol, build your first server, contribute to the ecosystem
+                        </div>
+                        <div class="resources">
+                            <div class="resource-item">
+                                <span class="material-icons resource-icon">link</span>
+                                modelcontextprotocol.io
+                            </div>
+                            <div class="resource-item">
+                                <span class="material-icons resource-icon">code</span>
+                                GitHub: modelcontextprotocol
+                            </div>
+                            <div class="resource-item">
+                                <span class="material-icons resource-icon">forum</span>
+                                Discord: MCP Community
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="questions-footer">
+                    <div class="questions-text">Questions & Discussion</div>
+                </div>
+                <aside class="notes"></aside>
+            </section>
+            
+        </div>
+    </div>
+
+    <!-- Reveal.js JS -->
+    <script src="https://cdn.jsdelivr.net/npm/reveal.js@4.6.1/dist/reveal.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/reveal.js@4.6.1/plugin/notes/notes.js"></script>
+    
+    <script>
+        Reveal.initialize({
+            hash: true,
+            controls: true,
+            progress: true,
+            center: false,
+            width: '100%',
+            height: '100%',
+            touch: true,
+            loop: false,
+            keyboard: true,
+            plugins: [ RevealNotes ]
+        });
+
+        function getPresentationName() {
+            return 'uppsala_uni_18_nov_2025_improved';
+        }
+
+        async function loadNotes() {
+            const presentationName = getPresentationName();
+            if (!presentationName) return;
+
+            try {
+                const response = await fetch(`/api/presentations/${presentationName}/notes`);
+                const data = await response.json();
+                
+                if (data.notes && data.notes.length > 0) {
+                    data.notes.forEach(noteData => {
+                        const slideIndex = noteData.slide - 1;
+                        const slides = document.querySelectorAll('.reveal .slides section');
+                        
+                        if (slides[slideIndex]) {
+                            let notesElement = slides[slideIndex].querySelector('aside.notes');
+                            
+                            if (!notesElement) {
+                                notesElement = document.createElement('aside');
+                                notesElement.className = 'notes';
+                                slides[slideIndex].appendChild(notesElement);
+                            }
+                            
+                            if (noteData.notes) {
+                                let htmlNotes = noteData.notes
+                                    .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
+                                    .replace(/\*(.*?)\*/g, '<em>$1</em>')
+                                    .replace(/`(.*?)`/g, '<code>$1</code>')
+                                    .replace(/\n\n/g, '</p><p>')
+                                    .replace(/\n/g, '<br>');
+                                
+                                if (!htmlNotes.startsWith('<p>')) {
+                                    htmlNotes = '<p>' + htmlNotes;
+                                }
+                                if (!htmlNotes.endsWith('</p>')) {
+                                    htmlNotes = htmlNotes + '</p>';
+                                }
+                                
+                                notesElement.innerHTML = htmlNotes;
+                            }
+                        }
+                    });
+                    
+                    if (Reveal.isReady()) {
+                        Reveal.sync();
+                    }
+                }
+            } catch (error) {
+                console.error('Error loading notes:', error);
+            }
+        }
+
+        Reveal.addEventListener('ready', () => {
+            loadNotes();
+            
+            const allSections = document.querySelectorAll('.reveal .slides section');
+            allSections.forEach(section => {
+                section.style.removeProperty('display');
+                section.style.removeProperty('width');
+                section.style.removeProperty('height');
+                section.style.removeProperty('max-width');
+                section.style.removeProperty('max-height');
+            });
+        });
+    </script>
+</body>
+</html>
+

@@ -1,0 +1,2987 @@
+/* === GEMENSAMMA STILAR (används av alla slides) === */
+
+/* CSS Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Grundläggande layout */
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif;
+    background: #1a2332;
+    color: #e2e8f0;
+}
+
+/* Reveal.js section styling - applies to all slides */
+/* CSS för Reveal.js finns i index.html inline styles */
+/* Detta filen innehåller CSS för slide-specifika klasser (flow-diagram, characteristics, etc.) */
+
+/* Legacy .slide class for backward compatibility with existing HTML */
+.slide {
+    max-width: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Rubrikstilar - FIX: Consistent large H1 for all slides */
+/* NOTE: Reveal.js specific overrides in index.html take precedence */
+h1 {
+    text-align: left;  /* FIX: Left-aligned for consistent style */
+    color: #ffffff;
+    font-size: clamp(2.5rem, 5vh, 4rem) !important;  /* FIX: Same size as title slide - consistent */
+    margin-bottom: clamp(15px, 2vh, 25px) !important;  /* FIX: More spacing */
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    line-height: 1.2;  /* FIX: Tighter line-height */
+}
+
+/* === POTENTIELLT GEMENSAMMA KLASSER === */
+
+/* Grundläggande ikonstyling (används av båda slides, olika storlekar via child selectors) */
+.material-icons {
+    font-size: clamp(32px, 4vw, 48px);  /* Drastiskt minskad från 8vw/120px */
+    color: #2dd4bf;
+}
+
+/* Centrerad underrubrik (används av 009, kan användas av flera slides) */
+.subtitle {
+    text-align: center;
+    font-size: 1.4em;
+    color: #94a3b8;
+    margin-top: 60px;
+    line-height: 1.6;
+    max-width: 900px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* === SLIDE 009 - DIAGRAM LAYOUT (specifik för 009) === */
+
+.diagram {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 60px;
+    margin: clamp(40px, 8vh, 100px) 0;
+}
+
+.component {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 25px;
+}
+
+.box {
+    width: clamp(200px, 18vw, 280px);
+    height: clamp(200px, 18vw, 280px);
+    background: #1a2332;
+    border: 3px solid #2dd4bf;
+    border-radius: 12px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+.box-highlight {
+    background: #2dd4bf;
+    border-color: #2dd4bf;
+}
+
+.icon-highlight {
+    color: #1a2332;
+}
+
+.label {
+    font-size: 1.5em;
+    color: #ffffff;
+    font-weight: 600;
+    text-align: center;
+}
+
+.arrow-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
+    margin: 0 -20px;
+}
+
+.material-icons.arrow {
+    font-size: 48px;
+    color: #2dd4bf;
+}
+
+.arrow-right {
+    animation: pulseRight 2s ease-in-out infinite;
+}
+
+.arrow-left {
+    animation: pulseLeft 2s ease-in-out infinite;
+}
+
+@keyframes pulseRight {
+    0%, 100% {
+        opacity: 0.4;
+    }
+    50% {
+        opacity: 1;
+    }
+}
+
+@keyframes pulseLeft {
+    0%, 100% {
+        opacity: 0.4;
+    }
+    50% {
+        opacity: 1;
+    }
+}
+
+.features {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 40px;
+    margin-top: 80px;
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.feature {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+}
+
+.feature .material-icons {
+    font-size: 56px;
+    color: #2dd4bf;
+}
+
+.feature-text {
+    font-size: 1.2em;
+    color: #ffffff;
+    font-weight: 500;
+    text-align: center;
+}
+
+/* Media queries för diagram-layout */
+/* OBS: Ingen responsive layout för smala skärmar - presentationer är designade för liggande 16:9/16:10 */
+
+/* === NAVIGATION === */
+/* Navigation removed - Reveal.js handles navigation controls */
+
+/* === SLIDE 001 - TITLE SLIDE (specifik för 001) === */
+/* FIX: Following DESIGN-GUIDE.md - Centered layout, clear hierarchy */
+
+/* Title slide section - use flexbox for vertical centering */
+.reveal .slides section:has(.title-slide-h1),
+.reveal .slides section:first-child {
+    justify-content: center !important;  /* Center content vertically */
+    align-items: center !important;  /* Center content horizontally */
+}
+
+/* Större h1 för title slide - FIX: Following design guide - DOMINANT size */
+.title-slide-h1 {
+    font-size: clamp(2.5rem, 5vh, 4rem) !important;  /* Design guide: DOMINANT, 3-4x larger than subtitle */
+    margin-bottom: clamp(10px, 1.5vh, 18px) !important;  /* Design guide: compact spacing */
+    font-weight: 700;
+    line-height: 1.2 !important;  /* Design guide: tighter line-height */
+    text-align: center !important;  /* Design guide: always centered */
+    color: #ffffff !important;  /* Design guide: white for H1 */
+}
+
+/* Subtitle - FIX: Following design guide - centered, teal, under H1 */
+.subtitle-large {
+    text-align: center !important;  /* Design guide: centered */
+    font-size: clamp(0.9em, 1.8vh, 1.3em) !important;  /* Design guide: smaller than H1 */
+    color: #2dd4bf !important;  /* Design guide: teal accent */
+    margin-bottom: clamp(25px, 4vh, 50px) !important;  /* Design guide: whitespace after subtitle */
+    font-weight: 500;
+}
+
+/* Agenda container - FIX: Following design guide - centered, compact list */
+.agenda {
+    max-width: min(700px, 85vw) !important;  /* Design guide: reasonable max-width */
+    margin: 0 auto !important;  /* Design guide: center horizontally */
+    text-align: center !important;  /* Design guide: centered, NOT left-aligned */
+}
+
+/* Agenda titel - FIX: Following design guide - centered */
+.agenda-title {
+    font-size: clamp(1em, 1.8vh, 1.4em) !important;  /* Design guide: secondary heading */
+    color: #2dd4bf !important;  /* Design guide: teal accent */
+    margin-bottom: clamp(15px, 2vh, 25px) !important;  /* Design guide: spacing */
+    text-align: center !important;  /* Design guide: always centered */
+    font-weight: 600;
+}
+
+/* Agenda item - FIX: Following design guide - centered, compact */
+.agenda-item {
+    display: flex !important;
+    align-items: center !important;  /* Design guide: center align icons and text */
+    justify-content: center !important;  /* Design guide: center horizontally */
+    gap: clamp(10px, 1.5vw, 16px) !important;  /* Design guide: compact gap */
+    margin-bottom: clamp(10px, 1.5vh, 16px) !important;  /* Design guide: compact spacing */
+    font-size: clamp(0.9em, 1.5vh, 1.1em) !important;  /* Design guide: body text size */
+    color: #e2e8f0 !important;  /* Design guide: secondary text color */
+    text-align: center !important;  /* Design guide: centered */
+}
+
+/* Agenda ikon - FIX: Following design guide - medium size, teal */
+.agenda-icon {
+    color: #2dd4bf !important;  /* Design guide: teal accent */
+    font-size: clamp(24px, 3vw, 32px) !important;  /* Design guide: medium icons */
+    min-width: clamp(24px, 3vw, 32px) !important;  /* Design guide: consistent width */
+    flex-shrink: 0 !important;  /* Design guide: icons don't shrink */
+}
+
+/* Presentatörsinfo - FIX: Following design guide - centered, small, bottom */
+.presenter-info {
+    font-size: clamp(0.8em, 1.3vh, 1em) !important;  /* Design guide: small, discrete */
+    color: #94a3b8 !important;  /* Design guide: muted color */
+    line-height: 1.4 !important;  /* Design guide: readable but compact */
+    text-align: center !important;  /* Design guide: centered */
+    margin-top: auto !important;  /* Design guide: push to bottom if using flex */
+    margin-bottom: clamp(15px, 2vh, 25px) !important;  /* Design guide: spacing from edge */
+}
+
+/* MacBook Pro specific adjustments för slide 001 */
+@media (max-height: 2000px) and (min-width: 2000px) {
+    .presenter-info {
+        margin-bottom: clamp(30px, 6vh, 80px);
+    }
+
+    .agenda-title {
+        margin-bottom: clamp(15px, 3vh, 30px);
+    }
+
+    .agenda-item {
+        margin-bottom: clamp(10px, 2vh, 20px);
+    }
+}
+
+/* === SLIDE 002 - LLM FLOW DIAGRAM (specifik för 002) === */
+
+/* NOTE: H1 styling is now global in index.html - no slide-specific overrides needed */
+/* All slides now have consistent H1: clamp(2.5rem, 5vh, 4rem), left-aligned */
+
+/* Flow diagram - FAS 2.3: Force horizontal layout för Reveal.js */
+/* Reveal.js skapar .slide-background-content wrappers */
+.reveal .slides section .flow-diagram,
+.reveal .slides section .slide-background-content .flow-diagram {
+    display: flex !important;
+    flex-direction: row !important;  /* Force horizontal */
+    justify-content: center !important;
+    align-items: center !important;
+    gap: clamp(30px, 4.5vw, 55px) !important;  /* FIX: Even more spacing between boxes and arrows */
+    margin: clamp(10px, 2vh, 20px) auto clamp(15px, 2.5vh, 25px) auto !important;  /* Keep same top margin */
+    flex-wrap: wrap;
+    width: 100%;  /* FIX 1: Ensure full width for centering */
+    max-width: 100%;
+    padding: clamp(12px, 2vh, 25px) 0 !important;  /* FIX: More padding for breathing room */
+}
+
+/* Fallback för non-Reveal contexts */
+.flow-diagram {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: clamp(25px, 3vw, 40px);
+    margin: clamp(30px, 6vh, 60px) 0;
+    flex-wrap: wrap;
+}
+
+/* Flow box - FIX: All boxes same size, centered content, larger with more padding */
+.flow-box {
+    padding: clamp(18px, 2.5vh, 30px) clamp(28px, 4vw, 45px) !important;  /* FIX: Even more padding */
+    background: #0f172a;
+    border: 2px solid #2dd4bf;  /* Minskad från 3px */
+    border-radius: 6px;  /* FIX 3: Smaller border-radius */
+    font-size: clamp(1em, 1.8vh, 1.3em) !important;  /* FIX: Larger text */
+    color: #ffffff;
+    font-weight: 600;
+    width: clamp(160px, 22vw, 240px) !important;  /* FIX: Larger boxes */
+    min-width: clamp(160px, 22vw, 240px) !important;  /* FIX: Same min-width */
+    max-width: clamp(160px, 22vw, 240px) !important;  /* FIX: Same max-width */
+    height: clamp(85px, 11vh, 120px) !important;  /* FIX: Larger height */
+    min-height: clamp(85px, 11vh, 120px) !important;  /* FIX: Same min-height */
+    display: flex !important;  /* FIX: Use flexbox for centering */
+    align-items: center !important;  /* FIX: Center content vertically */
+    justify-content: center !important;  /* FIX: Center content horizontally */
+    text-align: center;
+    line-height: 1.4 !important;  /* FIX: More line-height for readability */
+    box-sizing: border-box !important;  /* FIX: Include padding in width/height */
+}
+
+/* Highlighted flow box */
+.flow-box-highlight {
+    background: #2dd4bf;
+    color: #1a2332;
+}
+
+/* Flow box note (small text) */
+.flow-box-note {
+    font-size: 0.7em;
+}
+
+/* Flow arrow - FIX: Vertically centered, larger */
+.flow-arrow {
+    font-size: clamp(28px, 3.5vw, 42px) !important;  /* FIX: Larger arrows to match bigger boxes */
+    color: #2dd4bf;
+    display: flex !important;  /* FIX: Use flexbox for alignment */
+    align-items: center !important;  /* FIX: Center vertically */
+    justify-content: center !important;  /* FIX: Center horizontally */
+    flex-shrink: 0 !important;  /* FIX: Don't shrink */
+    align-self: center !important;  /* FIX: Center in flow-diagram */
+}
+
+/* Characteristics grid */
+/* FAS 2.4: Force grid layout för Reveal.js */
+/* Reveal.js skapar .slide-background-content wrappers */
+.reveal .slides section .characteristics,
+.reveal .slides section .slide-background-content .characteristics {
+    display: grid !important;
+    grid-template-columns: repeat(3, 1fr) !important;
+    width: 100%;  /* FIX 2: Full width instead of max-width */
+    max-width: 100%;
+    margin: clamp(10px, 2vh, 20px) auto 0;  /* FIX 3: Reduced margin */
+    gap: clamp(12px, 1.5vw, 20px);  /* FIX 3: Reduced gap */
+}
+
+/* Fallback för non-Reveal contexts */
+.characteristics {
+    max-width: min(1000px, 95vw);
+    margin: clamp(30px, 6vh, 60px) auto 0;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: clamp(20px, 3vw, 30px);
+}
+
+/* Characteristic card */
+.characteristic {
+    background: #0f172a;
+    border: 2px solid #2dd4bf;
+    border-radius: 8px;  /* Minskad från 12px */
+    padding: clamp(10px, 1.5vh, 16px);  /* FIX 2+3: Reduced padding for lower height */
+    text-align: center;
+    display: flex;  /* FIX 2: Use flex for better layout control */
+    flex-direction: column;
+    justify-content: flex-start;
+    min-height: auto;  /* FIX 2: Don't force height */
+    height: auto;
+}
+
+/* Characteristic icon */
+.characteristic-icon {
+    font-size: clamp(24px, 3.5vw, 36px);  /* FIX 3: Smaller icons */
+    color: #2dd4bf;
+    margin-bottom: clamp(6px, 1vh, 10px);  /* FIX 3: Reduced margin */
+}
+
+/* Characteristic title */
+.characteristic-title {
+    font-size: clamp(0.85em, 1.3vh, 1em);  /* FIX 3: Smaller title */
+    color: #2dd4bf;
+    font-weight: 600;
+    margin-bottom: clamp(4px, 0.8vh, 8px);  /* FIX 3: Reduced margin */
+}
+
+/* Characteristic text */
+.characteristic-text {
+    font-size: clamp(0.75em, 1vh, 0.9em);  /* FIX 3: Smaller text */
+    color: #e2e8f0;
+    line-height: 1.4;  /* FIX 3: Tighter line-height */
+}
+
+/* MacBook Pro specific adjustments för slide 002 */
+@media (max-height: 2000px) and (min-width: 2000px) {
+    .flow-diagram {
+        margin: clamp(20px, 4vh, 50px) 0;
+        gap: clamp(15px, 2vw, 30px);
+    }
+
+    .characteristics {
+        margin-top: clamp(20px, 4vh, 50px);
+        gap: clamp(15px, 2vw, 25px);
+    }
+
+    .characteristic {
+        padding: clamp(15px, 2.5vh, 25px);
+    }
+}
+
+/* === SLIDE 010 - ARCHITECTURE LAYOUT (specifik för 010) === */
+
+/* Override material-icons size for slide 010 - FIX: Reduced for Reveal.js */
+/* In 010, material-icons directly in layer-box should be smaller */
+.layer-box > .material-icons {
+    font-size: clamp(28px, 3.5vw, 50px) !important;  /* Reduced from 5vw/80px */
+}
+
+.architecture {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    min-height: 0;
+    gap: 1vh;
+    max-height: 80vh;
+    max-width: min(1200px, calc(100vw - 2 * clamp(20px, 2vw, 40px) - 100px));
+    margin: 0 auto;
+}
+
+.layer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.8vh;
+}
+
+.layer-box {
+    width: 100%;
+    padding: 1vh 2vw;
+    background: #0f172a;
+    border: 3px solid #2dd4bf;
+    border-radius: 12px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: clamp(12px, 1.5vw, 30px);
+    position: relative;
+}
+
+.layer-highlight {
+    background: linear-gradient(135deg, #0f172a 0%, #1e3a5f 100%);
+    border-color: #2dd4bf;
+    box-shadow: 0 0 30px rgba(45, 212, 191, 0.3);
+}
+
+.layer-title {
+    font-size: clamp(1.2em, 2.5vw, 1.8em);
+    color: #ffffff;
+    font-weight: 600;
+    text-align: center;
+}
+
+.servers-row {
+    display: flex;
+    justify-content: center;
+    gap: 2vw;
+    flex-wrap: wrap;
+}
+
+.server-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5vh;
+}
+
+.server-icon {
+    width: clamp(70px, 8vw, 100px);
+    height: clamp(70px, 8vw, 100px);
+    background: #1a2332;
+    border: 2px solid #2dd4bf;
+    border-radius: 8px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.server-icon .material-icons {
+    font-size: clamp(28px, 4vw, 45px);  /* FIX: Reduced from 6vw/60px for Reveal.js */
+}
+
+.server-label {
+    font-size: clamp(0.9em, 1.5vw, 1.1em);
+    color: #94a3b8;
+    text-align: center;
+}
+
+.connection-arrow {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0;
+    margin: -1vh 0;
+}
+
+.connection-arrow .material-icons {
+    font-size: clamp(32px, 4vw, 48px);
+    color: #2dd4bf;
+}
+
+.arrow-down {
+    animation: pulseDown 2s ease-in-out infinite;
+}
+
+.arrow-up {
+    animation: pulseUp 2s ease-in-out infinite;
+}
+
+@keyframes pulseDown {
+    0%, 100% {
+        opacity: 0.4;
+        transform: translateY(-5px);
+    }
+    50% {
+        opacity: 1;
+        transform: translateY(5px);
+    }
+}
+
+@keyframes pulseUp {
+    0%, 100% {
+        opacity: 0.4;
+        transform: translateY(5px);
+    }
+    50% {
+        opacity: 1;
+        transform: translateY(-5px);
+    }
+}
+
+.protocol-badge {
+    position: absolute;
+    top: -15px;
+    background: #2dd4bf;
+    color: #1a2332;
+    padding: 8px 20px;
+    border-radius: 20px;
+    font-size: 0.9em;
+    font-weight: 600;
+}
+
+.transport-info {
+    text-align: center;
+    color: #64748b;
+    font-size: clamp(0.75em, 1vw, 0.9em);
+    margin-top: 0.5vh;
+}
+
+/* Media queries för architecture-layout */
+/* OBS: Ingen responsive layout för smala skärmar - presentationer är designade för liggande 16:9/16:10 */
+
+/* MacBook Pro specific adjustments (16:10 aspect ratio, max-height: 2000px) */
+@media (max-height: 2000px) and (min-width: 2000px) {
+    .architecture {
+        gap: clamp(10px, 1.5vh, 30px);
+    }
+    
+    .layer {
+        gap: clamp(5px, 1vh, 15px);
+    }
+    
+    .layer-box {
+        padding: clamp(10px, 1.5vh, 30px);
+    }
+    
+    h1 {
+        margin-bottom: clamp(15px, 2.5vh, 60px);
+    }
+    
+    .connection-arrow {
+        margin: clamp(-10px, -1.5vh, -15px) 0;
+    }
+}
+
+/* === SLIDE 003 - TRANSFORMER ARCHITECTURE (specifik för 003) === */
+/* Kompakt lista-liknande design utan stora boxar - minimal vertikal space */
+
+/* Architecture flow container - FIX: Reduce for Reveal.js */
+.reveal .slides section .architecture-flow,
+.reveal .slides section .slide-background-content .architecture-flow {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 0 !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    margin: clamp(8px, 1.5vh, 15px) auto 0 !important;  /* Reduced margin */
+    padding-bottom: 0 !important;
+}
+
+/* Fallback för non-Reveal contexts */
+.architecture-flow {
+    display: flex;
+    flex-direction: column;
+    gap: 0; /* Ingen gap - pilar och items hanterar spacing */
+    max-width: min(900px, 85vw);
+    margin: 0 auto;
+    margin-bottom: 0; /* Ingen margin-bottom - sista raden ska vara sist */
+    padding-bottom: 0; /* Ingen padding-bottom */
+}
+
+/* Flow row - innehåller item + pil på höger sida - FIX: Reduced for Reveal.js */
+.flow-row {
+    display: flex;
+    align-items: center;
+    gap: clamp(10px, 1.5vw, 18px);  /* Reduced from 2vw/25px */
+    margin-bottom: 6px; /* FAST spacing - reduced from 8px */
+}
+
+/* Sista raden ska inte ha margin-bottom */
+.flow-row:last-child {
+    margin-bottom: 0;
+}
+
+/* Sista raden behöver en invisibel spacer så att .flow-item har samma bredd som övriga */
+.flow-row:last-child::after {
+    content: '';
+    width: clamp(24px, 3.5vw, 32px); /* Samma bredd som .flow-arrow */
+    flex-shrink: 0;
+}
+
+/* Flow item - kompakt, ingen stor box, bara lätt border/bakgrund med gradient - FIX: Reduced for Reveal.js */
+.flow-item {
+    display: flex;
+    align-items: center;
+    gap: clamp(8px, 1.2vw, 14px);  /* Reduced from 1.5vw/18px */
+    padding: 8px clamp(12px, 1.5vw, 18px); /* FAST vertikal padding (reduced from 10px), horisontell responsiv */
+    background: linear-gradient(135deg, #0f172a 0%, #1e3a5f 100%); /* Samma gradient som highlight */
+    border-left: 3px solid #2dd4bf; /* Reduced from 4px */
+    border-radius: 4px;
+    flex: 1;
+}
+
+/* Flow icon - mindre ikoner - FIX: Reduced for Reveal.js */
+.flow-icon {
+    font-size: clamp(22px, 3vw, 30px); /* Reduced from 4vw/36px */
+    color: #2dd4bf;
+    min-width: clamp(22px, 3vw, 30px);  /* Reduced */
+    flex-shrink: 0;
+}
+
+/* Flow content */
+.flow-content {
+    flex: 1;
+    min-width: 0;
+}
+
+/* Flow title - kompakt - FIX: Reduced for Reveal.js */
+.flow-title {
+    font-size: clamp(0.9em, 1.5vh, 1.1em); /* Reduced from 1.8vh/1.3em */
+    color: #2dd4bf;
+    font-weight: 600;
+    margin-bottom: clamp(2px, 0.3vh, 3px);  /* Reduced */
+}
+
+/* Flow description - kompakt line-height - FIX: Reduced for Reveal.js */
+.flow-description {
+    font-size: clamp(0.75em, 1.2vh, 0.85em); /* Reduced from 1.4vh/0.95em */
+    color: #94a3b8;
+    line-height: 1.25; /* Tighter line-height */
+}
+
+/* Flow arrow - pil utanför item på höger sida, pekar nedåt - FIX: Reduced for Reveal.js */
+.flow-arrow {
+    font-size: clamp(18px, 2.5vw, 26px);  /* Reduced from 3.5vw/32px */
+    color: #2dd4bf;
+    flex-shrink: 0;
+    align-self: flex-start;
+    margin-top: clamp(6px, 0.8vh, 10px); /* Reduced from 1vh/12px */
+}
+
+/* Flow highlight - för Attention Mechanism */
+.flow-highlight {
+    background: linear-gradient(135deg, #0f172a 0%, #1e3a5f 100%);
+    border-left-color: #2dd4bf;
+    border-left-width: 5px;
+    box-shadow: 0 2px 10px rgba(45, 212, 191, 0.2);
+}
+
+/* H1 margin-bottom justering för slide 003 - FIX: Reduced for Reveal.js */
+.reveal .slides section:has(.architecture-flow) h1,
+.reveal .slides section .architecture-flow ~ h1,
+h1:has(+ .architecture-flow) {
+    margin-bottom: clamp(8px, 1.2vh, 15px) !important;  /* Reduced from 2vh/25px */
+}
+
+/* MacBook Pro specific adjustments för slide 003 */
+@media (max-height: 2000px) and (min-width: 2000px) {
+    .flow-row {
+        margin-bottom: clamp(6px, 1vh, 10px);
+        gap: clamp(12px, 1.5vw, 20px);
+    }
+
+    .flow-item {
+        padding: clamp(8px, 1vh, 12px) clamp(12px, 1.5vw, 18px);
+    }
+
+    .flow-icon {
+        font-size: clamp(24px, 3.5vw, 32px);
+        min-width: clamp(24px, 3.5vw, 32px);
+    }
+
+    .flow-arrow {
+        font-size: clamp(20px, 3vw, 28px);
+        margin-top: clamp(6px, 0.8vh, 10px);
+    }
+}
+
+/* === SLIDE 004 - TOKENS, CONTEXT WINDOWS, AND LIMITATIONS (specifik för 004) === */
+
+/* Content grid - FIX: Further reduced for Reveal.js to fit on screen */
+.content-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: clamp(10px, 1.5vw, 16px) !important; /* FIX: Further reduced */
+    margin-bottom: clamp(8px, 1.2vh, 12px) !important; /* FIX: Further reduced */
+}
+
+/* Section - FIX: Further reduced for Reveal.js to fit on screen */
+.section {
+    background: #0f172a;
+    border: 2px solid #2dd4bf;
+    border-radius: 6px !important;  /* FIX: Smaller border-radius */
+    padding: clamp(8px, 1vh, 12px) clamp(10px, 1.3vw, 16px) !important; /* FIX: Further reduced padding */
+}
+
+/* Section title - FIX: Further reduced for Reveal.js to fit on screen */
+.section-title {
+    font-size: clamp(0.85em, 1.4vh, 1.1em) !important; /* FIX: Further reduced */
+    color: #2dd4bf;
+    font-weight: 600;
+    margin-bottom: clamp(6px, 0.8vh, 10px) !important; /* FIX: Further reduced */
+    display: flex;
+    align-items: center;
+    gap: clamp(6px, 1vw, 10px) !important;  /* FIX: Further reduced gap */
+}
+
+/* Section icon - FIX: Reduced for Reveal.js */
+.section-icon {
+    font-size: clamp(24px, 3vw, 32px);  /* FIX: Reduced from 4vw/40px */
+}
+
+/* Token example - FIX: Reduced for Reveal.js to fit on screen */
+.token-example {
+    background: #1a2332;
+    padding: clamp(8px, 1vh, 10px) clamp(10px, 1.3vw, 14px) !important; /* FIX: Reduced padding */
+    border-radius: 6px !important;
+    margin-bottom: clamp(8px, 1vh, 10px) !important; /* FIX: Reduced margin */
+}
+
+/* Token text - FIX: Reduced for Reveal.js */
+.token-text {
+    font-size: clamp(0.8em, 1.3vh, 0.95em) !important; /* FIX: Reduced from 1.8vh/1.1em */
+    color: #e2e8f0;
+    margin-bottom: clamp(6px, 0.8vh, 8px) !important; /* FIX: Reduced from 10px */
+}
+
+/* Token breakdown */
+.token-breakdown {
+    display: flex;
+    flex-wrap: wrap;
+    gap: clamp(8px, 1vw, 10px);
+}
+
+/* Token badge - FIX: Reduced for Reveal.js to fit on screen */
+.token {
+    padding: clamp(4px, 0.8vh, 6px) clamp(8px, 1.2vw, 12px) !important; /* FIX: Reduced padding */
+    background: #2dd4bf;
+    color: #1a2332;
+    border-radius: 5px !important;
+    font-weight: 600;
+    font-size: clamp(0.75em, 1.2vh, 0.85em) !important; /* FIX: Reduced font-size */
+}
+
+/* Token info text - FIX: Reduced for Reveal.js to fit on screen */
+.token-info {
+    color: #94a3b8;
+    font-size: clamp(0.75em, 1.2vh, 0.9em) !important; /* FIX: Further reduced */
+    line-height: 1.4 !important;  /* FIX: Tighter line-height */
+}
+
+/* Context window - FIX: Reduced for Reveal.js to fit on screen */
+.context-window {
+    background: #1a2332;
+    padding: clamp(8px, 1vh, 10px) clamp(10px, 1.3vw, 14px) !important; /* FIX: Reduced padding */
+    border-radius: 6px !important;
+    text-align: center;
+}
+
+/* Window box - FIX: Further reduced for Reveal.js to fit on screen */
+.window-box {
+    width: 100%;
+    height: clamp(40px, 5vh, 55px) !important; /* FIX: Further reduced */
+    background: linear-gradient(135deg, #2dd4bf 0%, #14b8a6 100%);
+    border-radius: 5px !important;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: clamp(4px, 0.6vh, 6px) !important; /* FIX: Further reduced */
+}
+
+/* Window text - FIX: Reduced for Reveal.js */
+.window-text {
+    font-size: clamp(0.95em, 1.6vh, 1.2em) !important; /* FIX: Reduced from 2.5vh/1.5em */
+    color: #1a2332;
+    font-weight: 700;
+}
+
+/* Window info - FIX: Reduced for Reveal.js */
+.window-info {
+    font-size: clamp(0.8em, 1.3vh, 0.95em) !important; /* FIX: Reduced from 1.8vh/1.1em */
+    color: #94a3b8;
+}
+
+/* Limitations section (spans full width) */
+.limitations {
+    grid-column: 1 / -1;
+}
+
+/* Limitations grid - FIX: Reduced for Reveal.js to fit on screen */
+.limitations-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: clamp(8px, 1.2vw, 14px) !important; /* FIX: Further reduced gap */
+    margin-top: clamp(6px, 0.8vh, 10px) !important; /* FIX: Add small top margin */
+}
+
+/* Limitation item - FIX: Reduced for Reveal.js */
+.limitation {
+    display: flex;
+    align-items: flex-start;
+    gap: clamp(8px, 1vw, 12px);  /* FIX: Reduced gap */
+    padding: clamp(8px, 1vh, 10px) clamp(10px, 1.2vw, 15px) !important; /* FIX: Reduced padding */
+    background: #1a2332;
+    border-radius: 6px;  /* FIX: Reduced from 8px */
+    border-left: 3px solid #ef4444;  /* FIX: Reduced from 4px */
+}
+
+/* Limitation icon - FIX: Reduced for Reveal.js */
+.limitation-icon {
+    font-size: clamp(24px, 3vw, 32px) !important; /* FIX: Reduced from 4vw/40px */
+    color: #ef4444;
+    min-width: clamp(24px, 3vw, 32px) !important; /* FIX: Reduced */
+}
+
+/* Limitation content */
+.limitation-content {
+    flex: 1;
+}
+
+/* Limitation title - FIX: Reduced for Reveal.js to fit on screen */
+.limitation-title {
+    font-size: clamp(0.85em, 1.4vh, 1em) !important; /* FIX: Further reduced */
+    color: #ef4444;
+    font-weight: 600;
+    margin-bottom: clamp(3px, 0.4vh, 5px) !important; /* FIX: Reduced margin */
+}
+
+/* Limitation text - FIX: Reduced for Reveal.js to fit on screen */
+.limitation-text {
+    font-size: clamp(0.75em, 1.2vh, 0.85em) !important; /* FIX: Further reduced */
+    color: #e2e8f0;
+    line-height: 1.3 !important; /* FIX: Tighter line-height */
+}
+
+/* MacBook Pro specific adjustments för slide 004 */
+@media (max-height: 2000px) and (min-width: 2000px) {
+    .content-grid {
+        gap: clamp(20px, 3vw, 35px);
+        margin-bottom: clamp(25px, 4vh, 45px);
+    }
+
+    .section {
+        padding: clamp(18px, 2.5vh, 28px);
+    }
+
+    .limitations-grid {
+        gap: clamp(12px, 1.5vw, 18px);
+    }
+}
+
+/* === SLIDE 005 - THE PROBLEM - LLMS ARE ISOLATED (specifik för 005) === */
+/* FIX: Systematisk reduktion för Reveal.js */
+
+/* Isolation container - FIX: Reduced for Reveal.js */
+.isolation-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: clamp(12px, 1.5vh, 18px) !important; /* FIX: Reduced from 25px */
+    max-width: min(1200px, 90vw);
+    margin: 0 auto;
+}
+
+/* LLM bubble - central cirkel - FIX: Reduced for Reveal.js */
+.llm-bubble {
+    width: clamp(150px, 18vw, 220px) !important; /* FIX: Reduced from 25vw/280px */
+    height: clamp(150px, 18vw, 220px) !important; /* FIX: Reduced */
+    border: 3px solid #2dd4bf !important; /* FIX: Reduced from 4px */
+    border-radius: 50%;
+    background: linear-gradient(135deg, #2dd4bf 0%, #14b8a6 100%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: clamp(8px, 1vh, 10px) !important; /* FIX: Reduced from 12px */
+    position: relative;
+    box-shadow: 0 0 30px rgba(45, 212, 191, 0.4) !important; /* FIX: Reduced shadow */
+}
+
+/* LLM icon - FIX: Reduced for Reveal.js */
+.llm-icon {
+    font-size: clamp(32px, 4vw, 48px) !important; /* FIX: Further reduced from 5vw/60px */
+    color: #1a2332;
+}
+
+/* LLM label - FIX: Reduced for Reveal.js */
+.llm-label {
+    font-size: clamp(1.1em, 1.8vh, 1.3em) !important; /* FIX: Reduced from 2.5vh/1.6em */
+    color: #1a2332;
+    font-weight: 700;
+    line-height: 1.2 !important; /* FIX: Tighter line-height */
+}
+
+/* Gap indicator - "Disconnected" - FIX: Reduced for Reveal.js */
+.gap-indicator {
+    text-align: center;
+    font-size: clamp(1em, 1.6vh, 1.2em) !important; /* FIX: Reduced from 2.2vh/1.4em */
+    color: #ef4444;
+    font-weight: 600;
+    margin: clamp(6px, 0.8vh, 8px) 0 !important; /* FIX: Reduced from 8px */
+}
+
+/* External systems grid - FIX: Reduced for Reveal.js */
+.external-systems {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: clamp(10px, 1.5vw, 18px) !important; /* FIX: Reduced from 2vw/25px */
+    width: 100%;
+}
+
+/* System item - FIX: Reduced for Reveal.js */
+.system-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: clamp(8px, 1vh, 10px) !important; /* FIX: Reduced from 10px */
+    padding: clamp(10px, 1.2vh, 14px) clamp(12px, 1.5vw, 18px) !important; /* FIX: Reduced padding */
+    background: #0f172a;
+    border: 2px solid #64748b;
+    border-radius: 10px !important; /* FIX: Reduced from 12px */
+    opacity: 0.6;
+    transition: all 0.3s ease;
+}
+
+.system-item:hover {
+    opacity: 1;
+    border-color: #2dd4bf;
+    transform: translateY(-3px) !important; /* FIX: Reduced transform */
+}
+
+/* System icon - FIX: Reduced for Reveal.js */
+.system-icon {
+    font-size: clamp(22px, 3vw, 30px) !important; /* FIX: Further reduced from 3.5vw/36px */
+    color: #64748b;
+}
+
+.system-item:hover .system-icon {
+    color: #2dd4bf;
+}
+
+/* System label - FIX: Reduced for Reveal.js */
+.system-label {
+    font-size: clamp(0.8em, 1.3vh, 0.95em) !important; /* FIX: Reduced from 1.6vh/1.05em */
+    color: #94a3b8;
+    text-align: center;
+    font-weight: 500;
+    line-height: 1.3 !important; /* FIX: Tighter line-height */
+}
+
+.system-item:hover .system-label {
+    color: #e2e8f0;
+}
+
+/* MacBook Pro specific adjustments för slide 005 */
+@media (max-height: 2000px) and (min-width: 2000px) {
+    .isolation-container {
+        gap: 20px; /* Ännu mer kompakt på MacBook Pro */
+    }
+
+    .llm-bubble {
+        width: clamp(180px, 22vw, 260px);
+        height: clamp(180px, 22vw, 260px);
+        gap: 10px;
+    }
+
+    .external-systems {
+        gap: clamp(12px, 1.5vw, 20px);
+    }
+
+    .system-item {
+        padding: 12px clamp(12px, 1.5vw, 18px);
+    }
+}
+
+/* === SLIDE 006 - NAIVE SOLUTIONS AND THEIR PROBLEMS (specifik för 006) === */
+
+/* Solutions grid */
+.solutions-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: clamp(20px, 3vw, 30px); /* Mindre än 40px max */
+    max-width: min(1300px, 95vw);
+    margin: 0 auto;
+}
+
+/* Solution box */
+.solution {
+    display: flex;
+    flex-direction: column;
+    gap: 15px; /* FAST gap - mindre än 25px */
+    padding: 20px clamp(20px, 2.5vw, 25px); /* FAST vertikal padding (20px), horisontell responsiv */
+    background: #0f172a;
+    border: 3px solid #ef4444;
+    border-radius: 12px;
+    position: relative;
+}
+
+/* Solution header */
+.solution-header {
+    display: flex;
+    align-items: center;
+    gap: clamp(12px, 1.5vw, 18px); /* Mindre än 20px max */
+}
+
+/* Solution icon */
+.solution-icon {
+    font-size: clamp(28px, 4vw, 38px); /* FIX: Reduced from 6vw/50px for Reveal.js */
+    color: #ef4444;
+}
+
+/* Solution title */
+.solution-title {
+    font-size: clamp(1.2em, 2.2vh, 1.5em); /* Mindre än 1.8em max */
+    color: #ef4444;
+    font-weight: 600;
+}
+
+/* Solution description */
+.solution-description {
+    font-size: clamp(1em, 1.8vh, 1.15em); /* Mindre än 1.2em max */
+    color: #e2e8f0;
+    line-height: 1.5; /* Tightare än 1.6 */
+    margin-bottom: 12px; /* FAST margin - mindre än 20px */
+}
+
+/* Problems list */
+.problems-list {
+    background: #1a2332;
+    padding: 12px clamp(12px, 1.5vw, 18px); /* FAST vertikal padding (12px) */
+    border-radius: 8px;
+    border-left: 4px solid #ef4444;
+}
+
+/* Problem item */
+.problem-item {
+    display: flex;
+    align-items: flex-start;
+    gap: clamp(8px, 1vw, 12px); /* Mindre än 12px max */
+    margin-bottom: clamp(8px, 1vh, 10px); /* FAST margin - mindre än 12px */
+    font-size: clamp(0.9em, 1.5vh, 1em); /* Mindre än 1.05em max */
+    color: #94a3b8;
+}
+
+.problem-item:last-child {
+    margin-bottom: 0;
+}
+
+/* Problem icon */
+.problem-icon {
+    font-size: clamp(20px, 2.5vw, 24px); /* Mindre än 24px max */
+    color: #ef4444;
+    min-width: clamp(20px, 2.5vw, 24px);
+    margin-top: 2px;
+}
+
+/* MacBook Pro specific adjustments för slide 006 */
+@media (max-height: 2000px) and (min-width: 2000px) {
+    .solutions-grid {
+        gap: clamp(15px, 2vw, 25px);
+    }
+
+    .solution {
+        gap: 12px;
+        padding: 18px clamp(18px, 2vw, 22px);
+    }
+
+    .solution-header {
+        gap: clamp(10px, 1.2vw, 15px);
+    }
+
+    .solution-icon {
+        font-size: clamp(35px, 5vw, 45px);
+    }
+
+    .problems-list {
+        padding: 10px clamp(10px, 1.2vw, 16px);
+    }
+
+    .problem-item {
+        margin-bottom: clamp(6px, 0.8vh, 8px);
+        gap: clamp(6px, 0.8vw, 10px);
+    }
+}
+
+/* === SLIDE 007 - BETTER APPROACHES (specifik för 007) === */
+
+/* Approaches grid */
+.approaches-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: clamp(20px, 3vw, 28px); /* Mindre än 35px max */
+    max-width: min(1300px, 95vw);
+    margin: 0 auto;
+}
+
+/* Approach box */
+.approach {
+    display: flex;
+    flex-direction: column;
+    gap: 15px; /* FAST gap - mindre än 25px */
+    padding: 20px clamp(18px, 2vw, 25px); /* FAST vertikal padding (20px), horisontell responsiv */
+    background: #0f172a;
+    border: 3px solid #2dd4bf;
+    border-radius: 12px;
+}
+
+/* Approach header */
+.approach-header {
+    display: flex;
+    align-items: center;
+    gap: clamp(10px, 1.3vw, 15px); /* Mindre än 15px max */
+}
+
+/* Approach icon */
+.approach-icon {
+    font-size: clamp(40px, 5.5vw, 45px); /* Mindre än 50px max */
+    color: #2dd4bf;
+}
+
+/* Approach title */
+.approach-title {
+    font-size: clamp(1.2em, 2.2vh, 1.4em); /* Mindre än 1.6em max */
+    color: #2dd4bf;
+    font-weight: 600;
+}
+
+/* Flow steps */
+.flow-steps {
+    display: flex;
+    flex-direction: column;
+    gap: 10px; /* FAST gap - mindre än 15px */
+    margin: 12px 0; /* FAST margin - mindre än 20px */
+}
+
+/* Flow step */
+.flow-step {
+    display: flex;
+    align-items: center;
+    gap: clamp(10px, 1.3vw, 15px); /* Mindre än 15px max */
+    padding: 10px clamp(10px, 1.3vw, 12px); /* FAST vertikal padding (10px) */
+    background: #1a2332;
+    border-radius: 8px;
+    border-left: 4px solid #2dd4bf;
+}
+
+/* Step number */
+.step-number {
+    min-width: clamp(28px, 3.5vw, 32px); /* Mindre än 35px max */
+    height: clamp(28px, 3.5vw, 32px);
+    background: #2dd4bf;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    color: #1a2332;
+    font-size: clamp(0.95em, 1.5vh, 1.05em); /* Mindre än 1.1em max */
+}
+
+/* Step text */
+.step-text {
+    font-size: clamp(0.9em, 1.6vh, 1em); /* Mindre än 1.05em max */
+    color: #e2e8f0;
+}
+
+/* Pros/cons grid */
+.pros-cons {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: clamp(10px, 1.3vw, 15px); /* Mindre än 15px max */
+    margin-top: 8px; /* FAST margin - mindre än 10px */
+}
+
+/* Pros and cons boxes */
+.pros, .cons {
+    padding: 10px clamp(10px, 1.3vw, 12px); /* FAST vertikal padding (10px) */
+    border-radius: 8px;
+}
+
+.pros {
+    background: rgba(45, 212, 191, 0.1);
+    border: 2px solid #2dd4bf;
+}
+
+.cons {
+    background: rgba(239, 68, 68, 0.1);
+    border: 2px solid #ef4444;
+}
+
+/* Pros/cons titles */
+.pros-title, .cons-title {
+    font-size: clamp(0.95em, 1.6vh, 1.05em); /* Mindre än 1.1em max */
+    font-weight: 600;
+    margin-bottom: 6px; /* FAST margin - mindre än 10px */
+}
+
+.pros-title {
+    color: #2dd4bf;
+}
+
+.cons-title {
+    color: #ef4444;
+}
+
+/* Pros/cons lists */
+.pros-list, .cons-list {
+    font-size: clamp(0.85em, 1.4vh, 0.9em); /* Mindre än 0.95em max */
+    color: #e2e8f0;
+    line-height: 1.4; /* Tightare än 1.6 */
+}
+
+/* MCP highlight */
+.mcp-highlight {
+    border-color: #c084fc;
+    box-shadow: 0 0 30px rgba(192, 132, 252, 0.3);
+}
+
+.mcp-highlight .approach-icon {
+    color: #c084fc;
+}
+
+.mcp-highlight .approach-title {
+    color: #c084fc;
+}
+
+.mcp-highlight .step-number {
+    background: #c084fc;
+}
+
+.mcp-highlight .flow-step {
+    border-left-color: #c084fc;
+}
+
+/* MacBook Pro specific adjustments för slide 007 */
+@media (max-height: 2000px) and (min-width: 2000px) {
+    .approaches-grid {
+        gap: clamp(15px, 2vw, 24px);
+    }
+
+    .approach {
+        gap: 12px;
+        padding: 18px clamp(16px, 1.8vw, 22px);
+    }
+
+    .flow-steps {
+        gap: 8px;
+        margin: 10px 0;
+    }
+
+    .flow-step {
+        padding: 8px clamp(8px, 1.2vw, 10px);
+    }
+
+    .pros-cons {
+        gap: clamp(8px, 1.2vw, 12px);
+        margin-top: 6px;
+    }
+
+    .pros, .cons {
+        padding: 8px clamp(8px, 1.2vw, 10px);
+    }
+}
+
+/* === SLIDE 008 - TRANSITION TO MCP DEEP DIVE (specifik för 008) === */
+
+/* Transition content */
+.transition-content {
+    max-width: min(1000px, 90vw);
+    margin: 0 auto;
+}
+
+/* Transition icon - stor ikon med animation */
+.transition-icon {
+    font-size: clamp(80px, 12vw, 100px); /* Mindre än 120px max */
+    color: #2dd4bf;
+    margin-bottom: 25px; /* FAST margin - mindre än 40px */
+    animation: pulse 2s ease-in-out infinite;
+}
+
+@keyframes pulse {
+    0%, 100% {
+        opacity: 0.6;
+        transform: scale(1);
+    }
+    50% {
+        opacity: 1;
+        transform: scale(1.1);
+    }
+}
+
+/* Transition text */
+.transition-text {
+    font-size: clamp(1.5em, 3vh, 1.8em); /* Mindre än 2em max */
+    color: #2dd4bf;
+    font-weight: 500;
+    margin-bottom: 25px; /* FAST margin - mindre än 40px */
+    line-height: 1.5; /* Tightare än 1.6 */
+}
+
+/* Next section text */
+.next-section {
+    font-size: clamp(1.1em, 2.2vh, 1.3em); /* Mindre än 1.5em max */
+    color: #94a3b8;
+    line-height: 1.6; /* Tightare än 1.8 */
+}
+
+/* H1 margin-bottom justering för slide 008 */
+.slide:has(.transition-content) h1 {
+    margin-bottom: clamp(20px, 3vh, 40px); /* Minskad för att få plats */
+}
+
+/* MacBook Pro specific adjustments för slide 008 */
+@media (max-height: 2000px) and (min-width: 2000px) {
+    .transition-icon {
+        font-size: clamp(70px, 10vw, 90px);
+        margin-bottom: 20px;
+    }
+
+    .transition-text {
+        margin-bottom: 20px;
+    }
+}
+
+/* === SLIDE 011 - THE THREE PRIMITIVES (specifik för 011) === */
+
+/* Primitives grid */
+.primitives-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: clamp(25px, 3.5vw, 35px); /* Mindre än 50px max */
+    max-width: min(1300px, 95vw);
+    margin: 0 auto;
+}
+
+/* Primitive box */
+.primitive {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 18px; /* FAST gap - mindre än 30px */
+    padding: 25px clamp(20px, 2.5vw, 30px); /* FAST vertikal padding (25px), horisontell responsiv */
+    background: #0f172a;
+    border: 3px solid #2dd4bf;
+    border-radius: 12px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.primitive:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 10px 40px rgba(45, 212, 191, 0.3);
+}
+
+/* Primitive icon - stor cirkel */
+.primitive-icon {
+    width: clamp(100px, 15vw, 120px); /* Mindre än 140px max */
+    height: clamp(100px, 15vw, 120px); /* Samma som width */
+    background: linear-gradient(135deg, #2dd4bf 0%, #14b8a6 100%);
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Material icons in primitive-icon */
+.primitive-icon .material-icons {
+    font-size: clamp(55px, 8vw, 70px); /* Mindre än 80px max */
+    color: #1a2332;
+}
+
+/* Primitive title */
+.primitive-title {
+    font-size: clamp(1.4em, 2.8vh, 1.7em); /* Mindre än 2em max */
+    color: #ffffff;
+    font-weight: 600;
+    text-align: center;
+}
+
+/* Primitive description */
+.primitive-description {
+    font-size: clamp(1em, 1.8vh, 1.15em); /* Mindre än 1.2em max */
+    color: #94a3b8;
+    text-align: center;
+    line-height: 1.5; /* Tightare än 1.6 */
+}
+
+/* Primitive example */
+.primitive-example {
+    background: #1a2332;
+    padding: 12px clamp(12px, 1.5vw, 18px); /* FAST vertikal padding (12px) */
+    border-radius: 8px;
+    border-left: 4px solid #2dd4bf;
+    width: 100%;
+}
+
+/* Example label */
+.example-label {
+    font-size: clamp(0.75em, 1.2vh, 0.85em); /* Mindre än 0.9em max */
+    color: #64748b;
+    font-weight: 600;
+    text-transform: uppercase;
+    margin-bottom: 6px; /* FAST margin - mindre än 10px */
+}
+
+/* Example text */
+.example-text {
+    font-size: clamp(0.85em, 1.4vh, 0.95em); /* Mindre än 1em max */
+    color: #e2e8f0;
+    line-height: 1.4; /* Tightare än 1.5 */
+    font-family: 'Courier New', monospace;
+}
+
+/* MacBook Pro specific adjustments för slide 011 */
+@media (max-height: 2000px) and (min-width: 2000px) {
+    .primitives-grid {
+        gap: clamp(20px, 3vw, 30px);
+    }
+
+    .primitive {
+        gap: 15px;
+        padding: 22px clamp(18px, 2vw, 28px);
+    }
+
+    .primitive-icon {
+        width: clamp(90px, 13vw, 110px);
+        height: clamp(90px, 13vw, 110px);
+    }
+
+    .primitive-icon .material-icons {
+        font-size: clamp(50px, 7vw, 65px);
+    }
+}
+
+/* === SLIDE 012 - INTERACTION FLOW (specifik för 012) === */
+
+/* Sequence diagram container */
+.sequence-diagram {
+    max-width: min(1200px, 95vw);
+    margin: 0 auto;
+    padding: 20px 0; /* FAST vertikal padding - mindre än 40px */
+}
+
+/* Participants grid */
+.participants {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: clamp(20px, 2.5vw, 25px); /* Mindre än 30px max */
+    margin-bottom: 25px; /* FAST margin - mindre än 50px */
+}
+
+/* Participant item */
+.participant {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px; /* FAST gap - mindre än 15px */
+}
+
+/* Participant box */
+.participant-box {
+    width: 100%;
+    padding: 15px clamp(10px, 1.5vw, 15px); /* FAST vertikal padding (15px) */
+    background: #2dd4bf;
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px; /* FAST gap - mindre än 10px */
+}
+
+/* Participant icon */
+.participant-icon {
+    font-size: clamp(26px, 3.5vw, 36px); /* FIX: Reduced from 5vw/45px for Reveal.js */
+    color: #1a2332;
+}
+
+/* Participant name */
+.participant-name {
+    font-size: clamp(1em, 1.8vh, 1.1em); /* Mindre än 1.2em max */
+    font-weight: 600;
+    color: #1a2332;
+    text-align: center;
+}
+
+/* Lifeline */
+.lifeline {
+    width: 3px;
+    height: 40px; /* FAST height - mindre än 60px */
+    background: #2dd4bf;
+    margin: 0 auto;
+}
+
+/* Interactions container */
+.interactions {
+    display: flex;
+    flex-direction: column;
+    gap: 12px; /* FAST gap - mindre än 25px */
+    position: relative;
+}
+
+/* Message item */
+.message {
+    display: flex;
+    align-items: center;
+    gap: 12px; /* FAST gap - mindre än 15px */
+    padding: 12px clamp(12px, 1.5vw, 18px); /* FAST vertikal padding (12px) */
+    background: #0f172a;
+    border-left: 4px solid #2dd4bf;
+    border-radius: 8px;
+    animation: fadeInSlide 0.6s ease-out;
+}
+
+@keyframes fadeInSlide {
+    from {
+        opacity: 0;
+        transform: translateX(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+/* Message number */
+.message-number {
+    font-size: clamp(1.1em, 2vh, 1.2em); /* Mindre än 1.3em max */
+    font-weight: 700;
+    color: #2dd4bf;
+    min-width: 25px; /* FAST min-width - mindre än 30px */
+}
+
+/* Message arrow */
+.message-arrow {
+    font-size: clamp(24px, 3.5vw, 28px); /* Mindre än 32px max */
+    color: #2dd4bf;
+}
+
+/* Message content */
+.message-content {
+    flex: 1;
+}
+
+/* Message from-to */
+.message-from-to {
+    font-size: clamp(0.8em, 1.2vh, 0.85em); /* Mindre än 0.9em max */
+    color: #64748b;
+    margin-bottom: 3px; /* FAST margin - mindre än 5px */
+}
+
+/* Message text */
+.message-text {
+    font-size: clamp(0.9em, 1.5vh, 1em); /* Mindre än 1.1em max */
+    color: #e2e8f0;
+    font-family: 'Courier New', monospace;
+}
+
+/* Note box */
+.note {
+    padding: 10px clamp(12px, 1.5vw, 18px); /* FAST vertikal padding (10px) */
+    background: #1e293b;
+    border: 2px dashed #475569;
+    border-radius: 8px;
+    margin: 6px 0; /* FAST margin - mindre än 10px */
+}
+
+/* Note text */
+.note-text {
+    font-size: clamp(0.85em, 1.3vh, 0.95em); /* Mindre än 1em max */
+    color: #94a3b8;
+    font-style: italic;
+    text-align: center;
+}
+
+/* MacBook Pro specific adjustments för slide 012 */
+@media (max-height: 2000px) and (min-width: 2000px) {
+    .sequence-diagram {
+        padding: 18px 0;
+    }
+
+    .participants {
+        gap: clamp(18px, 2vw, 22px);
+        margin-bottom: 22px;
+    }
+
+    .participant {
+        gap: 8px;
+    }
+
+    .participant-box {
+        padding: 13px clamp(8px, 1.2vw, 13px);
+        gap: 5px;
+    }
+
+    .participant-icon {
+        font-size: clamp(32px, 4.5vw, 42px);
+    }
+
+    .lifeline {
+        height: 35px;
+    }
+
+    .interactions {
+        gap: 10px;
+    }
+
+    .message {
+        padding: 10px clamp(10px, 1.3vw, 16px);
+    }
+}
+
+/* === SLIDE 013 - USE CASE FILE SYSTEM SERVER (specifik för 013) === */
+
+/* Split container - två kolumner */
+.split-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: clamp(25px, 3.5vw, 30px); /* Mindre än 40px max */
+    max-width: min(1300px, 95vw);
+    margin: 0 auto;
+}
+
+/* Panel - container för varje kolumn */
+.panel {
+    background: #0f172a;
+    border: 3px solid #2dd4bf;
+    border-radius: 12px;
+    padding: clamp(18px, 2.5vh, 25px) clamp(18px, 2.5vw, 25px); /* FAST vertikal padding (18px min, 25px max) */
+    display: flex;
+    flex-direction: column;
+    gap: 18px; /* FAST gap - mindre än 25px */
+}
+
+/* Panel title */
+.panel-title {
+    font-size: clamp(1.4em, 2.5vh, 1.6em); /* Mindre än 1.8em max */
+    color: #2dd4bf;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 12px; /* FAST gap - mindre än 15px */
+}
+
+.panel-title .material-icons {
+    font-size: clamp(32px, 4.5vw, 38px); /* Mindre än 40px max */
+}
+
+/* Code block */
+.code-block {
+    background: #1a2332;
+    border-radius: 8px;
+    padding: clamp(15px, 2vh, 20px) clamp(18px, 2.5vw, 22px); /* FAST vertikal padding (15px min, 20px max) */
+    font-family: 'Courier New', monospace;
+    font-size: clamp(0.8em, 1.4vh, 0.9em); /* Mindre än 0.95em max */
+    line-height: 1.6; /* Tightare än 1.8 */
+    color: #e2e8f0;
+    overflow-x: auto;
+}
+
+/* Code syntax highlighting */
+.code-comment {
+    color: #64748b;
+}
+
+.code-keyword {
+    color: #2dd4bf;
+}
+
+.code-string {
+    color: #fbbf24;
+}
+
+.code-function {
+    color: #60a5fa;
+}
+
+/* Workflow container */
+.workflow {
+    display: flex;
+    flex-direction: column;
+    gap: 14px; /* FAST gap - mindre än 20px */
+}
+
+/* Step item */
+.step {
+    display: flex;
+    align-items: flex-start;
+    gap: 14px; /* FAST gap - mindre än 20px */
+    padding: clamp(14px, 2vh, 18px) clamp(14px, 2vw, 18px); /* FAST vertikal padding (14px min, 18px max) */
+    background: #1a2332;
+    border-radius: 8px;
+    border-left: 4px solid #2dd4bf;
+}
+
+/* Step number badge */
+.step-number {
+    min-width: clamp(32px, 4.5vw, 36px); /* Mindre än 40px max */
+    height: clamp(32px, 4.5vw, 36px); /* Samma som width */
+    background: #2dd4bf;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    color: #1a2332;
+    font-size: clamp(1em, 1.8vh, 1.1em); /* Mindre än 1.2em max */
+}
+
+/* Step content */
+.step-content {
+    flex: 1;
+}
+
+/* Step title */
+.step-title {
+    font-size: clamp(1em, 1.8vh, 1.1em); /* Mindre än 1.2em max */
+    color: #ffffff;
+    font-weight: 600;
+    margin-bottom: 5px; /* FAST margin - mindre än 8px */
+}
+
+/* Step description */
+.step-description {
+    font-size: clamp(0.85em, 1.4vh, 0.95em); /* Mindre än 1em max */
+    color: #94a3b8;
+    line-height: 1.4; /* Tightare än 1.5 */
+}
+
+/* Step icon */
+.step-icon {
+    font-size: clamp(26px, 3.5vw, 30px); /* Mindre än 32px max */
+    color: #2dd4bf;
+}
+
+/* Tools section */
+.tools-section {
+    background: #1e293b;
+    padding: clamp(14px, 2vh, 18px) clamp(14px, 2vw, 18px); /* FAST vertikal padding (14px min, 18px max) */
+    border-radius: 8px;
+    margin-top: 8px; /* FAST margin - mindre än 10px */
+}
+
+/* Tools title */
+.tools-title {
+    font-size: clamp(0.95em, 1.6vh, 1.05em); /* Mindre än 1.1em max */
+    color: #2dd4bf;
+    font-weight: 600;
+    margin-bottom: 10px; /* FAST margin - mindre än 12px */
+}
+
+/* Tool list */
+.tool-list {
+    display: flex;
+    flex-direction: column;
+    gap: 6px; /* FAST gap - mindre än 8px */
+}
+
+/* Tool item */
+.tool-item {
+    font-size: clamp(0.8em, 1.3vh, 0.9em); /* Mindre än 1em max */
+    color: #e2e8f0;
+    font-family: 'Courier New', monospace;
+    padding: 6px clamp(8px, 1.2vw, 10px); /* FAST vertikal padding (6px) */
+    background: #0f172a;
+    border-radius: 4px;
+}
+
+/* MacBook Pro specific adjustments för slide 013 */
+@media (max-height: 2000px) and (min-width: 2000px) {
+    .split-container {
+        gap: clamp(22px, 3vw, 28px);
+    }
+
+    .panel {
+        padding: clamp(16px, 2.2vh, 22px) clamp(16px, 2.2vw, 22px);
+        gap: 16px;
+    }
+
+    .panel-title {
+        gap: 10px;
+    }
+
+    .panel-title .material-icons {
+        font-size: clamp(30px, 4vw, 36px);
+    }
+
+    .code-block {
+        padding: clamp(13px, 1.8vh, 18px) clamp(16px, 2.2vw, 20px);
+    }
+
+    .workflow {
+        gap: 12px;
+    }
+
+    .step {
+        padding: clamp(12px, 1.8vh, 16px) clamp(12px, 1.8vw, 16px);
+        gap: 12px;
+    }
+
+    .step-number {
+        min-width: clamp(30px, 4vw, 34px);
+        height: clamp(30px, 4vw, 34px);
+    }
+
+    .tools-section {
+        padding: clamp(12px, 1.8vh, 16px) clamp(12px, 1.8vw, 16px);
+        margin-top: 6px;
+    }
+
+    .tool-list {
+        gap: 5px;
+    }
+
+    .tool-item {
+        padding: 5px clamp(7px, 1vw, 9px);
+    }
+}
+
+/* === SLIDE 014 - USE CASE DATABASE SERVER (specifik för 014) === */
+
+/* Diagram container */
+.diagram-container {
+    max-width: min(1200px, 95vw);
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 25px; /* FAST gap - mindre än 50px */
+}
+
+/* Architecture flow - horisontell layout */
+/* MUST override slide 003's flex-direction: column */
+.diagram-container .architecture-flow {
+    display: flex !important;
+    flex-direction: row !important; /* Explicit horisontell layout - override slide 003 */
+    justify-content: center;
+    align-items: center;
+    gap: clamp(25px, 3.5vw, 30px); /* Mindre än 40px max */
+}
+
+/* Component box */
+.component-box {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px; /* FAST gap - mindre än 20px */
+    padding: clamp(18px, 2.5vh, 22px) clamp(20px, 3vw, 25px); /* FAST vertikal padding (18px min, 22px max) */
+    background: #0f172a;
+    border: 3px solid #2dd4bf;
+    border-radius: 12px;
+    min-width: clamp(160px, 20vw, 180px); /* Mindre än 200px max */
+}
+
+/* Security boundary - röd border */
+.component-box.security-boundary {
+    border-color: #ef4444;
+    box-shadow: 0 0 30px rgba(239, 68, 68, 0.3);
+}
+
+/* Component icon */
+.component-icon {
+    font-size: clamp(60px, 8vw, 70px); /* Mindre än 80px max */
+    color: #2dd4bf;
+}
+
+/* Security icon - röd */
+.component-icon.security-icon {
+    color: #ef4444;
+}
+
+/* Component title */
+.component-title {
+    font-size: clamp(1.2em, 2.2vh, 1.35em); /* Mindre än 1.5em max */
+    color: #ffffff;
+    font-weight: 600;
+    text-align: center;
+}
+
+/* Arrow between components */
+.arrow {
+    font-size: clamp(38px, 5.5vw, 45px); /* Mindre än 50px max */
+    color: #2dd4bf;
+    animation: pulse 2s ease-in-out infinite;
+}
+
+@keyframes pulse {
+    0%, 100% {
+        opacity: 0.4;
+    }
+    50% {
+        opacity: 1;
+    }
+}
+
+/* Details grid - två kolumner */
+.details-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: clamp(25px, 3.5vw, 30px); /* Mindre än 40px max */
+}
+
+/* Detail panel */
+.detail-panel {
+    background: #0f172a;
+    border: 3px solid #2dd4bf;
+    border-radius: 12px;
+    padding: clamp(18px, 2.5vh, 22px) clamp(18px, 2.5vw, 22px); /* FAST vertikal padding (18px min, 22px max) */
+}
+
+/* Panel header */
+.panel-header {
+    display: flex;
+    align-items: center;
+    gap: 12px; /* FAST gap - mindre än 15px */
+    margin-bottom: 18px; /* FAST margin - mindre än 25px */
+}
+
+/* Panel icon */
+.panel-icon {
+    font-size: clamp(32px, 4.5vw, 38px); /* Mindre än 40px max */
+    color: #2dd4bf;
+}
+
+/* Panel title */
+.panel-title {
+    font-size: clamp(1.4em, 2.5vh, 1.6em); /* Mindre än 1.8em max */
+    color: #2dd4bf;
+    font-weight: 600;
+}
+
+/* Item list */
+.item-list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px; /* FAST gap - mindre än 15px */
+}
+
+/* List item */
+.list-item {
+    display: flex;
+    align-items: center;
+    gap: 12px; /* FAST gap - mindre än 15px */
+    padding: clamp(12px, 1.8vh, 14px) clamp(12px, 1.8vw, 14px); /* FAST vertikal padding (12px min, 14px max) */
+    background: #1a2332;
+    border-radius: 8px;
+    border-left: 4px solid #2dd4bf;
+}
+
+/* Item icon */
+.item-icon {
+    font-size: clamp(24px, 3.5vw, 26px); /* Mindre än 28px max */
+    color: #2dd4bf;
+    min-width: clamp(24px, 3.5vw, 26px); /* Samma som font-size */
+}
+
+/* Item text */
+.item-text {
+    font-size: clamp(0.9em, 1.5vh, 1em); /* Mindre än 1.1em max */
+    color: #e2e8f0;
+    font-family: 'Courier New', monospace;
+}
+
+/* Security note */
+.security-note {
+    margin-top: 20px; /* FAST margin - mindre än 30px */
+    padding: clamp(18px, 2.5vh, 22px) clamp(18px, 2.5vw, 22px); /* FAST vertikal padding (18px min, 22px max) */
+    background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+    border: 3px solid #ef4444;
+    border-radius: 12px;
+}
+
+/* Security header */
+.security-header {
+    display: flex;
+    align-items: center;
+    gap: 12px; /* FAST gap - mindre än 15px */
+    margin-bottom: 12px; /* FAST margin - mindre än 15px */
+}
+
+/* Security title */
+.security-title {
+    font-size: clamp(1.2em, 2.2vh, 1.35em); /* Mindre än 1.5em max */
+    color: #ef4444;
+    font-weight: 600;
+}
+
+/* Security text */
+.security-text {
+    font-size: clamp(0.95em, 1.6vh, 1.05em); /* Mindre än 1.1em max */
+    color: #94a3b8;
+    line-height: 1.5; /* Tightare än 1.6 */
+}
+
+/* MacBook Pro specific adjustments för slide 014 */
+@media (max-height: 2000px) and (min-width: 2000px) {
+    .diagram-container {
+        gap: 22px;
+    }
+
+    .diagram-container .architecture-flow {
+        gap: clamp(22px, 3vw, 28px);
+    }
+
+    .component-box {
+        padding: clamp(16px, 2.2vh, 20px) clamp(18px, 2.5vw, 23px);
+        gap: 10px;
+        min-width: clamp(150px, 18vw, 170px);
+    }
+
+    .component-icon {
+        font-size: clamp(55px, 7.5vw, 65px);
+    }
+
+    .component-title {
+        font-size: clamp(1.1em, 2vh, 1.25em);
+    }
+
+    .arrow {
+        font-size: clamp(35px, 5vw, 42px);
+    }
+
+    .details-grid {
+        gap: clamp(22px, 3vw, 28px);
+    }
+
+    .detail-panel {
+        padding: clamp(16px, 2.2vh, 20px) clamp(16px, 2.2vw, 20px);
+    }
+
+    .panel-header {
+        gap: 10px;
+        margin-bottom: 16px;
+    }
+
+    .panel-icon {
+        font-size: clamp(30px, 4vw, 36px);
+    }
+
+    .item-list {
+        gap: 10px;
+    }
+
+    .list-item {
+        padding: clamp(10px, 1.6vh, 12px) clamp(10px, 1.6vw, 12px);
+        gap: 10px;
+    }
+
+    .item-icon {
+        font-size: clamp(22px, 3vw, 24px);
+        min-width: clamp(22px, 3vw, 24px);
+    }
+
+    .security-note {
+        margin-top: 18px;
+        padding: clamp(16px, 2.2vh, 20px) clamp(16px, 2.2vw, 20px);
+    }
+
+    .security-header {
+        gap: 10px;
+        margin-bottom: 10px;
+    }
+}
+
+/* === SLIDE 015 - CODE EXAMPLE (specifik för 015) === */
+
+/* Subtitle */
+.slide:has(.code-container) .subtitle {
+    text-align: center;
+    font-size: clamp(1em, 1.8vh, 1.2em); /* Mindre än 1.3em max */
+    color: #94a3b8;
+    margin-bottom: 20px; /* FAST margin - mindre än 50px */
+}
+
+/* Code container */
+.code-container {
+    max-width: min(1100px, 95vw);
+    margin: 0 auto;
+    background: #0f172a;
+    border: 3px solid #2dd4bf;
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+/* Code header */
+.code-header {
+    background: #2dd4bf;
+    padding: clamp(14px, 2vh, 18px) clamp(20px, 3vw, 28px); /* FAST vertikal padding (14px min, 18px max) */
+    display: flex;
+    align-items: center;
+    gap: 12px; /* FAST gap - mindre än 15px */
+}
+
+/* Header icon */
+.header-icon {
+    font-size: clamp(26px, 3.5vw, 30px); /* Mindre än 32px max */
+    color: #1a2332;
+}
+
+/* Header title */
+.header-title {
+    font-size: clamp(1.2em, 2.2vh, 1.3em); /* Mindre än 1.4em max */
+    color: #1a2332;
+    font-weight: 600;
+}
+
+/* Code block */
+.code-block {
+    padding: clamp(25px, 3vh, 35px) clamp(30px, 4vw, 38px); /* FAST vertikal padding (25px min, 35px max) */
+    font-family: 'Courier New', monospace;
+    font-size: clamp(0.95em, 1.6vh, 1.05em); /* Stor nog att läsa - nära original 1.05em */
+    line-height: 1.7; /* Balanserat mellan läsbarhet och kompakt design */
+    color: #e2e8f0;
+    overflow-x: auto;
+}
+
+/* Code syntax highlighting */
+.code-comment {
+    color: #64748b;
+}
+
+.code-decorator {
+    color: #fbbf24;
+}
+
+.code-keyword {
+    color: #c084fc;
+}
+
+.code-class {
+    color: #60a5fa;
+    font-weight: 600;
+}
+
+.code-function {
+    color: #2dd4bf;
+}
+
+.code-string {
+    color: #fbbf24;
+}
+
+.code-number {
+    color: #fb923c;
+}
+
+.code-variable {
+    color: #e2e8f0;
+}
+
+/* Key points grid */
+.key-points {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: clamp(20px, 3vw, 25px); /* Mindre än 30px max */
+    max-width: min(1100px, 95vw);
+    margin: 25px auto 0; /* FAST margin - mindre än 50px */
+}
+
+/* Point card */
+.point {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px; /* FAST gap - mindre än 15px */
+    padding: clamp(18px, 2.5vh, 22px) clamp(18px, 2.5vw, 22px); /* FAST vertikal padding (18px min, 22px max) */
+    background: #0f172a;
+    border: 2px solid #2dd4bf;
+    border-radius: 8px;
+    text-align: center;
+}
+
+/* Point icon */
+.point-icon {
+    font-size: clamp(38px, 5.5vw, 44px); /* Mindre än 48px max */
+    color: #2dd4bf;
+}
+
+/* Point text */
+.point-text {
+    font-size: clamp(0.9em, 1.5vh, 1em); /* Mindre än 1.1em max */
+    color: #e2e8f0;
+    line-height: 1.4; /* Tightare än 1.5 */
+}
+
+/* H1 margin-bottom justering för slide 015 */
+.slide:has(.code-container) h1 {
+    margin-bottom: clamp(15px, 2vh, 25px); /* FAST margin - mindre än 30px */
+}
+
+/* MacBook Pro specific adjustments för slide 015 */
+@media (max-height: 2000px) and (min-width: 2000px) {
+    .slide:has(.code-container) .subtitle {
+        margin-bottom: 18px;
+    }
+
+    .code-header {
+        padding: clamp(12px, 1.8vh, 16px) clamp(18px, 2.5vw, 26px);
+        gap: 10px;
+    }
+
+    .header-icon {
+        font-size: clamp(24px, 3vw, 28px);
+    }
+
+    .code-block {
+        padding: clamp(22px, 2.8vh, 32px) clamp(28px, 3.8vw, 36px);
+        line-height: 1.65; /* Behåll läsbarhet även på MacBook Pro */
+    }
+
+    .key-points {
+        gap: clamp(18px, 2.5vw, 23px);
+        margin-top: 22px;
+    }
+
+    .point {
+        padding: clamp(16px, 2.2vh, 20px) clamp(16px, 2.2vw, 20px);
+        gap: 10px;
+    }
+
+    .point-icon {
+        font-size: clamp(35px, 5vw, 42px);
+    }
+}
+
+/* === SLIDE 016 - SECURITY CONSIDERATIONS (specifik för 016) === */
+
+/* Subtitle for slide 016 */
+.slide:has(.security-grid) .subtitle {
+    text-align: center;
+    font-size: clamp(1em, 1.8vh, 1.2em); /* Mindre än 1.3em max */
+    color: #94a3b8;
+    margin-bottom: 20px; /* FAST margin - mindre än 60px */
+    line-height: 1.5; /* Tightare än 1.6 */
+}
+
+/* Security grid - 3 kolumner */
+.security-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: clamp(22px, 3vw, 28px); /* Mindre än 35px max */
+    max-width: min(1200px, 95vw);
+    margin: 0 auto 25px; /* FAST margin-bottom - mindre än 50px */
+}
+
+/* Security item */
+.security-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 14px; /* FAST gap - mindre än 25px */
+    padding: clamp(20px, 2.8vh, 28px) clamp(18px, 2.5vw, 22px); /* FAST vertikal padding (20px min, 28px max) */
+    background: #0f172a;
+    border: 3px solid #2dd4bf;
+    border-radius: 12px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.security-item:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 10px 40px rgba(45, 212, 191, 0.3);
+}
+
+/* Security icon container - cirkel */
+.security-icon-container {
+    width: clamp(90px, 13vw, 105px); /* Mindre än 120px max */
+    height: clamp(90px, 13vw, 105px); /* Samma som width */
+    background: linear-gradient(135deg, #2dd4bf 0%, #14b8a6 100%);
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Material icons in security-icon-container */
+.security-icon-container .material-icons {
+    font-size: clamp(52px, 7.5vw, 62px); /* Mindre än 70px max */
+    color: #1a2332;
+}
+
+/* Security title */
+.security-title {
+    font-size: clamp(1.2em, 2.2vh, 1.4em); /* Mindre än 1.6em max */
+    color: #ffffff;
+    font-weight: 600;
+    text-align: center;
+}
+
+/* Security description */
+.security-description {
+    font-size: clamp(0.9em, 1.5vh, 1em); /* Mindre än 1.05em max */
+    color: #94a3b8;
+    text-align: center;
+    line-height: 1.5; /* Tightare än 1.6 */
+}
+
+/* Highlight box */
+.highlight-box {
+    max-width: min(1200px, 95vw);
+    margin: 0 auto;
+    padding: clamp(18px, 2.5vh, 25px) clamp(25px, 3.5vw, 35px); /* FAST vertikal padding (18px min, 25px max) */
+    background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+    border: 3px solid #ef4444;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    gap: 18px; /* FAST gap - mindre än 25px */
+}
+
+/* Highlight icon */
+.highlight-icon {
+    font-size: clamp(45px, 6.5vw, 55px); /* Mindre än 60px max */
+    color: #ef4444;
+    min-width: clamp(45px, 6.5vw, 55px); /* Samma som font-size */
+}
+
+/* Highlight text */
+.highlight-text {
+    font-size: clamp(1em, 1.8vh, 1.15em); /* Mindre än 1.25em max */
+    color: #e2e8f0;
+    line-height: 1.5; /* Tightare än 1.7 */
+}
+
+/* Highlight emphasis */
+.highlight-emphasis {
+    color: #ef4444;
+    font-weight: 700;
+}
+
+/* H1 margin-bottom justering för slide 016 */
+.slide:has(.security-grid) h1 {
+    margin-bottom: clamp(15px, 2vh, 25px); /* FAST margin - mindre än 30px */
+}
+
+/* MacBook Pro specific adjustments för slide 016 */
+@media (max-height: 2000px) and (min-width: 2000px) {
+    .slide:has(.security-grid) .subtitle {
+        margin-bottom: 18px;
+    }
+
+    .security-grid {
+        gap: clamp(20px, 2.5vw, 26px);
+        margin-bottom: 22px;
+    }
+
+    .security-item {
+        padding: clamp(18px, 2.5vh, 26px) clamp(16px, 2.2vw, 20px);
+        gap: 12px;
+    }
+
+    .security-icon-container {
+        width: clamp(85px, 12vw, 100px);
+        height: clamp(85px, 12vw, 100px);
+    }
+
+    .security-icon-container .material-icons {
+        font-size: clamp(48px, 7vw, 58px);
+    }
+
+    .highlight-box {
+        padding: clamp(16px, 2.2vh, 22px) clamp(22px, 3vw, 32px);
+        gap: 16px;
+    }
+
+    .highlight-icon {
+        font-size: clamp(42px, 6vw, 52px);
+        min-width: clamp(42px, 6vw, 52px);
+    }
+}
+
+/* === SLIDE 017 - MCP VS ALTERNATIVES (specifik för 017) === */
+
+/* Comparison container */
+.comparison-container {
+    max-width: min(1300px, 95vw);
+    margin: 0 auto;
+}
+
+/* Comparison table */
+.comparison-table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    background: #0f172a;
+    border: 3px solid #2dd4bf;
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+/* Table header */
+.comparison-table thead tr {
+    background: #2dd4bf;
+}
+
+.comparison-table th {
+    padding: clamp(18px, 2.5vh, 22px) clamp(15px, 2vw, 18px); /* FAST vertikal padding (18px min, 22px max) */
+    text-align: left;
+    font-size: clamp(1.1em, 2vh, 1.2em); /* Mindre än 1.3em max */
+    color: #1a2332;
+    font-weight: 700;
+}
+
+.comparison-table th:first-child {
+    font-size: clamp(1.2em, 2.2vh, 1.35em); /* Mindre än 1.5em max */
+}
+
+/* Table body rows */
+.comparison-table tbody tr {
+    border-top: 2px solid #1a2332;
+}
+
+.comparison-table tbody tr:nth-child(odd) {
+    background: #0f172a;
+}
+
+.comparison-table tbody tr:nth-child(even) {
+    background: #1a2332;
+}
+
+.comparison-table tbody tr.highlight {
+    background: linear-gradient(90deg, #1e3a5f 0%, #0f172a 100%);
+    border-top: 2px solid #2dd4bf;
+    border-bottom: 2px solid #2dd4bf;
+}
+
+/* Table cells */
+.comparison-table td {
+    padding: clamp(18px, 2.5vh, 22px) clamp(15px, 2vw, 18px); /* FAST vertikal padding (18px min, 22px max) */
+    font-size: clamp(0.9em, 1.5vh, 1em); /* Mindre än 1.05em max */
+    color: #e2e8f0;
+    line-height: 1.5; /* Tightare än 1.6 */
+}
+
+.comparison-table td:first-child {
+    font-weight: 700;
+    font-size: clamp(1.1em, 2vh, 1.2em); /* Mindre än 1.3em max */
+    color: #2dd4bf;
+    display: flex;
+    align-items: center;
+    gap: 12px; /* FAST gap - mindre än 15px */
+}
+
+/* Row icon */
+.row-icon {
+    font-size: clamp(26px, 3.5vw, 30px); /* Mindre än 32px max */
+    color: #2dd4bf;
+}
+
+.comparison-table .highlight td:first-child {
+    color: #2dd4bf;
+}
+
+/* Rating stars */
+.rating {
+    display: flex;
+    align-items: center;
+    gap: 6px; /* FAST gap - mindre än 8px */
+}
+
+.rating-icon {
+    font-size: clamp(16px, 2.2vw, 18px); /* Mindre än 20px max */
+    color: #fbbf24;
+}
+
+/* Key advantage box */
+.key-advantage {
+    max-width: min(1300px, 95vw);
+    margin: 25px auto 0; /* FAST margin - mindre än 50px */
+    padding: clamp(18px, 2.5vh, 25px) clamp(25px, 3.5vw, 35px); /* FAST vertikal padding (18px min, 25px max) */
+    background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+    border: 3px solid #2dd4bf;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    gap: 18px; /* FAST gap - mindre än 25px */
+}
+
+/* Advantage icon */
+.advantage-icon {
+    font-size: clamp(45px, 6.5vw, 55px); /* Mindre än 60px max */
+    color: #2dd4bf;
+    min-width: clamp(45px, 6.5vw, 55px); /* Samma som font-size */
+}
+
+/* Advantage text */
+.advantage-text {
+    font-size: clamp(1em, 1.8vh, 1.15em); /* Mindre än 1.25em max */
+    color: #e2e8f0;
+    line-height: 1.5; /* Tightare än 1.7 */
+}
+
+/* Advantage emphasis */
+.advantage-emphasis {
+    color: #2dd4bf;
+    font-weight: 700;
+}
+
+/* H1 margin-bottom justering för slide 017 */
+.slide:has(.comparison-container) h1 {
+    margin-bottom: clamp(20px, 3vh, 35px); /* FAST margin - mindre än 60px */
+}
+
+/* MacBook Pro specific adjustments för slide 017 */
+@media (max-height: 2000px) and (min-width: 2000px) {
+    .slide:has(.comparison-container) h1 {
+        margin-bottom: clamp(18px, 2.5vh, 32px);
+    }
+
+    .comparison-table th,
+    .comparison-table td {
+        padding: clamp(16px, 2.2vh, 20px) clamp(13px, 1.8vw, 16px);
+    }
+
+    .comparison-table td:first-child {
+        gap: 10px;
+    }
+
+    .row-icon {
+        font-size: clamp(24px, 3vw, 28px);
+    }
+
+    .rating {
+        gap: 5px;
+    }
+
+    .rating-icon {
+        font-size: clamp(15px, 2vw, 17px);
+    }
+
+    .key-advantage {
+        margin-top: 22px;
+        padding: clamp(16px, 2.2vh, 22px) clamp(22px, 3vw, 32px);
+        gap: 16px;
+    }
+
+    .advantage-icon {
+        font-size: clamp(42px, 6vw, 52px);
+        min-width: clamp(42px, 6vw, 52px);
+    }
+}
+
+/* === SLIDE 018 - FUTURE DIRECTIONS & RESEARCH (specifik för 018) === */
+
+/* Content container */
+.content-container {
+    max-width: min(1300px, 95vw);
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 25px; /* FAST gap - mindre än 50px */
+}
+
+/* Mind map grid - 5 kolumner */
+.mind-map {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: clamp(20px, 2.5vw, 25px); /* Mindre än 30px max */
+    margin-bottom: 15px; /* FAST margin - mindre än 20px */
+}
+
+/* Direction card */
+.direction {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px; /* FAST gap - mindre än 20px */
+    padding: clamp(18px, 2.5vh, 22px) clamp(15px, 2vw, 18px); /* FAST vertikal padding (18px min, 22px max) */
+    background: #0f172a;
+    border: 3px solid #2dd4bf;
+    border-radius: 12px;
+    transition: all 0.3s ease;
+}
+
+.direction:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 40px rgba(45, 212, 191, 0.4);
+    border-color: #14b8a6;
+}
+
+/* Direction icon container - cirkel */
+.direction-icon-container {
+    width: clamp(75px, 11vw, 85px); /* Mindre än 100px max */
+    height: clamp(75px, 11vw, 85px); /* Samma som width */
+    background: linear-gradient(135deg, #2dd4bf 0%, #14b8a6 100%);
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Material icons in direction-icon-container */
+.direction-icon-container .material-icons {
+    font-size: clamp(45px, 6.5vw, 52px); /* Mindre än 60px max */
+    color: #1a2332;
+}
+
+/* Direction title */
+.direction-title {
+    font-size: clamp(1em, 1.8vh, 1.15em); /* Mindre än 1.3em max */
+    color: #ffffff;
+    font-weight: 600;
+    text-align: center;
+    line-height: 1.2; /* Tightare än 1.3 */
+}
+
+/* Direction description */
+.direction-desc {
+    font-size: clamp(0.8em, 1.3vh, 0.9em); /* Mindre än 0.95em max */
+    color: #94a3b8;
+    text-align: center;
+    line-height: 1.4; /* Tightare än 1.5 */
+}
+
+/* Research section */
+.research-section {
+    background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+    border: 3px solid #c084fc;
+    border-radius: 12px;
+    padding: clamp(25px, 3.5vh, 35px) clamp(25px, 3.5vw, 38px); /* FAST vertikal padding (25px min, 35px max) */
+}
+
+/* Research header */
+.research-header {
+    display: flex;
+    align-items: center;
+    gap: 15px; /* FAST gap - mindre än 20px */
+    margin-bottom: 20px; /* FAST margin - mindre än 30px */
+}
+
+/* Research icon */
+.research-icon {
+    font-size: clamp(38px, 5.5vw, 45px); /* Mindre än 50px max */
+    color: #c084fc;
+}
+
+/* Research title */
+.research-title {
+    font-size: clamp(1.5em, 2.8vh, 1.75em); /* Mindre än 2em max */
+    color: #c084fc;
+    font-weight: 600;
+}
+
+/* Research questions */
+.research-questions {
+    display: flex;
+    flex-direction: column;
+    gap: 14px; /* FAST gap - mindre än 20px */
+}
+
+/* Question item */
+.question {
+    display: flex;
+    align-items: flex-start;
+    gap: 14px; /* FAST gap - mindre än 20px */
+    padding: clamp(14px, 2vh, 18px) clamp(14px, 2vw, 18px); /* FAST vertikal padding (14px min, 18px max) */
+    background: #1a2332;
+    border-radius: 8px;
+    border-left: 4px solid #c084fc;
+}
+
+/* Question icon */
+.question-icon {
+    font-size: clamp(26px, 3.5vw, 30px); /* Mindre än 32px max */
+    color: #c084fc;
+    min-width: clamp(26px, 3.5vw, 30px); /* Samma som font-size */
+    margin-top: 2px;
+}
+
+/* Question text */
+.question-text {
+    font-size: clamp(0.95em, 1.6vh, 1.05em); /* Mindre än 1.15em max */
+    color: #e2e8f0;
+    line-height: 1.5; /* Tightare än 1.6 */
+}
+
+/* H1 margin-bottom justering för slide 018 */
+.slide:has(.content-container) h1 {
+    margin-bottom: clamp(20px, 3vh, 35px); /* FAST margin - mindre än 60px */
+}
+
+/* MacBook Pro specific adjustments för slide 018 */
+@media (max-height: 2000px) and (min-width: 2000px) {
+    .slide:has(.content-container) h1 {
+        margin-bottom: clamp(18px, 2.5vh, 32px);
+    }
+
+    .content-container {
+        gap: 22px;
+    }
+
+    .mind-map {
+        gap: clamp(18px, 2.2vw, 23px);
+        margin-bottom: 13px;
+    }
+
+    .direction {
+        padding: clamp(16px, 2.2vh, 20px) clamp(13px, 1.8vw, 16px);
+        gap: 10px;
+    }
+
+    .direction-icon-container {
+        width: clamp(70px, 10vw, 80px);
+        height: clamp(70px, 10vw, 80px);
+    }
+
+    .direction-icon-container .material-icons {
+        font-size: clamp(42px, 6vw, 48px);
+    }
+
+    .research-section {
+        padding: clamp(22px, 3vh, 32px) clamp(22px, 3vw, 36px);
+    }
+
+    .research-header {
+        gap: 13px;
+        margin-bottom: 18px;
+    }
+
+    .research-icon {
+        font-size: clamp(35px, 5vw, 42px);
+    }
+
+    .research-questions {
+        gap: 12px;
+    }
+
+    .question {
+        padding: clamp(12px, 1.8vh, 16px) clamp(12px, 1.8vw, 16px);
+        gap: 12px;
+    }
+
+    .question-icon {
+        font-size: clamp(24px, 3vw, 28px);
+        min-width: clamp(24px, 3vw, 28px);
+    }
+}
+
+/* === SLIDE 019 - SUMMARY & KEY TAKEAWAYS (specifik för 019) === */
+
+/* Content wrapper */
+.content-wrapper {
+    max-width: min(1200px, 95vw);
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 18px; /* FAST gap - kompakt design */
+}
+
+/* Takeaways container - kompakt lista */
+.takeaways {
+    display: flex;
+    flex-direction: column;
+    gap: 8px; /* FAST gap - minimal spacing mellan items */
+}
+
+/* Takeaway item - kompakt lista utan stor box */
+.takeaway {
+    display: flex;
+    align-items: center;
+    gap: clamp(12px, 1.8vw, 16px); /* FAST gap - mindre än 18px */
+    padding: clamp(10px, 1.5vh, 14px) clamp(12px, 1.8vw, 16px); /* FAST vertikal padding (10px min, 14px max) */
+    background: linear-gradient(135deg, #0f172a 0%, #1e3a5f 100%); /* Subtle gradient istället för stor box */
+    border-left: 4px solid #2dd4bf; /* Tunn vänsterborder istället för full border */
+    border-radius: 4px;
+    transition: all 0.3s ease;
+}
+
+.takeaway:hover {
+    transform: translateX(5px); /* Mindre transform */
+    box-shadow: 0 2px 10px rgba(45, 212, 191, 0.2);
+    border-left-width: 5px;
+}
+
+/* Takeaway icon container - mindre cirkel */
+.takeaway-icon-container {
+    min-width: clamp(40px, 5.5vw, 48px); /* Mycket mindre än 72px max */
+    height: clamp(40px, 5.5vw, 48px); /* Samma som width */
+    background: linear-gradient(135deg, #2dd4bf 0%, #14b8a6 100%);
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-shrink: 0; /* Förhindra att ikonen krymper */
+}
+
+/* Material icons in takeaway-icon-container */
+.takeaway-icon-container .material-icons {
+    font-size: clamp(24px, 3.5vw, 28px); /* Mycket mindre än 44px max */
+    color: #1a2332;
+}
+
+/* Takeaway text */
+.takeaway-text {
+    flex: 1;
+    font-size: clamp(0.9em, 1.5vh, 1.05em); /* Mindre än 1.15em max */
+    color: #e2e8f0;
+    line-height: 1.4; /* Tightare än 1.5 */
+    padding-top: 0; /* Ingen padding-top längre */
+}
+
+/* CTA section */
+.cta-section {
+    background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+    border: 3px solid #c084fc;
+    border-radius: 12px;
+    padding: clamp(18px, 2.5vh, 25px) clamp(20px, 3vw, 28px); /* FAST vertikal padding (18px min, 25px max) */
+    text-align: center;
+}
+
+/* CTA title */
+.cta-title {
+    font-size: clamp(1.3em, 2.5vh, 1.5em); /* Mindre än 1.75em max */
+    color: #c084fc;
+    font-weight: 600;
+    margin-bottom: 10px; /* FAST margin - mindre än 15px */
+}
+
+/* CTA text */
+.cta-text {
+    font-size: clamp(0.9em, 1.5vh, 1em); /* Mindre än 1.1em max */
+    color: #94a3b8;
+    line-height: 1.4; /* Tightare än 1.5 */
+    margin-bottom: 14px; /* FAST margin - mindre än 20px */
+}
+
+/* Resources */
+.resources {
+    display: flex;
+    justify-content: center;
+    gap: clamp(12px, 2vw, 16px); /* Mindre än 22px max */
+    flex-wrap: wrap;
+}
+
+/* Resource item */
+.resource-item {
+    display: flex;
+    align-items: center;
+    gap: 8px; /* FAST gap - mindre än 10px */
+    padding: clamp(8px, 1.3vh, 10px) clamp(14px, 2vw, 18px); /* FAST vertikal padding (8px min, 10px max) */
+    background: #1a2332;
+    border: 2px solid #2dd4bf;
+    border-radius: 8px;
+    font-size: clamp(0.85em, 1.4vh, 0.95em); /* Mindre än 1.05em max */
+    color: #2dd4bf;
+    font-weight: 500;
+}
+
+/* Resource icon */
+.resource-icon {
+    font-size: clamp(20px, 3vw, 22px); /* Mindre än 26px max */
+    color: #2dd4bf;
+}
+
+/* Questions footer */
+.questions-footer {
+    text-align: center;
+    margin-top: 15px; /* FAST margin - mindre än 25px */
+}
+
+/* Questions text */
+.questions-text {
+    font-size: clamp(2em, 4.5vh, 2.5em); /* Mindre än 2.8em max */
+    color: #2dd4bf;
+    font-weight: 700;
+    text-shadow: 0 0 30px rgba(45, 212, 191, 0.5);
+}
+
+/* H1 margin-bottom justering för slide 019 */
+.slide:has(.content-wrapper) h1 {
+    margin-bottom: clamp(15px, 2vh, 25px); /* FAST margin - mycket mindre för kompakt design */
+}
+
+/* MacBook Pro specific adjustments för slide 019 */
+@media (max-height: 2000px) and (min-width: 2000px) {
+    .slide:has(.content-wrapper) h1 {
+        margin-bottom: clamp(12px, 1.8vh, 22px);
+    }
+
+    .content-wrapper {
+        gap: 15px;
+    }
+
+    .takeaways {
+        gap: 6px;
+    }
+
+    .takeaway {
+        padding: clamp(8px, 1.2vh, 12px) clamp(10px, 1.5vw, 14px);
+        gap: clamp(10px, 1.5vw, 14px);
+    }
+
+    .takeaway-icon-container {
+        min-width: clamp(36px, 5vw, 44px);
+        height: clamp(36px, 5vw, 44px);
+    }
+
+    .takeaway-icon-container .material-icons {
+        font-size: clamp(22px, 3vw, 26px);
+    }
+
+    .takeaway-text {
+        font-size: clamp(0.85em, 1.3vh, 0.95em);
+    }
+
+    .cta-section {
+        padding: clamp(16px, 2.2vh, 22px) clamp(18px, 2.5vw, 26px);
+    }
+
+    .cta-title {
+        margin-bottom: 8px;
+        font-size: clamp(1.2em, 2.2vh, 1.4em);
+    }
+
+    .cta-text {
+        margin-bottom: 12px;
+        font-size: clamp(0.85em, 1.3vh, 0.95em);
+    }
+
+    .resources {
+        gap: clamp(10px, 1.5vw, 14px);
+    }
+
+    .resource-item {
+        padding: clamp(6px, 1vh, 8px) clamp(12px, 1.8vw, 16px);
+        gap: 6px;
+        font-size: clamp(0.8em, 1.2vh, 0.9em);
+    }
+
+    .resource-icon {
+        font-size: clamp(18px, 2.5vw, 20px);
+    }
+
+    .questions-footer {
+        margin-top: 12px;
+    }
+
+    .questions-text {
+        font-size: clamp(1.8em, 4vh, 2.3em);
+    }
+}
+
