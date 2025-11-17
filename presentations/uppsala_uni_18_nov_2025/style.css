@@ -587,3 +587,287 @@ h1 {
     }
 }
 
+/* === SLIDE 003 - TRANSFORMER ARCHITECTURE (specifik för 003) === */
+/* Kompakt lista-liknande design utan stora boxar - minimal vertikal space */
+
+/* Architecture flow container */
+.architecture-flow {
+    display: flex;
+    flex-direction: column;
+    gap: 0; /* Ingen gap - pilar och items hanterar spacing */
+    max-width: min(900px, 85vw);
+    margin: 0 auto;
+    margin-bottom: 0; /* Ingen margin-bottom - sista raden ska vara sist */
+    padding-bottom: 0; /* Ingen padding-bottom */
+}
+
+/* Flow row - innehåller item + pil på höger sida */
+.flow-row {
+    display: flex;
+    align-items: center;
+    gap: clamp(15px, 2vw, 25px);
+    margin-bottom: 8px; /* FAST spacing - minimal vertikal space */
+}
+
+/* Sista raden ska inte ha margin-bottom */
+.flow-row:last-child {
+    margin-bottom: 0;
+}
+
+/* Sista raden behöver en invisibel spacer så att .flow-item har samma bredd som övriga */
+.flow-row:last-child::after {
+    content: '';
+    width: clamp(24px, 3.5vw, 32px); /* Samma bredd som .flow-arrow */
+    flex-shrink: 0;
+}
+
+/* Flow item - kompakt, ingen stor box, bara lätt border/bakgrund med gradient */
+.flow-item {
+    display: flex;
+    align-items: center;
+    gap: clamp(12px, 1.5vw, 18px);
+    padding: 10px clamp(15px, 2vw, 20px); /* FAST vertikal padding (10px), horisontell responsiv */
+    background: linear-gradient(135deg, #0f172a 0%, #1e3a5f 100%); /* Samma gradient som highlight */
+    border-left: 4px solid #2dd4bf; /* Tunn vänsterborder istället för full box */
+    border-radius: 4px;
+    flex: 1;
+}
+
+/* Flow icon - mindre ikoner */
+.flow-icon {
+    font-size: clamp(28px, 4vw, 36px); /* FAST max-värde, mindre än tidigare */
+    color: #2dd4bf;
+    min-width: clamp(28px, 4vw, 36px);
+    flex-shrink: 0;
+}
+
+/* Flow content */
+.flow-content {
+    flex: 1;
+    min-width: 0;
+}
+
+/* Flow title - kompakt */
+.flow-title {
+    font-size: clamp(1em, 1.8vh, 1.3em); /* Mindre än tidigare */
+    color: #2dd4bf;
+    font-weight: 600;
+    margin-bottom: clamp(2px, 0.3vh, 4px);
+}
+
+/* Flow description - kompakt line-height */
+.flow-description {
+    font-size: clamp(0.85em, 1.4vh, 0.95em); /* Mindre text */
+    color: #94a3b8;
+    line-height: 1.3; /* Tight line-height */
+}
+
+/* Flow arrow - pil utanför item på höger sida, pekar nedåt */
+.flow-arrow {
+    font-size: clamp(24px, 3.5vw, 32px);
+    color: #2dd4bf;
+    flex-shrink: 0;
+    align-self: flex-start;
+    margin-top: clamp(8px, 1vh, 12px); /* Ligner med item-top */
+}
+
+/* Flow highlight - för Attention Mechanism */
+.flow-highlight {
+    background: linear-gradient(135deg, #0f172a 0%, #1e3a5f 100%);
+    border-left-color: #2dd4bf;
+    border-left-width: 5px;
+    box-shadow: 0 2px 10px rgba(45, 212, 191, 0.2);
+}
+
+/* H1 margin-bottom justering för slide 003 */
+.slide:has(.architecture-flow) h1 {
+    margin-bottom: clamp(15px, 2vh, 25px);
+}
+
+/* MacBook Pro specific adjustments för slide 003 */
+@media (max-height: 2000px) and (min-width: 2000px) {
+    .flow-row {
+        margin-bottom: clamp(6px, 1vh, 10px);
+        gap: clamp(12px, 1.5vw, 20px);
+    }
+
+    .flow-item {
+        padding: clamp(8px, 1vh, 12px) clamp(12px, 1.5vw, 18px);
+    }
+
+    .flow-icon {
+        font-size: clamp(24px, 3.5vw, 32px);
+        min-width: clamp(24px, 3.5vw, 32px);
+    }
+
+    .flow-arrow {
+        font-size: clamp(20px, 3vw, 28px);
+        margin-top: clamp(6px, 0.8vh, 10px);
+    }
+}
+
+/* === SLIDE 004 - TOKENS, CONTEXT WINDOWS, AND LIMITATIONS (specifik för 004) === */
+
+/* Content grid */
+.content-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: clamp(25px, 4vw, 40px);
+    margin-bottom: clamp(30px, 5vh, 50px);
+}
+
+/* Section */
+.section {
+    background: #0f172a;
+    border: 3px solid #2dd4bf;
+    border-radius: 12px;
+    padding: clamp(20px, 3vh, 30px);
+}
+
+/* Section title */
+.section-title {
+    font-size: clamp(1.2em, 2.5vh, 1.8em);
+    color: #2dd4bf;
+    font-weight: 600;
+    margin-bottom: clamp(15px, 2.5vh, 25px);
+    display: flex;
+    align-items: center;
+    gap: clamp(10px, 1.5vw, 15px);
+}
+
+/* Section icon */
+.section-icon {
+    font-size: clamp(32px, 4vw, 40px);
+}
+
+/* Token example */
+.token-example {
+    background: #1a2332;
+    padding: clamp(15px, 2vh, 20px);
+    border-radius: 8px;
+    margin-bottom: clamp(15px, 2vh, 20px);
+}
+
+/* Token text */
+.token-text {
+    font-size: clamp(1em, 2vh, 1.2em);
+    color: #e2e8f0;
+    margin-bottom: clamp(12px, 1.5vh, 15px);
+}
+
+/* Token breakdown */
+.token-breakdown {
+    display: flex;
+    flex-wrap: wrap;
+    gap: clamp(8px, 1vw, 10px);
+}
+
+/* Token badge */
+.token {
+    padding: clamp(6px, 1vh, 8px) clamp(12px, 1.5vw, 15px);
+    background: #2dd4bf;
+    color: #1a2332;
+    border-radius: 6px;
+    font-weight: 600;
+    font-size: clamp(0.85em, 1.5vh, 0.95em);
+}
+
+/* Context window */
+.context-window {
+    background: #1a2332;
+    padding: clamp(15px, 2vh, 20px);
+    border-radius: 8px;
+    text-align: center;
+}
+
+/* Window box */
+.window-box {
+    width: 100%;
+    height: clamp(90px, 12vh, 120px);
+    background: linear-gradient(135deg, #2dd4bf 0%, #14b8a6 100%);
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: clamp(12px, 1.5vh, 15px);
+}
+
+/* Window text */
+.window-text {
+    font-size: clamp(1.2em, 2.5vh, 1.5em);
+    color: #1a2332;
+    font-weight: 700;
+}
+
+/* Window info */
+.window-info {
+    font-size: clamp(0.95em, 1.8vh, 1.1em);
+    color: #94a3b8;
+}
+
+/* Limitations section (spans full width) */
+.limitations {
+    grid-column: 1 / -1;
+}
+
+/* Limitations grid */
+.limitations-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: clamp(15px, 2vw, 20px);
+}
+
+/* Limitation item */
+.limitation {
+    display: flex;
+    align-items: flex-start;
+    gap: clamp(12px, 1.5vw, 15px);
+    padding: clamp(15px, 2vh, 20px);
+    background: #1a2332;
+    border-radius: 8px;
+    border-left: 4px solid #ef4444;
+}
+
+/* Limitation icon */
+.limitation-icon {
+    font-size: clamp(32px, 4vw, 40px);
+    color: #ef4444;
+    min-width: clamp(32px, 4vw, 40px);
+}
+
+/* Limitation content */
+.limitation-content {
+    flex: 1;
+}
+
+/* Limitation title */
+.limitation-title {
+    font-size: clamp(1.1em, 2vh, 1.3em);
+    color: #ef4444;
+    font-weight: 600;
+    margin-bottom: clamp(6px, 1vh, 8px);
+}
+
+/* Limitation text */
+.limitation-text {
+    font-size: clamp(0.9em, 1.5vh, 1em);
+    color: #e2e8f0;
+    line-height: 1.5;
+}
+
+/* MacBook Pro specific adjustments för slide 004 */
+@media (max-height: 2000px) and (min-width: 2000px) {
+    .content-grid {
+        gap: clamp(20px, 3vw, 35px);
+        margin-bottom: clamp(25px, 4vh, 45px);
+    }
+
+    .section {
+        padding: clamp(18px, 2.5vh, 28px);
+    }
+
+    .limitations-grid {
+        gap: clamp(12px, 1.5vw, 18px);
+    }
+}
+

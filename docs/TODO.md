@@ -142,15 +142,11 @@ VI vill inte att varje html-fil ska behöve ha all css etc utan vi ska göra en 
    - Validerad: Slides 009 och 010 ser bra ut efter organisering
 
 <VI ÄR HÄR I ARBETET (FLYTTA EFTER DENNA MARKERING I TAKT MED EN GREJ BLIR KLAR)>
-**NÄSTA ÅTGÄRD: FAS 4 - Fortsätt refaktorera CSS**
-
-4.2. (Framtida steg) - Fortsätt med refaktorering om det behövs.
-4.3. (Framtida steg) - Fortsätt med navigation-komponenter om det behövs.
-4.4. (Framtida steg) - Fortsätt med slide-specifika komponenter om det behövs.
+**NÄSTA ÅTGÄRD: FAS 5.3 - Migrera slides 003-004**
 
 **FAS 5: Migrera övriga slides (EN SLIDE I TAGET)**
-5.1. Ta slide 001. Lägg till länk till `style.css`. Lägg till eventuella nya CSS-regler som behövs i `style.css`. Testa att 001 fungerar.
-5.2. Ta slide 002. Samma process. Testa.
+5.1. Ta slide 001. Lägg till länk till `style.css`. Lägg till eventuella nya CSS-regler som behövs i `style.css`. Testa att 001 fungerar. ✅ KLAR
+5.2. Ta slide 002. Samma process. Testa. ✅ KLAR
 5.3. Fortsätt med 003, 004, 005... EN I TAGET. Efter varje slide: testa att den fungerar innan du går vidare.
 
 **FAS 6: Säkerställ 16:9 och scroll (EN ÄNDRING I TAGET)**
