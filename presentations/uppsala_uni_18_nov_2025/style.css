@@ -562,7 +562,19 @@ h1 {
 /* === SLIDE 003 - TRANSFORMER ARCHITECTURE (specifik för 003) === */
 /* Kompakt lista-liknande design utan stora boxar - minimal vertikal space */
 
-/* Architecture flow container */
+/* Architecture flow container - FIX: Reduce for Reveal.js */
+.reveal .slides section .architecture-flow,
+.reveal .slides section .slide-background-content .architecture-flow {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 0 !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    margin: clamp(8px, 1.5vh, 15px) auto 0 !important;  /* Reduced margin */
+    padding-bottom: 0 !important;
+}
+
+/* Fallback för non-Reveal contexts */
 .architecture-flow {
     display: flex;
     flex-direction: column;
@@ -573,12 +585,12 @@ h1 {
     padding-bottom: 0; /* Ingen padding-bottom */
 }
 
-/* Flow row - innehåller item + pil på höger sida */
+/* Flow row - innehåller item + pil på höger sida - FIX: Reduced for Reveal.js */
 .flow-row {
     display: flex;
     align-items: center;
-    gap: clamp(15px, 2vw, 25px);
-    margin-bottom: 8px; /* FAST spacing - minimal vertikal space */
+    gap: clamp(10px, 1.5vw, 18px);  /* Reduced from 2vw/25px */
+    margin-bottom: 6px; /* FAST spacing - reduced from 8px */
 }
 
 /* Sista raden ska inte ha margin-bottom */
@@ -593,23 +605,23 @@ h1 {
     flex-shrink: 0;
 }
 
-/* Flow item - kompakt, ingen stor box, bara lätt border/bakgrund med gradient */
+/* Flow item - kompakt, ingen stor box, bara lätt border/bakgrund med gradient - FIX: Reduced for Reveal.js */
 .flow-item {
     display: flex;
     align-items: center;
-    gap: clamp(12px, 1.5vw, 18px);
-    padding: 10px clamp(15px, 2vw, 20px); /* FAST vertikal padding (10px), horisontell responsiv */
+    gap: clamp(8px, 1.2vw, 14px);  /* Reduced from 1.5vw/18px */
+    padding: 8px clamp(12px, 1.5vw, 18px); /* FAST vertikal padding (reduced from 10px), horisontell responsiv */
     background: linear-gradient(135deg, #0f172a 0%, #1e3a5f 100%); /* Samma gradient som highlight */
-    border-left: 4px solid #2dd4bf; /* Tunn vänsterborder istället för full box */
+    border-left: 3px solid #2dd4bf; /* Reduced from 4px */
     border-radius: 4px;
     flex: 1;
 }
 
-/* Flow icon - mindre ikoner */
+/* Flow icon - mindre ikoner - FIX: Reduced for Reveal.js */
 .flow-icon {
-    font-size: clamp(28px, 4vw, 36px); /* FAST max-värde, mindre än tidigare */
+    font-size: clamp(22px, 3vw, 30px); /* Reduced from 4vw/36px */
     color: #2dd4bf;
-    min-width: clamp(28px, 4vw, 36px);
+    min-width: clamp(22px, 3vw, 30px);  /* Reduced */
     flex-shrink: 0;
 }
 
@@ -619,28 +631,28 @@ h1 {
     min-width: 0;
 }
 
-/* Flow title - kompakt */
+/* Flow title - kompakt - FIX: Reduced for Reveal.js */
 .flow-title {
-    font-size: clamp(1em, 1.8vh, 1.3em); /* Mindre än tidigare */
+    font-size: clamp(0.9em, 1.5vh, 1.1em); /* Reduced from 1.8vh/1.3em */
     color: #2dd4bf;
     font-weight: 600;
-    margin-bottom: clamp(2px, 0.3vh, 4px);
+    margin-bottom: clamp(2px, 0.3vh, 3px);  /* Reduced */
 }
 
-/* Flow description - kompakt line-height */
+/* Flow description - kompakt line-height - FIX: Reduced for Reveal.js */
 .flow-description {
-    font-size: clamp(0.85em, 1.4vh, 0.95em); /* Mindre text */
+    font-size: clamp(0.75em, 1.2vh, 0.85em); /* Reduced from 1.4vh/0.95em */
     color: #94a3b8;
-    line-height: 1.3; /* Tight line-height */
+    line-height: 1.25; /* Tighter line-height */
 }
 
-/* Flow arrow - pil utanför item på höger sida, pekar nedåt */
+/* Flow arrow - pil utanför item på höger sida, pekar nedåt - FIX: Reduced for Reveal.js */
 .flow-arrow {
-    font-size: clamp(24px, 3.5vw, 32px);
+    font-size: clamp(18px, 2.5vw, 26px);  /* Reduced from 3.5vw/32px */
     color: #2dd4bf;
     flex-shrink: 0;
     align-self: flex-start;
-    margin-top: clamp(8px, 1vh, 12px); /* Ligner med item-top */
+    margin-top: clamp(6px, 0.8vh, 10px); /* Reduced from 1vh/12px */
 }
 
 /* Flow highlight - för Attention Mechanism */
@@ -651,9 +663,11 @@ h1 {
     box-shadow: 0 2px 10px rgba(45, 212, 191, 0.2);
 }
 
-/* H1 margin-bottom justering för slide 003 */
-.slide:has(.architecture-flow) h1 {
-    margin-bottom: clamp(15px, 2vh, 25px);
+/* H1 margin-bottom justering för slide 003 - FIX: Reduced for Reveal.js */
+.reveal .slides section:has(.architecture-flow) h1,
+.reveal .slides section .architecture-flow ~ h1,
+h1:has(+ .architecture-flow) {
+    margin-bottom: clamp(8px, 1.2vh, 15px) !important;  /* Reduced from 2vh/25px */
 }
 
 /* MacBook Pro specific adjustments för slide 003 */
