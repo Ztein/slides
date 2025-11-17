@@ -452,16 +452,18 @@ h1 {
 }
 
 .layer-box {
-    width: 100%;
-    padding: clamp(8px, 1vh, 12px) clamp(10px, 1.5vw, 20px);  /* FIX: Reducerad padding från 1vh 2vw */
+    padding: clamp(8px, 1vh, 12px) clamp(15px, 2vw, 25px);  /* FIX: Reducerad padding från 1vh 2vw */
     background: #0f172a;
     border: 3px solid #2dd4bf;
     border-radius: 12px;
     display: flex;
+    flex-direction: row;  /* FIX: Horisontell layout för ikon + text */
     justify-content: center;
     align-items: center;
-    gap: clamp(8px, 1vw, 20px);  /* FIX: Reducerad gap */
+    gap: clamp(8px, 1vw, 12px);  /* Gap mellan ikon och text */
     position: relative;
+    flex: 0 1 auto;  /* Tillåt att boxes kan ha olika storlek */
+    min-width: 0;  /* Tillåt att de kan krympa */
 }
 
 .layer-highlight {
@@ -470,46 +472,39 @@ h1 {
     box-shadow: 0 0 30px rgba(45, 212, 191, 0.3);
 }
 
-/* Client/Server container för horisontell layout */
-.client-server-container {
+/* Client/Server row - två separata boxes med JSON-RPC emellan */
+.client-server-row {
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: clamp(20px, 3vw, 40px);  /* Lagom gap mellan Client, sync-container och Server */
+    gap: clamp(15px, 2vw, 30px);  /* Gap mellan boxes och connection */
     width: 100%;
 }
 
-.client-part,
-.server-part {
-    display: flex;
-    flex-direction: row;  /* FIX: Horisontell layout - ikon och text sida vid sida */
-    align-items: center;
-    gap: clamp(8px, 1vw, 12px);  /* Gap mellan ikon och text */
-}
-
-/* Container för sync-ikon och JSON-RPC badge */
-.sync-container {
+/* Protocol connection - JSON-RPC badge ovanför sync-ikon */
+.protocol-connection {
     display: flex;
     flex-direction: column;
     align-items: center;
     gap: clamp(4px, 0.5vh, 8px);
     position: relative;
-}
-
-.sync-icon {
-    font-size: clamp(36px, 4.5vw, 52px) !important;  /* Lagom stor ikon */
-    color: #2dd4bf;
     flex-shrink: 0;
 }
 
-/* JSON-RPC badge ovanför sync-ikonen */
-.sync-container .protocol-badge {
-    position: relative;  /* FIX: Inte absolut, utan relativ i sync-container */
+.protocol-connection .protocol-badge {
+    position: relative;
     top: auto;
     left: auto;
     transform: none;
     padding: clamp(4px, 0.5vh, 6px) clamp(8px, 1vw, 12px);
     font-size: clamp(0.75em, 1vw, 0.85em);
+    margin-bottom: 0;
+}
+
+.sync-icon {
+    font-size: clamp(36px, 4.5vw, 52px) !important;
+    color: #2dd4bf;
+    flex-shrink: 0;
 }
 
 .layer-title {

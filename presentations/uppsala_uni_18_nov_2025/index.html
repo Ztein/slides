@@ -714,20 +714,18 @@
 
             <!-- Middle Layer: MCP Client and Server Communication -->
             <div class="layer">
-                <div class="layer-box layer-highlight">
-                    <div class="client-server-container">
-                        <div class="client-part">
-                            <span class="material-icons">chat</span>
-                            <div class="layer-title">MCP Client</div>
-                        </div>
-                        <div class="sync-container">
-                            <span class="protocol-badge">JSON-RPC</span>
-                            <span class="material-icons sync-icon">sync_alt</span>
-                        </div>
-                        <div class="server-part">
-                            <span class="material-icons">dns</span>
-                            <div class="layer-title">MCP Server(s)</div>
-                        </div>
+                <div class="client-server-row">
+                    <div class="layer-box">
+                        <span class="material-icons">chat</span>
+                        <div class="layer-title">MCP Client</div>
+                    </div>
+                    <div class="protocol-connection">
+                        <span class="protocol-badge">JSON-RPC</span>
+                        <span class="material-icons sync-icon">sync_alt</span>
+                    </div>
+                    <div class="layer-box layer-highlight">
+                        <span class="material-icons">dns</span>
+                        <div class="layer-title">MCP Server(s)</div>
                     </div>
                 </div>
                 <div class="transport-info">Transport: stdio / Server-Sent Events (SSE)</div>
