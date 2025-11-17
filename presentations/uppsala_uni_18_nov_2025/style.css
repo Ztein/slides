@@ -26,14 +26,15 @@ body {
     flex-direction: column;
 }
 
-/* Rubrikstilar */
+/* Rubrikstilar - FIX: Drastiskt minskad för Reveal.js */
 h1 {
     text-align: center;
     color: #ffffff;
-    font-size: clamp(1.3rem, 2.5vh, 2rem);  /* FIX 3: Further reduced for fit */
-    margin-bottom: clamp(8px, 1vh, 12px);  /* FIX 3: Fixed pixel values */
+    font-size: clamp(1rem, 1.8vh, 1.4rem) !important;  /* FIX: Drastiskt minskad från 2.5vh/2rem */
+    margin-bottom: clamp(6px, 0.8vh, 10px) !important;  /* FIX: Minskad margin */
     font-weight: 600;
     letter-spacing: -0.02em;
+    line-height: 1.2;  /* FIX: Tighter line-height */
 }
 
 /* === POTENTIELLT GEMENSAMMA KLASSER === */
@@ -694,36 +695,36 @@ h1:has(+ .architecture-flow) {
 
 /* === SLIDE 004 - TOKENS, CONTEXT WINDOWS, AND LIMITATIONS (specifik för 004) === */
 
-/* Content grid */
+/* Content grid - FIX: Reduced for Reveal.js */
 .content-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: clamp(20px, 3vw, 35px); /* Mindre gap */
-    margin-bottom: 25px; /* FAST margin - inte vh-baserat */
+    gap: clamp(12px, 2vw, 20px); /* FIX: Reduced from 3vw/35px */
+    margin-bottom: clamp(10px, 1.5vh, 15px); /* FIX: Reduced from 25px */
 }
 
-/* Section */
+/* Section - FIX: Reduced for Reveal.js */
 .section {
     background: #0f172a;
-    border: 3px solid #2dd4bf;
-    border-radius: 12px;
-    padding: 15px clamp(15px, 2vw, 25px); /* FAST vertikal padding (15px), horisontell responsiv */
+    border: 2px solid #2dd4bf;  /* FIX: Reduced from 3px */
+    border-radius: 8px;  /* FIX: Reduced from 12px */
+    padding: clamp(10px, 1.2vh, 14px) clamp(12px, 1.5vw, 20px); /* FIX: Reduced padding */
 }
 
-/* Section title */
+/* Section title - FIX: Reduced for Reveal.js */
 .section-title {
-    font-size: clamp(1.1em, 2.2vh, 1.5em); /* Mindre font-size */
+    font-size: clamp(0.95em, 1.6vh, 1.2em) !important; /* FIX: Reduced from 2.2vh/1.5em */
     color: #2dd4bf;
     font-weight: 600;
-    margin-bottom: 15px; /* FAST margin - inte vh-baserat */
+    margin-bottom: clamp(8px, 1vh, 12px) !important; /* FIX: Reduced from 15px */
     display: flex;
     align-items: center;
-    gap: clamp(10px, 1.5vw, 15px);
+    gap: clamp(8px, 1.2vw, 12px);  /* FIX: Reduced gap */
 }
 
-/* Section icon */
+/* Section icon - FIX: Reduced for Reveal.js */
 .section-icon {
-    font-size: clamp(32px, 4vw, 40px);
+    font-size: clamp(24px, 3vw, 32px);  /* FIX: Reduced from 4vw/40px */
 }
 
 /* Token example */
