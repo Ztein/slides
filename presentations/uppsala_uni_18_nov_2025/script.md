@@ -144,9 +144,104 @@ Think of it as a universal adapter. Write one MCP server exposing your database,
 MCP is attempting to be the 'HTTP of AI integrations' - a standard protocol that everyone can build on.
 This brings us to our deep dive. Let's see how MCP actually works."
 
-You're absolutely right! Slide 8 is missing. Let me create it - it should bridge from the three approaches to actually introducing MCP as the solution.
+SLIDE 8: Tool Calling - How it Works
 
-SLIDE 8: The Need for Standardization
+Visual suggestion:
+
+Clean, professional diagram with three panels showing the flow:
+
+Panel 1: "User Request"
+- User icon with speech bubble: "Book a meeting with Anna on Friday at 2 PM"
+- Arrow down to...
+
+Panel 2: "LLM Reasoning & Function Call"
+- Brain/LLM icon analyzing the request
+- Output box showing structured JSON:
+```json
+{
+  "function": "create_calendar_event",
+  "parameters": {
+    "attendee": "Anna",
+    "date": "2025-11-21",
+    "time": "14:00",
+    "title": "Meeting with Anna"
+  }
+}
+```
+- Label: "LLM generates structured function call"
+
+Panel 3: "Execution & Response"
+- Code/API icon executing the function
+- Database/Calendar icon showing action
+- Return arrow with result: `{"status": "success", "event_id": "evt_123"}`
+- Final response to user: "✓ Meeting booked with Anna Friday 11/21 at 2:00 PM"
+
+Bottom Section: "Customer's Environment"
+- Show the security boundary clearly
+- APIs, databases, and internal systems within customer's control
+- Label: "Defined functions with secure implementation"
+
+Color coding:
+- User interaction: Blue
+- LLM reasoning: Purple/Pink
+- Execution layer: Yellow/Orange
+- Customer systems: Gray with secure boundary
+
+Script (3 min):
+
+"Before we move on to MCP, we need to understand the basic mechanics of tool calling - because MCP builds directly on this concept.
+
+Tool calling, also known as function calling, solves a fundamental problem: LLMs can only generate text. They cannot actually perform actions. But through tool calling, we can give them the ability to *request* that actions be performed.
+
+It's important to remember that the user almost never talks directly to the LLM. The request first goes to the **application** (the host), which knows about available tools and the surrounding context. The application then creates a wrapped message to the LLM, something like:
+
+\"First of all, you should know that if you think it's a good idea in order to serve the user, you can make a tool call. Here is a list of tool calls that are allowed for you. Here is the conversation from the user: ...\"
+
+This means the LLM always reasons inside an application-defined contract: which tools exist, when they're appropriate to use, and what constraints apply.
+
+Here's how it works in practice:
+
+**Step 1 - User asks the application for something that requires an action**
+
+'Book a meeting with Anna on Friday at 2 PM'. The LLM realizes this doesn't just require a text response - it requires an actual action in a calendar system.
+
+**Step 2 - The LLM generates a structured function call**
+
+Instead of just writing 'Okay, I'll book the meeting', the model generates a well-defined JSON object. It specifies which function to call - here 'create_calendar_event' - and all necessary parameters: who, when, what.
+
+The important thing here is that this is *structured data*, not just text. We've defined a schema for the function in advance - which parameters it takes, what types they are, which are required.
+
+**Step 3 - Your application intercepts and executes**
+
+Now the magic happens. Your code intercepts this function call *before* it's shown to the user. You validate the parameters - is the date valid? Does Anna exist in the system? Then you execute the actual operation against your calendar system.
+
+**Step 4 - The result goes back to the LLM**
+
+The function returns a result - perhaps an event ID and confirmation. This is fed back to the LLM, which can now formulate a natural response to the user: 'The meeting is booked! You're meeting Anna on Friday, November 21st at 2:00 PM.'
+
+**Why is this powerful?**
+
+**Separation of concerns** - The LLM handles understanding and reasoning. Your code handles actual operations and security.
+
+**Security** - Functions run in *your* environment with *your* security rules. The LLM never has direct access to databases or APIs.
+
+**Flexibility** - You can expose exactly the functions you want. Maybe 'read_calendar' but not 'delete_all_events'.
+
+**Observability** - You see exactly which calls are made and can log, validate, and audit everything.
+
+**The problem that leads to MCP:**
+
+But here comes the challenge - every LLM provider implements tool calling slightly differently. OpenAI has its format, Anthropic has its own, Gemini has its own. If you build for Claude, you have to rewrite for GPT. Your function definitions look different.
+
+And even worse - every application that wants to use the same tools must implement its own integration. Your calendar function? It must be re-implemented for every AI app that wants to use it.
+
+This is where MCP comes in. Instead of every application implementing 'create_calendar_event' with its own API, you build *one* MCP server that exposes calendar functionality. It can then be used by *any* MCP-compatible client, regardless of which LLM it uses.
+
+So MCP standardizes both *how* functions are defined and *how* they're called. It's tool calling, but with a common protocol that everyone can build on.
+
+With this foundation, we're ready to dive deeper into how MCP actually implements and extends these concepts."
+
+SLIDE 9: The Need for Standardization
 Visual suggestion:
 
 Left side: "Before MCP" - chaos diagram showing:
@@ -192,7 +287,7 @@ Now let's see exactly how this works under the hood."
 Transition to Slide 9:
 This naturally flows into "What is MCP?" where we start the technical deep dive.
 
-SLIDE 9: What is MCP?
+SLIDE 10: What is MCP?
 Visual suggestion:
 
 Large diagram showing MCP logo/concept in center
@@ -204,7 +299,7 @@ Script (2 min):
 MCP is essentially a standardized way for AI applications to connect to data sources and tools. Think of it like USB-C for AI integrations - before MCP, every tool needed its own custom integration. With MCP, you write one server implementation, and any MCP-compatible client can use it.
 The key insight is separating concerns: the LLM client handles conversation and reasoning, while MCP servers provide access to specific capabilities - databases, file systems, APIs, whatever you need. The protocol defines how they communicate."
 
-SLIDE 10: MCP Architecture
+SLIDE 11: MCP Architecture
 Visual suggestion:
 
 Layered architecture diagram:
@@ -222,7 +317,7 @@ The client communicates with one or more MCP servers using JSON-RPC over differe
 Each MCP server is a lightweight process that exposes specific capabilities. You might have one server for your PostgreSQL database, another for your file system, another for a weather API. The beauty is they're independent - you can mix and match servers as needed.
 The protocol is stateful - servers maintain context during a session, which is important for things like database transactions or maintaining file handles."
 
-SLIDE 11: The Three Primitives: Resources, Prompts, and Tools
+SLIDE 12: The Three Primitives: Resources, Prompts, and Tools
 Visual suggestion:
 
 Three-column layout with icons:
@@ -240,7 +335,7 @@ Second, Prompts - these are reusable templates for common tasks. For example, a 
 Third, Tools - these are functions the LLM can execute. Unlike resources which are read-only, tools perform actions. They might write to a database, modify files, or call external APIs. Tools have schemas that define their parameters and what they return.
 The LLM decides when to use each based on the conversation context. This is where the reasoning capabilities really shine."
 
-SLIDE 12: Interaction Flow - Sequence Diagram
+SLIDE 13: Interaction Flow - Sequence Diagram
 Visual suggestion:
 
 Sequence diagram showing:
@@ -267,7 +362,7 @@ Now the LLM has context and generates an analysis. But suppose it decides a visu
 The server executes this tool, generates the chart, and returns a reference. Finally, the client presents the complete response to the user.
 Notice the LLM is orchestrating these calls based on its reasoning about what's needed - this is much more flexible than rigid API calls."
 
-SLIDE 13: Use Case - File System Server
+SLIDE 14: Use Case - File System Server
 Visual suggestion:
 
 Split screen:
@@ -289,7 +384,7 @@ Call tools to create new files and modify existing ones
 
 This is exactly how cursor, Windsurf, and similar AI coding tools work under the hood - they use protocols like MCP to give LLMs controlled access to your codebase."
 
-SLIDE 14: Use Case - Database Server
+SLIDE 15: Use Case - Database Server
 Visual suggestion:
 
 Diagram showing:
@@ -308,7 +403,7 @@ Tools enable actions - execute_query is the obvious one, but you might also have
 Crucially, the server can enforce security policies. You can limit which tables are accessible, restrict certain SQL operations, implement rate limiting, or require approval for destructive operations.
 This is much safer than giving an LLM direct database credentials. The server is your security boundary."
 
-SLIDE 15: Code Example
+SLIDE 16: Code Example
 Visual suggestion:
 
 Clean code snippet (Python or TypeScript)
@@ -321,7 +416,7 @@ Script (2 min):
 The key points: we define handlers for resources and tools, specify their schemas, and the MCP SDK handles all the protocol communication. You focus on business logic, not protocol details.
 The server runs as a separate process, communicates via stdio, and can be used by any MCP-compatible client. This could be running alongside Claude Desktop, integrated into VS Code, or in your own application."
 
-SLIDE 16: Security Considerations
+SLIDE 17: Security Considerations
 Visual suggestion:
 
 Security layer diagram showing:
@@ -344,7 +439,7 @@ Audit logging - Log all operations for accountability and debugging. You want to
 Isolation - Run servers in sandboxed environments with minimal permissions. If compromised, limit the blast radius.
 Remember: the MCP server is your security boundary. The protocol itself is just transport - you must implement security in your server logic."
 
-SLIDE 17: MCP vs Alternatives
+SLIDE 18: MCP vs Alternatives
 Visual suggestion:
 
 Comparison table:
@@ -361,7 +456,7 @@ LangChain is a framework focused on chains and agents. It's more opinionated and
 AutoGPT-style agents are higher-level autonomous systems. MCP could be a component they use for tool access, but MCP doesn't dictate the agent architecture.
 The key advantage of MCP is standardization. Write one server, use it anywhere. As the ecosystem grows, you'll have libraries of pre-built servers for common needs - databases, APIs, file systems, etc."
 
-SLIDE 18: Future Directions & Research Questions
+SLIDE 19: Future Directions & Research Questions
 Visual suggestion:
 
 Mind map or forward-looking diagram with branches:
@@ -389,7 +484,7 @@ What's the right abstraction for long-running workflows that span multiple sessi
 
 This is an emerging standard - there's lots of room for innovation."
 
-SLIDE 19: Summary & Key Takeaways
+SLIDE 20: Summary & Key Takeaways
 Visual suggestion:
 
 Clean bullet points with icons

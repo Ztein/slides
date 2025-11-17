@@ -1361,6 +1361,195 @@ h1:has(+ .architecture-flow) {
     }
 }
 
+/* === SLIDE 007.5 - TOOL CALLING - HOW IT WORKS (specifik för 007.5) === */
+
+/* Tool call flow container */
+.tool-call-flow {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: clamp(10px, 1.5vh, 16px) !important;
+    max-width: min(1000px, 95vw);
+    margin: 0 auto clamp(15px, 2vh, 20px);
+}
+
+/* Tool panel - base styles */
+.tool-panel {
+    width: 100%;
+    background: #0f172a;
+    border-radius: 10px;
+    padding: clamp(14px, 2vh, 20px) clamp(18px, 2.5vw, 24px) !important;
+    display: flex;
+    flex-direction: column;
+    gap: clamp(10px, 1.3vh, 14px) !important;
+}
+
+/* Panel-specific colors */
+.panel-user {
+    border: 3px solid #60a5fa; /* Blue for user interaction */
+}
+
+.panel-llm {
+    border: 3px solid #c084fc; /* Purple/Pink for LLM reasoning */
+}
+
+.panel-execution {
+    border: 3px solid #fbbf24; /* Yellow/Orange for execution */
+}
+
+/* Tool panel header */
+.tool-panel-header {
+    display: flex;
+    align-items: center;
+    gap: clamp(10px, 1.3vw, 14px) !important;
+    margin-bottom: clamp(6px, 0.8vh, 10px);
+}
+
+.tool-panel-icon {
+    font-size: clamp(32px, 4.5vw, 42px) !important;
+}
+
+.user-icon {
+    color: #60a5fa; /* Blue */
+}
+
+.llm-icon {
+    color: #c084fc; /* Purple/Pink */
+}
+
+.execution-icon {
+    color: #fbbf24; /* Yellow/Orange */
+}
+
+.tool-panel-title {
+    font-size: clamp(1em, 1.6vh, 1.2em) !important;
+    font-weight: 600;
+    color: #ffffff;
+}
+
+/* User speech bubble */
+.user-speech-bubble {
+    background: linear-gradient(135deg, #1e3a8a 0%, #1e40af 100%);
+    border-radius: 12px;
+    padding: clamp(12px, 1.8vh, 16px) clamp(16px, 2.2vw, 20px);
+    color: #ffffff;
+    font-size: clamp(0.9em, 1.4vh, 1.05em) !important;
+    line-height: 1.4;
+    font-style: italic;
+    border-left: 4px solid #60a5fa;
+}
+
+/* Function call box */
+.function-call-box {
+    display: flex;
+    flex-direction: column;
+    gap: clamp(8px, 1vh, 12px);
+}
+
+.json-label {
+    font-size: clamp(0.75em, 1.2vh, 0.85em) !important;
+    color: #94a3b8;
+    font-weight: 500;
+}
+
+.json-code {
+    background: #1a2332;
+    border: 2px solid #c084fc;
+    border-radius: 8px;
+    padding: clamp(12px, 1.5vh, 16px) clamp(14px, 2vw, 18px);
+    font-family: 'Courier New', monospace;
+    font-size: clamp(0.7em, 1.1vh, 0.85em) !important;
+    line-height: 1.5;
+    color: #e2e8f0;
+    margin: 0;
+    overflow-x: auto;
+}
+
+.json-code code {
+    color: #c084fc;
+    font-weight: 600;
+}
+
+/* Execution result */
+.execution-result {
+    display: flex;
+    flex-direction: column;
+    gap: clamp(10px, 1.3vh, 14px);
+}
+
+.execution-icon-row {
+    display: flex;
+    justify-content: center;
+    gap: clamp(12px, 1.8vw, 18px);
+}
+
+.execution-icon-row .material-icons {
+    font-size: clamp(28px, 4vw, 36px) !important;
+    color: #fbbf24;
+}
+
+.result-box {
+    background: #1a2332;
+    border: 2px solid #fbbf24;
+    border-radius: 8px;
+    padding: clamp(10px, 1.3vh, 14px) clamp(12px, 1.8vw, 16px);
+    font-size: clamp(0.75em, 1.2vh, 0.85em) !important;
+    color: #e2e8f0;
+}
+
+.result-box code {
+    color: #fbbf24;
+    font-family: 'Courier New', monospace;
+    font-weight: 600;
+}
+
+.user-response {
+    background: linear-gradient(135deg, #78350f 0%, #92400e 100%);
+    border-radius: 8px;
+    padding: clamp(10px, 1.3vh, 14px) clamp(14px, 2vw, 18px);
+    color: #ffffff;
+    font-size: clamp(0.85em, 1.3vh, 0.95em) !important;
+    font-weight: 500;
+    border-left: 4px solid #fbbf24;
+}
+
+/* Flow arrow down */
+.flow-arrow-down {
+    font-size: clamp(32px, 4.5vw, 42px) !important;
+    color: #2dd4bf;
+    margin: clamp(4px, 0.6vh, 8px) 0;
+}
+
+/* Security boundary note */
+.security-boundary-note {
+    max-width: min(1000px, 95vw);
+    margin: clamp(12px, 1.5vh, 18px) auto 0;
+    padding: clamp(10px, 1.3vh, 14px) clamp(14px, 2vw, 18px);
+    background: #1a2332;
+    border: 2px solid #64748b;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    gap: clamp(10px, 1.3vw, 14px);
+}
+
+.security-boundary-icon {
+    font-size: clamp(24px, 3.5vw, 30px) !important;
+    color: #64748b;
+    flex-shrink: 0;
+}
+
+.security-boundary-text {
+    font-size: clamp(0.75em, 1.2vh, 0.85em) !important;
+    color: #94a3b8;
+    line-height: 1.4;
+}
+
+.security-boundary-text strong {
+    color: #e2e8f0;
+    font-weight: 600;
+}
+
 /* === SLIDE 008 - TRANSITION TO MCP DEEP DIVE (specifik för 008) === */
 
 /* Transition content */
@@ -2201,7 +2390,7 @@ h1:has(+ .architecture-flow) {
 
 /* Code container */
 .code-container {
-    max-width: min(1100px, 95vw);
+    max-width: 95vw; /* Hela sidan minus 5% */
     margin: 0 auto;
     background: #0f172a;
     border: 3px solid #2dd4bf;
@@ -2233,12 +2422,13 @@ h1:has(+ .architecture-flow) {
 
 /* Code block */
 .code-block {
-    padding: clamp(25px, 3vh, 35px) clamp(30px, 4vw, 38px); /* FAST vertikal padding (25px min, 35px max) */
+    padding: clamp(20px, 2.5vh, 30px) clamp(25px, 3.5vw, 35px); /* Reducerad padding för mer utrymme */
     font-family: 'Courier New', monospace;
-    font-size: clamp(0.95em, 1.6vh, 1.05em); /* Stor nog att läsa - nära original 1.05em */
-    line-height: 1.7; /* Balanserat mellan läsbarhet och kompakt design */
+    font-size: clamp(0.5em, 0.75vh, 0.65em) !important; /* Lite större: från 0.4em-0.5em till 0.5em-0.65em */
+    line-height: 1.45 !important; /* Lite luftigare: från 1.4 till 1.45 */
     color: #e2e8f0;
     overflow-x: auto;
+    overflow-y: hidden; /* Förhindra vertikal scroll */
 }
 
 /* Code syntax highlighting */
@@ -2280,7 +2470,7 @@ h1:has(+ .architecture-flow) {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: clamp(20px, 3vw, 25px); /* Mindre än 30px max */
-    max-width: min(1100px, 95vw);
+    max-width: 95vw; /* Hela sidan minus 5%: matchar .code-container */
     margin: 25px auto 0; /* FAST margin - mindre än 50px */
 }
 
@@ -2353,21 +2543,22 @@ h1:has(+ .architecture-flow) {
 /* === SLIDE 016 - SECURITY CONSIDERATIONS (specifik för 016) === */
 
 /* Subtitle for slide 016 */
-.slide:has(.security-grid) .subtitle {
+.reveal .slides section:has(.security-grid) .subtitle {
     text-align: center;
-    font-size: clamp(1em, 1.8vh, 1.2em); /* Mindre än 1.3em max */
+    font-size: clamp(0.9em, 1.5vh, 1.05em) !important; /* Minskad: från 1em-1.2em till 0.9em-1.05em */
     color: #94a3b8;
-    margin-bottom: 20px; /* FAST margin - mindre än 60px */
-    line-height: 1.5; /* Tightare än 1.6 */
+    margin-bottom: clamp(12px, 1.5vh, 16px) !important; /* Minskad: från 20px till 12px-16px */
+    margin-top: clamp(10px, 1.5vh, 15px) !important; /* Minskad margin-top också */
+    line-height: 1.4 !important; /* Tätare: från 1.5 till 1.4 */
 }
 
 /* Security grid - 3 kolumner */
 .security-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: clamp(22px, 3vw, 28px); /* Mindre än 35px max */
+    gap: clamp(12px, 2vw, 18px) !important; /* Minskad: från 22px-28px till 12px-18px */
     max-width: min(1200px, 95vw);
-    margin: 0 auto 25px; /* FAST margin-bottom - mindre än 50px */
+    margin: 0 auto clamp(15px, 2vh, 20px) !important; /* Minskad margin-bottom: från 25px till 15px-20px */
 }
 
 /* Security item */
@@ -2375,8 +2566,8 @@ h1:has(+ .architecture-flow) {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 14px; /* FAST gap - mindre än 25px */
-    padding: clamp(20px, 2.8vh, 28px) clamp(18px, 2.5vw, 22px); /* FAST vertikal padding (20px min, 28px max) */
+    gap: clamp(8px, 1vh, 10px) !important; /* Minskad: från 14px till 8px-10px */
+    padding: clamp(14px, 2vh, 20px) clamp(14px, 2vw, 18px) !important; /* Minskad: från 20px-28px till 14px-20px vertikal */
     background: #0f172a;
     border: 3px solid #2dd4bf;
     border-radius: 12px;
@@ -2390,8 +2581,8 @@ h1:has(+ .architecture-flow) {
 
 /* Security icon container - cirkel */
 .security-icon-container {
-    width: clamp(90px, 13vw, 105px); /* Mindre än 120px max */
-    height: clamp(90px, 13vw, 105px); /* Samma som width */
+    width: clamp(70px, 10vw, 85px) !important; /* Minskad: från 90px-105px till 70px-85px */
+    height: clamp(70px, 10vw, 85px) !important; /* Samma som width */
     background: linear-gradient(135deg, #2dd4bf 0%, #14b8a6 100%);
     border-radius: 50%;
     display: flex;
@@ -2401,13 +2592,13 @@ h1:has(+ .architecture-flow) {
 
 /* Material icons in security-icon-container */
 .security-icon-container .material-icons {
-    font-size: clamp(52px, 7.5vw, 62px); /* Mindre än 70px max */
+    font-size: clamp(40px, 6vw, 50px) !important; /* Minskad: från 52px-62px till 40px-50px */
     color: #1a2332;
 }
 
 /* Security title */
 .security-title {
-    font-size: clamp(1.2em, 2.2vh, 1.4em); /* Mindre än 1.6em max */
+    font-size: clamp(1em, 1.8vh, 1.15em) !important; /* Minskad: från 1.2em-1.4em till 1em-1.15em */
     color: #ffffff;
     font-weight: 600;
     text-align: center;
@@ -2415,37 +2606,37 @@ h1:has(+ .architecture-flow) {
 
 /* Security description */
 .security-description {
-    font-size: clamp(0.9em, 1.5vh, 1em); /* Mindre än 1.05em max */
+    font-size: clamp(0.75em, 1.2vh, 0.85em) !important; /* Minskad: från 0.9em-1em till 0.75em-0.85em */
     color: #94a3b8;
     text-align: center;
-    line-height: 1.5; /* Tightare än 1.6 */
+    line-height: 1.4 !important; /* Tätare: från 1.5 till 1.4 */
 }
 
 /* Highlight box */
 .highlight-box {
     max-width: min(1200px, 95vw);
     margin: 0 auto;
-    padding: clamp(18px, 2.5vh, 25px) clamp(25px, 3.5vw, 35px); /* FAST vertikal padding (18px min, 25px max) */
+    padding: clamp(12px, 1.8vh, 18px) clamp(18px, 2.8vw, 25px) !important; /* Minskad: från 18px-25px till 12px-18px vertikal */
     background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
     border: 3px solid #ef4444;
     border-radius: 12px;
     display: flex;
     align-items: center;
-    gap: 18px; /* FAST gap - mindre än 25px */
+    gap: clamp(12px, 1.5vw, 15px) !important; /* Minskad: från 18px till 12px-15px */
 }
 
 /* Highlight icon */
 .highlight-icon {
-    font-size: clamp(45px, 6.5vw, 55px); /* Mindre än 60px max */
+    font-size: clamp(32px, 5vw, 40px) !important; /* Minskad: från 45px-55px till 32px-40px */
     color: #ef4444;
-    min-width: clamp(45px, 6.5vw, 55px); /* Samma som font-size */
+    min-width: clamp(32px, 5vw, 40px) !important; /* Samma som font-size */
 }
 
 /* Highlight text */
 .highlight-text {
-    font-size: clamp(1em, 1.8vh, 1.15em); /* Mindre än 1.25em max */
+    font-size: clamp(0.85em, 1.4vh, 0.95em) !important; /* Minskad: från 1em-1.15em till 0.85em-0.95em */
     color: #e2e8f0;
-    line-height: 1.5; /* Tightare än 1.7 */
+    line-height: 1.4 !important; /* Tätare: från 1.5 till 1.4 */
 }
 
 /* Highlight emphasis */
@@ -2455,8 +2646,8 @@ h1:has(+ .architecture-flow) {
 }
 
 /* H1 margin-bottom justering för slide 016 */
-.slide:has(.security-grid) h1 {
-    margin-bottom: clamp(15px, 2vh, 25px); /* FAST margin - mindre än 30px */
+.reveal .slides section:has(.security-grid) h1 {
+    margin-bottom: clamp(10px, 1.5vh, 18px) !important; /* Minskad: från 15px-25px till 10px-18px */
 }
 
 /* MacBook Pro specific adjustments för slide 016 */

@@ -609,6 +609,80 @@
                 <aside class="notes"></aside>
             </section>
             
+            <!-- Slide 007.5: Tool Calling - How it Works -->
+            <section>
+<h1>Tool Calling - How it Works</h1>
+        
+        <div class="tool-call-flow">
+            <!-- Panel 1: User Request -->
+            <div class="tool-panel panel-user">
+                <div class="tool-panel-header">
+                    <span class="material-icons tool-panel-icon user-icon">person</span>
+                    <div class="tool-panel-title">User Request</div>
+                </div>
+                <div class="user-speech-bubble">
+                    "Book a meeting with Anna on Friday at 2 PM"
+                </div>
+            </div>
+
+            <!-- Arrow down -->
+            <span class="material-icons flow-arrow-down">arrow_downward</span>
+
+            <!-- Panel 2: LLM Reasoning & Function Call -->
+            <div class="tool-panel panel-llm">
+                <div class="tool-panel-header">
+                    <span class="material-icons tool-panel-icon llm-icon">psychology</span>
+                    <div class="tool-panel-title">LLM Reasoning & Function Call</div>
+                </div>
+                <div class="function-call-box">
+                    <div class="json-label">LLM generates structured function call:</div>
+                    <pre class="json-code">{
+  "function": "create_calendar_event",
+  "parameters": {
+    "attendee": "Anna",
+    "date": "2025-11-21",
+    "time": "14:00",
+    "title": "Meeting with Anna"
+  }
+}</pre>
+                </div>
+            </div>
+
+            <!-- Arrow down -->
+            <span class="material-icons flow-arrow-down">arrow_downward</span>
+
+            <!-- Panel 3: Execution & Response -->
+            <div class="tool-panel panel-execution">
+                <div class="tool-panel-header">
+                    <span class="material-icons tool-panel-icon execution-icon">code</span>
+                    <div class="tool-panel-title">Execution & Response</div>
+                </div>
+                <div class="execution-result">
+                    <div class="execution-icon-row">
+                        <span class="material-icons">storage</span>
+                        <span class="material-icons">sync_alt</span>
+                        <span class="material-icons">event</span>
+                    </div>
+                    <div class="result-box">
+                        Result: <code>{"status": "success", "event_id": "evt_123"}</code>
+                    </div>
+                    <div class="user-response">
+                        ✓ Meeting booked with Anna Friday 11/21 at 2:00 PM
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Security Boundary Section -->
+        <div class="security-boundary-note">
+            <span class="material-icons security-boundary-icon">shield</span>
+            <div class="security-boundary-text">
+                <strong>Customer's Environment:</strong> Defined functions with secure implementation - APIs, databases, and internal systems within customer's control
+            </div>
+        </div>
+                <aside class="notes"></aside>
+            </section>
+            
             <!-- Slide 008: Transition to MCP Deep Dive -->
             <section>
 <h1>Deep Dive: Model Context Protocol</h1>
@@ -1694,8 +1768,26 @@ app = <span class="code-function">Server</span>(<span class="code-string">"weath
                 if (data.notes && data.notes.length > 0) {
                     // Inject notes into corresponding slides
                     data.notes.forEach(noteData => {
-                        const slideIndex = noteData.slide - 1; // Convert to 0-based index
+                        // Handle decimal slide numbers (e.g., 7.5) by using Math.ceil
+                        // Slide 7.5 should be at index 7 (after slide 7 at index 6)
+                        // Math.ceil works for both whole numbers and decimals:
+                        // - Slide 7: Math.ceil(7) - 1 = 6 ✓
+                        // - Slide 7.5: Math.ceil(7.5) - 1 = 7 ✓
+                        const slideNumber = typeof noteData.slide === 'number' ? noteData.slide : parseFloat(noteData.slide);
+                        const slideIndex = Math.ceil(slideNumber) - 1; // Convert to 0-based index
                         const slides = document.querySelectorAll('.reveal .slides section');
+                        
+                        // Debug logging for slide 7.5
+                        if (slideNumber === 7.5 || slideNumber === '7.5') {
+                            console.log('Slide 7.5 mapping:', {
+                                slideNumber: slideNumber,
+                                type: typeof slideNumber,
+                                ceil: Math.ceil(slideNumber),
+                                slideIndex: slideIndex,
+                                totalSlides: slides.length,
+                                targetSlide: slides[slideIndex] ? slides[slideIndex].querySelector('h1')?.textContent : 'NOT FOUND'
+                            });
+                        }
                         
                         if (slides[slideIndex]) {
                             let notesElement = slides[slideIndex].querySelector('aside.notes');

@@ -148,9 +148,10 @@ function parseScriptNotes(content) {
     
     // Check for slide headers: "## SLIDE X:", "SLIDE X:", or "## SLIDE X: Title" patterns
     // Support both formats: with or without ##, with or without colon
+    // Support decimal numbers like "7.5"
     // Need to check both patterns separately because ^##? doesn't work as expected
-    const slideMatch1 = line.match(/^##\s*SLIDE\s+(\d+):?\s*(.*)$/i);
-    const slideMatch2 = !slideMatch1 ? line.match(/^SLIDE\s+(\d+):?\s*(.*)$/i) : null;
+    const slideMatch1 = line.match(/^##\s*SLIDE\s+(\d+\.?\d*):?\s*(.*)$/i);
+    const slideMatch2 = !slideMatch1 ? line.match(/^SLIDE\s+(\d+\.?\d*):?\s*(.*)$/i) : null;
     const slideMatch = slideMatch1 || slideMatch2;
     if (slideMatch) {
       // Save previous slide notes if any
@@ -162,7 +163,8 @@ function parseScriptNotes(content) {
         });
       }
       
-      currentSlide = parseInt(slideMatch[1], 10);
+      // Parse as float to support decimals like "7.5"
+      currentSlide = parseFloat(slideMatch[1]);
       currentNotes = [];
       inScriptSection = false;
       continue;
@@ -179,10 +181,11 @@ function parseScriptNotes(content) {
     // Collect notes if in script section
     if (inScriptSection && currentSlide !== null) {
       // Stop at next major section (## or ---) or next SLIDE
+      // Support decimal numbers like "7.5"
       if (line.trim() === '---' || 
           (line.startsWith('##') && !line.startsWith('###')) ||
-          line.match(/^##\s*SLIDE\s+\d+/i) ||
-          line.match(/^SLIDE\s+\d+/i)) {
+          line.match(/^##\s*SLIDE\s+\d+\.?\d*/i) ||
+          line.match(/^SLIDE\s+\d+\.?\d*/i)) {
         // Save current notes before moving to next slide
         if (currentNotes.length > 0) {
           notes.push({
