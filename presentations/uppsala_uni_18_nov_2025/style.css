@@ -1547,8 +1547,8 @@ h1:has(+ .architecture-flow) {
 .participants-vertical {
     display: flex;
     flex-direction: column;
-    gap: clamp(8px, 1vh, 12px);
-    min-width: clamp(80px, 10vw, 120px);
+    gap: clamp(6px, 0.8vh, 8px); /* FIX: Reducerad gap */
+    min-width: clamp(70px, 8vw, 100px); /* FIX: Mindre min-width */
 }
 
 /* Interactions split - två kolumner parallellt */
@@ -1564,35 +1564,37 @@ h1:has(+ .architecture-flow) {
     display: flex;
     flex-direction: row; /* FIX: Horisontell layout för vertikal lista */
     align-items: center;
-    gap: clamp(6px, 0.8vw, 10px);
+    gap: clamp(4px, 0.5vw, 6px); /* FIX: Reducerad gap */
     width: 100%;
 }
 
 /* Participant box - för vertikal layout */
 .participant-box {
     width: 100%;
-    padding: clamp(8px, 1vh, 10px) clamp(8px, 1.2vw, 12px); /* FIX: Anpassad för horisontell layout */
+    padding: clamp(6px, 0.8vh, 8px) clamp(6px, 1vw, 10px); /* FIX: Reducerad padding */
     background: #2dd4bf;
     border-radius: 6px;
     display: flex;
     flex-direction: row; /* FIX: Horisontell layout - ikon och text sida vid sida */
     align-items: center;
-    gap: clamp(6px, 0.8vw, 10px);
+    gap: clamp(5px, 0.7vw, 8px); /* FIX: Reducerad gap */
     justify-content: flex-start;
 }
 
 /* Participant icon */
 .participant-icon {
-    font-size: clamp(20px, 2.5vw, 26px) !important; /* FIX: Reducerad från 26px-36px */
+    font-size: clamp(18px, 2vw, 22px) !important; /* FIX: Reducerad från 20px-26px */
     color: #1a2332;
+    flex-shrink: 0; /* Förhindra att ikonen krymper */
 }
 
 /* Participant name */
 .participant-name {
-    font-size: clamp(0.8em, 1.4vh, 0.95em); /* FIX: Reducerad från 1em-1.1em */
+    font-size: clamp(0.7em, 1.2vh, 0.8em) !important; /* FIX: Drastiskt reducerad från 0.8em-0.95em */
     font-weight: 600;
     color: #1a2332;
-    text-align: center;
+    text-align: left; /* FIX: Vänsterställd för horisontell layout */
+    white-space: nowrap; /* Förhindra radbrytning */
 }
 
 /* Lifeline */
