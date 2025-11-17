@@ -180,7 +180,7 @@ h1 {
 /* Större subtitle för title slide (font-size: 2em, margin-bottom: 80px) */
 .subtitle-large {
     text-align: center;
-    font-size: clamp(1.2em, 3vh, 2em);
+    font-size: clamp(1em, 2.2vh, 1.6em);  /* FIX: Reduced from 3vh/2em for Reveal.js */
     color: #2dd4bf;
     margin-bottom: clamp(40px, 8vh, 80px);
     font-weight: 500;
@@ -231,8 +231,8 @@ h1 {
 
 /* Större h1 för title slide (font-size: 4.5em, margin-bottom: 40px, font-weight: 700) */
 .title-slide-h1 {
-    font-size: clamp(2rem, 6vh, 4.5rem);
-    margin-bottom: clamp(20px, 4vh, 40px);
+    font-size: clamp(1.5rem, 3vh, 2.5rem);  /* FIX: Reduced from 6vh/4.5rem for Reveal.js */
+    margin-bottom: clamp(12px, 2vh, 25px);  /* FIX: Reduced from 4vh/40px */
     font-weight: 700;
 }
 
@@ -387,10 +387,10 @@ h1 {
 
 /* === SLIDE 010 - ARCHITECTURE LAYOUT (specifik för 010) === */
 
-/* Override material-icons size for slide 010 (needs 80px, not 120px) */
-/* In 010, material-icons directly in layer-box should be 80px */
+/* Override material-icons size for slide 010 - FIX: Reduced for Reveal.js */
+/* In 010, material-icons directly in layer-box should be smaller */
 .layer-box > .material-icons {
-    font-size: clamp(35px, 5vw, 80px) !important;
+    font-size: clamp(28px, 3.5vw, 50px) !important;  /* Reduced from 5vw/80px */
 }
 
 .architecture {
