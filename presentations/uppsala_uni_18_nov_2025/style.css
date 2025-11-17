@@ -712,8 +712,8 @@ h1 {
 .content-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: clamp(25px, 4vw, 40px);
-    margin-bottom: clamp(30px, 5vh, 50px);
+    gap: clamp(20px, 3vw, 35px); /* Mindre gap */
+    margin-bottom: 25px; /* FAST margin - inte vh-baserat */
 }
 
 /* Section */
@@ -721,15 +721,15 @@ h1 {
     background: #0f172a;
     border: 3px solid #2dd4bf;
     border-radius: 12px;
-    padding: clamp(20px, 3vh, 30px);
+    padding: 15px clamp(15px, 2vw, 25px); /* FAST vertikal padding (15px), horisontell responsiv */
 }
 
 /* Section title */
 .section-title {
-    font-size: clamp(1.2em, 2.5vh, 1.8em);
+    font-size: clamp(1.1em, 2.2vh, 1.5em); /* Mindre font-size */
     color: #2dd4bf;
     font-weight: 600;
-    margin-bottom: clamp(15px, 2.5vh, 25px);
+    margin-bottom: 15px; /* FAST margin - inte vh-baserat */
     display: flex;
     align-items: center;
     gap: clamp(10px, 1.5vw, 15px);
@@ -743,16 +743,16 @@ h1 {
 /* Token example */
 .token-example {
     background: #1a2332;
-    padding: clamp(15px, 2vh, 20px);
+    padding: 12px clamp(12px, 1.5vw, 18px); /* FAST vertikal padding (12px) */
     border-radius: 8px;
-    margin-bottom: clamp(15px, 2vh, 20px);
+    margin-bottom: 12px; /* FAST margin */
 }
 
 /* Token text */
 .token-text {
-    font-size: clamp(1em, 2vh, 1.2em);
+    font-size: clamp(0.95em, 1.8vh, 1.1em); /* Mindre text */
     color: #e2e8f0;
-    margin-bottom: clamp(12px, 1.5vh, 15px);
+    margin-bottom: 10px; /* FAST margin */
 }
 
 /* Token breakdown */
@@ -772,10 +772,17 @@ h1 {
     font-size: clamp(0.85em, 1.5vh, 0.95em);
 }
 
+/* Token info text */
+.token-info {
+    color: #94a3b8;
+    font-size: clamp(0.95em, 1.6vh, 1.1em);
+    line-height: 1.6;
+}
+
 /* Context window */
 .context-window {
     background: #1a2332;
-    padding: clamp(15px, 2vh, 20px);
+    padding: 12px clamp(12px, 1.5vw, 18px); /* FAST vertikal padding */
     border-radius: 8px;
     text-align: center;
 }
@@ -783,13 +790,13 @@ h1 {
 /* Window box */
 .window-box {
     width: 100%;
-    height: clamp(90px, 12vh, 120px);
+    height: clamp(70px, 10vh, 100px); /* Mindre höjd */
     background: linear-gradient(135deg, #2dd4bf 0%, #14b8a6 100%);
     border-radius: 8px;
     display: flex;
     align-items: center;
     justify-content: center;
-    margin-bottom: clamp(12px, 1.5vh, 15px);
+    margin-bottom: 10px; /* FAST margin */
 }
 
 /* Window text */
@@ -814,15 +821,15 @@ h1 {
 .limitations-grid {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    gap: clamp(15px, 2vw, 20px);
+    gap: clamp(12px, 1.5vw, 18px); /* Mindre gap */
 }
 
 /* Limitation item */
 .limitation {
     display: flex;
     align-items: flex-start;
-    gap: clamp(12px, 1.5vw, 15px);
-    padding: clamp(15px, 2vh, 20px);
+    gap: clamp(10px, 1.2vw, 15px);
+    padding: 12px clamp(12px, 1.5vw, 18px); /* FAST vertikal padding (12px) */
     background: #1a2332;
     border-radius: 8px;
     border-left: 4px solid #ef4444;
@@ -842,17 +849,17 @@ h1 {
 
 /* Limitation title */
 .limitation-title {
-    font-size: clamp(1.1em, 2vh, 1.3em);
+    font-size: clamp(1em, 1.8vh, 1.2em); /* Mindre font-size */
     color: #ef4444;
     font-weight: 600;
-    margin-bottom: clamp(6px, 1vh, 8px);
+    margin-bottom: 4px; /* FAST margin */
 }
 
 /* Limitation text */
 .limitation-text {
-    font-size: clamp(0.9em, 1.5vh, 1em);
+    font-size: clamp(0.85em, 1.4vh, 0.95em); /* Mindre text */
     color: #e2e8f0;
-    line-height: 1.5;
+    line-height: 1.4; /* Tightare line-height */
 }
 
 /* MacBook Pro specific adjustments för slide 004 */
