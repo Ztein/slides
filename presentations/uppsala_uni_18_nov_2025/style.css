@@ -285,12 +285,12 @@ h1 {
     flex-direction: row !important;  /* Force horizontal */
     justify-content: center !important;
     align-items: center !important;
-    gap: clamp(25px, 3.5vw, 40px) !important;  /* FIX: More spacing between boxes and arrows */
-    margin: clamp(10px, 2vh, 20px) auto clamp(15px, 2.5vh, 25px) auto !important;  /* FIX: Less top margin, move diagram up */
+    gap: clamp(30px, 4.5vw, 55px) !important;  /* FIX: Even more spacing between boxes and arrows */
+    margin: clamp(10px, 2vh, 20px) auto clamp(15px, 2.5vh, 25px) auto !important;  /* Keep same top margin */
     flex-wrap: wrap;
     width: 100%;  /* FIX 1: Ensure full width for centering */
     max-width: 100%;
-    padding: clamp(10px, 1.5vh, 20px) 0 !important;  /* FIX: Add padding for breathing room */
+    padding: clamp(12px, 2vh, 25px) 0 !important;  /* FIX: More padding for breathing room */
 }
 
 /* Fallback för non-Reveal contexts */
@@ -304,20 +304,20 @@ h1 {
     flex-wrap: wrap;
 }
 
-/* Flow box - FIX: All boxes same size, centered content, more padding */
+/* Flow box - FIX: All boxes same size, centered content, larger with more padding */
 .flow-box {
-    padding: clamp(15px, 2vh, 25px) clamp(22px, 3vw, 35px) !important;  /* FIX: More padding */
+    padding: clamp(18px, 2.5vh, 30px) clamp(28px, 4vw, 45px) !important;  /* FIX: Even more padding */
     background: #0f172a;
     border: 2px solid #2dd4bf;  /* Minskad från 3px */
     border-radius: 6px;  /* FIX 3: Smaller border-radius */
-    font-size: clamp(0.9em, 1.5vh, 1.2em) !important;  /* FIX: Slightly larger text */
+    font-size: clamp(1em, 1.8vh, 1.3em) !important;  /* FIX: Larger text */
     color: #ffffff;
     font-weight: 600;
-    width: clamp(140px, 18vw, 200px) !important;  /* FIX: Slightly larger boxes */
-    min-width: clamp(140px, 18vw, 200px) !important;  /* FIX: Same min-width */
-    max-width: clamp(140px, 18vw, 200px) !important;  /* FIX: Same max-width */
-    height: clamp(70px, 9vh, 100px) !important;  /* FIX: Slightly larger height */
-    min-height: clamp(70px, 9vh, 100px) !important;  /* FIX: Same min-height */
+    width: clamp(160px, 22vw, 240px) !important;  /* FIX: Larger boxes */
+    min-width: clamp(160px, 22vw, 240px) !important;  /* FIX: Same min-width */
+    max-width: clamp(160px, 22vw, 240px) !important;  /* FIX: Same max-width */
+    height: clamp(85px, 11vh, 120px) !important;  /* FIX: Larger height */
+    min-height: clamp(85px, 11vh, 120px) !important;  /* FIX: Same min-height */
     display: flex !important;  /* FIX: Use flexbox for centering */
     align-items: center !important;  /* FIX: Center content vertically */
     justify-content: center !important;  /* FIX: Center content horizontally */
@@ -337,9 +337,9 @@ h1 {
     font-size: 0.7em;
 }
 
-/* Flow arrow - FIX: Vertically centered */
+/* Flow arrow - FIX: Vertically centered, larger */
 .flow-arrow {
-    font-size: clamp(20px, 2.5vw, 32px) !important;  /* FIX 3: Smaller arrows */
+    font-size: clamp(28px, 3.5vw, 42px) !important;  /* FIX: Larger arrows to match bigger boxes */
     color: #2dd4bf;
     display: flex !important;  /* FIX: Use flexbox for alignment */
     align-items: center !important;  /* FIX: Center vertically */
