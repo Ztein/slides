@@ -1695,6 +1695,23 @@ app = <span class="code-function">Server</span>(<span class="code-string">"weath
         // Load notes after Reveal.js is initialized
         Reveal.addEventListener('ready', () => {
             loadNotes();
+            
+            // DEBUG: Log DOM structure för att förstå varför CSS inte fungerar
+            console.log('=== REVEAL.JS DOM DEBUG ===');
+            const currentSlide = document.querySelector('.reveal .slides section.present');
+            if (currentSlide) {
+                console.log('Current slide element:', currentSlide);
+                console.log('Slide-background:', currentSlide.querySelector('.slide-background'));
+                console.log('Slide-background-content:', currentSlide.querySelector('.slide-background-content'));
+                console.log('Direct children:', Array.from(currentSlide.children).map(c => c.className || c.tagName));
+                
+                const flowDiagram = currentSlide.querySelector('.flow-diagram');
+                if (flowDiagram) {
+                    console.log('Flow-diagram found:', flowDiagram);
+                    console.log('Flow-diagram computed styles:', window.getComputedStyle(flowDiagram).display);
+                    console.log('Flow-diagram flex-direction:', window.getComputedStyle(flowDiagram).flexDirection);
+                }
+            }
         });
         
         // Also load notes when slides change (for presenter view)
