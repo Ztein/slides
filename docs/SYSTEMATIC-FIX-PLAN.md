@@ -51,11 +51,17 @@ För varje slide:
 - [x] limitations-grid, limitation: gap, padding, font-size reduktion
 - **Status:** ✅ Fixad
 
-### ⏳ Slide 005: LLMs Are Isolated
-- [ ] Identifiera alla klasser
-- [ ] Lista alla storlekar
-- [ ] Minska stora storlekar
-- **Status:** ⏳ Pågående
+### ✅ Slide 005: LLMs Are Isolated
+- [x] isolation-container: gap 25px → clamp(12px, 1.5vh, 18px)
+- [x] llm-bubble: 25vw/280px → 18vw/220px, border 4px → 3px
+- [x] llm-icon: 5vw/60px → 4vw/48px
+- [x] llm-label: 2.5vh/1.6em → 1.8vh/1.3em
+- [x] gap-indicator: 2.2vh/1.4em → 1.6vh/1.2em
+- [x] external-systems: gap 2vw/25px → 1.5vw/18px
+- [x] system-item: padding reduced, border-radius 12px → 10px
+- [x] system-icon: 3.5vw/36px → 3vw/30px
+- [x] system-label: 1.6vh/1.05em → 1.3vh/0.95em
+- **Status:** ✅ Fixad
 
 ### ⏳ Slides 006-019: 
 - [ ] Gå igenom systematiskt, en i taget

@@ -156,14 +156,30 @@ Verifiera att migreringen från individuella HTML-filer till Reveal.js index.htm
 
 ## Status
 
-- [ ] T1: index.html existerar
-- [ ] T2: Reveal.js initialiseras
-- [ ] T3: Material Icons laddas
-- [ ] T4: style.css laddas
-- [ ] T5: Slide 001 migrerad
-- [ ] T6: Navigation fungerar
-- [ ] T7: Presenter mode fungerar
-- [ ] T8: Alla 19 slides migrerade
+- [x] T1: index.html existerar ✅ (verifierat via HTTP/terminal)
+- [ ] T2: Reveal.js initialiseras ⏳ (kräver browser console)
+- [ ] T3: Material Icons laddas ⏳ (kräver browser)
+- [x] T4: style.css laddas ✅ (verifierat via HTTP - filen finns och laddas)
+- [ ] T5: Slide 001 migrerad ⏳ (kräver visuell jämförelse)
+- [ ] T6: Navigation fungerar ⏳ (kräver browser interaktion)
+- [ ] T7: Presenter mode fungerar ⏳ (kräver browser interaktion)
+- [x] T8: Alla 19 slides migrerade ✅ (verifierat - 19 sections i index.html)
+
+## Testresultat
+
+Se `TEST-RESULTS-reveal-migration.md` för detaljerade resultat.
+
+**Automatiska tester (via terminal/HTTP):**
+- ✅ T1: index.html existerar och laddas (HTTP 200)
+- ✅ T4: style.css laddas (filen finns och returnerar innehåll)
+- ✅ T8: 19 slides migrerade (19 section-element räknade)
+
+**Manuella tester (kräver browser):**
+- ⏳ T2: Reveal.js initialiseras korrekt
+- ⏳ T3: Material Icons laddas
+- ⏳ T5: Första sliden (001) ser ut som originalet
+- ⏳ T6: Navigation fungerar med piltangenter
+- ⏳ T7: Presenter mode öppnas med 'S'
 
 ## Anteckningar
 
