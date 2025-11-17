@@ -146,11 +146,12 @@ function parseScriptNotes(content) {
   for (let i = 0; i < lines.length; i++) {
     const line = lines[i];
     
-    // Check for slide headers: "## SLIDE X: Title" or similar patterns
-    const slideMatch = line.match(/^##\s*SLIDE\s+(\d+):?\s*(.*)$/i);
+    // Check for slide headers: "## SLIDE X:", "SLIDE X:", or "## SLIDE X: Title" patterns
+    // Support both formats: with or without ##, with or without colon
+    const slideMatch = line.match(/^##?\s*SLIDE\s+(\d+):?\s*(.*)$/i);
     if (slideMatch) {
       // Save previous slide notes if any
-      if (currentSlide !== null) {
+      if (currentSlide !== null && currentNotes.length > 0) {
         notes.push({
           slide: currentSlide,
           title: '',
@@ -164,26 +165,49 @@ function parseScriptNotes(content) {
       continue;
     }
     
-    // Check for script section
-    if (line.trim().toLowerCase().startsWith('**script:**') || 
-        line.trim().toLowerCase() === 'script:') {
+    // Check for script section - support multiple formats:
+    // "**Script:**", "Script:", "Script (30 sec):", "Script (1.5 min):", etc.
+    const scriptPattern = /^(\*\*)?script(\*\*)?\s*(\([^)]+\))?:?\s*$/i;
+    if (line.trim().match(scriptPattern)) {
       inScriptSection = true;
       continue;
     }
     
     // Collect notes if in script section
     if (inScriptSection && currentSlide !== null) {
-      // Stop at next major section (## or ---)
-      if (line.trim() === '---' || (line.startsWith('##') && !line.startsWith('###'))) {
+      // Stop at next major section (## or ---) or next SLIDE
+      if (line.trim() === '---' || 
+          (line.startsWith('##') && !line.startsWith('###')) ||
+          line.match(/^##?\s*SLIDE\s+\d+/i)) {
+        // Save current notes before moving to next slide
+        if (currentNotes.length > 0) {
+          notes.push({
+            slide: currentSlide,
+            title: '',
+            notes: currentNotes.join('\n').trim()
+          });
+        }
         inScriptSection = false;
         continue;
       }
-      currentNotes.push(line);
+      
+      // Skip empty lines at the start of script section
+      if (currentNotes.length === 0 && line.trim() === '') {
+        continue;
+      }
+      
+      // Skip quotes at the start of lines (remove leading quotes)
+      let noteLine = line;
+      if (noteLine.trim().startsWith('"') && noteLine.trim().endsWith('"')) {
+        noteLine = noteLine.trim().slice(1, -1); // Remove surrounding quotes
+      }
+      
+      currentNotes.push(noteLine);
     }
   }
   
   // Save last slide notes
-  if (currentSlide !== null) {
+  if (currentSlide !== null && currentNotes.length > 0) {
     notes.push({
       slide: currentSlide,
       title: '',
