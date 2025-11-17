@@ -1833,6 +1833,11 @@ app = <span class="code-function">Server</span>(<span class="code-string">"weath
         // Also load notes when slides change (for presenter view)
         Reveal.addEventListener('slidechanged', () => {
             // Notes will already be injected, but we ensure they're visible in presenter mode
+            
+            // Run diagnostic analysis on slide change too
+            setTimeout(() => {
+                diagnosticAnalysis();
+            }, 100);
         });
 
         // Check if we should open in presenter mode
