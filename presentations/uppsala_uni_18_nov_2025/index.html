@@ -42,7 +42,19 @@
             max-width: min(1400px, calc(100vw - 2 * clamp(20px, 2vw, 40px))) !important;
         }
         
-        /* Låt .slide wrapper hantera layout */
+        /* TEST: Direkt innehåll i section istället för .slide wrapper */
+        /* Låt section .slide-background-content hantera layout direkt */
+        .reveal .slides section .slide-background-content {
+            display: flex !important;
+            flex-direction: column !important;
+            width: 100% !important;
+            height: auto !important;
+            max-height: 96vh !important;
+            align-items: flex-start !important;
+            justify-content: flex-start !important;
+        }
+        
+        /* Fallback för slides som fortfarande har .slide wrapper */
         .reveal .slides section .slide,
         .reveal .slides section .slide-background-content .slide {
             display: flex !important;
@@ -106,43 +118,42 @@
             </section>
             
             <!-- Slide 002: What is a Large Language Model? -->
+            <!-- TEST: Ta bort .slide wrapper för att se om det fixar layout -->
             <section>
-                <div class="slide">
-                    <h1>What is a Large Language Model?</h1>
-                    
-                    <div class="flow-diagram">
-                        <div class="flow-box">Input Text</div>
-                        <span class="material-icons flow-arrow">arrow_forward</span>
-                        <div class="flow-box flow-box-highlight">
-                            Neural Network<br><small class="flow-box-note">(Black Box)</small>
+                <h1>What is a Large Language Model?</h1>
+                
+                <div class="flow-diagram">
+                    <div class="flow-box">Input Text</div>
+                    <span class="material-icons flow-arrow">arrow_forward</span>
+                    <div class="flow-box flow-box-highlight">
+                        Neural Network<br><small class="flow-box-note">(Black Box)</small>
+                    </div>
+                    <span class="material-icons flow-arrow">arrow_forward</span>
+                    <div class="flow-box">Output Text</div>
+                </div>
+
+                <div class="characteristics">
+                    <div class="characteristic">
+                        <span class="material-icons characteristic-icon">memory</span>
+                        <div class="characteristic-title">Billions of Parameters</div>
+                        <div class="characteristic-text">
+                            Hundreds of billions of weights learned during training
                         </div>
-                        <span class="material-icons flow-arrow">arrow_forward</span>
-                        <div class="flow-box">Output Text</div>
                     </div>
 
-                    <div class="characteristics">
-                        <div class="characteristic">
-                            <span class="material-icons characteristic-icon">memory</span>
-                            <div class="characteristic-title">Billions of Parameters</div>
-                            <div class="characteristic-text">
-                                Hundreds of billions of weights learned during training
-                            </div>
+                    <div class="characteristic">
+                        <span class="material-icons characteristic-icon">database</span>
+                        <div class="characteristic-title">Massive Training Data</div>
+                        <div class="characteristic-text">
+                            Trained on internet text, books, code repositories, and more
                         </div>
+                    </div>
 
-                        <div class="characteristic">
-                            <span class="material-icons characteristic-icon">database</span>
-                            <div class="characteristic-title">Massive Training Data</div>
-                            <div class="characteristic-text">
-                                Trained on internet text, books, code repositories, and more
-                            </div>
-                        </div>
-
-                        <div class="characteristic">
-                            <span class="material-icons characteristic-icon">trending_up</span>
-                            <div class="characteristic-title">Next Token Prediction</div>
-                            <div class="characteristic-text">
-                                Core operation: predict the next token in a sequence
-                            </div>
+                    <div class="characteristic">
+                        <span class="material-icons characteristic-icon">trending_up</span>
+                        <div class="characteristic-title">Next Token Prediction</div>
+                        <div class="characteristic-text">
+                            Core operation: predict the next token in a sequence
                         </div>
                     </div>
                 </div>
