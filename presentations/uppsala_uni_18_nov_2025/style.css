@@ -438,29 +438,29 @@ h1 {
     flex-direction: column;
     flex: 1;
     min-height: 0;
-    gap: 1vh;
-    max-height: 80vh;
+    gap: clamp(8px, 1vh, 12px);  /* FIX: Reducerad från 1vh */
+    max-height: 75vh;  /* FIX: Reducerad från 80vh */
     max-width: min(1200px, calc(100vw - 2 * clamp(20px, 2vw, 40px) - 100px));
-    margin: 0 auto;
+    margin: clamp(10px, 1.5vh, 20px) auto;  /* FIX: Begränsad margin */
 }
 
 .layer {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 0.8vh;
+    gap: clamp(4px, 0.5vh, 8px);  /* FIX: Reducerad från 0.8vh */
 }
 
 .layer-box {
     width: 100%;
-    padding: 1vh 2vw;
+    padding: clamp(8px, 1vh, 12px) clamp(10px, 1.5vw, 20px);  /* FIX: Reducerad padding från 1vh 2vw */
     background: #0f172a;
     border: 3px solid #2dd4bf;
     border-radius: 12px;
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: clamp(12px, 1.5vw, 30px);
+    gap: clamp(8px, 1vw, 20px);  /* FIX: Reducerad gap */
     position: relative;
 }
 
@@ -471,7 +471,7 @@ h1 {
 }
 
 .layer-title {
-    font-size: clamp(1.2em, 2.5vw, 1.8em);
+    font-size: clamp(1em, 2vw, 1.4em);  /* FIX: Reducerad från 1.2em-1.8em */
     color: #ffffff;
     font-weight: 600;
     text-align: center;
@@ -517,7 +517,7 @@ h1 {
     flex-direction: column;
     align-items: center;
     gap: 0;
-    margin: -1vh 0;
+    margin: clamp(-8px, -0.8vh, -4px) 0;  /* FIX: Reducerad margin från -1vh */
 }
 
 .connection-arrow .material-icons {
@@ -570,7 +570,7 @@ h1 {
     text-align: center;
     color: #64748b;
     font-size: clamp(0.75em, 1vw, 0.9em);
-    margin-top: 0.5vh;
+    margin-top: clamp(4px, 0.5vh, 8px);  /* FIX: Reducerad från 0.5vh */
 }
 
 /* Media queries för architecture-layout */
