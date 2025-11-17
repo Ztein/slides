@@ -281,15 +281,16 @@ h1 {
 
 /* Flow box */
 .flow-box {
-    padding: clamp(12px, 1.5vh, 20px) clamp(20px, 2.5vw, 35px);  /* Minskad padding */
+    padding: clamp(10px, 1.2vh, 16px) clamp(18px, 2vw, 28px);  /* FIX 3: Reduced padding */
     background: #0f172a;
     border: 2px solid #2dd4bf;  /* Minskad från 3px */
-    border-radius: 8px;  /* Minskad från 12px */
-    font-size: clamp(0.9em, 1.5vh, 1.2em);  /* Minskad från 2vh/1.5em */
+    border-radius: 6px;  /* FIX 3: Smaller border-radius */
+    font-size: clamp(0.85em, 1.3vh, 1.1em);  /* FIX 3: Smaller text */
     color: #ffffff;
     font-weight: 600;
-    min-width: clamp(120px, 15vw, 160px);  /* Minskad från 20vw/200px */
+    min-width: clamp(110px, 14vw, 150px);  /* FIX 3: Slightly smaller */
     text-align: center;
+    line-height: 1.3;  /* FIX 3: Tighter line-height */
 }
 
 /* Highlighted flow box */
