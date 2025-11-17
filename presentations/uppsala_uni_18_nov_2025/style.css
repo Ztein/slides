@@ -260,7 +260,9 @@ h1 {
 /* === SLIDE 002 - LLM FLOW DIAGRAM (specifik för 002) === */
 
 /* Flow diagram - FAS 2.3: Force horizontal layout för Reveal.js */
-.reveal .slides section .flow-diagram {
+/* Reveal.js skapar .slide-background-content wrappers */
+.reveal .slides section .flow-diagram,
+.reveal .slides section .slide-background-content .flow-diagram {
     display: flex !important;
     flex-direction: row !important;  /* Force horizontal */
     justify-content: center !important;
@@ -313,7 +315,9 @@ h1 {
 
 /* Characteristics grid */
 /* FAS 2.4: Force grid layout för Reveal.js */
-.reveal .slides section .characteristics {
+/* Reveal.js skapar .slide-background-content wrappers */
+.reveal .slides section .characteristics,
+.reveal .slides section .slide-background-content .characteristics {
     display: grid !important;
     grid-template-columns: repeat(3, 1fr) !important;
     max-width: min(1000px, 95vw);
