@@ -177,65 +177,78 @@ h1 {
 /* Navigation removed - Reveal.js handles navigation controls */
 
 /* === SLIDE 001 - TITLE SLIDE (specifik för 001) === */
+/* FIX: Following DESIGN-GUIDE.md - Centered layout, clear hierarchy */
 
-/* Större subtitle för title slide - FIX: Reduced for Reveal.js */
+/* Title slide section - use flexbox for vertical centering */
+.reveal .slides section:has(.title-slide-h1),
+.reveal .slides section:first-child {
+    justify-content: center !important;  /* Center content vertically */
+    align-items: center !important;  /* Center content horizontally */
+}
+
+/* Större h1 för title slide - FIX: Following design guide */
+.title-slide-h1 {
+    font-size: clamp(1.3rem, 2.5vh, 2rem) !important;  /* Design guide: balanced size */
+    margin-bottom: clamp(10px, 1.5vh, 18px) !important;  /* Design guide: compact spacing */
+    font-weight: 700;
+    line-height: 1.2 !important;  /* Design guide: tighter line-height */
+    text-align: center !important;  /* Design guide: always centered */
+    color: #ffffff !important;  /* Design guide: white for H1 */
+}
+
+/* Subtitle - FIX: Following design guide - centered, teal, under H1 */
 .subtitle-large {
-    text-align: center;
-    font-size: clamp(0.9em, 1.8vh, 1.3em) !important;  /* FIX: Reduced for Reveal.js */
-    color: #2dd4bf;
-    margin-bottom: clamp(20px, 3vh, 40px) !important;  /* FIX: Reduced from 8vh/80px */
+    text-align: center !important;  /* Design guide: centered */
+    font-size: clamp(0.9em, 1.8vh, 1.3em) !important;  /* Design guide: smaller than H1 */
+    color: #2dd4bf !important;  /* Design guide: teal accent */
+    margin-bottom: clamp(25px, 4vh, 50px) !important;  /* Design guide: whitespace after subtitle */
     font-weight: 500;
 }
 
-/* Presentatörsinfo - FIX: Reduced for Reveal.js */
-.presenter-info {
-    font-size: clamp(0.85em, 1.5vh, 1.2em) !important;  /* FIX: Reduced */
-    color: #94a3b8;
-    margin-bottom: clamp(20px, 4vh, 50px) !important;  /* FIX: Reduced from 10vh/100px */
-    line-height: 1.5 !important;  /* FIX: Reduced from 1.8 */
-    text-align: center;
-}
-
-/* Agenda container - FIX: Reduced for Reveal.js */
+/* Agenda container - FIX: Following design guide - centered, compact list */
 .agenda {
-    max-width: min(900px, 90vw);
-    margin: 0 auto;
-    text-align: left;
+    max-width: min(700px, 85vw) !important;  /* Design guide: reasonable max-width */
+    margin: 0 auto !important;  /* Design guide: center horizontally */
+    text-align: center !important;  /* Design guide: centered, NOT left-aligned */
 }
 
-/* Agenda titel - FIX: Reduced for Reveal.js */
+/* Agenda titel - FIX: Following design guide - centered */
 .agenda-title {
-    font-size: clamp(1em, 1.8vh, 1.4em) !important;  /* FIX: Reduced from 2.5vh/1.8em */
-    color: #2dd4bf;
-    margin-bottom: clamp(12px, 2vh, 20px) !important;  /* FIX: Reduced from 4vh/40px */
-    text-align: center;
+    font-size: clamp(1em, 1.8vh, 1.4em) !important;  /* Design guide: secondary heading */
+    color: #2dd4bf !important;  /* Design guide: teal accent */
+    margin-bottom: clamp(15px, 2vh, 25px) !important;  /* Design guide: spacing */
+    text-align: center !important;  /* Design guide: always centered */
     font-weight: 600;
 }
 
-/* Agenda item - FIX: Reduced for Reveal.js */
+/* Agenda item - FIX: Following design guide - centered, compact */
 .agenda-item {
-    display: flex;
-    align-items: flex-start;
-    gap: clamp(10px, 1.5vw, 16px) !important;  /* FIX: Reduced gap */
-    margin-bottom: clamp(10px, 1.8vh, 16px) !important;  /* FIX: Reduced from 3vh/25px */
-    font-size: clamp(0.9em, 1.5vh, 1.1em) !important;  /* FIX: Reduced from 2vh/1.3em */
-    color: #e2e8f0;
+    display: flex !important;
+    align-items: center !important;  /* Design guide: center align icons and text */
+    justify-content: center !important;  /* Design guide: center horizontally */
+    gap: clamp(10px, 1.5vw, 16px) !important;  /* Design guide: compact gap */
+    margin-bottom: clamp(10px, 1.5vh, 16px) !important;  /* Design guide: compact spacing */
+    font-size: clamp(0.9em, 1.5vh, 1.1em) !important;  /* Design guide: body text size */
+    color: #e2e8f0 !important;  /* Design guide: secondary text color */
+    text-align: center !important;  /* Design guide: centered */
 }
 
-/* Agenda ikon - FIX: Reduced for Reveal.js */
+/* Agenda ikon - FIX: Following design guide - medium size, teal */
 .agenda-icon {
-    color: #2dd4bf;
-    font-size: clamp(20px, 2.5vw, 28px) !important;  /* FIX: Reduced from 3vw/32px */
-    min-width: clamp(20px, 2.5vw, 28px) !important;  /* FIX: Reduced */
-    margin-top: 2px;
+    color: #2dd4bf !important;  /* Design guide: teal accent */
+    font-size: clamp(24px, 3vw, 32px) !important;  /* Design guide: medium icons */
+    min-width: clamp(24px, 3vw, 32px) !important;  /* Design guide: consistent width */
+    flex-shrink: 0 !important;  /* Design guide: icons don't shrink */
 }
 
-/* Större h1 för title slide - FIX: Balanced for Reveal.js */
-.title-slide-h1 {
-    font-size: clamp(1.3rem, 2.5vh, 2rem) !important;  /* FIX: Balanced - not too small, not too large */
-    margin-bottom: clamp(10px, 1.5vh, 18px) !important;  /* FIX: Reduced margin */
-    font-weight: 700;
-    line-height: 1.2 !important;  /* FIX: Tighter line-height */
+/* Presentatörsinfo - FIX: Following design guide - centered, small, bottom */
+.presenter-info {
+    font-size: clamp(0.8em, 1.3vh, 1em) !important;  /* Design guide: small, discrete */
+    color: #94a3b8 !important;  /* Design guide: muted color */
+    line-height: 1.4 !important;  /* Design guide: readable but compact */
+    text-align: center !important;  /* Design guide: centered */
+    margin-top: auto !important;  /* Design guide: push to bottom if using flex */
+    margin-bottom: clamp(15px, 2vh, 25px) !important;  /* Design guide: spacing from edge */
 }
 
 /* MacBook Pro specific adjustments för slide 001 */

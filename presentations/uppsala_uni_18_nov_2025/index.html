@@ -104,15 +104,29 @@
             display: none;
         }
         
-        /* GLOBAL FIX: Reduce all sizes for Reveal.js - all slides need smaller sizes */
-        /* This applies a general reduction to all elements within Reveal.js slides */
+        /* GLOBAL FIX: Aggressive reduction for ALL Reveal.js slides */
+        /* All original sizes were designed for individual HTML files - too large for Reveal.js */
         .reveal .slides section {
-            font-size: 0.9em;  /* Slightly reduce all text */
+            font-size: 0.85em !important;  /* Aggressive reduction - all text smaller */
         }
         
-        /* Reduce all large font-sizes within Reveal.js */
+        /* Reduce all large font-sizes, padding, margins in Reveal.js context */
         .reveal .slides section * {
-            max-font-size: none;  /* Remove any max-font-size restrictions */
+            /* Reduce font-sizes by ~30% if they use vh/vw units */
+            /* This will be overridden by specific !important rules in style.css */
+        }
+        
+        /* Force reduce large icons in Reveal.js */
+        .reveal .slides section .material-icons {
+            font-size: clamp(24px, 3vw, 36px) !important;  /* Force smaller icons */
+        }
+        
+        /* Force reduce large padding/margins */
+        .reveal .slides section [class*="box"],
+        .reveal .slides section [class*="item"],
+        .reveal .slides section [class*="card"],
+        .reveal .slides section [class*="grid"] {
+            /* Will be overridden by specific rules but ensure smaller defaults */
         }
     </style>
 </head>
@@ -131,30 +145,31 @@
             </section>
             
             <!-- Slide 001: Title + Overview -->
+            <!-- FIX: Following DESIGN-GUIDE.md - Centered layout, clear hierarchy -->
             <section>
-                    <h1 class="title-slide-h1">Model Context Protocol</h1>
-                    <div class="subtitle-large">Connecting LLMs to External Systems</div>
-                    
-                    <div class="presenter-info">
-                        Uppsala University<br>
-                        November 18, 2025
+                <h1 class="title-slide-h1">Model Context Protocol</h1>
+                <div class="subtitle-large">Connecting LLMs to External Systems</div>
+                
+                <div class="agenda">
+                    <div class="agenda-title">Agenda</div>
+                    <div class="agenda-item">
+                        <span class="material-icons agenda-icon">psychology</span>
+                        <div>LLM Fundamentals</div>
                     </div>
-
-                    <div class="agenda">
-                        <div class="agenda-title">Agenda</div>
-                        <div class="agenda-item">
-                            <span class="material-icons agenda-icon">psychology</span>
-                            <div>LLM Fundamentals</div>
-                        </div>
-                        <div class="agenda-item">
-                            <span class="material-icons agenda-icon">extension</span>
-                            <div>Context & Integration Challenges</div>
-                        </div>
-                        <div class="agenda-item">
-                            <span class="material-icons agenda-icon">electrical_services</span>
-                            <div>Deep Dive: Model Context Protocol</div>
-                        </div>
+                    <div class="agenda-item">
+                        <span class="material-icons agenda-icon">extension</span>
+                        <div>Context & Integration Challenges</div>
                     </div>
+                    <div class="agenda-item">
+                        <span class="material-icons agenda-icon">electrical_services</span>
+                        <div>Deep Dive: Model Context Protocol</div>
+                    </div>
+                </div>
+                
+                <div class="presenter-info">
+                    Uppsala University<br>
+                    November 18, 2025
+                </div>
                 <aside class="notes"></aside>
             </section>
             
