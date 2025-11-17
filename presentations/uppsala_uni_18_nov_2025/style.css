@@ -51,7 +51,7 @@ h1 {
     text-align: center;
     font-size: 1.4em;
     color: #94a3b8;
-    margin-top: 60px;
+    margin-top: clamp(15px, 2vh, 25px);  /* FIX: Reducerad margin-top */
     line-height: 1.6;
     max-width: 900px;
     margin-left: auto;
@@ -65,7 +65,7 @@ h1 {
     justify-content: center;
     align-items: center;
     gap: 60px;
-    margin: clamp(40px, 8vh, 100px) auto;  /* auto för horisontell centrering */
+    margin: clamp(15px, 2vh, 25px) auto;  /* FIX: Drastiskt reducerad vertikal margin */
     width: 100%;  /* Full bredd för centrering */
     max-width: 100%;
 }
@@ -74,12 +74,12 @@ h1 {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 25px;
+    gap: 12px;  /* FIX: Reducerad gap från 25px */
 }
 
 .box {
-    width: clamp(200px, 18vw, 280px);
-    height: clamp(200px, 18vw, 280px);
+    width: clamp(150px, 15vw, 220px);  /* FIX: Minskad storlek för att spara vertikal plats */
+    height: clamp(150px, 15vw, 220px);  /* FIX: Minskad storlek */
     background: #1a2332;
     border: 3px solid #2dd4bf;
     border-radius: 12px;
@@ -153,7 +153,7 @@ h1 {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     gap: 40px;
-    margin-top: 80px;
+    margin-top: clamp(20px, 3vh, 35px);  /* FIX: Drastiskt reducerad margin-top från 80px */
     max-width: 1200px;
     margin-left: auto;
     margin-right: auto;
