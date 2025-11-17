@@ -999,3 +999,113 @@ h1 {
     }
 }
 
+/* === SLIDE 006 - NAIVE SOLUTIONS AND THEIR PROBLEMS (specifik för 006) === */
+
+/* Solutions grid */
+.solutions-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: clamp(20px, 3vw, 30px); /* Mindre än 40px max */
+    max-width: min(1300px, 95vw);
+    margin: 0 auto;
+}
+
+/* Solution box */
+.solution {
+    display: flex;
+    flex-direction: column;
+    gap: 15px; /* FAST gap - mindre än 25px */
+    padding: 20px clamp(20px, 2.5vw, 25px); /* FAST vertikal padding (20px), horisontell responsiv */
+    background: #0f172a;
+    border: 3px solid #ef4444;
+    border-radius: 12px;
+    position: relative;
+}
+
+/* Solution header */
+.solution-header {
+    display: flex;
+    align-items: center;
+    gap: clamp(12px, 1.5vw, 18px); /* Mindre än 20px max */
+}
+
+/* Solution icon */
+.solution-icon {
+    font-size: clamp(40px, 6vw, 50px); /* Mindre än 60px max */
+    color: #ef4444;
+}
+
+/* Solution title */
+.solution-title {
+    font-size: clamp(1.2em, 2.2vh, 1.5em); /* Mindre än 1.8em max */
+    color: #ef4444;
+    font-weight: 600;
+}
+
+/* Solution description */
+.solution-description {
+    font-size: clamp(1em, 1.8vh, 1.15em); /* Mindre än 1.2em max */
+    color: #e2e8f0;
+    line-height: 1.5; /* Tightare än 1.6 */
+    margin-bottom: 12px; /* FAST margin - mindre än 20px */
+}
+
+/* Problems list */
+.problems-list {
+    background: #1a2332;
+    padding: 12px clamp(12px, 1.5vw, 18px); /* FAST vertikal padding (12px) */
+    border-radius: 8px;
+    border-left: 4px solid #ef4444;
+}
+
+/* Problem item */
+.problem-item {
+    display: flex;
+    align-items: flex-start;
+    gap: clamp(8px, 1vw, 12px); /* Mindre än 12px max */
+    margin-bottom: clamp(8px, 1vh, 10px); /* FAST margin - mindre än 12px */
+    font-size: clamp(0.9em, 1.5vh, 1em); /* Mindre än 1.05em max */
+    color: #94a3b8;
+}
+
+.problem-item:last-child {
+    margin-bottom: 0;
+}
+
+/* Problem icon */
+.problem-icon {
+    font-size: clamp(20px, 2.5vw, 24px); /* Mindre än 24px max */
+    color: #ef4444;
+    min-width: clamp(20px, 2.5vw, 24px);
+    margin-top: 2px;
+}
+
+/* MacBook Pro specific adjustments för slide 006 */
+@media (max-height: 2000px) and (min-width: 2000px) {
+    .solutions-grid {
+        gap: clamp(15px, 2vw, 25px);
+    }
+
+    .solution {
+        gap: 12px;
+        padding: 18px clamp(18px, 2vw, 22px);
+    }
+
+    .solution-header {
+        gap: clamp(10px, 1.2vw, 15px);
+    }
+
+    .solution-icon {
+        font-size: clamp(35px, 5vw, 45px);
+    }
+
+    .problems-list {
+        padding: 10px clamp(10px, 1.2vw, 16px);
+    }
+
+    .problem-item {
+        margin-bottom: clamp(6px, 0.8vh, 8px);
+        gap: clamp(6px, 0.8vw, 10px);
+    }
+}
+
