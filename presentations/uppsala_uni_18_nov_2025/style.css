@@ -1109,3 +1109,182 @@ h1 {
     }
 }
 
+/* === SLIDE 007 - BETTER APPROACHES (specifik för 007) === */
+
+/* Approaches grid */
+.approaches-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: clamp(20px, 3vw, 28px); /* Mindre än 35px max */
+    max-width: min(1300px, 95vw);
+    margin: 0 auto;
+}
+
+/* Approach box */
+.approach {
+    display: flex;
+    flex-direction: column;
+    gap: 15px; /* FAST gap - mindre än 25px */
+    padding: 20px clamp(18px, 2vw, 25px); /* FAST vertikal padding (20px), horisontell responsiv */
+    background: #0f172a;
+    border: 3px solid #2dd4bf;
+    border-radius: 12px;
+}
+
+/* Approach header */
+.approach-header {
+    display: flex;
+    align-items: center;
+    gap: clamp(10px, 1.3vw, 15px); /* Mindre än 15px max */
+}
+
+/* Approach icon */
+.approach-icon {
+    font-size: clamp(40px, 5.5vw, 45px); /* Mindre än 50px max */
+    color: #2dd4bf;
+}
+
+/* Approach title */
+.approach-title {
+    font-size: clamp(1.2em, 2.2vh, 1.4em); /* Mindre än 1.6em max */
+    color: #2dd4bf;
+    font-weight: 600;
+}
+
+/* Flow steps */
+.flow-steps {
+    display: flex;
+    flex-direction: column;
+    gap: 10px; /* FAST gap - mindre än 15px */
+    margin: 12px 0; /* FAST margin - mindre än 20px */
+}
+
+/* Flow step */
+.flow-step {
+    display: flex;
+    align-items: center;
+    gap: clamp(10px, 1.3vw, 15px); /* Mindre än 15px max */
+    padding: 10px clamp(10px, 1.3vw, 12px); /* FAST vertikal padding (10px) */
+    background: #1a2332;
+    border-radius: 8px;
+    border-left: 4px solid #2dd4bf;
+}
+
+/* Step number */
+.step-number {
+    min-width: clamp(28px, 3.5vw, 32px); /* Mindre än 35px max */
+    height: clamp(28px, 3.5vw, 32px);
+    background: #2dd4bf;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    color: #1a2332;
+    font-size: clamp(0.95em, 1.5vh, 1.05em); /* Mindre än 1.1em max */
+}
+
+/* Step text */
+.step-text {
+    font-size: clamp(0.9em, 1.6vh, 1em); /* Mindre än 1.05em max */
+    color: #e2e8f0;
+}
+
+/* Pros/cons grid */
+.pros-cons {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: clamp(10px, 1.3vw, 15px); /* Mindre än 15px max */
+    margin-top: 8px; /* FAST margin - mindre än 10px */
+}
+
+/* Pros and cons boxes */
+.pros, .cons {
+    padding: 10px clamp(10px, 1.3vw, 12px); /* FAST vertikal padding (10px) */
+    border-radius: 8px;
+}
+
+.pros {
+    background: rgba(45, 212, 191, 0.1);
+    border: 2px solid #2dd4bf;
+}
+
+.cons {
+    background: rgba(239, 68, 68, 0.1);
+    border: 2px solid #ef4444;
+}
+
+/* Pros/cons titles */
+.pros-title, .cons-title {
+    font-size: clamp(0.95em, 1.6vh, 1.05em); /* Mindre än 1.1em max */
+    font-weight: 600;
+    margin-bottom: 6px; /* FAST margin - mindre än 10px */
+}
+
+.pros-title {
+    color: #2dd4bf;
+}
+
+.cons-title {
+    color: #ef4444;
+}
+
+/* Pros/cons lists */
+.pros-list, .cons-list {
+    font-size: clamp(0.85em, 1.4vh, 0.9em); /* Mindre än 0.95em max */
+    color: #e2e8f0;
+    line-height: 1.4; /* Tightare än 1.6 */
+}
+
+/* MCP highlight */
+.mcp-highlight {
+    border-color: #c084fc;
+    box-shadow: 0 0 30px rgba(192, 132, 252, 0.3);
+}
+
+.mcp-highlight .approach-icon {
+    color: #c084fc;
+}
+
+.mcp-highlight .approach-title {
+    color: #c084fc;
+}
+
+.mcp-highlight .step-number {
+    background: #c084fc;
+}
+
+.mcp-highlight .flow-step {
+    border-left-color: #c084fc;
+}
+
+/* MacBook Pro specific adjustments för slide 007 */
+@media (max-height: 2000px) and (min-width: 2000px) {
+    .approaches-grid {
+        gap: clamp(15px, 2vw, 24px);
+    }
+
+    .approach {
+        gap: 12px;
+        padding: 18px clamp(16px, 1.8vw, 22px);
+    }
+
+    .flow-steps {
+        gap: 8px;
+        margin: 10px 0;
+    }
+
+    .flow-step {
+        padding: 8px clamp(8px, 1.2vw, 10px);
+    }
+
+    .pros-cons {
+        gap: clamp(8px, 1.2vw, 12px);
+        margin-top: 6px;
+    }
+
+    .pros, .cons {
+        padding: 8px clamp(8px, 1.2vw, 10px);
+    }
+}
+
