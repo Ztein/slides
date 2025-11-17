@@ -18,11 +18,13 @@
     <style>
         /* Reveal.js specific overrides - FIX SYSTEMISKA PROBLEM */
         
-        /* FAS 2.1: Fix section display - ändra från flex till block */
+        /* FAS 2.1 + 2.2: Fix section display och override black theme */
         .reveal .slides section {
             display: block !important;  /* Ändra från flex som skapade vertikal staplning */
             text-align: left !important;
             height: auto !important;
+            background: transparent !important;  /* Override black theme */
+            color: #e2e8f0 !important;
         }
         
         /* Låt .slide wrapper hantera layout */
@@ -30,12 +32,6 @@
             display: flex;
             flex-direction: column;
             width: 100%;
-        }
-        
-        /* FAS 2.2: Override Reveal.js black theme */
-        .reveal .slides section {
-            background: transparent !important;
-            color: #e2e8f0 !important;
         }
         .reveal .slides section h1,
         .reveal .slides section h2,
