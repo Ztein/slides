@@ -1288,3 +1288,63 @@ h1 {
     }
 }
 
+/* === SLIDE 008 - TRANSITION TO MCP DEEP DIVE (specifik för 008) === */
+
+/* Transition content */
+.transition-content {
+    max-width: min(1000px, 90vw);
+    margin: 0 auto;
+}
+
+/* Transition icon - stor ikon med animation */
+.transition-icon {
+    font-size: clamp(80px, 12vw, 100px); /* Mindre än 120px max */
+    color: #2dd4bf;
+    margin-bottom: 25px; /* FAST margin - mindre än 40px */
+    animation: pulse 2s ease-in-out infinite;
+}
+
+@keyframes pulse {
+    0%, 100% {
+        opacity: 0.6;
+        transform: scale(1);
+    }
+    50% {
+        opacity: 1;
+        transform: scale(1.1);
+    }
+}
+
+/* Transition text */
+.transition-text {
+    font-size: clamp(1.5em, 3vh, 1.8em); /* Mindre än 2em max */
+    color: #2dd4bf;
+    font-weight: 500;
+    margin-bottom: 25px; /* FAST margin - mindre än 40px */
+    line-height: 1.5; /* Tightare än 1.6 */
+}
+
+/* Next section text */
+.next-section {
+    font-size: clamp(1.1em, 2.2vh, 1.3em); /* Mindre än 1.5em max */
+    color: #94a3b8;
+    line-height: 1.6; /* Tightare än 1.8 */
+}
+
+/* H1 margin-bottom justering för slide 008 */
+.slide:has(.transition-content) h1 {
+    margin-bottom: clamp(20px, 3vh, 40px); /* Minskad för att få plats */
+}
+
+/* MacBook Pro specific adjustments för slide 008 */
+@media (max-height: 2000px) and (min-width: 2000px) {
+    .transition-icon {
+        font-size: clamp(70px, 10vw, 90px);
+        margin-bottom: 20px;
+    }
+
+    .transition-text {
+        margin-bottom: 20px;
+    }
+}
+
