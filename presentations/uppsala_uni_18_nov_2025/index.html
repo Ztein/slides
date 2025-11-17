@@ -95,6 +95,12 @@
             line-height: 1.25 !important;  /* FIX: Tighter line-height */
         }
         
+        /* FIX: Override for title slide H1 - must be DOMINANT and larger */
+        .reveal .slides section h1.title-slide-h1,
+        .reveal .slides section .slide-background-content h1.title-slide-h1 {
+            font-size: clamp(1.8rem, 3.5vh, 2.8rem) !important;  /* Design guide: DOMINANT, 1.8-2x larger than subtitle */
+        }
+        
         /* Override Reveal.js default body/section styling */
         .reveal .slides section * {
             box-sizing: border-box !important;
