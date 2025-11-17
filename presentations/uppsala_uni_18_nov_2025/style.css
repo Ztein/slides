@@ -1536,15 +1536,15 @@ h1:has(+ .architecture-flow) {
 .sequence-diagram {
     max-width: min(1200px, 95vw);
     margin: 0 auto;
-    padding: 20px 0; /* FAST vertikal padding - mindre än 40px */
+    padding: clamp(8px, 1vh, 12px) 0; /* FIX: Drastiskt reducerad padding */
 }
 
 /* Participants grid */
 .participants {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    gap: clamp(20px, 2.5vw, 25px); /* Mindre än 30px max */
-    margin-bottom: 25px; /* FAST margin - mindre än 50px */
+    gap: clamp(10px, 1.5vw, 15px); /* FIX: Reducerad från 20px-25px */
+    margin-bottom: clamp(10px, 1.2vh, 15px); /* FIX: Reducerad från 25px */
 }
 
 /* Participant item */
@@ -1552,30 +1552,30 @@ h1:has(+ .architecture-flow) {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 10px; /* FAST gap - mindre än 15px */
+    gap: clamp(4px, 0.5vh, 6px); /* FIX: Reducerad från 10px */
 }
 
 /* Participant box */
 .participant-box {
     width: 100%;
-    padding: 15px clamp(10px, 1.5vw, 15px); /* FAST vertikal padding (15px) */
+    padding: clamp(8px, 1vh, 10px) clamp(6px, 1vw, 10px); /* FIX: Reducerad från 15px */
     background: #2dd4bf;
-    border-radius: 8px;
+    border-radius: 6px; /* FIX: Mindre från 8px */
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 6px; /* FAST gap - mindre än 10px */
+    gap: clamp(3px, 0.4vh, 4px); /* FIX: Reducerad från 6px */
 }
 
 /* Participant icon */
 .participant-icon {
-    font-size: clamp(26px, 3.5vw, 36px); /* FIX: Reduced from 5vw/45px for Reveal.js */
+    font-size: clamp(20px, 2.5vw, 26px) !important; /* FIX: Reducerad från 26px-36px */
     color: #1a2332;
 }
 
 /* Participant name */
 .participant-name {
-    font-size: clamp(1em, 1.8vh, 1.1em); /* Mindre än 1.2em max */
+    font-size: clamp(0.8em, 1.4vh, 0.95em); /* FIX: Reducerad från 1em-1.1em */
     font-weight: 600;
     color: #1a2332;
     text-align: center;
@@ -1593,7 +1593,7 @@ h1:has(+ .architecture-flow) {
 .interactions {
     display: flex;
     flex-direction: column;
-    gap: 12px; /* FAST gap - mindre än 25px */
+    gap: clamp(6px, 0.8vh, 8px); /* FIX: Drastiskt reducerad från 12px */
     position: relative;
 }
 
@@ -1601,11 +1601,11 @@ h1:has(+ .architecture-flow) {
 .message {
     display: flex;
     align-items: center;
-    gap: 12px; /* FAST gap - mindre än 15px */
-    padding: 12px clamp(12px, 1.5vw, 18px); /* FAST vertikal padding (12px) */
+    gap: clamp(8px, 1vw, 10px); /* FIX: Reducerad från 12px */
+    padding: clamp(6px, 0.8vh, 8px) clamp(8px, 1.2vw, 12px); /* FIX: Reducerad från 12px */
     background: #0f172a;
-    border-left: 4px solid #2dd4bf;
-    border-radius: 8px;
+    border-left: 3px solid #2dd4bf; /* FIX: Mindre från 4px */
+    border-radius: 6px; /* FIX: Mindre från 8px */
     animation: fadeInSlide 0.6s ease-out;
 }
 
@@ -1622,15 +1622,15 @@ h1:has(+ .architecture-flow) {
 
 /* Message number */
 .message-number {
-    font-size: clamp(1.1em, 2vh, 1.2em); /* Mindre än 1.3em max */
+    font-size: clamp(0.9em, 1.6vh, 1em); /* FIX: Reducerad från 1.1em-1.2em */
     font-weight: 700;
     color: #2dd4bf;
-    min-width: 25px; /* FAST min-width - mindre än 30px */
+    min-width: clamp(18px, 2vw, 22px); /* FIX: Reducerad från 25px */
 }
 
 /* Message arrow */
 .message-arrow {
-    font-size: clamp(24px, 3.5vw, 28px); /* Mindre än 32px max */
+    font-size: clamp(18px, 2.5vw, 22px) !important; /* FIX: Reducerad från 24px-28px */
     color: #2dd4bf;
 }
 
@@ -1641,33 +1641,35 @@ h1:has(+ .architecture-flow) {
 
 /* Message from-to */
 .message-from-to {
-    font-size: clamp(0.8em, 1.2vh, 0.85em); /* Mindre än 0.9em max */
+    font-size: clamp(0.7em, 1vh, 0.75em); /* FIX: Reducerad från 0.8em-0.85em */
     color: #64748b;
-    margin-bottom: 3px; /* FAST margin - mindre än 5px */
+    margin-bottom: clamp(2px, 0.2vh, 3px); /* FIX: Reducerad från 3px */
 }
 
 /* Message text */
 .message-text {
-    font-size: clamp(0.9em, 1.5vh, 1em); /* Mindre än 1.1em max */
+    font-size: clamp(0.75em, 1.2vh, 0.85em); /* FIX: Reducerad från 0.9em-1em */
     color: #e2e8f0;
     font-family: 'Courier New', monospace;
+    line-height: 1.3; /* FIX: Tätare line-height */
 }
 
 /* Note box */
 .note {
-    padding: 10px clamp(12px, 1.5vw, 18px); /* FAST vertikal padding (10px) */
+    padding: clamp(6px, 0.8vh, 8px) clamp(8px, 1.2vw, 12px); /* FIX: Reducerad från 10px */
     background: #1e293b;
     border: 2px dashed #475569;
-    border-radius: 8px;
-    margin: 6px 0; /* FAST margin - mindre än 10px */
+    border-radius: 6px; /* FIX: Mindre från 8px */
+    margin: clamp(4px, 0.5vh, 5px) 0; /* FIX: Reducerad från 6px */
 }
 
 /* Note text */
 .note-text {
-    font-size: clamp(0.85em, 1.3vh, 0.95em); /* Mindre än 1em max */
+    font-size: clamp(0.75em, 1.1vh, 0.85em); /* FIX: Reducerad från 0.85em-0.95em */
     color: #94a3b8;
     font-style: italic;
     text-align: center;
+    line-height: 1.3; /* FIX: Tätare line-height */
 }
 
 /* MacBook Pro specific adjustments för slide 012 */
