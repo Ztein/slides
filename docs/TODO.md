@@ -49,18 +49,104 @@ VI vill inte att varje html-fil ska behöve ha all css etc utan vi ska göra en 
 
 **FAS 2 KLAR - Committad och mergad till main**
 
-<VI ÄR HÄR I ARBETET (FLYTTA EFTER DENNA MARKERING I TAKT MED EN GREJ BLIR KLAR)>
+**FAS 2.7: Fixa responsiv design för alla 16:9 skärmar (EN ÄNDRING I TAGET, VALIDERA EFTER VARJE STEG)**
 
-**FAS 3: Identifiera återanvändbara klasser (ANALYS, INGA FÄNDRINGAR)**
-3.1. Gå igenom CSS:en i `style.css`. Identifiera regler som är identiska eller nästan identiska mellan 009 och 010.
-3.2. Identifiera regler som är unika för 009 eller 010. Fundera: kan dessa göras mer generella? Eller behöver de vara specifika?
-3.3. Skriv ner en plan för vilka klasser som ska vara gemensamma och vilka som kan behöva vara specifika.
+**Problem:**
+- Slide 009 och 010 renderas inte bra på MacBook Pro inbyggd skärm (blir för stort, behöver scrolla)
+- Fungerar bra på 27-tums skärm (2560x1440)
+- MacBook Pro har 3024x1964 (16:10, inte 16:9)
+- "Hoppandet" beror på att fönstret är precis på gränsen mellan liggande/stående vy
+
+**Mål:**
+- Slides ska visas snyggt på alla 16:9 skärmar (och 16:10)
+- Inga scrollningar ska behövas
+- Innehållet ska skalas proportionellt med viewport
+
+**Plan (EN ÄNDRING I TAGET, VALIDERA EFTER VARJE STEG):**
+
+2.7.1. **ANALYS - Identifiera problem (INGA FÄNDRINGAR)**
+   - Mät viewport-storlekar: MacBook Pro (3024x1964) och 27-tums (2560x1440)
+   - Identifiera vilka CSS-värden som orsakar problem (padding, margins, font-sizes, max-widths)
+   - Dokumentera exakt vilka element som blir för stora på MacBook Pro
+   - **Validering:** Screenshot av 009 och 010 på båda skärmstorlekarna, dokumentera problem
+
+2.7.2. **TEST - Skapa testfall för validering (INGA FÄNDRINGAR)**
+   - Skapa testfall: "Slide 009 ska passa på viewport 3024x1964 utan scroll"
+   - Skapa testfall: "Slide 010 ska passa på viewport 3024x1964 utan scroll"
+   - Skapa testfall: "Slide 009 ska fortfarande se bra ut på viewport 2560x1440"
+   - Skapa testfall: "Slide 010 ska fortfarande se bra ut på viewport 2560x1440"
+   - **Validering:** Testfallen är dokumenterade och kan köras manuellt
+
+2.7.3. **FIX - Body padding (EN ÄNDRING)**
+   - Ändra `body { padding: 40px; }` till responsiv padding (t.ex. `padding: 2vh 2vw;` eller media query)
+   - **Validering:** Testa 009 och 010 på båda skärmstorlekarna, inga scrollningar, screenshot
+
+2.7.4. **FIX - Slide max-width (EN ÄNDRING)**
+   - Ändra `.slide { max-width: 1400px; }` till responsiv max-width (t.ex. `max-width: min(1400px, 95vw);`)
+   - **Validering:** Testa 009 och 010 på båda skärmstorlekarna, inga scrollningar, screenshot
+
+2.7.5. **FIX - H1 font-size och margin (EN ÄNDRING)**
+   - Ändra `h1 { font-size: 3.5em; margin-bottom: 80px; }` till responsiva värden (t.ex. `font-size: clamp(2em, 5vw, 3.5em); margin-bottom: clamp(40px, 8vh, 80px);`)
+   - **Validering:** Testa 009 och 010 på båda skärmstorlekarna, h1 ser bra ut, screenshot
+
+2.7.6. **FIX - Diagram margins (EN ÄNDRING)**
+   - Ändra `.diagram { margin: 100px 0; }` till responsiv margin (t.ex. `margin: clamp(40px, 8vh, 100px) 0;`)
+   - **Validering:** Testa 009 på båda skärmstorlekarna, diagram ser bra ut, screenshot
+
+2.7.7. **FIX - Material-icons font-size (EN ÄNDRING)**
+   - Ändra `.material-icons { font-size: 120px; }` till responsiv font-size (t.ex. `font-size: clamp(60px, 8vw, 120px);`)
+   - **Validering:** Testa 009 på båda skärmstorlekarna, ikoner ser bra ut, screenshot
+
+2.7.8. **FIX - Architecture max-width och gaps (EN ÄNDRING)**
+   - Ändra `.architecture { max-width: 1200px; gap: 50px; }` till responsiva värden
+   - **Validering:** Testa 010 på båda skärmstorlekarna, architecture ser bra ut, screenshot
+
+2.7.9. **FIX - Layer-box padding (EN ÄNDRING)**
+   - Ändra `.layer-box { padding: 40px; }` till responsiv padding
+   - **Validering:** Testa 010 på båda skärmstorlekarna, layer-box ser bra ut, screenshot
+
+2.7.10. **FIX - Media queries för MacBook Pro (EN ÄNDRING)**
+   - Lägg till media query för MacBook Pro's viewport (t.ex. `@media (max-height: 2000px) and (min-width: 2000px)`)
+   - **Validering:** Testa 009 och 010 på MacBook Pro, inga scrollningar, screenshot
+
+2.7.11. **VALIDERINGSSTEG - Testa alla ändringar tillsammans**
+   - Testa 009 och 010 på båda skärmstorlekarna
+   - Testa resize-funktionalitet (säkra att det inte tar flera sekunder)
+   - Testa att inga "hopp" sker mellan visningslägen
+   - **Validering:** Alla testfall är gröna, screenshots visar att allt ser bra ut
+
+2.7.12. **CLEANUP - Ta bort temporära testfiler om några skapades**
+   - **Validering:** Inga temporära filer finns kvar
+
+**FAS 2.7 KLAR - Committad och mergad till main**
+
+**FAS 3 KLAR - Analys genomförd**
+
+**FAS 3: Identifiera återanvändbara klasser** ✅ KLAR
+- ✅ 12 identiska CSS-regler identifierade (grundläggande layout, navigation)
+- ✅ 18 unika regler för 009 (diagram-layout)
+- ✅ 19 unika regler för 010 (architecture-layout)
+- ✅ Refactoring-strategi dokumenterad: organisera CSS med kommentarer, behåll slide-specifika klasser, vänta med abstraktion
+
+**SLUTSATS FAS 3:**
+- **Gemensamma klasser:** `*`, `body`, `.slide`, `h1`, navigation (`nav-controls`, `nav-button`, etc.)
+- **009-specifika:** `.diagram`, `.component`, `.box`, `.arrow-container`, `.features`, etc.
+- **010-specifika:** `.architecture`, `.layer`, `.layer-box`, `.servers-row`, `.connection-arrow`, etc.
+- **Nästa steg:** Organisera CSS med tydliga kommentarer (`/* === GEMENSAMMA STILAR === */`, `/* === SLIDE 009 === */`, `/* === SLIDE 010 === */`)
+
+---
 
 **FAS 4: Refaktorera CSS (EN KLASS I TAGET)**
-4.1. Börja med de mest grundläggande reglerna (t.ex. `*`, `body`, `.slide`). Se till att de fungerar för både 009 och 010.
-4.2. Fortsätt med rubrikstilar (`h1`, etc). Testa efter varje ändring att både 009 och 010 fortfarande ser bra ut.
-4.3. Fortsätt med navigation-komponenter (`.nav-controls`, `.nav-button`, etc). Testa.
-4.4. Fortsätt med slide-specifika komponenter (`.diagram`, `.architecture`, etc). Testa efter varje ändring.
+4.1. Organisera CSS med tydliga kommentarer för att markera gemensamma vs specifika klasser. ✅ KLAR
+   - CSS organiserad i sektioner: `/* === GEMENSAMMA STILAR === */`, `/* === POTENTIELLT GEMENSAMMA KLASSER === */`, `/* === SLIDE 009 === */`, `/* === SLIDE 010 === */`, `/* === NAVIGATION === */`
+   - Validerad: Slides 009 och 010 ser bra ut efter organisering
+
+<VI ÄR HÄR I ARBETET (FLYTTA EFTER DENNA MARKERING I TAKT MED EN GREJ BLIR KLAR)>
+**NÄSTA ÅTGÄRD: FAS 4 - Fortsätt refaktorera CSS**
+
+4.2. (Framtida steg) - Fortsätt med refaktorering om det behövs.
+4.3. (Framtida steg) - Fortsätt med navigation-komponenter om det behövs.
+4.4. (Framtida steg) - Fortsätt med slide-specifika komponenter om det behövs.
 
 **FAS 5: Migrera övriga slides (EN SLIDE I TAGET)**
 5.1. Ta slide 001. Lägg till länk till `style.css`. Lägg till eventuella nya CSS-regler som behövs i `style.css`. Testa att 001 fungerar.
@@ -90,7 +176,10 @@ VI vill inte att varje html-fil ska behöve ha all css etc utan vi ska göra en 
 9.3. Lägg till sektion om script.md. Testa.
 9.4. Lägg till sektion om presenter mode. Testa.
 
+y. Navigationspilarna på slajdsen ska bara visas vid hover.
+
 x. Vidareutveckla presentatörsvyn till en riktigt proffsig lösning (timer, nästa slide, tydligare manuslayout, snabbnavigation m.m.)
+
 
 Future features:
 kunna exportera till PDF. med och utan manus.

@@ -1,9 +1,13 @@
+/* === GEMENSAMMA STILAR (används av alla slides) === */
+
+/* CSS Reset */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
+/* Grundläggande layout */
 body {
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif;
     background: #1a2332;
@@ -23,6 +27,7 @@ body {
     max-height: 96vh;
 }
 
+/* Rubrikstilar */
 h1 {
     text-align: center;
     color: #ffffff;
@@ -31,6 +36,28 @@ h1 {
     font-weight: 600;
     letter-spacing: -0.02em;
 }
+
+/* === POTENTIELLT GEMENSAMMA KLASSER === */
+
+/* Grundläggande ikonstyling (används av båda slides, olika storlekar via child selectors) */
+.material-icons {
+    font-size: clamp(60px, 8vw, 120px);
+    color: #2dd4bf;
+}
+
+/* Centrerad underrubrik (används av 009, kan användas av flera slides) */
+.subtitle {
+    text-align: center;
+    font-size: 1.4em;
+    color: #94a3b8;
+    margin-top: 60px;
+    line-height: 1.6;
+    max-width: 900px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* === SLIDE 009 - DIAGRAM LAYOUT (specifik för 009) === */
 
 .diagram {
     display: flex;
@@ -62,11 +89,6 @@ h1 {
 .box-highlight {
     background: #2dd4bf;
     border-color: #2dd4bf;
-}
-
-.material-icons {
-    font-size: clamp(60px, 8vw, 120px);
-    color: #2dd4bf;
 }
 
 .icon-highlight {
@@ -119,17 +141,6 @@ h1 {
     }
 }
 
-.subtitle {
-    text-align: center;
-    font-size: 1.4em;
-    color: #94a3b8;
-    margin-top: 60px;
-    line-height: 1.6;
-    max-width: 900px;
-    margin-left: auto;
-    margin-right: auto;
-}
-
 .features {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
@@ -159,7 +170,7 @@ h1 {
     text-align: center;
 }
 
-/* Responsive design */
+/* Media queries för diagram-layout */
 @media (max-width: 1200px) {
     .diagram {
         flex-direction: column;
@@ -195,7 +206,8 @@ h1 {
     }
 }
 
-/* Navigation Controls */
+/* === NAVIGATION (gemensam för alla slides) === */
+
 .nav-controls {
     position: fixed;
     bottom: 30px;
@@ -279,7 +291,7 @@ h1 {
     }
 }
 
-/* Slide 010 - MCP Architecture specific styles */
+/* === SLIDE 010 - ARCHITECTURE LAYOUT (specifik för 010) === */
 
 /* Override material-icons size for slide 010 (needs 80px, not 120px) */
 /* In 010, material-icons directly in layer-box should be 80px */
@@ -427,6 +439,7 @@ h1 {
     margin-top: 0.5vh;
 }
 
+/* Media queries för architecture-layout */
 @media (max-width: 1200px) {
     .layer-box {
         padding: 30px;
