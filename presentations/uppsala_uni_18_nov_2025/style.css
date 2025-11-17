@@ -2562,3 +2562,199 @@ h1 {
     }
 }
 
+/* === SLIDE 018 - FUTURE DIRECTIONS & RESEARCH (specifik för 018) === */
+
+/* Content container */
+.content-container {
+    max-width: min(1300px, 95vw);
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 25px; /* FAST gap - mindre än 50px */
+}
+
+/* Mind map grid - 5 kolumner */
+.mind-map {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: clamp(20px, 2.5vw, 25px); /* Mindre än 30px max */
+    margin-bottom: 15px; /* FAST margin - mindre än 20px */
+}
+
+/* Direction card */
+.direction {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px; /* FAST gap - mindre än 20px */
+    padding: clamp(18px, 2.5vh, 22px) clamp(15px, 2vw, 18px); /* FAST vertikal padding (18px min, 22px max) */
+    background: #0f172a;
+    border: 3px solid #2dd4bf;
+    border-radius: 12px;
+    transition: all 0.3s ease;
+}
+
+.direction:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 40px rgba(45, 212, 191, 0.4);
+    border-color: #14b8a6;
+}
+
+/* Direction icon container - cirkel */
+.direction-icon-container {
+    width: clamp(75px, 11vw, 85px); /* Mindre än 100px max */
+    height: clamp(75px, 11vw, 85px); /* Samma som width */
+    background: linear-gradient(135deg, #2dd4bf 0%, #14b8a6 100%);
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Material icons in direction-icon-container */
+.direction-icon-container .material-icons {
+    font-size: clamp(45px, 6.5vw, 52px); /* Mindre än 60px max */
+    color: #1a2332;
+}
+
+/* Direction title */
+.direction-title {
+    font-size: clamp(1em, 1.8vh, 1.15em); /* Mindre än 1.3em max */
+    color: #ffffff;
+    font-weight: 600;
+    text-align: center;
+    line-height: 1.2; /* Tightare än 1.3 */
+}
+
+/* Direction description */
+.direction-desc {
+    font-size: clamp(0.8em, 1.3vh, 0.9em); /* Mindre än 0.95em max */
+    color: #94a3b8;
+    text-align: center;
+    line-height: 1.4; /* Tightare än 1.5 */
+}
+
+/* Research section */
+.research-section {
+    background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+    border: 3px solid #c084fc;
+    border-radius: 12px;
+    padding: clamp(25px, 3.5vh, 35px) clamp(25px, 3.5vw, 38px); /* FAST vertikal padding (25px min, 35px max) */
+}
+
+/* Research header */
+.research-header {
+    display: flex;
+    align-items: center;
+    gap: 15px; /* FAST gap - mindre än 20px */
+    margin-bottom: 20px; /* FAST margin - mindre än 30px */
+}
+
+/* Research icon */
+.research-icon {
+    font-size: clamp(38px, 5.5vw, 45px); /* Mindre än 50px max */
+    color: #c084fc;
+}
+
+/* Research title */
+.research-title {
+    font-size: clamp(1.5em, 2.8vh, 1.75em); /* Mindre än 2em max */
+    color: #c084fc;
+    font-weight: 600;
+}
+
+/* Research questions */
+.research-questions {
+    display: flex;
+    flex-direction: column;
+    gap: 14px; /* FAST gap - mindre än 20px */
+}
+
+/* Question item */
+.question {
+    display: flex;
+    align-items: flex-start;
+    gap: 14px; /* FAST gap - mindre än 20px */
+    padding: clamp(14px, 2vh, 18px) clamp(14px, 2vw, 18px); /* FAST vertikal padding (14px min, 18px max) */
+    background: #1a2332;
+    border-radius: 8px;
+    border-left: 4px solid #c084fc;
+}
+
+/* Question icon */
+.question-icon {
+    font-size: clamp(26px, 3.5vw, 30px); /* Mindre än 32px max */
+    color: #c084fc;
+    min-width: clamp(26px, 3.5vw, 30px); /* Samma som font-size */
+    margin-top: 2px;
+}
+
+/* Question text */
+.question-text {
+    font-size: clamp(0.95em, 1.6vh, 1.05em); /* Mindre än 1.15em max */
+    color: #e2e8f0;
+    line-height: 1.5; /* Tightare än 1.6 */
+}
+
+/* H1 margin-bottom justering för slide 018 */
+.slide:has(.content-container) h1 {
+    margin-bottom: clamp(20px, 3vh, 35px); /* FAST margin - mindre än 60px */
+}
+
+/* MacBook Pro specific adjustments för slide 018 */
+@media (max-height: 2000px) and (min-width: 2000px) {
+    .slide:has(.content-container) h1 {
+        margin-bottom: clamp(18px, 2.5vh, 32px);
+    }
+
+    .content-container {
+        gap: 22px;
+    }
+
+    .mind-map {
+        gap: clamp(18px, 2.2vw, 23px);
+        margin-bottom: 13px;
+    }
+
+    .direction {
+        padding: clamp(16px, 2.2vh, 20px) clamp(13px, 1.8vw, 16px);
+        gap: 10px;
+    }
+
+    .direction-icon-container {
+        width: clamp(70px, 10vw, 80px);
+        height: clamp(70px, 10vw, 80px);
+    }
+
+    .direction-icon-container .material-icons {
+        font-size: clamp(42px, 6vw, 48px);
+    }
+
+    .research-section {
+        padding: clamp(22px, 3vh, 32px) clamp(22px, 3vw, 36px);
+    }
+
+    .research-header {
+        gap: 13px;
+        margin-bottom: 18px;
+    }
+
+    .research-icon {
+        font-size: clamp(35px, 5vw, 42px);
+    }
+
+    .research-questions {
+        gap: 12px;
+    }
+
+    .question {
+        padding: clamp(12px, 1.8vh, 16px) clamp(12px, 1.8vw, 16px);
+        gap: 12px;
+    }
+
+    .question-icon {
+        font-size: clamp(24px, 3vw, 28px);
+        min-width: clamp(24px, 3vw, 28px);
+    }
+}
+
