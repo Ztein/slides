@@ -92,12 +92,26 @@ Reveal.getConfig()            // Kolla keyboard settings
 Reveal.getKeyboardShortcuts() // Verifiera att 'S' är registrerad
 ```
 
-## Nästa steg: FAS 2 - Fixa systemiska CSS-problem
+## FAS 2 - Systemiska CSS-fixar (IMPLEMENTERADE)
 
-Baserat på analysen ovan, planerade fixar:
-1. Ändra `.reveal .slides section` från flex till block
-2. Override Reveal.js black theme colors/backgrounds
-3. Force horizontal layout för flow-diagram med !important
-4. Force grid layout för characteristics med !important
-5. Lägg till specifika selectors för alla layout-komponenter
+✅ **2.1: Section display** - Ändrat från flex till block
+✅ **2.2: Black theme override** - Färger och bakgrund
+✅ **2.3: Flow-diagram** - Forced horizontal med !important
+✅ **2.4: Characteristics** - Forced 3-column grid med !important
+
+### Test-instruktioner:
+1. Starta server: `npm start`
+2. Öppna: `http://localhost:8085/presentations/uppsala_uni_18_nov_2025`
+3. Gå till slide 002 (höger pil)
+4. Jämför med original: `http://localhost:8085/presentations/uppsala_uni_18_nov_2025/slides/002.html`
+
+### Förväntat resultat efter fixar:
+- Flow-diagram är HORISONTELL (Input -> Neural Network -> Output i rad)
+- Characteristics är 3-KOLUMNS GRID (inte vertikal stack)
+- Färger matchar originalet (vit text på mörk bakgrund)
+- Storlekar ser närmare originalet ut
+
+## Nästa steg: FAS 3 - Testa presenter mode
+
+Kolla keyboard setup för att fixa "S" tangenten.
 
