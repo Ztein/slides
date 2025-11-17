@@ -26,15 +26,16 @@ body {
     flex-direction: column;
 }
 
-/* Rubrikstilar - FIX: Balanserad storlek för Reveal.js */
+/* Rubrikstilar - FIX: Consistent large H1 for all slides */
+/* NOTE: Reveal.js specific overrides in index.html take precedence */
 h1 {
-    text-align: center;
+    text-align: left;  /* FIX: Left-aligned for consistent style */
     color: #ffffff;
-    font-size: clamp(1.2rem, 2.2vh, 1.7rem) !important;  /* FIX: Balanserad - inte för liten, inte för stor */
-    margin-bottom: clamp(8px, 1vh, 12px) !important;  /* FIX: Liten margin */
-    font-weight: 600;
+    font-size: clamp(2.5rem, 5vh, 4rem) !important;  /* FIX: Same size as title slide - consistent */
+    margin-bottom: clamp(15px, 2vh, 25px) !important;  /* FIX: More spacing */
+    font-weight: 700;
     letter-spacing: -0.02em;
-    line-height: 1.25;  /* FIX: Tighter line-height */
+    line-height: 1.2;  /* FIX: Tighter line-height */
 }
 
 /* === POTENTIELLT GEMENSAMMA KLASSER === */
@@ -268,14 +269,8 @@ h1 {
 
 /* === SLIDE 002 - LLM FLOW DIAGRAM (specifik för 002) === */
 
-/* H1 for slide 002 - FIX: Same size as title slide, left-aligned */
-.reveal .slides section:has(.flow-diagram) h1,
-.reveal .slides section .flow-diagram ~ h1,
-.reveal .slides section h1:has(+ .flow-diagram) {
-    font-size: clamp(2.5rem, 5vh, 4rem) !important;  /* Same size as title slide */
-    text-align: left !important;  /* Left-aligned */
-    margin-bottom: clamp(15px, 2vh, 25px) !important;  /* More spacing */
-}
+/* NOTE: H1 styling is now global in index.html - no slide-specific overrides needed */
+/* All slides now have consistent H1: clamp(2.5rem, 5vh, 4rem), left-aligned */
 
 /* Flow diagram - FAS 2.3: Force horizontal layout för Reveal.js */
 /* Reveal.js skapar .slide-background-content wrappers */

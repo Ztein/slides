@@ -35,17 +35,19 @@ Denna guide definierar hur alla slides ska designas och struktureras i presentat
 ### 2.1 H1 (Huvudrubrik)
 ```css
 h1 {
-    font-size: clamp(1.2rem, 2.2vh, 1.7rem) !important;
-    margin-bottom: clamp(8px, 1vh, 12px) !important;
-    font-weight: 600;
-    text-align: center;
-    line-height: 1.25;
+    font-size: clamp(2.5rem, 5vh, 4rem) !important;
+    margin-bottom: clamp(15px, 2vh, 25px) !important;
+    font-weight: 700;
+    text-align: left;
+    line-height: 1.2;
     color: #ffffff;
 }
 ```
-- **Alltid centrerad**
-- Stor nog att vara huvudfokus men inte överväldigande
+- **Alltid vänsterställd** (konsistent stil på alla slides)
+- **Samma storlek som title slide** - clamp(2.5rem, 5vh, 4rem)
+- Stor nog att vara huvudfokus och dominant
 - Tydlig avgränsning från body-text
+- **Konsekvent på alla slides** - undvik slide-specifika undantag
 
 ### 2.2 Title Slide H1
 ```css
