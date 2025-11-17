@@ -1634,3 +1634,210 @@ h1 {
     }
 }
 
+/* === SLIDE 013 - USE CASE FILE SYSTEM SERVER (specifik för 013) === */
+
+/* Split container - två kolumner */
+.split-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: clamp(25px, 3.5vw, 30px); /* Mindre än 40px max */
+    max-width: min(1300px, 95vw);
+    margin: 0 auto;
+}
+
+/* Panel - container för varje kolumn */
+.panel {
+    background: #0f172a;
+    border: 3px solid #2dd4bf;
+    border-radius: 12px;
+    padding: clamp(18px, 2.5vh, 25px) clamp(18px, 2.5vw, 25px); /* FAST vertikal padding (18px min, 25px max) */
+    display: flex;
+    flex-direction: column;
+    gap: 18px; /* FAST gap - mindre än 25px */
+}
+
+/* Panel title */
+.panel-title {
+    font-size: clamp(1.4em, 2.5vh, 1.6em); /* Mindre än 1.8em max */
+    color: #2dd4bf;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 12px; /* FAST gap - mindre än 15px */
+}
+
+.panel-title .material-icons {
+    font-size: clamp(32px, 4.5vw, 38px); /* Mindre än 40px max */
+}
+
+/* Code block */
+.code-block {
+    background: #1a2332;
+    border-radius: 8px;
+    padding: clamp(15px, 2vh, 20px) clamp(18px, 2.5vw, 22px); /* FAST vertikal padding (15px min, 20px max) */
+    font-family: 'Courier New', monospace;
+    font-size: clamp(0.8em, 1.4vh, 0.9em); /* Mindre än 0.95em max */
+    line-height: 1.6; /* Tightare än 1.8 */
+    color: #e2e8f0;
+    overflow-x: auto;
+}
+
+/* Code syntax highlighting */
+.code-comment {
+    color: #64748b;
+}
+
+.code-keyword {
+    color: #2dd4bf;
+}
+
+.code-string {
+    color: #fbbf24;
+}
+
+.code-function {
+    color: #60a5fa;
+}
+
+/* Workflow container */
+.workflow {
+    display: flex;
+    flex-direction: column;
+    gap: 14px; /* FAST gap - mindre än 20px */
+}
+
+/* Step item */
+.step {
+    display: flex;
+    align-items: flex-start;
+    gap: 14px; /* FAST gap - mindre än 20px */
+    padding: clamp(14px, 2vh, 18px) clamp(14px, 2vw, 18px); /* FAST vertikal padding (14px min, 18px max) */
+    background: #1a2332;
+    border-radius: 8px;
+    border-left: 4px solid #2dd4bf;
+}
+
+/* Step number badge */
+.step-number {
+    min-width: clamp(32px, 4.5vw, 36px); /* Mindre än 40px max */
+    height: clamp(32px, 4.5vw, 36px); /* Samma som width */
+    background: #2dd4bf;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    color: #1a2332;
+    font-size: clamp(1em, 1.8vh, 1.1em); /* Mindre än 1.2em max */
+}
+
+/* Step content */
+.step-content {
+    flex: 1;
+}
+
+/* Step title */
+.step-title {
+    font-size: clamp(1em, 1.8vh, 1.1em); /* Mindre än 1.2em max */
+    color: #ffffff;
+    font-weight: 600;
+    margin-bottom: 5px; /* FAST margin - mindre än 8px */
+}
+
+/* Step description */
+.step-description {
+    font-size: clamp(0.85em, 1.4vh, 0.95em); /* Mindre än 1em max */
+    color: #94a3b8;
+    line-height: 1.4; /* Tightare än 1.5 */
+}
+
+/* Step icon */
+.step-icon {
+    font-size: clamp(26px, 3.5vw, 30px); /* Mindre än 32px max */
+    color: #2dd4bf;
+}
+
+/* Tools section */
+.tools-section {
+    background: #1e293b;
+    padding: clamp(14px, 2vh, 18px) clamp(14px, 2vw, 18px); /* FAST vertikal padding (14px min, 18px max) */
+    border-radius: 8px;
+    margin-top: 8px; /* FAST margin - mindre än 10px */
+}
+
+/* Tools title */
+.tools-title {
+    font-size: clamp(0.95em, 1.6vh, 1.05em); /* Mindre än 1.1em max */
+    color: #2dd4bf;
+    font-weight: 600;
+    margin-bottom: 10px; /* FAST margin - mindre än 12px */
+}
+
+/* Tool list */
+.tool-list {
+    display: flex;
+    flex-direction: column;
+    gap: 6px; /* FAST gap - mindre än 8px */
+}
+
+/* Tool item */
+.tool-item {
+    font-size: clamp(0.8em, 1.3vh, 0.9em); /* Mindre än 1em max */
+    color: #e2e8f0;
+    font-family: 'Courier New', monospace;
+    padding: 6px clamp(8px, 1.2vw, 10px); /* FAST vertikal padding (6px) */
+    background: #0f172a;
+    border-radius: 4px;
+}
+
+/* MacBook Pro specific adjustments för slide 013 */
+@media (max-height: 2000px) and (min-width: 2000px) {
+    .split-container {
+        gap: clamp(22px, 3vw, 28px);
+    }
+
+    .panel {
+        padding: clamp(16px, 2.2vh, 22px) clamp(16px, 2.2vw, 22px);
+        gap: 16px;
+    }
+
+    .panel-title {
+        gap: 10px;
+    }
+
+    .panel-title .material-icons {
+        font-size: clamp(30px, 4vw, 36px);
+    }
+
+    .code-block {
+        padding: clamp(13px, 1.8vh, 18px) clamp(16px, 2.2vw, 20px);
+    }
+
+    .workflow {
+        gap: 12px;
+    }
+
+    .step {
+        padding: clamp(12px, 1.8vh, 16px) clamp(12px, 1.8vw, 16px);
+        gap: 12px;
+    }
+
+    .step-number {
+        min-width: clamp(30px, 4vw, 34px);
+        height: clamp(30px, 4vw, 34px);
+    }
+
+    .tools-section {
+        padding: clamp(12px, 1.8vh, 16px) clamp(12px, 1.8vw, 16px);
+        margin-top: 6px;
+    }
+
+    .tool-list {
+        gap: 5px;
+    }
+
+    .tool-item {
+        padding: 5px clamp(7px, 1vw, 9px);
+    }
+}
+
