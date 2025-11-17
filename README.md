@@ -9,6 +9,7 @@ En enkel presentation-app som använder Reveal.js för att skapa och köra prese
 - ✅ Presenter mode med två vyer: slide för publik + manus för presentatör
 - ✅ Stöd för externa bilder i `images/` mapp
 - ✅ Automatisk inläsning av speaker notes från `script.md`
+- ✅ Design guide för konsekvent slide-design (se `docs/DESIGN-GUIDE.md`)
 
 ## Installation
 
