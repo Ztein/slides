@@ -180,10 +180,17 @@ VI vill inte att varje html-fil ska behöve ha all css etc utan vi ska göra en 
 - Navigation fungerar via Reveal.js (piltangenter, mellanslag)
 - CSS anpassad för Reveal.js struktur
 
-**FAS 6 KLAR - Committad till branch `migrate/reveal-js`** (väntar på manuell testning och merge)
+**FAS 6 KLAR - Committad till branch `migrate/reveal-js`**
+
+**Layout-problem FIXADE:**
+- ✅ Identifierat problem: Reveal.js sätter inline styles (display:block, width:960px, height:340px) som begränsar section-storlek
+- ✅ Lösning: Ta bort inline styles via JavaScript + CSS overrides med !important
+- ✅ Flow-diagram centrerat: Lagt till width:100% och margin:auto
+- ✅ Characteristics boxar: Bredare (width:100%) och mindre höga (minskad padding/font-sizes)
+- ✅ Passar på skärmen: max-height:96vh, overflow:hidden, minskade alla storlekar
 
 <VI ÄR HÄR I ARBETET (FLYTTA EFTER DENNA MARKERING I TAKT MED EN GREJ BLIR KLAR)>
-**NÄSTA ÅTGÄRD: Manuell testning av Reveal.js presentation, därefter FAS 7**
+**NÄSTA ÅTGÄRD: Testa presenter mode, därefter FAS 7**
 
 **FAS 7: Koppla script.md (EN DEL I TAGET)**
 7.1. Läs `presentations/uppsala_uni_18_nov_2025/script.md` - förstå strukturen.
