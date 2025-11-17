@@ -1457,3 +1457,180 @@ h1 {
     }
 }
 
+/* === SLIDE 012 - INTERACTION FLOW (specifik för 012) === */
+
+/* Sequence diagram container */
+.sequence-diagram {
+    max-width: min(1200px, 95vw);
+    margin: 0 auto;
+    padding: 20px 0; /* FAST vertikal padding - mindre än 40px */
+}
+
+/* Participants grid */
+.participants {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: clamp(20px, 2.5vw, 25px); /* Mindre än 30px max */
+    margin-bottom: 25px; /* FAST margin - mindre än 50px */
+}
+
+/* Participant item */
+.participant {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px; /* FAST gap - mindre än 15px */
+}
+
+/* Participant box */
+.participant-box {
+    width: 100%;
+    padding: 15px clamp(10px, 1.5vw, 15px); /* FAST vertikal padding (15px) */
+    background: #2dd4bf;
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px; /* FAST gap - mindre än 10px */
+}
+
+/* Participant icon */
+.participant-icon {
+    font-size: clamp(35px, 5vw, 45px); /* Mindre än 50px max */
+    color: #1a2332;
+}
+
+/* Participant name */
+.participant-name {
+    font-size: clamp(1em, 1.8vh, 1.1em); /* Mindre än 1.2em max */
+    font-weight: 600;
+    color: #1a2332;
+    text-align: center;
+}
+
+/* Lifeline */
+.lifeline {
+    width: 3px;
+    height: 40px; /* FAST height - mindre än 60px */
+    background: #2dd4bf;
+    margin: 0 auto;
+}
+
+/* Interactions container */
+.interactions {
+    display: flex;
+    flex-direction: column;
+    gap: 12px; /* FAST gap - mindre än 25px */
+    position: relative;
+}
+
+/* Message item */
+.message {
+    display: flex;
+    align-items: center;
+    gap: 12px; /* FAST gap - mindre än 15px */
+    padding: 12px clamp(12px, 1.5vw, 18px); /* FAST vertikal padding (12px) */
+    background: #0f172a;
+    border-left: 4px solid #2dd4bf;
+    border-radius: 8px;
+    animation: fadeInSlide 0.6s ease-out;
+}
+
+@keyframes fadeInSlide {
+    from {
+        opacity: 0;
+        transform: translateX(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+/* Message number */
+.message-number {
+    font-size: clamp(1.1em, 2vh, 1.2em); /* Mindre än 1.3em max */
+    font-weight: 700;
+    color: #2dd4bf;
+    min-width: 25px; /* FAST min-width - mindre än 30px */
+}
+
+/* Message arrow */
+.message-arrow {
+    font-size: clamp(24px, 3.5vw, 28px); /* Mindre än 32px max */
+    color: #2dd4bf;
+}
+
+/* Message content */
+.message-content {
+    flex: 1;
+}
+
+/* Message from-to */
+.message-from-to {
+    font-size: clamp(0.8em, 1.2vh, 0.85em); /* Mindre än 0.9em max */
+    color: #64748b;
+    margin-bottom: 3px; /* FAST margin - mindre än 5px */
+}
+
+/* Message text */
+.message-text {
+    font-size: clamp(0.9em, 1.5vh, 1em); /* Mindre än 1.1em max */
+    color: #e2e8f0;
+    font-family: 'Courier New', monospace;
+}
+
+/* Note box */
+.note {
+    padding: 10px clamp(12px, 1.5vw, 18px); /* FAST vertikal padding (10px) */
+    background: #1e293b;
+    border: 2px dashed #475569;
+    border-radius: 8px;
+    margin: 6px 0; /* FAST margin - mindre än 10px */
+}
+
+/* Note text */
+.note-text {
+    font-size: clamp(0.85em, 1.3vh, 0.95em); /* Mindre än 1em max */
+    color: #94a3b8;
+    font-style: italic;
+    text-align: center;
+}
+
+/* MacBook Pro specific adjustments för slide 012 */
+@media (max-height: 2000px) and (min-width: 2000px) {
+    .sequence-diagram {
+        padding: 18px 0;
+    }
+
+    .participants {
+        gap: clamp(18px, 2vw, 22px);
+        margin-bottom: 22px;
+    }
+
+    .participant {
+        gap: 8px;
+    }
+
+    .participant-box {
+        padding: 13px clamp(8px, 1.2vw, 13px);
+        gap: 5px;
+    }
+
+    .participant-icon {
+        font-size: clamp(32px, 4.5vw, 42px);
+    }
+
+    .lifeline {
+        height: 35px;
+    }
+
+    .interactions {
+        gap: 10px;
+    }
+
+    .message {
+        padding: 10px clamp(10px, 1.3vw, 16px);
+    }
+}
+
