@@ -142,12 +142,15 @@ VI vill inte att varje html-fil ska behöve ha all css etc utan vi ska göra en 
    - Validerad: Slides 009 och 010 ser bra ut efter organisering
 
 <VI ÄR HÄR I ARBETET (FLYTTA EFTER DENNA MARKERING I TAKT MED EN GREJ BLIR KLAR)>
-**NÄSTA ÅTGÄRD: FAS 5.3 - Migrera slides 003-004**
+**NÄSTA ÅTGÄRD: FAS 5.3 - Fortsätt migrera övriga slides (005, 006, etc.)**
 
 **FAS 5: Migrera övriga slides (EN SLIDE I TAGET)**
 5.1. Ta slide 001. Lägg till länk till `style.css`. Lägg till eventuella nya CSS-regler som behövs i `style.css`. Testa att 001 fungerar. ✅ KLAR
 5.2. Ta slide 002. Samma process. Testa. ✅ KLAR
 5.3. Fortsätt med 003, 004, 005... EN I TAGET. Efter varje slide: testa att den fungerar innan du går vidare.
+   - ✅ Slide 003: Migrerad till style.css med kompakt lista-liknande design (pilar på höger sida utanför items)
+   - ✅ Slide 004: Migrerad till style.css med kompakt design (fast padding, mindre gaps)
+   - ✅ Slide 005: Migrerad till style.css med kompakt design (mindre LLM-bubbla, fast gaps och padding)
 
 **FAS 6: Säkerställ 16:9 och scroll (EN ÄNDRING I TAGET)**
 6.1. Lägg till CSS-regel för att säkerställa 16:9-aspekt. Testa på en slide.
