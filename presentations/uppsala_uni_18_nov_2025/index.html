@@ -313,47 +313,1215 @@
                 <aside class="notes"></aside>
             </section>
             
-            <!-- Slide 006: Training vs Inference -->
-            <!-- TODO: Add slide content -->
+            <!-- Slide 006: Naive Solutions and Their Problems -->
+            <section>
+                <div class="slide">
+<h1>Naive Solutions and Their Problems</h1>
+        
+        <div class="solutions-grid">
+            <!-- Solution 1: Copy-paste everything -->
+            <div class="solution">
+                <div class="solution-header">
+                    <span class="material-icons solution-icon">content_copy</span>
+                    <div class="solution-title">Dump Everything</div>
+                </div>
+                <div class="solution-description">
+                    Copy entire database, all files, everything into the prompt
+                </div>
+                <div class="problems-list">
+                    <div class="problem-item">
+                        <span class="material-icons problem-icon">close</span>
+                        <div>Most data won't fit in context window</div>
+                    </div>
+                    <div class="problem-item">
+                        <span class="material-icons problem-icon">close</span>
+                        <div>Wastes tokens and money</div>
+                    </div>
+                    <div class="problem-item">
+                        <span class="material-icons problem-icon">close</span>
+                        <div>Model performs worse with massive, unfocused context</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Solution 2: Fine-tune -->
+            <div class="solution">
+                <div class="solution-header">
+                    <span class="material-icons solution-icon">tune</span>
+                    <div class="solution-title">Fine-tune on Data</div>
+                </div>
+                <div class="solution-description">
+                    Train a custom model on your specific data
+                </div>
+                <div class="problems-list">
+                    <div class="problem-item">
+                        <span class="material-icons problem-icon">close</span>
+                        <div>Expensive and requires ML expertise</div>
+                    </div>
+                    <div class="problem-item">
+                        <span class="material-icons problem-icon">close</span>
+                        <div>Data changes - model becomes stale immediately</div>
+                    </div>
+                    <div class="problem-item">
+                        <span class="material-icons problem-icon">close</span>
+                        <div>Need to continuously retrain</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Solution 3: Custom integrations -->
+            <div class="solution">
+                <div class="solution-header">
+                    <span class="material-icons solution-icon">extension</span>
+                    <div class="solution-title">Custom Integrations</div>
+                </div>
+                <div class="solution-description">
+                    Build bespoke code for each application
+                </div>
+                <div class="problems-list">
+                    <div class="problem-item">
+                        <span class="material-icons problem-icon">close</span>
+                        <div>Every team reinvents the wheel</div>
+                    </div>
+                    <div class="problem-item">
+                        <span class="material-icons problem-icon">close</span>
+                        <div>No standardization - breaks when models change</div>
+                    </div>
+                    <div class="problem-item">
+                        <span class="material-icons problem-icon">close</span>
+                        <div>Testing and security become nightmares</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+                </div>
+                <aside class="notes"></aside>
+            </section>
             
-            <!-- Slide 007: Context Window -->
-            <!-- TODO: Add slide content -->
+            <!-- Slide 007: Better Approaches - RAG vs Function Calling vs MCP -->
+            <section>
+                <div class="slide">
+<h1>Better Approaches</h1>
+        
+        <div class="approaches-grid">
+            <!-- RAG -->
+            <div class="approach">
+                <div class="approach-header">
+                    <span class="material-icons approach-icon">search</span>
+                    <div class="approach-title">RAG</div>
+                </div>
+                <div class="flow-steps">
+                    <div class="flow-step">
+                        <div class="step-number">1</div>
+                        <div class="step-text">Retrieve relevant docs</div>
+                    </div>
+                    <div class="flow-step">
+                        <div class="step-number">2</div>
+                        <div class="step-text">Add to context</div>
+                    </div>
+                    <div class="flow-step">
+                        <div class="step-number">3</div>
+                        <div class="step-text">Generate</div>
+                    </div>
+                </div>
+                <div class="pros-cons">
+                    <div class="pros">
+                        <div class="pros-title">✓ Pros</div>
+                        <div class="pros-list">Works well for knowledge bases, documentation, historical data</div>
+                    </div>
+                    <div class="cons">
+                        <div class="cons-title">✗ Cons</div>
+                        <div class="cons-list">Read-only. Can't take actions.</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Function Calling -->
+            <div class="approach">
+                <div class="approach-header">
+                    <span class="material-icons approach-icon">functions</span>
+                    <div class="approach-title">Function Calling</div>
+                </div>
+                <div class="flow-steps">
+                    <div class="flow-step">
+                        <div class="step-number">1</div>
+                        <div class="step-text">LLM outputs function call</div>
+                    </div>
+                    <div class="flow-step">
+                        <div class="step-number">2</div>
+                        <div class="step-text">Execute</div>
+                    </div>
+                    <div class="flow-step">
+                        <div class="step-number">3</div>
+                        <div class="step-text">Return result</div>
+                    </div>
+                </div>
+                <div class="pros-cons">
+                    <div class="pros">
+                        <div class="pros-title">✓ Pros</div>
+                        <div class="pros-list">Enables actions: write to DB, call APIs, execute code</div>
+                    </div>
+                    <div class="cons">
+                        <div class="cons-title">✗ Cons</div>
+                        <div class="cons-list">No standardization. Provider-specific.</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- MCP -->
+            <div class="approach mcp-highlight">
+                <div class="approach-header">
+                    <span class="material-icons approach-icon">electrical_services</span>
+                    <div class="approach-title">MCP</div>
+                </div>
+                <div class="flow-steps">
+                    <div class="flow-step">
+                        <div class="step-number">1</div>
+                        <div class="step-text">Standardized protocol</div>
+                    </div>
+                    <div class="flow-step">
+                        <div class="step-number">2</div>
+                        <div class="step-text">Resources + Tools</div>
+                    </div>
+                    <div class="flow-step">
+                        <div class="step-number">3</div>
+                        <div class="step-text">LLM-agnostic</div>
+                    </div>
+                </div>
+                <div class="pros-cons">
+                    <div class="pros">
+                        <div class="pros-title">✓ Pros</div>
+                        <div class="pros-list">Universal adapter. Write once, use anywhere. Standardization.</div>
+                    </div>
+                    <div class="cons">
+                        <div class="cons-title">✗ Cons</div>
+                        <div class="cons-list">Emerging standard. Ecosystem still growing.</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+                </div>
+                <aside class="notes"></aside>
+            </section>
             
-            <!-- Slide 008: Limitations -->
-            <!-- TODO: Add slide content -->
+            <!-- Slide 008: Transition to MCP Deep Dive -->
+            <section>
+                <div class="slide">
+<h1>Deep Dive: Model Context Protocol</h1>
+        
+        <div class="transition-content">
+            <div class="transition-icon">
+                <span class="material-icons">electrical_services</span>
+            </div>
+            
+            <div class="transition-text">
+                Now let's explore how MCP works
+            </div>
+            
+            <div class="next-section">
+                Architecture, primitives, use cases, and implementation
+            </div>
+        </div>
+                </div>
+                <aside class="notes"></aside>
+            </section>
             
             <!-- Slide 009: What is MCP? -->
-            <!-- TODO: Add slide content -->
+            <section>
+                <div class="slide">
+<h1>What is MCP?</h1>
+        
+        <div class="diagram">
+            <div class="component">
+                <div class="box">
+                    <span class="material-icons">chat</span>
+                </div>
+                <div class="label">LLM Client</div>
+            </div>
+
+            <div class="arrow-container">
+                <span class="material-icons arrow arrow-right">arrow_forward</span>
+                <span class="material-icons arrow arrow-left">arrow_back</span>
+            </div>
+
+            <div class="component">
+                <div class="box box-highlight">
+                    <span class="material-icons icon-highlight">electrical_services</span>
+                </div>
+                <div class="label">MCP Protocol</div>
+            </div>
+
+            <div class="arrow-container">
+                <span class="material-icons arrow arrow-right">arrow_forward</span>
+                <span class="material-icons arrow arrow-left">arrow_back</span>
+            </div>
+
+            <div class="component">
+                <div class="box">
+                    <span class="material-icons">storage</span>
+                </div>
+                <div class="label">External Systems</div>
+            </div>
+        </div>
+
+        <div class="subtitle">
+            A standardized protocol for LLM-tool integration - like USB-C for AI
+        </div>
+
+        <div class="features">
+            <div class="feature">
+                <span class="material-icons">extension</span>
+                <div class="feature-text">Plug & Play</div>
+            </div>
+
+            <div class="feature">
+                <span class="material-icons">security</span>
+                <div class="feature-text">Security Boundary</div>
+            </div>
+
+            <div class="feature">
+                <span class="material-icons">sync_alt</span>
+                <div class="feature-text">Bidirectional</div>
+            </div>
+
+            <div class="feature">
+                <span class="material-icons">public</span>
+                <div class="feature-text">Open Standard</div>
+            </div>
+        </div>
+                </div>
+                <aside class="notes"></aside>
+            </section>
             
             <!-- Slide 010: MCP Architecture -->
-            <!-- TODO: Add slide content -->
+            <section>
+                <div class="slide">
+<h1>MCP Architecture</h1>
+        
+        <div class="architecture">
+            <!-- Top Layer: Host Application -->
+            <div class="layer">
+                <div class="layer-box">
+                    <span class="material-icons">desktop_windows</span>
+                    <div class="layer-title">Host Application (Claude Desktop, IDEs, etc.)</div>
+                </div>
+            </div>
+
+            <div class="connection-arrow">
+                <span class="material-icons arrow-down">arrow_downward</span>
+                <span class="material-icons arrow-up">arrow_upward</span>
+            </div>
+
+            <!-- Middle Layer: MCP Client and Server Communication -->
+            <div class="layer">
+                <div class="layer-box layer-highlight">
+                    <span class="protocol-badge">JSON-RPC</span>
+                    <span class="material-icons">chat</span>
+                    <div class="layer-title">MCP Client</div>
+                    <span class="material-icons" style="font-size: 60px;">sync_alt</span>
+                    <span class="material-icons">dns</span>
+                    <div class="layer-title">MCP Server(s)</div>
+                </div>
+                <div class="transport-info">Transport: stdio / Server-Sent Events (SSE)</div>
+            </div>
+
+            <div class="connection-arrow">
+                <span class="material-icons arrow-down">arrow_downward</span>
+                <span class="material-icons arrow-up">arrow_upward</span>
+            </div>
+
+            <!-- Bottom Layer: Multiple Servers -->
+            <div class="layer">
+                <div class="servers-row">
+                    <div class="server-item">
+                        <div class="server-icon">
+                            <span class="material-icons">storage</span>
+                        </div>
+                        <div class="server-label">Database<br>Server</div>
+                    </div>
+
+                    <div class="server-item">
+                        <div class="server-icon">
+                            <span class="material-icons">folder</span>
+                        </div>
+                        <div class="server-label">File System<br>Server</div>
+                    </div>
+
+                    <div class="server-item">
+                        <div class="server-icon">
+                            <span class="material-icons">cloud</span>
+                        </div>
+                        <div class="server-label">API<br>Server</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+                </div>
+                <aside class="notes"></aside>
+            </section>
             
-            <!-- Slide 011: Key Components -->
-            <!-- TODO: Add slide content -->
+            <!-- Slide 011: The Three Primitives -->
+            <section>
+                <div class="slide">
+<h1>The Three Primitives</h1>
+        
+        <div class="primitives-grid">
+            <!-- Resources -->
+            <div class="primitive">
+                <div class="primitive-icon">
+                    <span class="material-icons">description</span>
+                </div>
+                <div class="primitive-title">Resources</div>
+                <div class="primitive-description">
+                    Static or dynamic data that can be read
+                </div>
+                <div class="primitive-example">
+                    <div class="example-label">Examples</div>
+                    <div class="example-text">
+                        • File contents<br>
+                        • DB query results<br>
+                        • API responses
+                    </div>
+                </div>
+            </div>
+
+            <!-- Prompts -->
+            <div class="primitive">
+                <div class="primitive-icon">
+                    <span class="material-icons">psychology</span>
+                </div>
+                <div class="primitive-title">Prompts</div>
+                <div class="primitive-description">
+                    Templated instructions for common tasks
+                </div>
+                <div class="primitive-example">
+                    <div class="example-label">Examples</div>
+                    <div class="example-text">
+                        • Code review template<br>
+                        • Analysis prompt<br>
+                        • Workflow instructions
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tools -->
+            <div class="primitive">
+                <div class="primitive-icon">
+                    <span class="material-icons">build</span>
+                </div>
+                <div class="primitive-title">Tools</div>
+                <div class="primitive-description">
+                    Functions the LLM can execute
+                </div>
+                <div class="primitive-example">
+                    <div class="example-label">Examples</div>
+                    <div class="example-text">
+                        • execute_query()<br>
+                        • create_file()<br>
+                        • send_email()
+                    </div>
+                </div>
+            </div>
+        </div>
+                </div>
+                <aside class="notes"></aside>
+            </section>
             
-            <!-- Slide 012: Resources -->
-            <!-- TODO: Add slide content -->
+            <!-- Slide 012: Interaction Flow -->
+            <section>
+                <div class="slide">
+<h1>Interaction Flow</h1>
+        
+        <div class="sequence-diagram">
+            <div class="participants">
+                <div class="participant">
+                    <div class="participant-box">
+                        <span class="material-icons participant-icon">person</span>
+                        <div class="participant-name">User</div>
+                    </div>
+                </div>
+
+                <div class="participant">
+                    <div class="participant-box">
+                        <span class="material-icons participant-icon">chat</span>
+                        <div class="participant-name">Client</div>
+                    </div>
+                </div>
+
+                <div class="participant">
+                    <div class="participant-box">
+                        <span class="material-icons participant-icon">dns</span>
+                        <div class="participant-name">Server</div>
+                    </div>
+                </div>
+
+                <div class="participant">
+                    <div class="participant-box">
+                        <span class="material-icons participant-icon">smart_toy</span>
+                        <div class="participant-name">LLM</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="interactions">
+                <div class="message">
+                    <div class="message-number">1</div>
+                    <span class="material-icons message-arrow">arrow_forward</span>
+                    <div class="message-content">
+                        <div class="message-from-to">User → Client</div>
+                        <div class="message-text">"Analyze sales data from Q4"</div>
+                    </div>
+                </div>
+
+                <div class="message">
+                    <div class="message-number">2</div>
+                    <span class="material-icons message-arrow">arrow_forward</span>
+                    <div class="message-content">
+                        <div class="message-from-to">Client → Server</div>
+                        <div class="message-text">list_resources()</div>
+                    </div>
+                </div>
+
+                <div class="message">
+                    <div class="message-number">3</div>
+                    <span class="material-icons message-arrow">arrow_back</span>
+                    <div class="message-content">
+                        <div class="message-from-to">Server → Client</div>
+                        <div class="message-text">[available resources]</div>
+                    </div>
+                </div>
+
+                <div class="note">
+                    <div class="note-text">Client reasons about what's needed...</div>
+                </div>
+
+                <div class="message">
+                    <div class="message-number">4</div>
+                    <span class="material-icons message-arrow">arrow_forward</span>
+                    <div class="message-content">
+                        <div class="message-from-to">Client → Server</div>
+                        <div class="message-text">read_resource("sales_db://q4_2024")</div>
+                    </div>
+                </div>
+
+                <div class="message">
+                    <div class="message-number">5</div>
+                    <span class="material-icons message-arrow">arrow_back</span>
+                    <div class="message-content">
+                        <div class="message-from-to">Server → Client</div>
+                        <div class="message-text">[sales data]</div>
+                    </div>
+                </div>
+
+                <div class="message">
+                    <div class="message-number">6</div>
+                    <span class="material-icons message-arrow">arrow_forward</span>
+                    <div class="message-content">
+                        <div class="message-from-to">Client → LLM</div>
+                        <div class="message-text">Generates analysis with data</div>
+                    </div>
+                </div>
+
+                <div class="message">
+                    <div class="message-number">7</div>
+                    <span class="material-icons message-arrow">arrow_forward</span>
+                    <div class="message-content">
+                        <div class="message-from-to">Client → Server</div>
+                        <div class="message-text">call_tool("create_visualization", params)</div>
+                    </div>
+                </div>
+
+                <div class="message">
+                    <div class="message-number">8</div>
+                    <span class="material-icons message-arrow">arrow_back</span>
+                    <div class="message-content">
+                        <div class="message-from-to">Server → Client</div>
+                        <div class="message-text">[chart created]</div>
+                    </div>
+                </div>
+
+                <div class="message">
+                    <div class="message-number">9</div>
+                    <span class="material-icons message-arrow">arrow_back</span>
+                    <div class="message-content">
+                        <div class="message-from-to">Client → User</div>
+                        <div class="message-text">"Here's your analysis with visualization"</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+                </div>
+                <aside class="notes"></aside>
+            </section>
             
-            <!-- Slide 013: Prompts -->
-            <!-- TODO: Add slide content -->
+            <!-- Slide 013: Use Case - File System Server -->
+            <section>
+                <div class="slide">
+<h1>Use Case: File System Server</h1>
+        
+        <div class="split-container">
+            <!-- Left Panel: Code -->
+            <div class="panel">
+                <div class="panel-title">
+                    <span class="material-icons">code</span>
+                    Server Implementation
+                </div>
+                
+                <div class="code-block">
+<span class="code-comment"># File System MCP Server</span>
+
+<span class="code-keyword">class</span> <span class="code-function">FileSystemServer</span>:
+    <span class="code-comment"># Resources - Read files</span>
+    <span class="code-keyword">def</span> <span class="code-function">list_resources</span>():
+        <span class="code-keyword">return</span> [
+            <span class="code-string">"file:///project/src/main.py"</span>,
+            <span class="code-string">"file:///project/src/utils.py"</span>,
+            ...
+        ]
+    
+    <span class="code-comment"># Tools - Modify files</span>
+    tools = [
+        <span class="code-string">"create_file"</span>,
+        <span class="code-string">"edit_file"</span>,
+        <span class="code-string">"delete_file"</span>,
+        <span class="code-string">"search_files"</span>
+    ]
+                </div>
+
+                <div class="tools-section">
+                    <div class="tools-title">Available Tools:</div>
+                    <div class="tool-list">
+                        <div class="tool-item">create_file(path, content)</div>
+                        <div class="tool-item">edit_file(path, changes)</div>
+                        <div class="tool-item">delete_file(path)</div>
+                        <div class="tool-item">search_files(pattern)</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right Panel: Workflow -->
+            <div class="panel">
+                <div class="panel-title">
+                    <span class="material-icons">account_tree</span>
+                    Example Interaction
+                </div>
+
+                <div class="workflow">
+                    <div class="step">
+                        <div class="step-number">1</div>
+                        <span class="material-icons step-icon">visibility</span>
+                        <div class="step-content">
+                            <div class="step-title">Read File</div>
+                            <div class="step-description">
+                                LLM requests file resource:<br>
+                                <code>file:///project/src/main.py</code>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="step">
+                        <div class="step-number">2</div>
+                        <span class="material-icons step-icon">psychology</span>
+                        <div class="step-content">
+                            <div class="step-title">Analyze & Plan</div>
+                            <div class="step-description">
+                                LLM reasons about refactoring into smaller, focused functions
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="step">
+                        <div class="step-number">3</div>
+                        <span class="material-icons step-icon">note_add</span>
+                        <div class="step-content">
+                            <div class="step-title">Create New Files</div>
+                            <div class="step-description">
+                                Calls <code>create_file()</code> for new modules
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="step">
+                        <div class="step-number">4</div>
+                        <span class="material-icons step-icon">edit</span>
+                        <div class="step-content">
+                            <div class="step-title">Modify Existing</div>
+                            <div class="step-description">
+                                Calls <code>edit_file()</code> to update imports and references
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="tools-section">
+                    <div class="tools-title">💡 Used by:</div>
+                    <div class="step-description" style="color: #e2e8f0; padding-top: 8px;">
+                        Cursor, Windsurf, and similar AI coding assistants use this pattern to give LLMs controlled access to your codebase.
+                    </div>
+                </div>
+            </div>
+        </div>
+                </div>
+                <aside class="notes"></aside>
+            </section>
             
-            <!-- Slide 014: Tools -->
-            <!-- TODO: Add slide content -->
+            <!-- Slide 014: Use Case - Database Server -->
+            <section>
+                <div class="slide">
+<h1>Use Case: Database Server</h1>
+        
+        <div class="diagram-container">
+            <!-- Architecture Flow -->
+            <div class="architecture-flow">
+                <div class="component-box">
+                    <span class="material-icons component-icon">smart_toy</span>
+                    <div class="component-title">LLM</div>
+                </div>
+
+                <span class="material-icons arrow">arrow_forward</span>
+
+                <div class="component-box security-boundary">
+                    <span class="material-icons component-icon security-icon">shield</span>
+                    <div class="component-title">MCP Server<br><small style="color: #ef4444; font-size: 0.8em;">Security Boundary</small></div>
+                </div>
+
+                <span class="material-icons arrow">arrow_forward</span>
+
+                <div class="component-box">
+                    <span class="material-icons component-icon">storage</span>
+                    <div class="component-title">Database</div>
+                </div>
+            </div>
+
+            <!-- Details Grid -->
+            <div class="details-grid">
+                <!-- Resources Panel -->
+                <div class="detail-panel">
+                    <div class="panel-header">
+                        <span class="material-icons panel-icon">description</span>
+                        <div class="panel-title">Resources</div>
+                    </div>
+                    <div class="item-list">
+                        <div class="list-item">
+                            <span class="material-icons item-icon">account_tree</span>
+                            <div class="item-text">schema_info</div>
+                        </div>
+                        <div class="list-item">
+                            <span class="material-icons item-icon">table_chart</span>
+                            <div class="item-text">table_listings</div>
+                        </div>
+                        <div class="list-item">
+                            <span class="material-icons item-icon">cached</span>
+                            <div class="item-text">cached_queries</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Tools Panel -->
+                <div class="detail-panel">
+                    <div class="panel-header">
+                        <span class="material-icons panel-icon">build</span>
+                        <div class="panel-title">Tools</div>
+                    </div>
+                    <div class="item-list">
+                        <div class="list-item">
+                            <span class="material-icons item-icon">play_arrow</span>
+                            <div class="item-text">execute_query()</div>
+                        </div>
+                        <div class="list-item">
+                            <span class="material-icons item-icon">add_circle</span>
+                            <div class="item-text">create_table()</div>
+                        </div>
+                        <div class="list-item">
+                            <span class="material-icons item-icon">insights</span>
+                            <div class="item-text">explain_query()</div>
+                        </div>
+                        <div class="list-item">
+                            <span class="material-icons item-icon">backup</span>
+                            <div class="item-text">backup_table()</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Security Note -->
+            <div class="security-note">
+                <div class="security-header">
+                    <span class="material-icons" style="font-size: 40px; color: #ef4444;">security</span>
+                    <div class="security-title">Security Boundary</div>
+                </div>
+                <div class="security-text">
+                    The MCP server acts as a protective layer, enforcing policies like table access restrictions, SQL operation limits, rate limiting, and approval requirements for destructive operations. Never give LLMs direct database credentials!
+                </div>
+            </div>
+        </div>
+                </div>
+                <aside class="notes"></aside>
+            </section>
             
-            <!-- Slide 015: Example Implementation -->
-            <!-- TODO: Add slide content -->
+            <!-- Slide 015: Code Example -->
+            <section>
+                <div class="slide">
+<h1>Code Example</h1>
+        <div class="subtitle">Minimal Weather MCP Server in Python</div>
+        
+        <div class="code-container">
+            <div class="code-header">
+                <span class="material-icons header-icon">code</span>
+                <div class="header-title">weather_server.py</div>
+            </div>
             
-            <!-- Slide 016: Security -->
-            <!-- TODO: Add slide content -->
+            <div class="code-block"><span class="code-keyword">from</span> mcp.server <span class="code-keyword">import</span> Server<br>
+<span class="code-keyword">import</span> mcp.types <span class="code-keyword">as</span> types<br>
+<br>
+app = <span class="code-function">Server</span>(<span class="code-string">"weather-server"</span>)<br>
+<br>
+<span class="code-comment"># Define a resource for current temperature</span><br>
+<span class="code-decorator">@app.resource</span>(<span class="code-string">"weather://temperature/{location}"</span>)<br>
+<span class="code-keyword">async def</span> <span class="code-function">get_temperature</span>(location: <span class="code-class">str</span>) -> types.<span class="code-class">Resource</span>:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-comment"># Fetch temperature data</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;temp = <span class="code-keyword">await</span> <span class="code-function">fetch_temperature</span>(location)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-keyword">return</span> types.<span class="code-function">Resource</span>(<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;uri=<span class="code-string">f"weather://temperature/{location}"</span>,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;name=<span class="code-string">f"Temperature for {location}"</span>,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;content=<span class="code-string">f"{temp}°C"</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;)<br>
+<br>
+<span class="code-comment"># Define a tool for forecast</span><br>
+<span class="code-decorator">@app.tool</span>()<br>
+<span class="code-keyword">async def</span> <span class="code-function">get_forecast</span>(<br>
+&nbsp;&nbsp;&nbsp;&nbsp;location: <span class="code-class">str</span>,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;days: <span class="code-class">int</span> = <span class="code-number">5</span><br>
+) -> <span class="code-class">str</span>:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-string">"""Get weather forecast for a location"""</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;forecast = <span class="code-keyword">await</span> <span class="code-function">fetch_forecast</span>(location, days)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-keyword">return</span> <span class="code-function">format_forecast</span>(forecast)<br>
+<br>
+<span class="code-comment"># Run the server</span><br>
+<span class="code-keyword">if</span> __name__ == <span class="code-string">"__main__"</span>:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;app.<span class="code-function">run</span>(transport=<span class="code-string">"stdio"</span>)</div>
+        </div>
+
+        <div class="key-points">
+            <div class="point">
+                <span class="material-icons point-icon">emoji_objects</span>
+                <div class="point-text">
+                    Focus on business logic, not protocol details
+                </div>
+            </div>
+
+            <div class="point">
+                <span class="material-icons point-icon">cable</span>
+                <div class="point-text">
+                    MCP SDK handles all communication (stdio/SSE)
+                </div>
+            </div>
+
+            <div class="point">
+                <span class="material-icons point-icon">apps</span>
+                <div class="point-text">
+                    Works with any MCP-compatible client
+                </div>
+            </div>
+        </div>
+                </div>
+                <aside class="notes"></aside>
+            </section>
             
-            <!-- Slide 017: Use Cases -->
-            <!-- TODO: Add slide content -->
+            <!-- Slide 016: Security Considerations -->
+            <section>
+                <div class="slide">
+<h1>Security Considerations</h1>
+        <div class="subtitle">
+            The MCP server is your security boundary - implement these protections
+        </div>
+        
+        <div class="security-grid">
+            <!-- Authentication -->
+            <div class="security-item">
+                <div class="security-icon-container">
+                    <span class="material-icons">verified_user</span>
+                </div>
+                <div class="security-title">Authentication</div>
+                <div class="security-description">
+                    Control who can connect using API keys, OAuth tokens, or secure channels
+                </div>
+            </div>
+
+            <!-- Authorization -->
+            <div class="security-item">
+                <div class="security-icon-container">
+                    <span class="material-icons">admin_panel_settings</span>
+                </div>
+                <div class="security-title">Authorization</div>
+                <div class="security-description">
+                    Implement least privilege - expose only necessary resources and tools
+                </div>
+            </div>
+
+            <!-- Input Validation -->
+            <div class="security-item">
+                <div class="security-icon-container">
+                    <span class="material-icons">rule</span>
+                </div>
+                <div class="security-title">Input Validation</div>
+                <div class="security-description">
+                    Never trust LLM output - validate all parameters, sanitize inputs
+                </div>
+            </div>
+
+            <!-- Rate Limiting -->
+            <div class="security-item">
+                <div class="security-icon-container">
+                    <span class="material-icons">speed</span>
+                </div>
+                <div class="security-title">Rate Limiting</div>
+                <div class="security-description">
+                    Prevent abuse and system overload from excessive LLM calls
+                </div>
+            </div>
+
+            <!-- Audit Logging -->
+            <div class="security-item">
+                <div class="security-icon-container">
+                    <span class="material-icons">description</span>
+                </div>
+                <div class="security-title">Audit Logging</div>
+                <div class="security-description">
+                    Log all operations for accountability, debugging, and compliance
+                </div>
+            </div>
+
+            <!-- Sandboxing -->
+            <div class="security-item">
+                <div class="security-icon-container">
+                    <span class="material-icons">lock</span>
+                </div>
+                <div class="security-title">Isolation</div>
+                <div class="security-description">
+                    Run servers in sandboxed environments with minimal permissions
+                </div>
+            </div>
+        </div>
+
+        <div class="highlight-box">
+            <span class="material-icons highlight-icon">warning</span>
+            <div class="highlight-text">
+                <span class="highlight-emphasis">Critical:</span> The protocol itself is just transport. You must implement security in your server logic. The MCP server is your security boundary!
+            </div>
+        </div>
+                </div>
+                <aside class="notes"></aside>
+            </section>
             
-            <!-- Slide 018: Getting Started -->
-            <!-- TODO: Add slide content -->
+            <!-- Slide 017: MCP vs Alternatives -->
+            <section>
+                <div class="slide">
+<h1>MCP vs Alternatives</h1>
+        
+        <div class="comparison-container">
+            <table class="comparison-table">
+                <thead>
+                    <tr>
+                        <th>Solution</th>
+                        <th>Standardization</th>
+                        <th>Flexibility</th>
+                        <th>Best For</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="highlight">
+                        <td>
+                            <span class="material-icons row-icon">electrical_services</span>
+                            MCP
+                        </td>
+                        <td>
+                            <div class="rating">
+                                <span class="material-icons rating-icon">star</span>
+                                <span class="material-icons rating-icon">star</span>
+                                <span class="material-icons rating-icon">star</span>
+                            </div>
+                            Open standard, LLM-agnostic
+                        </td>
+                        <td>
+                            <div class="rating">
+                                <span class="material-icons rating-icon">star</span>
+                                <span class="material-icons rating-icon">star</span>
+                                <span class="material-icons rating-icon">star</span>
+                            </div>
+                            Complex, stateful interactions
+                        </td>
+                        <td>
+                            Building reusable, production-grade tool integrations
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <span class="material-icons row-icon">functions</span>
+                            Function Calling
+                        </td>
+                        <td>
+                            <div class="rating">
+                                <span class="material-icons rating-icon">star</span>
+                                <span class="material-icons rating-icon">star</span>
+                            </div>
+                            Provider-specific APIs
+                        </td>
+                        <td>
+                            <div class="rating">
+                                <span class="material-icons rating-icon">star</span>
+                                <span class="material-icons rating-icon">star</span>
+                            </div>
+                            Simple, stateless calls
+                        </td>
+                        <td>
+                            Quick integrations with specific LLM providers
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <span class="material-icons row-icon">link</span>
+                            LangChain
+                        </td>
+                        <td>
+                            <div class="rating">
+                                <span class="material-icons rating-icon">star</span>
+                                <span class="material-icons rating-icon">star</span>
+                            </div>
+                            Framework abstractions
+                        </td>
+                        <td>
+                            <div class="rating">
+                                <span class="material-icons rating-icon">star</span>
+                                <span class="material-icons rating-icon">star</span>
+                                <span class="material-icons rating-icon">star</span>
+                            </div>
+                            Chains, agents, workflows
+                        </td>
+                        <td>
+                            Rapid prototyping, complex agent workflows
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <span class="material-icons row-icon">precision_manufacturing</span>
+                            AutoGPT
+                        </td>
+                        <td>
+                            <div class="rating">
+                                <span class="material-icons rating-icon">star</span>
+                            </div>
+                            Autonomous agent system
+                        </td>
+                        <td>
+                            <div class="rating">
+                                <span class="material-icons rating-icon">star</span>
+                                <span class="material-icons rating-icon">star</span>
+                            </div>
+                            High-level autonomy
+                        </td>
+                        <td>
+                            Autonomous task execution, research use cases
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="key-advantage">
+            <span class="material-icons advantage-icon">hub</span>
+            <div class="advantage-text">
+                <span class="advantage-emphasis">Key Advantage:</span> Write one MCP server, use it anywhere. As the ecosystem grows, pre-built servers for common needs will emerge - just like npm for JavaScript or PyPI for Python.
+            </div>
+        </div>
+                </div>
+                <aside class="notes"></aside>
+            </section>
             
-            <!-- Slide 019: Key Takeaways -->
-            <!-- TODO: Add slide content -->
+            <!-- Slide 018: Future Directions & Research -->
+            <section>
+                <div class="slide">
+<h1>Future Directions & Research</h1>
+        
+        <div class="content-container">
+            <!-- Mind Map of Directions -->
+            <div class="mind-map">
+                <div class="direction">
+                    <div class="direction-icon-container">
+                        <span class="material-icons">groups</span>
+                    </div>
+                    <div class="direction-title">Multi-Agent Systems</div>
+                    <div class="direction-desc">
+                        Multiple LLMs sharing MCP servers - concurrency & state management
+                    </div>
+                </div>
+
+                <div class="direction">
+                    <div class="direction-icon-container">
+                        <span class="material-icons">stream</span>
+                    </div>
+                    <div class="direction-title">Streaming & Real-Time</div>
+                    <div class="direction-desc">
+                        Beyond request-response: streaming data sources & live updates
+                    </div>
+                </div>
+
+                <div class="direction">
+                    <div class="direction-icon-container">
+                        <span class="material-icons">verified</span>
+                    </div>
+                    <div class="direction-title">Formal Verification</div>
+                    <div class="direction-desc">
+                        Proving security policies for critical applications
+                    </div>
+                </div>
+
+                <div class="direction">
+                    <div class="direction-icon-container">
+                        <span class="material-icons">speed</span>
+                    </div>
+                    <div class="direction-title">Performance</div>
+                    <div class="direction-desc">
+                        Optimizing protocol overhead for high-throughput scenarios
+                    </div>
+                </div>
+
+                <div class="direction">
+                    <div class="direction-icon-container">
+                        <span class="material-icons">explore</span>
+                    </div>
+                    <div class="direction-title">Ecosystem Growth</div>
+                    <div class="direction-desc">
+                        Server registries, versioning, dependencies - like npm for MCP
+                    </div>
+                </div>
+            </div>
+
+            <!-- Research Questions -->
+            <div class="research-section">
+                <div class="research-header">
+                    <span class="material-icons research-icon">science</span>
+                    <div class="research-title">Open Research Questions</div>
+                </div>
+
+                <div class="research-questions">
+                    <div class="question">
+                        <span class="material-icons question-icon">help_outline</span>
+                        <div class="question-text">
+                            How do we prevent prompt injection attacks through MCP resources?
+                        </div>
+                    </div>
+
+                    <div class="question">
+                        <span class="material-icons question-icon">help_outline</span>
+                        <div class="question-text">
+                            Can we build MCP servers that adapt their capabilities based on LLM performance and reliability?
+                        </div>
+                    </div>
+
+                    <div class="question">
+                        <span class="material-icons question-icon">help_outline</span>
+                        <div class="question-text">
+                            What's the right abstraction for long-running workflows that span multiple sessions?
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+                </div>
+                <aside class="notes"></aside>
+            </section>
+            
+            <!-- Slide 019: Summary & Key Takeaways -->
+            <section>
+                <div class="slide">
+<h1>Summary & Key Takeaways</h1>
+        
+        <div class="content-wrapper">
+            <!-- Key Takeaways -->
+            <div class="takeaways">
+                <div class="takeaway">
+                    <div class="takeaway-icon-container">
+                        <span class="material-icons">electrical_services</span>
+                    </div>
+                    <div class="takeaway-text">
+                        MCP standardizes how LLMs connect to external tools and data - one interface for everything
+                    </div>
+                </div>
+
+                <div class="takeaway">
+                    <div class="takeaway-icon-container">
+                        <span class="material-icons">widgets</span>
+                    </div>
+                    <div class="takeaway-text">
+                        Three primitives - Resources, Prompts, Tools - provide flexibility for any use case
+                    </div>
+                </div>
+
+                <div class="takeaway">
+                    <div class="takeaway-icon-container">
+                        <span class="material-icons">shield</span>
+                    </div>
+                    <div class="takeaway-text">
+                        Servers act as security boundaries - implement authentication, validation, and rate limiting
+                    </div>
+                </div>
+
+                <div class="takeaway">
+                    <div class="takeaway-icon-container">
+                        <span class="material-icons">language</span>
+                    </div>
+                    <div class="takeaway-text">
+                        Protocol is LLM-agnostic and supports complex, stateful interactions
+                    </div>
+                </div>
+
+                <div class="takeaway">
+                    <div class="takeaway-icon-container">
+                        <span class="material-icons">rocket_launch</span>
+                    </div>
+                    <div class="takeaway-text">
+                        Early days - huge opportunities for building the ecosystem and pre-built servers
+                    </div>
+                </div>
+            </div>
+
+            <!-- Call to Action -->
+            <div class="cta-section">
+                <div class="cta-title">For Your Projects</div>
+                <div class="cta-text">
+                    Building an AI tool that needs database access? File system operations? API integrations?<br>
+                    <strong style="color: #2dd4bf;">MCP might be your answer.</strong>
+                </div>
+                
+                <div class="resources">
+                    <div class="resource-item">
+                        <span class="material-icons resource-icon">code</span>
+                        Python SDK
+                    </div>
+                    <div class="resource-item">
+                        <span class="material-icons resource-icon">code</span>
+                        TypeScript SDK
+                    </div>
+                    <div class="resource-item">
+                        <span class="material-icons resource-icon">description</span>
+                        Open Spec
+                    </div>
+                    <div class="resource-item">
+                        <span class="material-icons resource-icon">groups</span>
+                        Growing Community
+                    </div>
+                </div>
+            </div>
+
+            <!-- Questions -->
+            <div class="questions-footer">
+                <div class="questions-text">Questions?</div>
+            </div>
+        </div>
+                </div>
+                <aside class="notes"></aside>
+            </section>
         </div>
     </div>
 
