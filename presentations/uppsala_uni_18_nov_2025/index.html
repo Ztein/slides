@@ -716,11 +716,17 @@
             <div class="layer">
                 <div class="layer-box layer-highlight">
                     <span class="protocol-badge">JSON-RPC</span>
-                    <span class="material-icons">chat</span>
-                    <div class="layer-title">MCP Client</div>
-                    <span class="material-icons" style="font-size: 60px;">sync_alt</span>
-                    <span class="material-icons">dns</span>
-                    <div class="layer-title">MCP Server(s)</div>
+                    <div class="client-server-container">
+                        <div class="client-part">
+                            <span class="material-icons">chat</span>
+                            <div class="layer-title">MCP Client</div>
+                        </div>
+                        <span class="material-icons sync-icon">sync_alt</span>
+                        <div class="server-part">
+                            <span class="material-icons">dns</span>
+                            <div class="layer-title">MCP Server(s)</div>
+                        </div>
+                    </div>
                 </div>
                 <div class="transport-info">Transport: stdio / Server-Sent Events (SSE)</div>
             </div>

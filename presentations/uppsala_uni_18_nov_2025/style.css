@@ -470,6 +470,29 @@ h1 {
     box-shadow: 0 0 30px rgba(45, 212, 191, 0.3);
 }
 
+/* Client/Server container för tydlig separation */
+.client-server-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: clamp(15px, 2vw, 30px);  /* Lagom gap mellan Client, sync-icon och Server */
+    width: 100%;
+}
+
+.client-part,
+.server-part {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: clamp(6px, 0.8vh, 10px);  /* Kompakt gap mellan ikon och text */
+}
+
+.sync-icon {
+    font-size: clamp(32px, 4vw, 48px) !important;  /* Lagom stor ikon, inte 60px! */
+    color: #2dd4bf;
+    flex-shrink: 0;  /* Förhindra att den krymper */
+}
+
 .layer-title {
     font-size: clamp(1em, 2vw, 1.4em);  /* FIX: Reducerad från 1.2em-1.8em */
     color: #ffffff;
