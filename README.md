@@ -155,6 +155,24 @@ Presentationer är designade för liggande (landscape) skärmar med aspect ratio
 
 **Inga responsiva anpassningar för smala/stående skärmar** - presentationer är endast för liggande projektorskärmar.
 
+## Design Guide
+
+För att säkerställa konsekvent och professionell design på alla slides, se **`docs/DESIGN-GUIDE.md`**.
+
+Design guiden innehåller:
+- Layout-principer (centrering, hierarki, whitespace)
+- Typografi-regler (H1, subtitle, body text)
+- Färgpalett och användning
+- Spacing och sizing-regler
+- Slide-typer och layout-mönster
+- Komponenter (boxes, cards, icons)
+- Reveal.js specifika regler
+- Måttregler (don'ts)
+- Checklista för varje slide
+- Exempel på perfekta slides
+
+**VIKTIGT:** Följ design guiden när du skapar eller fixar slides för att säkerställa konsekvent design.
+
 ## Tips
 
 - Använd Cursor AI för att skapa och redigera slides i `index.html`
