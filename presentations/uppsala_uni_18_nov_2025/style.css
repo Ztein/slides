@@ -878,3 +878,124 @@ h1 {
     }
 }
 
+/* === SLIDE 005 - THE PROBLEM - LLMS ARE ISOLATED (specifik för 005) === */
+
+/* Isolation container */
+.isolation-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 25px; /* FAST gap - mindre än originalet 50px för att få plats */
+    max-width: min(1200px, 90vw);
+    margin: 0 auto;
+}
+
+/* LLM bubble - central cirkel */
+.llm-bubble {
+    width: clamp(200px, 25vw, 280px); /* Mindre än 300px max, responsiv */
+    height: clamp(200px, 25vw, 280px); /* Samma som width för cirkel */
+    border: 4px solid #2dd4bf;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #2dd4bf 0%, #14b8a6 100%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 12px; /* FAST gap */
+    position: relative;
+    box-shadow: 0 0 40px rgba(45, 212, 191, 0.5);
+}
+
+/* LLM icon */
+.llm-icon {
+    font-size: clamp(60px, 8vw, 90px); /* Mindre än 100px max */
+    color: #1a2332;
+}
+
+/* LLM label */
+.llm-label {
+    font-size: clamp(1.3em, 2.5vh, 1.6em); /* Mindre än 1.8em max */
+    color: #1a2332;
+    font-weight: 700;
+}
+
+/* Gap indicator - "Disconnected" */
+.gap-indicator {
+    text-align: center;
+    font-size: clamp(1.2em, 2.2vh, 1.4em); /* Mindre än 1.5em max */
+    color: #ef4444;
+    font-weight: 600;
+    margin: 8px 0; /* FAST margin - mindre än 20px */
+}
+
+/* External systems grid */
+.external-systems {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: clamp(15px, 2vw, 25px); /* Mindre än 30px max */
+    width: 100%;
+}
+
+/* System item */
+.system-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px; /* FAST gap - mindre än 15px */
+    padding: 15px clamp(15px, 2vw, 20px); /* FAST vertikal padding (15px), horisontell responsiv */
+    background: #0f172a;
+    border: 2px solid #64748b;
+    border-radius: 12px;
+    opacity: 0.6;
+    transition: all 0.3s ease;
+}
+
+.system-item:hover {
+    opacity: 1;
+    border-color: #2dd4bf;
+    transform: translateY(-5px);
+}
+
+/* System icon */
+.system-icon {
+    font-size: clamp(35px, 5vw, 45px); /* Mindre än 50px max */
+    color: #64748b;
+}
+
+.system-item:hover .system-icon {
+    color: #2dd4bf;
+}
+
+/* System label */
+.system-label {
+    font-size: clamp(0.9em, 1.6vh, 1.05em); /* Mindre än 1.1em max */
+    color: #94a3b8;
+    text-align: center;
+    font-weight: 500;
+}
+
+.system-item:hover .system-label {
+    color: #e2e8f0;
+}
+
+/* MacBook Pro specific adjustments för slide 005 */
+@media (max-height: 2000px) and (min-width: 2000px) {
+    .isolation-container {
+        gap: 20px; /* Ännu mer kompakt på MacBook Pro */
+    }
+
+    .llm-bubble {
+        width: clamp(180px, 22vw, 260px);
+        height: clamp(180px, 22vw, 260px);
+        gap: 10px;
+    }
+
+    .external-systems {
+        gap: clamp(12px, 1.5vw, 20px);
+    }
+
+    .system-item {
+        padding: 12px clamp(12px, 1.5vw, 18px);
+    }
+}
+
