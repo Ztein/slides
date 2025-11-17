@@ -1841,3 +1841,247 @@ h1 {
     }
 }
 
+/* === SLIDE 014 - USE CASE DATABASE SERVER (specifik för 014) === */
+
+/* Diagram container */
+.diagram-container {
+    max-width: min(1200px, 95vw);
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 25px; /* FAST gap - mindre än 50px */
+}
+
+/* Architecture flow - horisontell layout */
+/* MUST override slide 003's flex-direction: column */
+.diagram-container .architecture-flow {
+    display: flex !important;
+    flex-direction: row !important; /* Explicit horisontell layout - override slide 003 */
+    justify-content: center;
+    align-items: center;
+    gap: clamp(25px, 3.5vw, 30px); /* Mindre än 40px max */
+}
+
+/* Component box */
+.component-box {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px; /* FAST gap - mindre än 20px */
+    padding: clamp(18px, 2.5vh, 22px) clamp(20px, 3vw, 25px); /* FAST vertikal padding (18px min, 22px max) */
+    background: #0f172a;
+    border: 3px solid #2dd4bf;
+    border-radius: 12px;
+    min-width: clamp(160px, 20vw, 180px); /* Mindre än 200px max */
+}
+
+/* Security boundary - röd border */
+.component-box.security-boundary {
+    border-color: #ef4444;
+    box-shadow: 0 0 30px rgba(239, 68, 68, 0.3);
+}
+
+/* Component icon */
+.component-icon {
+    font-size: clamp(60px, 8vw, 70px); /* Mindre än 80px max */
+    color: #2dd4bf;
+}
+
+/* Security icon - röd */
+.component-icon.security-icon {
+    color: #ef4444;
+}
+
+/* Component title */
+.component-title {
+    font-size: clamp(1.2em, 2.2vh, 1.35em); /* Mindre än 1.5em max */
+    color: #ffffff;
+    font-weight: 600;
+    text-align: center;
+}
+
+/* Arrow between components */
+.arrow {
+    font-size: clamp(38px, 5.5vw, 45px); /* Mindre än 50px max */
+    color: #2dd4bf;
+    animation: pulse 2s ease-in-out infinite;
+}
+
+@keyframes pulse {
+    0%, 100% {
+        opacity: 0.4;
+    }
+    50% {
+        opacity: 1;
+    }
+}
+
+/* Details grid - två kolumner */
+.details-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: clamp(25px, 3.5vw, 30px); /* Mindre än 40px max */
+}
+
+/* Detail panel */
+.detail-panel {
+    background: #0f172a;
+    border: 3px solid #2dd4bf;
+    border-radius: 12px;
+    padding: clamp(18px, 2.5vh, 22px) clamp(18px, 2.5vw, 22px); /* FAST vertikal padding (18px min, 22px max) */
+}
+
+/* Panel header */
+.panel-header {
+    display: flex;
+    align-items: center;
+    gap: 12px; /* FAST gap - mindre än 15px */
+    margin-bottom: 18px; /* FAST margin - mindre än 25px */
+}
+
+/* Panel icon */
+.panel-icon {
+    font-size: clamp(32px, 4.5vw, 38px); /* Mindre än 40px max */
+    color: #2dd4bf;
+}
+
+/* Panel title */
+.panel-title {
+    font-size: clamp(1.4em, 2.5vh, 1.6em); /* Mindre än 1.8em max */
+    color: #2dd4bf;
+    font-weight: 600;
+}
+
+/* Item list */
+.item-list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px; /* FAST gap - mindre än 15px */
+}
+
+/* List item */
+.list-item {
+    display: flex;
+    align-items: center;
+    gap: 12px; /* FAST gap - mindre än 15px */
+    padding: clamp(12px, 1.8vh, 14px) clamp(12px, 1.8vw, 14px); /* FAST vertikal padding (12px min, 14px max) */
+    background: #1a2332;
+    border-radius: 8px;
+    border-left: 4px solid #2dd4bf;
+}
+
+/* Item icon */
+.item-icon {
+    font-size: clamp(24px, 3.5vw, 26px); /* Mindre än 28px max */
+    color: #2dd4bf;
+    min-width: clamp(24px, 3.5vw, 26px); /* Samma som font-size */
+}
+
+/* Item text */
+.item-text {
+    font-size: clamp(0.9em, 1.5vh, 1em); /* Mindre än 1.1em max */
+    color: #e2e8f0;
+    font-family: 'Courier New', monospace;
+}
+
+/* Security note */
+.security-note {
+    margin-top: 20px; /* FAST margin - mindre än 30px */
+    padding: clamp(18px, 2.5vh, 22px) clamp(18px, 2.5vw, 22px); /* FAST vertikal padding (18px min, 22px max) */
+    background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+    border: 3px solid #ef4444;
+    border-radius: 12px;
+}
+
+/* Security header */
+.security-header {
+    display: flex;
+    align-items: center;
+    gap: 12px; /* FAST gap - mindre än 15px */
+    margin-bottom: 12px; /* FAST margin - mindre än 15px */
+}
+
+/* Security title */
+.security-title {
+    font-size: clamp(1.2em, 2.2vh, 1.35em); /* Mindre än 1.5em max */
+    color: #ef4444;
+    font-weight: 600;
+}
+
+/* Security text */
+.security-text {
+    font-size: clamp(0.95em, 1.6vh, 1.05em); /* Mindre än 1.1em max */
+    color: #94a3b8;
+    line-height: 1.5; /* Tightare än 1.6 */
+}
+
+/* MacBook Pro specific adjustments för slide 014 */
+@media (max-height: 2000px) and (min-width: 2000px) {
+    .diagram-container {
+        gap: 22px;
+    }
+
+    .diagram-container .architecture-flow {
+        gap: clamp(22px, 3vw, 28px);
+    }
+
+    .component-box {
+        padding: clamp(16px, 2.2vh, 20px) clamp(18px, 2.5vw, 23px);
+        gap: 10px;
+        min-width: clamp(150px, 18vw, 170px);
+    }
+
+    .component-icon {
+        font-size: clamp(55px, 7.5vw, 65px);
+    }
+
+    .component-title {
+        font-size: clamp(1.1em, 2vh, 1.25em);
+    }
+
+    .arrow {
+        font-size: clamp(35px, 5vw, 42px);
+    }
+
+    .details-grid {
+        gap: clamp(22px, 3vw, 28px);
+    }
+
+    .detail-panel {
+        padding: clamp(16px, 2.2vh, 20px) clamp(16px, 2.2vw, 20px);
+    }
+
+    .panel-header {
+        gap: 10px;
+        margin-bottom: 16px;
+    }
+
+    .panel-icon {
+        font-size: clamp(30px, 4vw, 36px);
+    }
+
+    .item-list {
+        gap: 10px;
+    }
+
+    .list-item {
+        padding: clamp(10px, 1.6vh, 12px) clamp(10px, 1.6vw, 12px);
+        gap: 10px;
+    }
+
+    .item-icon {
+        font-size: clamp(22px, 3vw, 24px);
+        min-width: clamp(22px, 3vw, 24px);
+    }
+
+    .security-note {
+        margin-top: 18px;
+        padding: clamp(16px, 2.2vh, 20px) clamp(16px, 2.2vw, 20px);
+    }
+
+    .security-header {
+        gap: 10px;
+        margin-bottom: 10px;
+    }
+}
+
