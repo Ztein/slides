@@ -2085,3 +2085,164 @@ h1 {
     }
 }
 
+/* === SLIDE 015 - CODE EXAMPLE (specifik för 015) === */
+
+/* Subtitle */
+.slide:has(.code-container) .subtitle {
+    text-align: center;
+    font-size: clamp(1em, 1.8vh, 1.2em); /* Mindre än 1.3em max */
+    color: #94a3b8;
+    margin-bottom: 20px; /* FAST margin - mindre än 50px */
+}
+
+/* Code container */
+.code-container {
+    max-width: min(1100px, 95vw);
+    margin: 0 auto;
+    background: #0f172a;
+    border: 3px solid #2dd4bf;
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+/* Code header */
+.code-header {
+    background: #2dd4bf;
+    padding: clamp(14px, 2vh, 18px) clamp(20px, 3vw, 28px); /* FAST vertikal padding (14px min, 18px max) */
+    display: flex;
+    align-items: center;
+    gap: 12px; /* FAST gap - mindre än 15px */
+}
+
+/* Header icon */
+.header-icon {
+    font-size: clamp(26px, 3.5vw, 30px); /* Mindre än 32px max */
+    color: #1a2332;
+}
+
+/* Header title */
+.header-title {
+    font-size: clamp(1.2em, 2.2vh, 1.3em); /* Mindre än 1.4em max */
+    color: #1a2332;
+    font-weight: 600;
+}
+
+/* Code block */
+.code-block {
+    padding: clamp(25px, 3vh, 35px) clamp(30px, 4vw, 38px); /* FAST vertikal padding (25px min, 35px max) */
+    font-family: 'Courier New', monospace;
+    font-size: clamp(0.95em, 1.6vh, 1.05em); /* Stor nog att läsa - nära original 1.05em */
+    line-height: 1.7; /* Balanserat mellan läsbarhet och kompakt design */
+    color: #e2e8f0;
+    overflow-x: auto;
+}
+
+/* Code syntax highlighting */
+.code-comment {
+    color: #64748b;
+}
+
+.code-decorator {
+    color: #fbbf24;
+}
+
+.code-keyword {
+    color: #c084fc;
+}
+
+.code-class {
+    color: #60a5fa;
+    font-weight: 600;
+}
+
+.code-function {
+    color: #2dd4bf;
+}
+
+.code-string {
+    color: #fbbf24;
+}
+
+.code-number {
+    color: #fb923c;
+}
+
+.code-variable {
+    color: #e2e8f0;
+}
+
+/* Key points grid */
+.key-points {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: clamp(20px, 3vw, 25px); /* Mindre än 30px max */
+    max-width: min(1100px, 95vw);
+    margin: 25px auto 0; /* FAST margin - mindre än 50px */
+}
+
+/* Point card */
+.point {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px; /* FAST gap - mindre än 15px */
+    padding: clamp(18px, 2.5vh, 22px) clamp(18px, 2.5vw, 22px); /* FAST vertikal padding (18px min, 22px max) */
+    background: #0f172a;
+    border: 2px solid #2dd4bf;
+    border-radius: 8px;
+    text-align: center;
+}
+
+/* Point icon */
+.point-icon {
+    font-size: clamp(38px, 5.5vw, 44px); /* Mindre än 48px max */
+    color: #2dd4bf;
+}
+
+/* Point text */
+.point-text {
+    font-size: clamp(0.9em, 1.5vh, 1em); /* Mindre än 1.1em max */
+    color: #e2e8f0;
+    line-height: 1.4; /* Tightare än 1.5 */
+}
+
+/* H1 margin-bottom justering för slide 015 */
+.slide:has(.code-container) h1 {
+    margin-bottom: clamp(15px, 2vh, 25px); /* FAST margin - mindre än 30px */
+}
+
+/* MacBook Pro specific adjustments för slide 015 */
+@media (max-height: 2000px) and (min-width: 2000px) {
+    .slide:has(.code-container) .subtitle {
+        margin-bottom: 18px;
+    }
+
+    .code-header {
+        padding: clamp(12px, 1.8vh, 16px) clamp(18px, 2.5vw, 26px);
+        gap: 10px;
+    }
+
+    .header-icon {
+        font-size: clamp(24px, 3vw, 28px);
+    }
+
+    .code-block {
+        padding: clamp(22px, 2.8vh, 32px) clamp(28px, 3.8vw, 36px);
+        line-height: 1.65; /* Behåll läsbarhet även på MacBook Pro */
+    }
+
+    .key-points {
+        gap: clamp(18px, 2.5vw, 23px);
+        margin-top: 22px;
+    }
+
+    .point {
+        padding: clamp(16px, 2.2vh, 20px) clamp(16px, 2.2vw, 20px);
+        gap: 10px;
+    }
+
+    .point-icon {
+        font-size: clamp(35px, 5vw, 42px);
+    }
+}
+
