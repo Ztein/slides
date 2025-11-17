@@ -1594,12 +1594,8 @@ app = <span class="code-function">Server</span>(<span class="code-string">"weath
             parallaxBackgroundHorizontal: null,
             parallaxBackgroundVertical: null,
             // Presenter mode configuration
-            keyboard: {
-                83: () => {
-                    // Press 'S' to open presenter mode (reveal.js default)
-                    // Reveal.js handles this automatically via postMessage
-                }
-            }
+            // FAS 3.1: Remove custom keyboard handler - let Reveal.js handle 'S' key
+            keyboard: true  // Use default Reveal.js keyboard bindings including 'S' for presenter mode
         });
 
         // Get presentation name from URL path
