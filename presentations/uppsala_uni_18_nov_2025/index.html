@@ -20,11 +20,10 @@
         /* Detta måste komma EFTER reveal.css och black.css för att override:a dem */
         
         /* FAS 2.1 + 2.2: Fix section display och override black theme */
-        /* Reveal.js skapar .slide-background-content wrappers - vi måste rikta CSS mot dessa */
+        /* Reveal.js skapar .slide-background wrappers - vi måste rikta CSS mot dessa */
         .reveal .slides section,
         .reveal .slides section.present,
-        .reveal .slides section .slide-background,
-        .reveal .slides section .slide-background-content {
+        .reveal .slides section .slide-background {
             display: block !important;
             text-align: left !important;
             height: auto !important;
@@ -36,22 +35,21 @@
             max-width: 100% !important;
         }
         
-        /* Override Reveal.js default sizing */
-        .reveal .slides section .slide-background-content {
-            padding: 2vh 2vw !important;
-            max-width: min(1400px, calc(100vw - 2 * clamp(20px, 2vw, 40px))) !important;
-        }
-        
-        /* TEST: Direkt innehåll i section istället för .slide wrapper */
-        /* Låt section .slide-background-content hantera layout direkt */
+        /* .slide-background-content är där Reveal.js sätter innehållet - detta är viktigast! */
         .reveal .slides section .slide-background-content {
             display: flex !important;
             flex-direction: column !important;
+            text-align: left !important;
+            background: transparent !important;
+            color: #e2e8f0 !important;
+            padding: 2vh 2vw !important;
+            max-width: min(1400px, calc(100vw - 2 * clamp(20px, 2vw, 40px))) !important;
             width: 100% !important;
             height: auto !important;
             max-height: 96vh !important;
             align-items: flex-start !important;
             justify-content: flex-start !important;
+            margin: 0 auto !important;
         }
         
         /* Fallback för slides som fortfarande har .slide wrapper */

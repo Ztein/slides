@@ -26,18 +26,32 @@ Servern startar på `http://localhost:8085`
 
 ## Öppna en presentation
 
+### Metod 1: Använd npm script
 ```bash
 npm run present <presentation-name>
 ```
 
 Exempel:
 ```bash
-npm run present uppsala_uni_18_nov_2025_improved
+npm run present uppsala_uni_18_nov_2025
 ```
 
-Eller öppna manuellt i webbläsaren:
+### Metod 2: Öppna manuellt i webbläsaren
+1. Starta servern först: `npm start`
+2. Öppna i webbläsaren:
+   ```
+   http://localhost:8085/presentations/<presentation-name>
+   ```
+
+Exempel för uppsala_uni_18_nov_2025:
 ```
-http://localhost:8085/presentations/<presentation-name>
+http://localhost:8085/presentations/uppsala_uni_18_nov_2025
+```
+
+### Lista tillgängliga presentationer
+Öppna rot-URL:en i webbläsaren för att se alla tillgängliga presentationer:
+```
+http://localhost:8085
 ```
 
 ## Skapa en ny presentation
