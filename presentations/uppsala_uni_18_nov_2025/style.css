@@ -2391,3 +2391,174 @@ h1 {
     }
 }
 
+/* === SLIDE 017 - MCP VS ALTERNATIVES (specifik för 017) === */
+
+/* Comparison container */
+.comparison-container {
+    max-width: min(1300px, 95vw);
+    margin: 0 auto;
+}
+
+/* Comparison table */
+.comparison-table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    background: #0f172a;
+    border: 3px solid #2dd4bf;
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+/* Table header */
+.comparison-table thead tr {
+    background: #2dd4bf;
+}
+
+.comparison-table th {
+    padding: clamp(18px, 2.5vh, 22px) clamp(15px, 2vw, 18px); /* FAST vertikal padding (18px min, 22px max) */
+    text-align: left;
+    font-size: clamp(1.1em, 2vh, 1.2em); /* Mindre än 1.3em max */
+    color: #1a2332;
+    font-weight: 700;
+}
+
+.comparison-table th:first-child {
+    font-size: clamp(1.2em, 2.2vh, 1.35em); /* Mindre än 1.5em max */
+}
+
+/* Table body rows */
+.comparison-table tbody tr {
+    border-top: 2px solid #1a2332;
+}
+
+.comparison-table tbody tr:nth-child(odd) {
+    background: #0f172a;
+}
+
+.comparison-table tbody tr:nth-child(even) {
+    background: #1a2332;
+}
+
+.comparison-table tbody tr.highlight {
+    background: linear-gradient(90deg, #1e3a5f 0%, #0f172a 100%);
+    border-top: 2px solid #2dd4bf;
+    border-bottom: 2px solid #2dd4bf;
+}
+
+/* Table cells */
+.comparison-table td {
+    padding: clamp(18px, 2.5vh, 22px) clamp(15px, 2vw, 18px); /* FAST vertikal padding (18px min, 22px max) */
+    font-size: clamp(0.9em, 1.5vh, 1em); /* Mindre än 1.05em max */
+    color: #e2e8f0;
+    line-height: 1.5; /* Tightare än 1.6 */
+}
+
+.comparison-table td:first-child {
+    font-weight: 700;
+    font-size: clamp(1.1em, 2vh, 1.2em); /* Mindre än 1.3em max */
+    color: #2dd4bf;
+    display: flex;
+    align-items: center;
+    gap: 12px; /* FAST gap - mindre än 15px */
+}
+
+/* Row icon */
+.row-icon {
+    font-size: clamp(26px, 3.5vw, 30px); /* Mindre än 32px max */
+    color: #2dd4bf;
+}
+
+.comparison-table .highlight td:first-child {
+    color: #2dd4bf;
+}
+
+/* Rating stars */
+.rating {
+    display: flex;
+    align-items: center;
+    gap: 6px; /* FAST gap - mindre än 8px */
+}
+
+.rating-icon {
+    font-size: clamp(16px, 2.2vw, 18px); /* Mindre än 20px max */
+    color: #fbbf24;
+}
+
+/* Key advantage box */
+.key-advantage {
+    max-width: min(1300px, 95vw);
+    margin: 25px auto 0; /* FAST margin - mindre än 50px */
+    padding: clamp(18px, 2.5vh, 25px) clamp(25px, 3.5vw, 35px); /* FAST vertikal padding (18px min, 25px max) */
+    background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+    border: 3px solid #2dd4bf;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    gap: 18px; /* FAST gap - mindre än 25px */
+}
+
+/* Advantage icon */
+.advantage-icon {
+    font-size: clamp(45px, 6.5vw, 55px); /* Mindre än 60px max */
+    color: #2dd4bf;
+    min-width: clamp(45px, 6.5vw, 55px); /* Samma som font-size */
+}
+
+/* Advantage text */
+.advantage-text {
+    font-size: clamp(1em, 1.8vh, 1.15em); /* Mindre än 1.25em max */
+    color: #e2e8f0;
+    line-height: 1.5; /* Tightare än 1.7 */
+}
+
+/* Advantage emphasis */
+.advantage-emphasis {
+    color: #2dd4bf;
+    font-weight: 700;
+}
+
+/* H1 margin-bottom justering för slide 017 */
+.slide:has(.comparison-container) h1 {
+    margin-bottom: clamp(20px, 3vh, 35px); /* FAST margin - mindre än 60px */
+}
+
+/* MacBook Pro specific adjustments för slide 017 */
+@media (max-height: 2000px) and (min-width: 2000px) {
+    .slide:has(.comparison-container) h1 {
+        margin-bottom: clamp(18px, 2.5vh, 32px);
+    }
+
+    .comparison-table th,
+    .comparison-table td {
+        padding: clamp(16px, 2.2vh, 20px) clamp(13px, 1.8vw, 16px);
+    }
+
+    .comparison-table td:first-child {
+        gap: 10px;
+    }
+
+    .row-icon {
+        font-size: clamp(24px, 3vw, 28px);
+    }
+
+    .rating {
+        gap: 5px;
+    }
+
+    .rating-icon {
+        font-size: clamp(15px, 2vw, 17px);
+    }
+
+    .key-advantage {
+        margin-top: 22px;
+        padding: clamp(16px, 2.2vh, 22px) clamp(22px, 3vw, 32px);
+        gap: 16px;
+    }
+
+    .advantage-icon {
+        font-size: clamp(42px, 6vw, 52px);
+        min-width: clamp(42px, 6vw, 52px);
+    }
+}
+
