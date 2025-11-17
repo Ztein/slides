@@ -26,15 +26,15 @@ body {
     flex-direction: column;
 }
 
-/* Rubrikstilar - FIX: Drastiskt minskad för Reveal.js */
+/* Rubrikstilar - FIX: Balanserad storlek för Reveal.js */
 h1 {
     text-align: center;
     color: #ffffff;
-    font-size: clamp(1rem, 1.8vh, 1.4rem) !important;  /* FIX: Drastiskt minskad från 2.5vh/2rem */
-    margin-bottom: clamp(6px, 0.8vh, 10px) !important;  /* FIX: Minskad margin */
+    font-size: clamp(1.2rem, 2.2vh, 1.7rem) !important;  /* FIX: Balanserad - inte för liten, inte för stor */
+    margin-bottom: clamp(8px, 1vh, 12px) !important;  /* FIX: Liten margin */
     font-weight: 600;
     letter-spacing: -0.02em;
-    line-height: 1.2;  /* FIX: Tighter line-height */
+    line-height: 1.25;  /* FIX: Tighter line-height */
 }
 
 /* === POTENTIELLT GEMENSAMMA KLASSER === */
@@ -695,31 +695,31 @@ h1:has(+ .architecture-flow) {
 
 /* === SLIDE 004 - TOKENS, CONTEXT WINDOWS, AND LIMITATIONS (specifik för 004) === */
 
-/* Content grid - FIX: Reduced for Reveal.js */
+/* Content grid - FIX: Further reduced for Reveal.js to fit on screen */
 .content-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: clamp(12px, 2vw, 20px); /* FIX: Reduced from 3vw/35px */
-    margin-bottom: clamp(10px, 1.5vh, 15px); /* FIX: Reduced from 25px */
+    gap: clamp(10px, 1.5vw, 16px) !important; /* FIX: Further reduced */
+    margin-bottom: clamp(8px, 1.2vh, 12px) !important; /* FIX: Further reduced */
 }
 
-/* Section - FIX: Reduced for Reveal.js */
+/* Section - FIX: Further reduced for Reveal.js to fit on screen */
 .section {
     background: #0f172a;
-    border: 2px solid #2dd4bf;  /* FIX: Reduced from 3px */
-    border-radius: 8px;  /* FIX: Reduced from 12px */
-    padding: clamp(10px, 1.2vh, 14px) clamp(12px, 1.5vw, 20px); /* FIX: Reduced padding */
+    border: 2px solid #2dd4bf;
+    border-radius: 6px !important;  /* FIX: Smaller border-radius */
+    padding: clamp(8px, 1vh, 12px) clamp(10px, 1.3vw, 16px) !important; /* FIX: Further reduced padding */
 }
 
-/* Section title - FIX: Reduced for Reveal.js */
+/* Section title - FIX: Further reduced for Reveal.js to fit on screen */
 .section-title {
-    font-size: clamp(0.95em, 1.6vh, 1.2em) !important; /* FIX: Reduced from 2.2vh/1.5em */
+    font-size: clamp(0.85em, 1.4vh, 1.1em) !important; /* FIX: Further reduced */
     color: #2dd4bf;
     font-weight: 600;
-    margin-bottom: clamp(8px, 1vh, 12px) !important; /* FIX: Reduced from 15px */
+    margin-bottom: clamp(6px, 0.8vh, 10px) !important; /* FIX: Further reduced */
     display: flex;
     align-items: center;
-    gap: clamp(8px, 1.2vw, 12px);  /* FIX: Reduced gap */
+    gap: clamp(6px, 1vw, 10px) !important;  /* FIX: Further reduced gap */
 }
 
 /* Section icon - FIX: Reduced for Reveal.js */
@@ -727,19 +727,19 @@ h1:has(+ .architecture-flow) {
     font-size: clamp(24px, 3vw, 32px);  /* FIX: Reduced from 4vw/40px */
 }
 
-/* Token example */
+/* Token example - FIX: Reduced for Reveal.js to fit on screen */
 .token-example {
     background: #1a2332;
-    padding: 12px clamp(12px, 1.5vw, 18px); /* FAST vertikal padding (12px) */
-    border-radius: 8px;
-    margin-bottom: 12px; /* FAST margin */
+    padding: clamp(8px, 1vh, 10px) clamp(10px, 1.3vw, 14px) !important; /* FIX: Reduced padding */
+    border-radius: 6px !important;
+    margin-bottom: clamp(8px, 1vh, 10px) !important; /* FIX: Reduced margin */
 }
 
-/* Token text */
+/* Token text - FIX: Reduced for Reveal.js */
 .token-text {
-    font-size: clamp(0.95em, 1.8vh, 1.1em); /* Mindre text */
+    font-size: clamp(0.8em, 1.3vh, 0.95em) !important; /* FIX: Reduced from 1.8vh/1.1em */
     color: #e2e8f0;
-    margin-bottom: 10px; /* FAST margin */
+    margin-bottom: clamp(6px, 0.8vh, 8px) !important; /* FIX: Reduced from 10px */
 }
 
 /* Token breakdown */
@@ -749,53 +749,53 @@ h1:has(+ .architecture-flow) {
     gap: clamp(8px, 1vw, 10px);
 }
 
-/* Token badge */
+/* Token badge - FIX: Reduced for Reveal.js to fit on screen */
 .token {
-    padding: clamp(6px, 1vh, 8px) clamp(12px, 1.5vw, 15px);
+    padding: clamp(4px, 0.8vh, 6px) clamp(8px, 1.2vw, 12px) !important; /* FIX: Reduced padding */
     background: #2dd4bf;
     color: #1a2332;
-    border-radius: 6px;
+    border-radius: 5px !important;
     font-weight: 600;
-    font-size: clamp(0.85em, 1.5vh, 0.95em);
+    font-size: clamp(0.75em, 1.2vh, 0.85em) !important; /* FIX: Reduced font-size */
 }
 
-/* Token info text */
+/* Token info text - FIX: Reduced for Reveal.js to fit on screen */
 .token-info {
     color: #94a3b8;
-    font-size: clamp(0.95em, 1.6vh, 1.1em);
-    line-height: 1.6;
+    font-size: clamp(0.75em, 1.2vh, 0.9em) !important; /* FIX: Further reduced */
+    line-height: 1.4 !important;  /* FIX: Tighter line-height */
 }
 
-/* Context window */
+/* Context window - FIX: Reduced for Reveal.js to fit on screen */
 .context-window {
     background: #1a2332;
-    padding: 12px clamp(12px, 1.5vw, 18px); /* FAST vertikal padding */
-    border-radius: 8px;
+    padding: clamp(8px, 1vh, 10px) clamp(10px, 1.3vw, 14px) !important; /* FIX: Reduced padding */
+    border-radius: 6px !important;
     text-align: center;
 }
 
-/* Window box */
+/* Window box - FIX: Further reduced for Reveal.js to fit on screen */
 .window-box {
     width: 100%;
-    height: clamp(70px, 10vh, 100px); /* Mindre höjd */
+    height: clamp(40px, 5vh, 55px) !important; /* FIX: Further reduced */
     background: linear-gradient(135deg, #2dd4bf 0%, #14b8a6 100%);
-    border-radius: 8px;
+    border-radius: 5px !important;
     display: flex;
     align-items: center;
     justify-content: center;
-    margin-bottom: 10px; /* FAST margin */
+    margin-bottom: clamp(4px, 0.6vh, 6px) !important; /* FIX: Further reduced */
 }
 
-/* Window text */
+/* Window text - FIX: Reduced for Reveal.js */
 .window-text {
-    font-size: clamp(1.2em, 2.5vh, 1.5em);
+    font-size: clamp(0.95em, 1.6vh, 1.2em) !important; /* FIX: Reduced from 2.5vh/1.5em */
     color: #1a2332;
     font-weight: 700;
 }
 
-/* Window info */
+/* Window info - FIX: Reduced for Reveal.js */
 .window-info {
-    font-size: clamp(0.95em, 1.8vh, 1.1em);
+    font-size: clamp(0.8em, 1.3vh, 0.95em) !important; /* FIX: Reduced from 1.8vh/1.1em */
     color: #94a3b8;
 }
 
@@ -804,29 +804,30 @@ h1:has(+ .architecture-flow) {
     grid-column: 1 / -1;
 }
 
-/* Limitations grid */
+/* Limitations grid - FIX: Reduced for Reveal.js to fit on screen */
 .limitations-grid {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    gap: clamp(12px, 1.5vw, 18px); /* Mindre gap */
+    gap: clamp(8px, 1.2vw, 14px) !important; /* FIX: Further reduced gap */
+    margin-top: clamp(6px, 0.8vh, 10px) !important; /* FIX: Add small top margin */
 }
 
-/* Limitation item */
+/* Limitation item - FIX: Reduced for Reveal.js */
 .limitation {
     display: flex;
     align-items: flex-start;
-    gap: clamp(10px, 1.2vw, 15px);
-    padding: 12px clamp(12px, 1.5vw, 18px); /* FAST vertikal padding (12px) */
+    gap: clamp(8px, 1vw, 12px);  /* FIX: Reduced gap */
+    padding: clamp(8px, 1vh, 10px) clamp(10px, 1.2vw, 15px) !important; /* FIX: Reduced padding */
     background: #1a2332;
-    border-radius: 8px;
-    border-left: 4px solid #ef4444;
+    border-radius: 6px;  /* FIX: Reduced from 8px */
+    border-left: 3px solid #ef4444;  /* FIX: Reduced from 4px */
 }
 
-/* Limitation icon */
+/* Limitation icon - FIX: Reduced for Reveal.js */
 .limitation-icon {
-    font-size: clamp(32px, 4vw, 40px);
+    font-size: clamp(24px, 3vw, 32px) !important; /* FIX: Reduced from 4vw/40px */
     color: #ef4444;
-    min-width: clamp(32px, 4vw, 40px);
+    min-width: clamp(24px, 3vw, 32px) !important; /* FIX: Reduced */
 }
 
 /* Limitation content */
@@ -834,19 +835,19 @@ h1:has(+ .architecture-flow) {
     flex: 1;
 }
 
-/* Limitation title */
+/* Limitation title - FIX: Reduced for Reveal.js to fit on screen */
 .limitation-title {
-    font-size: clamp(1em, 1.8vh, 1.2em); /* Mindre font-size */
+    font-size: clamp(0.85em, 1.4vh, 1em) !important; /* FIX: Further reduced */
     color: #ef4444;
     font-weight: 600;
-    margin-bottom: 4px; /* FAST margin */
+    margin-bottom: clamp(3px, 0.4vh, 5px) !important; /* FIX: Reduced margin */
 }
 
-/* Limitation text */
+/* Limitation text - FIX: Reduced for Reveal.js to fit on screen */
 .limitation-text {
-    font-size: clamp(0.85em, 1.4vh, 0.95em); /* Mindre text */
+    font-size: clamp(0.75em, 1.2vh, 0.85em) !important; /* FIX: Further reduced */
     color: #e2e8f0;
-    line-height: 1.4; /* Tightare line-height */
+    line-height: 1.3 !important; /* FIX: Tighter line-height */
 }
 
 /* MacBook Pro specific adjustments för slide 004 */
