@@ -1749,12 +1749,24 @@ app = <span class="code-function">Server</span>(<span class="code-string">"weath
             console.log('   max-width:', sectionStyles.maxWidth);
             console.log('   height:', sectionStyles.height);
             console.log('   max-height:', sectionStyles.maxHeight);
+            console.log('   align-items:', sectionStyles.alignItems);
+            console.log('   justify-content:', sectionStyles.justifyContent);
             
             // Check for inline styles
             console.log('   has inline style attribute:', currentSlide.hasAttribute('style'));
             if (currentSlide.hasAttribute('style')) {
                 console.log('   inline style value:', currentSlide.getAttribute('style'));
             }
+            
+            // List all direct children and their computed styles
+            console.log('\n4b. DIRECT CHILDREN OF SECTION:');
+            Array.from(currentSlide.children).forEach((child, idx) => {
+                const childStyles = window.getComputedStyle(child);
+                console.log(`   Child ${idx}: ${child.tagName}${child.className ? '.' + child.className.split(' ').join('.') : ''}`);
+                console.log(`     display: ${childStyles.display}`);
+                console.log(`     width: ${childStyles.width}`);
+                console.log(`     margin: ${childStyles.margin}`);
+            });
             
             // 5. COMPUTED STYLES FOR .slide-background-content IF IT EXISTS
             if (slideBackgroundContent) {
@@ -1781,10 +1793,23 @@ app = <span class="code-function">Server</span>(<span class="code-string">"weath
                 console.log('   flex-direction:', flowStyles.flexDirection);
                 console.log('   justify-content:', flowStyles.justifyContent);
                 console.log('   align-items:', flowStyles.alignItems);
+                console.log('   width:', flowStyles.width);
+                console.log('   height:', flowStyles.height);
+                console.log('   margin:', flowStyles.margin);
+                console.log('   gap:', flowStyles.gap);
                 console.log('   has inline style attribute:', flowDiagram.hasAttribute('style'));
                 if (flowDiagram.hasAttribute('style')) {
                     console.log('   inline style value:', flowDiagram.getAttribute('style'));
                 }
+                
+                // Check children of flow-diagram
+                console.log('   .flow-diagram children:', Array.from(flowDiagram.children).map(c => ({
+                    tag: c.tagName,
+                    class: c.className,
+                    text: c.textContent?.substring(0, 30)
+                })));
+            } else {
+                console.log('\n6. .flow-diagram NOT FOUND in current slide');
             }
             
             // 7. CSS RULES THAT MATCH
