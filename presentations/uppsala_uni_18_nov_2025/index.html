@@ -835,7 +835,7 @@
 <h1>Interaction Flow</h1>
         
         <div class="sequence-diagram">
-            <div class="participants">
+            <div class="participants-vertical">
                 <div class="participant">
                     <div class="participant-box">
                         <span class="material-icons participant-icon">person</span>
@@ -865,89 +865,93 @@
                 </div>
             </div>
 
-            <div class="interactions">
-                <div class="message">
-                    <div class="message-number">1</div>
-                    <span class="material-icons message-arrow">arrow_forward</span>
-                    <div class="message-content">
-                        <div class="message-from-to">User → Client</div>
-                        <div class="message-text">"Analyze sales data from Q4"</div>
+            <div class="interactions-split">
+                <div class="interactions-column">
+                    <div class="message">
+                        <div class="message-number">1</div>
+                        <span class="material-icons message-arrow">arrow_forward</span>
+                        <div class="message-content">
+                            <div class="message-from-to">User → Client</div>
+                            <div class="message-text">"Analyze sales data from Q4"</div>
+                        </div>
+                    </div>
+
+                    <div class="message">
+                        <div class="message-number">2</div>
+                        <span class="material-icons message-arrow">arrow_forward</span>
+                        <div class="message-content">
+                            <div class="message-from-to">Client → Server</div>
+                            <div class="message-text">list_resources()</div>
+                        </div>
+                    </div>
+
+                    <div class="message">
+                        <div class="message-number">3</div>
+                        <span class="material-icons message-arrow">arrow_back</span>
+                        <div class="message-content">
+                            <div class="message-from-to">Server → Client</div>
+                            <div class="message-text">[available resources]</div>
+                        </div>
+                    </div>
+
+                    <div class="note">
+                        <div class="note-text">Client reasons about what's needed...</div>
+                    </div>
+
+                    <div class="message">
+                        <div class="message-number">4</div>
+                        <span class="material-icons message-arrow">arrow_forward</span>
+                        <div class="message-content">
+                            <div class="message-from-to">Client → Server</div>
+                            <div class="message-text">read_resource("sales_db://q4_2024")</div>
+                        </div>
+                    </div>
+
+                    <div class="message">
+                        <div class="message-number">5</div>
+                        <span class="material-icons message-arrow">arrow_back</span>
+                        <div class="message-content">
+                            <div class="message-from-to">Server → Client</div>
+                            <div class="message-text">[sales data]</div>
+                        </div>
                     </div>
                 </div>
 
-                <div class="message">
-                    <div class="message-number">2</div>
-                    <span class="material-icons message-arrow">arrow_forward</span>
-                    <div class="message-content">
-                        <div class="message-from-to">Client → Server</div>
-                        <div class="message-text">list_resources()</div>
+                <div class="interactions-column">
+                    <div class="message">
+                        <div class="message-number">6</div>
+                        <span class="material-icons message-arrow">arrow_forward</span>
+                        <div class="message-content">
+                            <div class="message-from-to">Client → LLM</div>
+                            <div class="message-text">Generates analysis with data</div>
+                        </div>
                     </div>
-                </div>
 
-                <div class="message">
-                    <div class="message-number">3</div>
-                    <span class="material-icons message-arrow">arrow_back</span>
-                    <div class="message-content">
-                        <div class="message-from-to">Server → Client</div>
-                        <div class="message-text">[available resources]</div>
+                    <div class="message">
+                        <div class="message-number">7</div>
+                        <span class="material-icons message-arrow">arrow_forward</span>
+                        <div class="message-content">
+                            <div class="message-from-to">Client → Server</div>
+                            <div class="message-text">call_tool("create_visualization", params)</div>
+                        </div>
                     </div>
-                </div>
 
-                <div class="note">
-                    <div class="note-text">Client reasons about what's needed...</div>
-                </div>
-
-                <div class="message">
-                    <div class="message-number">4</div>
-                    <span class="material-icons message-arrow">arrow_forward</span>
-                    <div class="message-content">
-                        <div class="message-from-to">Client → Server</div>
-                        <div class="message-text">read_resource("sales_db://q4_2024")</div>
+                    <div class="message">
+                        <div class="message-number">8</div>
+                        <span class="material-icons message-arrow">arrow_back</span>
+                        <div class="message-content">
+                            <div class="message-from-to">Server → Client</div>
+                            <div class="message-text">[chart created]</div>
+                        </div>
                     </div>
-                </div>
 
-                <div class="message">
-                    <div class="message-number">5</div>
-                    <span class="material-icons message-arrow">arrow_back</span>
-                    <div class="message-content">
-                        <div class="message-from-to">Server → Client</div>
-                        <div class="message-text">[sales data]</div>
-                    </div>
-                </div>
-
-                <div class="message">
-                    <div class="message-number">6</div>
-                    <span class="material-icons message-arrow">arrow_forward</span>
-                    <div class="message-content">
-                        <div class="message-from-to">Client → LLM</div>
-                        <div class="message-text">Generates analysis with data</div>
-                    </div>
-                </div>
-
-                <div class="message">
-                    <div class="message-number">7</div>
-                    <span class="material-icons message-arrow">arrow_forward</span>
-                    <div class="message-content">
-                        <div class="message-from-to">Client → Server</div>
-                        <div class="message-text">call_tool("create_visualization", params)</div>
-                    </div>
-                </div>
-
-                <div class="message">
-                    <div class="message-number">8</div>
-                    <span class="material-icons message-arrow">arrow_back</span>
-                    <div class="message-content">
-                        <div class="message-from-to">Server → Client</div>
-                        <div class="message-text">[chart created]</div>
-                    </div>
-                </div>
-
-                <div class="message">
-                    <div class="message-number">9</div>
-                    <span class="material-icons message-arrow">arrow_back</span>
-                    <div class="message-content">
-                        <div class="message-from-to">Client → User</div>
-                        <div class="message-text">"Here's your analysis with visualization"</div>
+                    <div class="message">
+                        <div class="message-number">9</div>
+                        <span class="material-icons message-arrow">arrow_back</span>
+                        <div class="message-content">
+                            <div class="message-from-to">Client → User</div>
+                            <div class="message-text">"Here's your analysis with visualization"</div>
+                        </div>
                     </div>
                 </div>
             </div>

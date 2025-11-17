@@ -1532,39 +1532,53 @@ h1:has(+ .architecture-flow) {
 
 /* === SLIDE 012 - INTERACTION FLOW (specifik för 012) === */
 
-/* Sequence diagram container */
+/* Sequence diagram container - ny layout med participants vänster och interactions i två kolumner */
 .sequence-diagram {
-    max-width: min(1200px, 95vw);
-    margin: 0 auto;
-    padding: clamp(8px, 1vh, 12px) 0; /* FIX: Drastiskt reducerad padding */
-}
-
-/* Participants grid */
-.participants {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: clamp(10px, 1.5vw, 15px); /* FIX: Reducerad från 20px-25px */
-    margin-bottom: clamp(10px, 1.2vh, 15px); /* FIX: Reducerad från 25px */
+    grid-template-columns: auto 1fr; /* Participants vänster, interactions tar resten */
+    gap: clamp(15px, 2vw, 25px);
+    max-width: min(1400px, 98vw);
+    margin: 0 auto;
+    padding: clamp(8px, 1vh, 12px) 0;
+    align-items: start;
 }
 
-/* Participant item */
+/* Participants vertical - vertikal lista till vänster */
+.participants-vertical {
+    display: flex;
+    flex-direction: column;
+    gap: clamp(8px, 1vh, 12px);
+    min-width: clamp(80px, 10vw, 120px);
+}
+
+/* Interactions split - två kolumner parallellt */
+.interactions-split {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: clamp(12px, 1.8vw, 20px);
+    align-items: start;
+}
+
+/* Participant item - för vertikal layout */
 .participant {
     display: flex;
-    flex-direction: column;
+    flex-direction: row; /* FIX: Horisontell layout för vertikal lista */
     align-items: center;
-    gap: clamp(4px, 0.5vh, 6px); /* FIX: Reducerad från 10px */
+    gap: clamp(6px, 0.8vw, 10px);
+    width: 100%;
 }
 
-/* Participant box */
+/* Participant box - för vertikal layout */
 .participant-box {
     width: 100%;
-    padding: clamp(8px, 1vh, 10px) clamp(6px, 1vw, 10px); /* FIX: Reducerad från 15px */
+    padding: clamp(8px, 1vh, 10px) clamp(8px, 1.2vw, 12px); /* FIX: Anpassad för horisontell layout */
     background: #2dd4bf;
-    border-radius: 6px; /* FIX: Mindre från 8px */
+    border-radius: 6px;
     display: flex;
-    flex-direction: column;
+    flex-direction: row; /* FIX: Horisontell layout - ikon och text sida vid sida */
     align-items: center;
-    gap: clamp(3px, 0.4vh, 4px); /* FIX: Reducerad från 6px */
+    gap: clamp(6px, 0.8vw, 10px);
+    justify-content: flex-start;
 }
 
 /* Participant icon */
@@ -1589,11 +1603,11 @@ h1:has(+ .architecture-flow) {
     margin: 0 auto;
 }
 
-/* Interactions container */
-.interactions {
+/* Interactions column - för varje kolumn i split layout */
+.interactions-column {
     display: flex;
     flex-direction: column;
-    gap: clamp(6px, 0.8vh, 8px); /* FIX: Drastiskt reducerad från 12px */
+    gap: clamp(6px, 0.8vh, 8px);
     position: relative;
 }
 
