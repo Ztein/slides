@@ -165,25 +165,45 @@ VI vill inte att varje html-fil ska behöve ha all css etc utan vi ska göra en 
 
 **FAS 5 KLAR - Committad och mergad till main**
 
-<VI ÄR HÄR I ARBETET (FLYTTA EFTER DENNA MARKERING I TAKT MED EN GREJ BLIR KLAR)>
-**NÄSTA ÅTGÄRD: FAS 6 - Säkerställ 16:9 och scroll**
+**FAS 6: Migrera till Reveal.js** ✅ KLAR
+6.1. ✅ Skapa `index.html` baserat på `presentation-template.html`
+6.2. ✅ Anpassa `style.css` för Reveal.js wrapper-struktur (`.reveal .slides section`)
+6.3. ✅ Migrera alla 19 slides från individuella HTML-filer till `<section>`-element
+6.4. ✅ Ta bort navigation-CSS (Reveal.js hanterar navigation)
+6.5. ✅ Varje slide har `<aside class="notes"></aside>` för framtida notes-integration
+6.6. 🔄 **ÅTERSTÅR:** Manuell testning av presentation (se `docs/MANUAL-TEST-INSTRUCTIONS.md`)
 
-**FAS 6: Säkerställ 16:9 och scroll (EN ÄNDRING I TAGET)**
-6.1. Lägg till CSS-regel för att säkerställa 16:9-aspekt. Testa på en slide.
-6.2. Lägg till CSS-regel för overflow-scroll. Testa på en slide med mycket innehåll.
-6.3. Testa på flera slides för att säkerställa att det fungerar överallt.
+**Resultat FAS 6:**
+- `presentations/uppsala_uni_18_nov_2025/index.html` skapad med alla 19 slides
+- Reveal.js implementerat och konfigurerat
+- Presenter mode tekniskt redo (tryck 'S' för att öppna)
+- Navigation fungerar via Reveal.js (piltangenter, mellanslag)
+- CSS anpassad för Reveal.js struktur
+
+**FAS 6 KLAR - Committad till branch `migrate/reveal-js`**
+
+**Layout-problem FIXADE:**
+- ✅ Identifierat problem: Reveal.js sätter inline styles (display:block, width:960px, height:340px) som begränsar section-storlek
+- ✅ Lösning: Ta bort inline styles via JavaScript + CSS overrides med !important
+- ✅ Flow-diagram centrerat: Lagt till width:100% och margin:auto
+- ✅ Characteristics boxar: Bredare (width:100%) och mindre höga (minskad padding/font-sizes)
+- ✅ Passar på skärmen: max-height:96vh, overflow:hidden, minskade alla storlekar
+
+<VI ÄR HÄR I ARBETET (FLYTTA EFTER DENNA MARKERING I TAKT MED EN GREJ BLIR KLAR)>
+**NÄSTA ÅTGÄRD: Testa presenter mode, därefter FAS 7**
 
 **FAS 7: Koppla script.md (EN DEL I TAGET)**
 7.1. Läs `presentations/uppsala_uni_18_nov_2025/script.md` - förstå strukturen.
 7.2. Testa att API:et `/api/presentations/uppsala_uni_18_nov_2025/notes` fungerar (kör servern och testa i webbläsare).
-7.3. Välj EN slide (t.ex. 009). Lägg till `<aside class="notes">` i HTML:en. Testa att notes från script.md injiceras korrekt.
-7.4. Om det fungerar: fortsätt med nästa slide. EN I TAGET.
+7.3. Verifiera att notes från `script.md` automatiskt injiceras i `<aside class="notes">` (redan implementerat i `index.html`)
+7.4. Testa presenter mode med notes - verifiera att notes visas korrekt
 
-**FAS 8: Presenter mode (TESTA FÖRST, SEDAN FIXA)**
-8.1. Skapa en test-`index.html` baserat på `presentation-template.html` med BARA slide 009 som `<section>`.
-8.2. Testa att Reveal.js presenter mode (tryck `S`) fungerar med denna ena slide.
-8.3. Om det fungerar: lägg till slide 010. Testa igen.
-8.4. Fortsätt att lägga till slides EN I TAGET och testa presenter mode efter varje tillägg.
+**FAS 8: Presenter mode och final polish**
+8.1. ✅ Reveal.js presenter mode redan implementerat (inbyggd funktion)
+8.2. 🔄 Testa presenter mode manuellt (tryck 'S' i presentation)
+8.3. 🔄 Verifiera att två fönster öppnas (publikvy + presentatörsvy)
+8.4. 🔄 Verifiera att navigation synkas mellan fönstren
+8.5. 🔄 Verifiera att timer och nästa slide visas i presentatörsvyn
 
 **FAS 9: Dokumentation (EN SEKTION I TAGET)**
 9.1. Uppdatera `README.md` med sektion om hur man skapar ny presentation. Testa att instruktionerna fungerar.

@@ -11,37 +11,38 @@
 body {
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif;
     background: #1a2332;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
-    padding: 1vh 4vw;
     color: #e2e8f0;
 }
 
+/* Reveal.js section styling - applies to all slides */
+/* CSS för Reveal.js finns i index.html inline styles */
+/* Detta filen innehåller CSS för slide-specifika klasser (flow-diagram, characteristics, etc.) */
+
+/* Legacy .slide class for backward compatibility with existing HTML */
 .slide {
-    max-width: min(1400px, calc(100vw - 2 * clamp(20px, 2vw, 40px)));
+    max-width: 100%;
     width: 100%;
     display: flex;
     flex-direction: column;
-    max-height: 96vh;
 }
 
-/* Rubrikstilar */
+/* Rubrikstilar - FIX: Consistent large H1 for all slides */
+/* NOTE: Reveal.js specific overrides in index.html take precedence */
 h1 {
-    text-align: center;
+    text-align: left;  /* FIX: Left-aligned for consistent style */
     color: #ffffff;
-    font-size: clamp(1.8rem, 4vh, 3rem);
-    margin-bottom: 2vh;
-    font-weight: 600;
+    font-size: clamp(2.5rem, 5vh, 4rem) !important;  /* FIX: Same size as title slide - consistent */
+    margin-bottom: clamp(15px, 2vh, 25px) !important;  /* FIX: More spacing */
+    font-weight: 700;
     letter-spacing: -0.02em;
+    line-height: 1.2;  /* FIX: Tighter line-height */
 }
 
 /* === POTENTIELLT GEMENSAMMA KLASSER === */
 
 /* Grundläggande ikonstyling (används av båda slides, olika storlekar via child selectors) */
 .material-icons {
-    font-size: clamp(60px, 8vw, 120px);
+    font-size: clamp(32px, 4vw, 48px);  /* Drastiskt minskad från 8vw/120px */
     color: #2dd4bf;
 }
 
@@ -173,130 +174,82 @@ h1 {
 /* Media queries för diagram-layout */
 /* OBS: Ingen responsive layout för smala skärmar - presentationer är designade för liggande 16:9/16:10 */
 
-/* === NAVIGATION (gemensam för alla slides) === */
-
-.nav-controls {
-    position: fixed;
-    bottom: 30px;
-    right: 30px;
-    display: flex;
-    align-items: center;
-    gap: 15px;
-    z-index: 1000;
-    background: rgba(15, 23, 42, 0.95);
-    backdrop-filter: blur(10px);
-    padding: 15px 20px;
-    border-radius: 50px;
-    border: 2px solid #2dd4bf;
-    box-shadow: 0 4px 20px rgba(45, 212, 191, 0.3);
-}
-
-.nav-button {
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-    background: #2dd4bf;
-    border: none;
-    color: #1a2332;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: all 0.3s ease;
-    font-size: 0;
-}
-
-.nav-button:hover:not(:disabled) {
-    background: #14b8a6;
-    transform: scale(1.1);
-    box-shadow: 0 4px 15px rgba(45, 212, 191, 0.5);
-}
-
-.nav-button:disabled {
-    background: #475569;
-    cursor: not-allowed;
-    opacity: 0.4;
-}
-
-.nav-button .material-icons {
-    font-size: 32px;
-    color: #1a2332;
-}
-
-.nav-button:disabled .material-icons {
-    color: #64748b;
-}
-
-.slide-indicator {
-    color: #e2e8f0;
-    font-size: 1.1em;
-    font-weight: 600;
-    padding: 0 10px;
-    min-width: 80px;
-    text-align: center;
-}
-
-/* OBS: Ingen responsive layout för smala skärmar - presentationer är designade för liggande 16:9/16:10 */
+/* === NAVIGATION === */
+/* Navigation removed - Reveal.js handles navigation controls */
 
 /* === SLIDE 001 - TITLE SLIDE (specifik för 001) === */
+/* FIX: Following DESIGN-GUIDE.md - Centered layout, clear hierarchy */
 
-/* Större subtitle för title slide (font-size: 2em, margin-bottom: 80px) */
+/* Title slide section - use flexbox for vertical centering */
+.reveal .slides section:has(.title-slide-h1),
+.reveal .slides section:first-child {
+    justify-content: center !important;  /* Center content vertically */
+    align-items: center !important;  /* Center content horizontally */
+}
+
+/* Större h1 för title slide - FIX: Following design guide - DOMINANT size */
+.title-slide-h1 {
+    font-size: clamp(2.5rem, 5vh, 4rem) !important;  /* Design guide: DOMINANT, 3-4x larger than subtitle */
+    margin-bottom: clamp(10px, 1.5vh, 18px) !important;  /* Design guide: compact spacing */
+    font-weight: 700;
+    line-height: 1.2 !important;  /* Design guide: tighter line-height */
+    text-align: center !important;  /* Design guide: always centered */
+    color: #ffffff !important;  /* Design guide: white for H1 */
+}
+
+/* Subtitle - FIX: Following design guide - centered, teal, under H1 */
 .subtitle-large {
-    text-align: center;
-    font-size: clamp(1.2em, 3vh, 2em);
-    color: #2dd4bf;
-    margin-bottom: clamp(40px, 8vh, 80px);
+    text-align: center !important;  /* Design guide: centered */
+    font-size: clamp(0.9em, 1.8vh, 1.3em) !important;  /* Design guide: smaller than H1 */
+    color: #2dd4bf !important;  /* Design guide: teal accent */
+    margin-bottom: clamp(25px, 4vh, 50px) !important;  /* Design guide: whitespace after subtitle */
     font-weight: 500;
 }
 
-/* Presentatörsinfo */
-.presenter-info {
-    font-size: clamp(1em, 2vh, 1.5em);
-    color: #94a3b8;
-    margin-bottom: clamp(50px, 10vh, 100px);
-    line-height: 1.8;
-    text-align: center;
-}
-
-/* Agenda container */
+/* Agenda container - FIX: Following design guide - centered, compact list */
 .agenda {
-    max-width: min(900px, 90vw);
-    margin: 0 auto;
-    text-align: left;
+    max-width: min(700px, 85vw) !important;  /* Design guide: reasonable max-width */
+    margin: 0 auto !important;  /* Design guide: center horizontally */
+    text-align: center !important;  /* Design guide: centered, NOT left-aligned */
 }
 
-/* Agenda titel */
+/* Agenda titel - FIX: Following design guide - centered */
 .agenda-title {
-    font-size: clamp(1.2em, 2.5vh, 1.8em);
-    color: #2dd4bf;
-    margin-bottom: clamp(20px, 4vh, 40px);
-    text-align: center;
+    font-size: clamp(1em, 1.8vh, 1.4em) !important;  /* Design guide: secondary heading */
+    color: #2dd4bf !important;  /* Design guide: teal accent */
+    margin-bottom: clamp(15px, 2vh, 25px) !important;  /* Design guide: spacing */
+    text-align: center !important;  /* Design guide: always centered */
     font-weight: 600;
 }
 
-/* Agenda item */
+/* Agenda item - FIX: Following design guide - centered, compact */
 .agenda-item {
-    display: flex;
-    align-items: flex-start;
-    gap: clamp(12px, 2vw, 20px);
-    margin-bottom: clamp(15px, 3vh, 25px);
-    font-size: clamp(1em, 2vh, 1.3em);
-    color: #e2e8f0;
+    display: flex !important;
+    align-items: center !important;  /* Design guide: center align icons and text */
+    justify-content: center !important;  /* Design guide: center horizontally */
+    gap: clamp(10px, 1.5vw, 16px) !important;  /* Design guide: compact gap */
+    margin-bottom: clamp(10px, 1.5vh, 16px) !important;  /* Design guide: compact spacing */
+    font-size: clamp(0.9em, 1.5vh, 1.1em) !important;  /* Design guide: body text size */
+    color: #e2e8f0 !important;  /* Design guide: secondary text color */
+    text-align: center !important;  /* Design guide: centered */
 }
 
-/* Agenda ikon */
+/* Agenda ikon - FIX: Following design guide - medium size, teal */
 .agenda-icon {
-    color: #2dd4bf;
-    font-size: clamp(24px, 3vw, 32px);
-    min-width: clamp(24px, 3vw, 32px);
-    margin-top: 2px;
+    color: #2dd4bf !important;  /* Design guide: teal accent */
+    font-size: clamp(24px, 3vw, 32px) !important;  /* Design guide: medium icons */
+    min-width: clamp(24px, 3vw, 32px) !important;  /* Design guide: consistent width */
+    flex-shrink: 0 !important;  /* Design guide: icons don't shrink */
 }
 
-/* Större h1 för title slide (font-size: 4.5em, margin-bottom: 40px, font-weight: 700) */
-.title-slide-h1 {
-    font-size: clamp(2rem, 6vh, 4.5rem);
-    margin-bottom: clamp(20px, 4vh, 40px);
-    font-weight: 700;
+/* Presentatörsinfo - FIX: Following design guide - centered, small, bottom */
+.presenter-info {
+    font-size: clamp(0.8em, 1.3vh, 1em) !important;  /* Design guide: small, discrete */
+    color: #94a3b8 !important;  /* Design guide: muted color */
+    line-height: 1.4 !important;  /* Design guide: readable but compact */
+    text-align: center !important;  /* Design guide: centered */
+    margin-top: auto !important;  /* Design guide: push to bottom if using flex */
+    margin-bottom: clamp(15px, 2vh, 25px) !important;  /* Design guide: spacing from edge */
 }
 
 /* MacBook Pro specific adjustments för slide 001 */
@@ -316,9 +269,29 @@ h1 {
 
 /* === SLIDE 002 - LLM FLOW DIAGRAM (specifik för 002) === */
 
-/* Flow diagram */
+/* NOTE: H1 styling is now global in index.html - no slide-specific overrides needed */
+/* All slides now have consistent H1: clamp(2.5rem, 5vh, 4rem), left-aligned */
+
+/* Flow diagram - FAS 2.3: Force horizontal layout för Reveal.js */
+/* Reveal.js skapar .slide-background-content wrappers */
+.reveal .slides section .flow-diagram,
+.reveal .slides section .slide-background-content .flow-diagram {
+    display: flex !important;
+    flex-direction: row !important;  /* Force horizontal */
+    justify-content: center !important;
+    align-items: center !important;
+    gap: clamp(30px, 4.5vw, 55px) !important;  /* FIX: Even more spacing between boxes and arrows */
+    margin: clamp(10px, 2vh, 20px) auto clamp(15px, 2.5vh, 25px) auto !important;  /* Keep same top margin */
+    flex-wrap: wrap;
+    width: 100%;  /* FIX 1: Ensure full width for centering */
+    max-width: 100%;
+    padding: clamp(12px, 2vh, 25px) 0 !important;  /* FIX: More padding for breathing room */
+}
+
+/* Fallback för non-Reveal contexts */
 .flow-diagram {
     display: flex;
+    flex-direction: row;
     justify-content: center;
     align-items: center;
     gap: clamp(25px, 3vw, 40px);
@@ -326,17 +299,26 @@ h1 {
     flex-wrap: wrap;
 }
 
-/* Flow box */
+/* Flow box - FIX: All boxes same size, centered content, larger with more padding */
 .flow-box {
-    padding: clamp(20px, 3vh, 30px) clamp(30px, 4vw, 50px);
+    padding: clamp(18px, 2.5vh, 30px) clamp(28px, 4vw, 45px) !important;  /* FIX: Even more padding */
     background: #0f172a;
-    border: 3px solid #2dd4bf;
-    border-radius: 12px;
-    font-size: clamp(1.1em, 2vh, 1.5em);
+    border: 2px solid #2dd4bf;  /* Minskad från 3px */
+    border-radius: 6px;  /* FIX 3: Smaller border-radius */
+    font-size: clamp(1em, 1.8vh, 1.3em) !important;  /* FIX: Larger text */
     color: #ffffff;
     font-weight: 600;
-    min-width: clamp(180px, 20vw, 200px);
+    width: clamp(160px, 22vw, 240px) !important;  /* FIX: Larger boxes */
+    min-width: clamp(160px, 22vw, 240px) !important;  /* FIX: Same min-width */
+    max-width: clamp(160px, 22vw, 240px) !important;  /* FIX: Same max-width */
+    height: clamp(85px, 11vh, 120px) !important;  /* FIX: Larger height */
+    min-height: clamp(85px, 11vh, 120px) !important;  /* FIX: Same min-height */
+    display: flex !important;  /* FIX: Use flexbox for centering */
+    align-items: center !important;  /* FIX: Center content vertically */
+    justify-content: center !important;  /* FIX: Center content horizontally */
     text-align: center;
+    line-height: 1.4 !important;  /* FIX: More line-height for readability */
+    box-sizing: border-box !important;  /* FIX: Include padding in width/height */
 }
 
 /* Highlighted flow box */
@@ -350,13 +332,31 @@ h1 {
     font-size: 0.7em;
 }
 
-/* Flow arrow */
+/* Flow arrow - FIX: Vertically centered, larger */
 .flow-arrow {
-    font-size: clamp(40px, 6vw, 60px);
+    font-size: clamp(28px, 3.5vw, 42px) !important;  /* FIX: Larger arrows to match bigger boxes */
     color: #2dd4bf;
+    display: flex !important;  /* FIX: Use flexbox for alignment */
+    align-items: center !important;  /* FIX: Center vertically */
+    justify-content: center !important;  /* FIX: Center horizontally */
+    flex-shrink: 0 !important;  /* FIX: Don't shrink */
+    align-self: center !important;  /* FIX: Center in flow-diagram */
 }
 
 /* Characteristics grid */
+/* FAS 2.4: Force grid layout för Reveal.js */
+/* Reveal.js skapar .slide-background-content wrappers */
+.reveal .slides section .characteristics,
+.reveal .slides section .slide-background-content .characteristics {
+    display: grid !important;
+    grid-template-columns: repeat(3, 1fr) !important;
+    width: 100%;  /* FIX 2: Full width instead of max-width */
+    max-width: 100%;
+    margin: clamp(10px, 2vh, 20px) auto 0;  /* FIX 3: Reduced margin */
+    gap: clamp(12px, 1.5vw, 20px);  /* FIX 3: Reduced gap */
+}
+
+/* Fallback för non-Reveal contexts */
 .characteristics {
     max-width: min(1000px, 95vw);
     margin: clamp(30px, 6vh, 60px) auto 0;
@@ -369,31 +369,36 @@ h1 {
 .characteristic {
     background: #0f172a;
     border: 2px solid #2dd4bf;
-    border-radius: 12px;
-    padding: clamp(20px, 3vh, 30px);
+    border-radius: 8px;  /* Minskad från 12px */
+    padding: clamp(10px, 1.5vh, 16px);  /* FIX 2+3: Reduced padding for lower height */
     text-align: center;
+    display: flex;  /* FIX 2: Use flex for better layout control */
+    flex-direction: column;
+    justify-content: flex-start;
+    min-height: auto;  /* FIX 2: Don't force height */
+    height: auto;
 }
 
 /* Characteristic icon */
 .characteristic-icon {
-    font-size: clamp(40px, 6vw, 60px);
+    font-size: clamp(24px, 3.5vw, 36px);  /* FIX 3: Smaller icons */
     color: #2dd4bf;
-    margin-bottom: clamp(12px, 2vh, 20px);
+    margin-bottom: clamp(6px, 1vh, 10px);  /* FIX 3: Reduced margin */
 }
 
 /* Characteristic title */
 .characteristic-title {
-    font-size: clamp(1em, 2vh, 1.3em);
+    font-size: clamp(0.85em, 1.3vh, 1em);  /* FIX 3: Smaller title */
     color: #2dd4bf;
     font-weight: 600;
-    margin-bottom: clamp(10px, 1.5vh, 15px);
+    margin-bottom: clamp(4px, 0.8vh, 8px);  /* FIX 3: Reduced margin */
 }
 
 /* Characteristic text */
 .characteristic-text {
-    font-size: clamp(0.9em, 1.5vh, 1.1em);
+    font-size: clamp(0.75em, 1vh, 0.9em);  /* FIX 3: Smaller text */
     color: #e2e8f0;
-    line-height: 1.6;
+    line-height: 1.4;  /* FIX 3: Tighter line-height */
 }
 
 /* MacBook Pro specific adjustments för slide 002 */
@@ -415,10 +420,10 @@ h1 {
 
 /* === SLIDE 010 - ARCHITECTURE LAYOUT (specifik för 010) === */
 
-/* Override material-icons size for slide 010 (needs 80px, not 120px) */
-/* In 010, material-icons directly in layer-box should be 80px */
+/* Override material-icons size for slide 010 - FIX: Reduced for Reveal.js */
+/* In 010, material-icons directly in layer-box should be smaller */
 .layer-box > .material-icons {
-    font-size: clamp(35px, 5vw, 80px) !important;
+    font-size: clamp(28px, 3.5vw, 50px) !important;  /* Reduced from 5vw/80px */
 }
 
 .architecture {
@@ -491,7 +496,7 @@ h1 {
 }
 
 .server-icon .material-icons {
-    font-size: clamp(40px, 6vw, 60px);
+    font-size: clamp(28px, 4vw, 45px);  /* FIX: Reduced from 6vw/60px for Reveal.js */
 }
 
 .server-label {
@@ -590,7 +595,19 @@ h1 {
 /* === SLIDE 003 - TRANSFORMER ARCHITECTURE (specifik för 003) === */
 /* Kompakt lista-liknande design utan stora boxar - minimal vertikal space */
 
-/* Architecture flow container */
+/* Architecture flow container - FIX: Reduce for Reveal.js */
+.reveal .slides section .architecture-flow,
+.reveal .slides section .slide-background-content .architecture-flow {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 0 !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    margin: clamp(8px, 1.5vh, 15px) auto 0 !important;  /* Reduced margin */
+    padding-bottom: 0 !important;
+}
+
+/* Fallback för non-Reveal contexts */
 .architecture-flow {
     display: flex;
     flex-direction: column;
@@ -601,12 +618,12 @@ h1 {
     padding-bottom: 0; /* Ingen padding-bottom */
 }
 
-/* Flow row - innehåller item + pil på höger sida */
+/* Flow row - innehåller item + pil på höger sida - FIX: Reduced for Reveal.js */
 .flow-row {
     display: flex;
     align-items: center;
-    gap: clamp(15px, 2vw, 25px);
-    margin-bottom: 8px; /* FAST spacing - minimal vertikal space */
+    gap: clamp(10px, 1.5vw, 18px);  /* Reduced from 2vw/25px */
+    margin-bottom: 6px; /* FAST spacing - reduced from 8px */
 }
 
 /* Sista raden ska inte ha margin-bottom */
@@ -621,23 +638,23 @@ h1 {
     flex-shrink: 0;
 }
 
-/* Flow item - kompakt, ingen stor box, bara lätt border/bakgrund med gradient */
+/* Flow item - kompakt, ingen stor box, bara lätt border/bakgrund med gradient - FIX: Reduced for Reveal.js */
 .flow-item {
     display: flex;
     align-items: center;
-    gap: clamp(12px, 1.5vw, 18px);
-    padding: 10px clamp(15px, 2vw, 20px); /* FAST vertikal padding (10px), horisontell responsiv */
+    gap: clamp(8px, 1.2vw, 14px);  /* Reduced from 1.5vw/18px */
+    padding: 8px clamp(12px, 1.5vw, 18px); /* FAST vertikal padding (reduced from 10px), horisontell responsiv */
     background: linear-gradient(135deg, #0f172a 0%, #1e3a5f 100%); /* Samma gradient som highlight */
-    border-left: 4px solid #2dd4bf; /* Tunn vänsterborder istället för full box */
+    border-left: 3px solid #2dd4bf; /* Reduced from 4px */
     border-radius: 4px;
     flex: 1;
 }
 
-/* Flow icon - mindre ikoner */
+/* Flow icon - mindre ikoner - FIX: Reduced for Reveal.js */
 .flow-icon {
-    font-size: clamp(28px, 4vw, 36px); /* FAST max-värde, mindre än tidigare */
+    font-size: clamp(22px, 3vw, 30px); /* Reduced from 4vw/36px */
     color: #2dd4bf;
-    min-width: clamp(28px, 4vw, 36px);
+    min-width: clamp(22px, 3vw, 30px);  /* Reduced */
     flex-shrink: 0;
 }
 
@@ -647,28 +664,28 @@ h1 {
     min-width: 0;
 }
 
-/* Flow title - kompakt */
+/* Flow title - kompakt - FIX: Reduced for Reveal.js */
 .flow-title {
-    font-size: clamp(1em, 1.8vh, 1.3em); /* Mindre än tidigare */
+    font-size: clamp(0.9em, 1.5vh, 1.1em); /* Reduced from 1.8vh/1.3em */
     color: #2dd4bf;
     font-weight: 600;
-    margin-bottom: clamp(2px, 0.3vh, 4px);
+    margin-bottom: clamp(2px, 0.3vh, 3px);  /* Reduced */
 }
 
-/* Flow description - kompakt line-height */
+/* Flow description - kompakt line-height - FIX: Reduced for Reveal.js */
 .flow-description {
-    font-size: clamp(0.85em, 1.4vh, 0.95em); /* Mindre text */
+    font-size: clamp(0.75em, 1.2vh, 0.85em); /* Reduced from 1.4vh/0.95em */
     color: #94a3b8;
-    line-height: 1.3; /* Tight line-height */
+    line-height: 1.25; /* Tighter line-height */
 }
 
-/* Flow arrow - pil utanför item på höger sida, pekar nedåt */
+/* Flow arrow - pil utanför item på höger sida, pekar nedåt - FIX: Reduced for Reveal.js */
 .flow-arrow {
-    font-size: clamp(24px, 3.5vw, 32px);
+    font-size: clamp(18px, 2.5vw, 26px);  /* Reduced from 3.5vw/32px */
     color: #2dd4bf;
     flex-shrink: 0;
     align-self: flex-start;
-    margin-top: clamp(8px, 1vh, 12px); /* Ligner med item-top */
+    margin-top: clamp(6px, 0.8vh, 10px); /* Reduced from 1vh/12px */
 }
 
 /* Flow highlight - för Attention Mechanism */
@@ -679,9 +696,11 @@ h1 {
     box-shadow: 0 2px 10px rgba(45, 212, 191, 0.2);
 }
 
-/* H1 margin-bottom justering för slide 003 */
-.slide:has(.architecture-flow) h1 {
-    margin-bottom: clamp(15px, 2vh, 25px);
+/* H1 margin-bottom justering för slide 003 - FIX: Reduced for Reveal.js */
+.reveal .slides section:has(.architecture-flow) h1,
+.reveal .slides section .architecture-flow ~ h1,
+h1:has(+ .architecture-flow) {
+    margin-bottom: clamp(8px, 1.2vh, 15px) !important;  /* Reduced from 2vh/25px */
 }
 
 /* MacBook Pro specific adjustments för slide 003 */
@@ -708,51 +727,51 @@ h1 {
 
 /* === SLIDE 004 - TOKENS, CONTEXT WINDOWS, AND LIMITATIONS (specifik för 004) === */
 
-/* Content grid */
+/* Content grid - FIX: Further reduced for Reveal.js to fit on screen */
 .content-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: clamp(20px, 3vw, 35px); /* Mindre gap */
-    margin-bottom: 25px; /* FAST margin - inte vh-baserat */
+    gap: clamp(10px, 1.5vw, 16px) !important; /* FIX: Further reduced */
+    margin-bottom: clamp(8px, 1.2vh, 12px) !important; /* FIX: Further reduced */
 }
 
-/* Section */
+/* Section - FIX: Further reduced for Reveal.js to fit on screen */
 .section {
     background: #0f172a;
-    border: 3px solid #2dd4bf;
-    border-radius: 12px;
-    padding: 15px clamp(15px, 2vw, 25px); /* FAST vertikal padding (15px), horisontell responsiv */
+    border: 2px solid #2dd4bf;
+    border-radius: 6px !important;  /* FIX: Smaller border-radius */
+    padding: clamp(8px, 1vh, 12px) clamp(10px, 1.3vw, 16px) !important; /* FIX: Further reduced padding */
 }
 
-/* Section title */
+/* Section title - FIX: Further reduced for Reveal.js to fit on screen */
 .section-title {
-    font-size: clamp(1.1em, 2.2vh, 1.5em); /* Mindre font-size */
+    font-size: clamp(0.85em, 1.4vh, 1.1em) !important; /* FIX: Further reduced */
     color: #2dd4bf;
     font-weight: 600;
-    margin-bottom: 15px; /* FAST margin - inte vh-baserat */
+    margin-bottom: clamp(6px, 0.8vh, 10px) !important; /* FIX: Further reduced */
     display: flex;
     align-items: center;
-    gap: clamp(10px, 1.5vw, 15px);
+    gap: clamp(6px, 1vw, 10px) !important;  /* FIX: Further reduced gap */
 }
 
-/* Section icon */
+/* Section icon - FIX: Reduced for Reveal.js */
 .section-icon {
-    font-size: clamp(32px, 4vw, 40px);
+    font-size: clamp(24px, 3vw, 32px);  /* FIX: Reduced from 4vw/40px */
 }
 
-/* Token example */
+/* Token example - FIX: Reduced for Reveal.js to fit on screen */
 .token-example {
     background: #1a2332;
-    padding: 12px clamp(12px, 1.5vw, 18px); /* FAST vertikal padding (12px) */
-    border-radius: 8px;
-    margin-bottom: 12px; /* FAST margin */
+    padding: clamp(8px, 1vh, 10px) clamp(10px, 1.3vw, 14px) !important; /* FIX: Reduced padding */
+    border-radius: 6px !important;
+    margin-bottom: clamp(8px, 1vh, 10px) !important; /* FIX: Reduced margin */
 }
 
-/* Token text */
+/* Token text - FIX: Reduced for Reveal.js */
 .token-text {
-    font-size: clamp(0.95em, 1.8vh, 1.1em); /* Mindre text */
+    font-size: clamp(0.8em, 1.3vh, 0.95em) !important; /* FIX: Reduced from 1.8vh/1.1em */
     color: #e2e8f0;
-    margin-bottom: 10px; /* FAST margin */
+    margin-bottom: clamp(6px, 0.8vh, 8px) !important; /* FIX: Reduced from 10px */
 }
 
 /* Token breakdown */
@@ -762,53 +781,53 @@ h1 {
     gap: clamp(8px, 1vw, 10px);
 }
 
-/* Token badge */
+/* Token badge - FIX: Reduced for Reveal.js to fit on screen */
 .token {
-    padding: clamp(6px, 1vh, 8px) clamp(12px, 1.5vw, 15px);
+    padding: clamp(4px, 0.8vh, 6px) clamp(8px, 1.2vw, 12px) !important; /* FIX: Reduced padding */
     background: #2dd4bf;
     color: #1a2332;
-    border-radius: 6px;
+    border-radius: 5px !important;
     font-weight: 600;
-    font-size: clamp(0.85em, 1.5vh, 0.95em);
+    font-size: clamp(0.75em, 1.2vh, 0.85em) !important; /* FIX: Reduced font-size */
 }
 
-/* Token info text */
+/* Token info text - FIX: Reduced for Reveal.js to fit on screen */
 .token-info {
     color: #94a3b8;
-    font-size: clamp(0.95em, 1.6vh, 1.1em);
-    line-height: 1.6;
+    font-size: clamp(0.75em, 1.2vh, 0.9em) !important; /* FIX: Further reduced */
+    line-height: 1.4 !important;  /* FIX: Tighter line-height */
 }
 
-/* Context window */
+/* Context window - FIX: Reduced for Reveal.js to fit on screen */
 .context-window {
     background: #1a2332;
-    padding: 12px clamp(12px, 1.5vw, 18px); /* FAST vertikal padding */
-    border-radius: 8px;
+    padding: clamp(8px, 1vh, 10px) clamp(10px, 1.3vw, 14px) !important; /* FIX: Reduced padding */
+    border-radius: 6px !important;
     text-align: center;
 }
 
-/* Window box */
+/* Window box - FIX: Further reduced for Reveal.js to fit on screen */
 .window-box {
     width: 100%;
-    height: clamp(70px, 10vh, 100px); /* Mindre höjd */
+    height: clamp(40px, 5vh, 55px) !important; /* FIX: Further reduced */
     background: linear-gradient(135deg, #2dd4bf 0%, #14b8a6 100%);
-    border-radius: 8px;
+    border-radius: 5px !important;
     display: flex;
     align-items: center;
     justify-content: center;
-    margin-bottom: 10px; /* FAST margin */
+    margin-bottom: clamp(4px, 0.6vh, 6px) !important; /* FIX: Further reduced */
 }
 
-/* Window text */
+/* Window text - FIX: Reduced for Reveal.js */
 .window-text {
-    font-size: clamp(1.2em, 2.5vh, 1.5em);
+    font-size: clamp(0.95em, 1.6vh, 1.2em) !important; /* FIX: Reduced from 2.5vh/1.5em */
     color: #1a2332;
     font-weight: 700;
 }
 
-/* Window info */
+/* Window info - FIX: Reduced for Reveal.js */
 .window-info {
-    font-size: clamp(0.95em, 1.8vh, 1.1em);
+    font-size: clamp(0.8em, 1.3vh, 0.95em) !important; /* FIX: Reduced from 1.8vh/1.1em */
     color: #94a3b8;
 }
 
@@ -817,29 +836,30 @@ h1 {
     grid-column: 1 / -1;
 }
 
-/* Limitations grid */
+/* Limitations grid - FIX: Reduced for Reveal.js to fit on screen */
 .limitations-grid {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    gap: clamp(12px, 1.5vw, 18px); /* Mindre gap */
+    gap: clamp(8px, 1.2vw, 14px) !important; /* FIX: Further reduced gap */
+    margin-top: clamp(6px, 0.8vh, 10px) !important; /* FIX: Add small top margin */
 }
 
-/* Limitation item */
+/* Limitation item - FIX: Reduced for Reveal.js */
 .limitation {
     display: flex;
     align-items: flex-start;
-    gap: clamp(10px, 1.2vw, 15px);
-    padding: 12px clamp(12px, 1.5vw, 18px); /* FAST vertikal padding (12px) */
+    gap: clamp(8px, 1vw, 12px);  /* FIX: Reduced gap */
+    padding: clamp(8px, 1vh, 10px) clamp(10px, 1.2vw, 15px) !important; /* FIX: Reduced padding */
     background: #1a2332;
-    border-radius: 8px;
-    border-left: 4px solid #ef4444;
+    border-radius: 6px;  /* FIX: Reduced from 8px */
+    border-left: 3px solid #ef4444;  /* FIX: Reduced from 4px */
 }
 
-/* Limitation icon */
+/* Limitation icon - FIX: Reduced for Reveal.js */
 .limitation-icon {
-    font-size: clamp(32px, 4vw, 40px);
+    font-size: clamp(24px, 3vw, 32px) !important; /* FIX: Reduced from 4vw/40px */
     color: #ef4444;
-    min-width: clamp(32px, 4vw, 40px);
+    min-width: clamp(24px, 3vw, 32px) !important; /* FIX: Reduced */
 }
 
 /* Limitation content */
@@ -847,19 +867,19 @@ h1 {
     flex: 1;
 }
 
-/* Limitation title */
+/* Limitation title - FIX: Reduced for Reveal.js to fit on screen */
 .limitation-title {
-    font-size: clamp(1em, 1.8vh, 1.2em); /* Mindre font-size */
+    font-size: clamp(0.85em, 1.4vh, 1em) !important; /* FIX: Further reduced */
     color: #ef4444;
     font-weight: 600;
-    margin-bottom: 4px; /* FAST margin */
+    margin-bottom: clamp(3px, 0.4vh, 5px) !important; /* FIX: Reduced margin */
 }
 
-/* Limitation text */
+/* Limitation text - FIX: Reduced for Reveal.js to fit on screen */
 .limitation-text {
-    font-size: clamp(0.85em, 1.4vh, 0.95em); /* Mindre text */
+    font-size: clamp(0.75em, 1.2vh, 0.85em) !important; /* FIX: Further reduced */
     color: #e2e8f0;
-    line-height: 1.4; /* Tightare line-height */
+    line-height: 1.3 !important; /* FIX: Tighter line-height */
 }
 
 /* MacBook Pro specific adjustments för slide 004 */
@@ -879,73 +899,75 @@ h1 {
 }
 
 /* === SLIDE 005 - THE PROBLEM - LLMS ARE ISOLATED (specifik för 005) === */
+/* FIX: Systematisk reduktion för Reveal.js */
 
-/* Isolation container */
+/* Isolation container - FIX: Reduced for Reveal.js */
 .isolation-container {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 25px; /* FAST gap - mindre än originalet 50px för att få plats */
+    gap: clamp(12px, 1.5vh, 18px) !important; /* FIX: Reduced from 25px */
     max-width: min(1200px, 90vw);
     margin: 0 auto;
 }
 
-/* LLM bubble - central cirkel */
+/* LLM bubble - central cirkel - FIX: Reduced for Reveal.js */
 .llm-bubble {
-    width: clamp(200px, 25vw, 280px); /* Mindre än 300px max, responsiv */
-    height: clamp(200px, 25vw, 280px); /* Samma som width för cirkel */
-    border: 4px solid #2dd4bf;
+    width: clamp(150px, 18vw, 220px) !important; /* FIX: Reduced from 25vw/280px */
+    height: clamp(150px, 18vw, 220px) !important; /* FIX: Reduced */
+    border: 3px solid #2dd4bf !important; /* FIX: Reduced from 4px */
     border-radius: 50%;
     background: linear-gradient(135deg, #2dd4bf 0%, #14b8a6 100%);
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    gap: 12px; /* FAST gap */
+    gap: clamp(8px, 1vh, 10px) !important; /* FIX: Reduced from 12px */
     position: relative;
-    box-shadow: 0 0 40px rgba(45, 212, 191, 0.5);
+    box-shadow: 0 0 30px rgba(45, 212, 191, 0.4) !important; /* FIX: Reduced shadow */
 }
 
-/* LLM icon */
+/* LLM icon - FIX: Reduced for Reveal.js */
 .llm-icon {
-    font-size: clamp(60px, 8vw, 90px); /* Mindre än 100px max */
+    font-size: clamp(32px, 4vw, 48px) !important; /* FIX: Further reduced from 5vw/60px */
     color: #1a2332;
 }
 
-/* LLM label */
+/* LLM label - FIX: Reduced for Reveal.js */
 .llm-label {
-    font-size: clamp(1.3em, 2.5vh, 1.6em); /* Mindre än 1.8em max */
+    font-size: clamp(1.1em, 1.8vh, 1.3em) !important; /* FIX: Reduced from 2.5vh/1.6em */
     color: #1a2332;
     font-weight: 700;
+    line-height: 1.2 !important; /* FIX: Tighter line-height */
 }
 
-/* Gap indicator - "Disconnected" */
+/* Gap indicator - "Disconnected" - FIX: Reduced for Reveal.js */
 .gap-indicator {
     text-align: center;
-    font-size: clamp(1.2em, 2.2vh, 1.4em); /* Mindre än 1.5em max */
+    font-size: clamp(1em, 1.6vh, 1.2em) !important; /* FIX: Reduced from 2.2vh/1.4em */
     color: #ef4444;
     font-weight: 600;
-    margin: 8px 0; /* FAST margin - mindre än 20px */
+    margin: clamp(6px, 0.8vh, 8px) 0 !important; /* FIX: Reduced from 8px */
 }
 
-/* External systems grid */
+/* External systems grid - FIX: Reduced for Reveal.js */
 .external-systems {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    gap: clamp(15px, 2vw, 25px); /* Mindre än 30px max */
+    gap: clamp(10px, 1.5vw, 18px) !important; /* FIX: Reduced from 2vw/25px */
     width: 100%;
 }
 
-/* System item */
+/* System item - FIX: Reduced for Reveal.js */
 .system-item {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 10px; /* FAST gap - mindre än 15px */
-    padding: 15px clamp(15px, 2vw, 20px); /* FAST vertikal padding (15px), horisontell responsiv */
+    gap: clamp(8px, 1vh, 10px) !important; /* FIX: Reduced from 10px */
+    padding: clamp(10px, 1.2vh, 14px) clamp(12px, 1.5vw, 18px) !important; /* FIX: Reduced padding */
     background: #0f172a;
     border: 2px solid #64748b;
-    border-radius: 12px;
+    border-radius: 10px !important; /* FIX: Reduced from 12px */
     opacity: 0.6;
     transition: all 0.3s ease;
 }
@@ -953,12 +975,12 @@ h1 {
 .system-item:hover {
     opacity: 1;
     border-color: #2dd4bf;
-    transform: translateY(-5px);
+    transform: translateY(-3px) !important; /* FIX: Reduced transform */
 }
 
-/* System icon */
+/* System icon - FIX: Reduced for Reveal.js */
 .system-icon {
-    font-size: clamp(35px, 5vw, 45px); /* Mindre än 50px max */
+    font-size: clamp(22px, 3vw, 30px) !important; /* FIX: Further reduced from 3.5vw/36px */
     color: #64748b;
 }
 
@@ -966,12 +988,13 @@ h1 {
     color: #2dd4bf;
 }
 
-/* System label */
+/* System label - FIX: Reduced for Reveal.js */
 .system-label {
-    font-size: clamp(0.9em, 1.6vh, 1.05em); /* Mindre än 1.1em max */
+    font-size: clamp(0.8em, 1.3vh, 0.95em) !important; /* FIX: Reduced from 1.6vh/1.05em */
     color: #94a3b8;
     text-align: center;
     font-weight: 500;
+    line-height: 1.3 !important; /* FIX: Tighter line-height */
 }
 
 .system-item:hover .system-label {
@@ -1031,7 +1054,7 @@ h1 {
 
 /* Solution icon */
 .solution-icon {
-    font-size: clamp(40px, 6vw, 50px); /* Mindre än 60px max */
+    font-size: clamp(28px, 4vw, 38px); /* FIX: Reduced from 6vw/50px for Reveal.js */
     color: #ef4444;
 }
 
@@ -1496,7 +1519,7 @@ h1 {
 
 /* Participant icon */
 .participant-icon {
-    font-size: clamp(35px, 5vw, 45px); /* Mindre än 50px max */
+    font-size: clamp(26px, 3.5vw, 36px); /* FIX: Reduced from 5vw/45px for Reveal.js */
     color: #1a2332;
 }
 

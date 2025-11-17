@@ -9,6 +9,7 @@ En enkel presentation-app som använder Reveal.js för att skapa och köra prese
 - ✅ Presenter mode med två vyer: slide för publik + manus för presentatör
 - ✅ Stöd för externa bilder i `images/` mapp
 - ✅ Automatisk inläsning av speaker notes från `script.md`
+- ✅ Design guide för konsekvent slide-design (se `docs/DESIGN-GUIDE.md`)
 
 ## Installation
 
@@ -26,18 +27,32 @@ Servern startar på `http://localhost:8085`
 
 ## Öppna en presentation
 
+### Metod 1: Använd npm script
 ```bash
 npm run present <presentation-name>
 ```
 
 Exempel:
 ```bash
-npm run present uppsala_uni_18_nov_2025_improved
+npm run present uppsala_uni_18_nov_2025
 ```
 
-Eller öppna manuellt i webbläsaren:
+### Metod 2: Öppna manuellt i webbläsaren
+1. Starta servern först: `npm start`
+2. Öppna i webbläsaren:
+   ```
+   http://localhost:8085/presentations/<presentation-name>
+   ```
+
+Exempel för uppsala_uni_18_nov_2025:
 ```
-http://localhost:8085/presentations/<presentation-name>
+http://localhost:8085/presentations/uppsala_uni_18_nov_2025
+```
+
+### Lista tillgängliga presentationer
+Öppna rot-URL:en i webbläsaren för att se alla tillgängliga presentationer:
+```
+http://localhost:8085
 ```
 
 ## Skapa en ny presentation
@@ -139,6 +154,24 @@ Presentationer är designade för liggande (landscape) skärmar med aspect ratio
 - Media queries för MacBook Pro (16:10) finns för finjusteringar
 
 **Inga responsiva anpassningar för smala/stående skärmar** - presentationer är endast för liggande projektorskärmar.
+
+## Design Guide
+
+För att säkerställa konsekvent och professionell design på alla slides, se **`docs/DESIGN-GUIDE.md`**.
+
+Design guiden innehåller:
+- Layout-principer (centrering, hierarki, whitespace)
+- Typografi-regler (H1, subtitle, body text)
+- Färgpalett och användning
+- Spacing och sizing-regler
+- Slide-typer och layout-mönster
+- Komponenter (boxes, cards, icons)
+- Reveal.js specifika regler
+- Måttregler (don'ts)
+- Checklista för varje slide
+- Exempel på perfekta slides
+
+**VIKTIGT:** Följ design guiden när du skapar eller fixar slides för att säkerställa konsekvent design.
 
 ## Tips
 
