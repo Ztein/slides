@@ -1611,6 +1611,9 @@ app = <span class="code-function">Server</span>(<span class="code-string">"weath
     <!-- Reveal.js JS -->
     <script src="https://cdn.jsdelivr.net/npm/reveal.js@4.6.1/dist/reveal.js"></script>
     
+    <!-- Reveal.js Speaker Notes Plugin - REQUIRED for presenter mode -->
+    <script src="https://cdn.jsdelivr.net/npm/reveal.js@4.6.1/plugin/notes/notes.js"></script>
+    
     <script>
         // Initialize Reveal.js
         Reveal.initialize({
@@ -1660,7 +1663,10 @@ app = <span class="code-function">Server</span>(<span class="code-string">"weath
             parallaxBackgroundVertical: null,
             // Presenter mode configuration
             // FAS 3.1: Remove custom keyboard handler - let Reveal.js handle 'S' key
-            keyboard: true  // Use default Reveal.js keyboard bindings including 'S' for presenter mode
+            keyboard: true,  // Use default Reveal.js keyboard bindings including 'S' for presenter mode
+            
+            // Plugins - REQUIRED for presenter mode
+            plugins: [ RevealNotes ]  // Speaker notes plugin enables 'S' key for presenter mode
         });
 
         // Get presentation name from URL path
