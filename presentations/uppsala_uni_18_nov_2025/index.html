@@ -31,8 +31,8 @@
             color: #e2e8f0 !important;
             padding: 2vh 2vw !important;
             max-width: min(1400px, calc(100vw - 2 * clamp(20px, 2vw, 40px))) !important;
-            width: 100vw !important;  /* Use viewport width instead of fixed 960px */
-            min-width: 100vw !important;
+            width: 100% !important;  /* Use 100% of parent, not 100vw */
+            max-width: 100% !important;
             height: auto !important;
             min-height: 96vh !important;
             max-height: none !important;  /* Remove height restriction */
@@ -46,8 +46,8 @@
         /* Override Reveal.js inline styles - these have higher specificity */
         .reveal .slides section[style] {
             display: flex !important;
-            width: 100vw !important;
-            min-width: 100vw !important;
+            width: 100% !important;
+            max-width: 100% !important;
             height: auto !important;
             min-height: 96vh !important;
             max-height: none !important;
