@@ -30,8 +30,8 @@ body {
 h1 {
     text-align: center;
     color: #ffffff;
-    font-size: clamp(1.5rem, 3vh, 2.5rem);  /* Minskad från 4vh/3rem */
-    margin-bottom: 1vh;  /* Minskad från 2vh */
+    font-size: clamp(1.3rem, 2.5vh, 2rem);  /* FIX 3: Further reduced for fit */
+    margin-bottom: clamp(8px, 1vh, 12px);  /* FIX 3: Fixed pixel values */
     font-weight: 600;
     letter-spacing: -0.02em;
 }
@@ -262,8 +262,10 @@ h1 {
     justify-content: center !important;
     align-items: center !important;
     gap: clamp(15px, 2vw, 25px);  /* Minskad från 3vw/40px */
-    margin: clamp(15px, 3vh, 30px) 0;  /* Minskad från 6vh/60px */
+    margin: clamp(15px, 3vh, 30px) auto;  /* FIX 1: auto for horizontal centering */
     flex-wrap: wrap;
+    width: 100%;  /* FIX 1: Ensure full width for centering */
+    max-width: 100%;
 }
 
 /* Fallback för non-Reveal contexts */
@@ -303,7 +305,7 @@ h1 {
 
 /* Flow arrow */
 .flow-arrow {
-    font-size: clamp(24px, 3vw, 36px);  /* Minskad från 6vw/60px */
+    font-size: clamp(20px, 2.5vw, 32px);  /* FIX 3: Smaller arrows */
     color: #2dd4bf;
 }
 
@@ -314,9 +316,10 @@ h1 {
 .reveal .slides section .slide-background-content .characteristics {
     display: grid !important;
     grid-template-columns: repeat(3, 1fr) !important;
-    max-width: min(1000px, 95vw);
-    margin: clamp(15px, 3vh, 30px) auto 0;  /* Minskad från 6vh/60px */
-    gap: clamp(15px, 2vw, 25px);  /* Minskad från 3vw/30px */
+    width: 100%;  /* FIX 2: Full width instead of max-width */
+    max-width: 100%;
+    margin: clamp(10px, 2vh, 20px) auto 0;  /* FIX 3: Reduced margin */
+    gap: clamp(12px, 1.5vw, 20px);  /* FIX 3: Reduced gap */
 }
 
 /* Fallback för non-Reveal contexts */
@@ -333,30 +336,35 @@ h1 {
     background: #0f172a;
     border: 2px solid #2dd4bf;
     border-radius: 8px;  /* Minskad från 12px */
-    padding: clamp(12px, 2vh, 20px);  /* Minskad från 3vh/30px */
+    padding: clamp(10px, 1.5vh, 16px);  /* FIX 2+3: Reduced padding for lower height */
     text-align: center;
+    display: flex;  /* FIX 2: Use flex for better layout control */
+    flex-direction: column;
+    justify-content: flex-start;
+    min-height: auto;  /* FIX 2: Don't force height */
+    height: auto;
 }
 
 /* Characteristic icon */
 .characteristic-icon {
-    font-size: clamp(28px, 4vw, 40px);  /* Minskad från 6vw/60px */
+    font-size: clamp(24px, 3.5vw, 36px);  /* FIX 3: Smaller icons */
     color: #2dd4bf;
-    margin-bottom: clamp(8px, 1.5vh, 12px);  /* Minskad från 2vh/20px */
+    margin-bottom: clamp(6px, 1vh, 10px);  /* FIX 3: Reduced margin */
 }
 
 /* Characteristic title */
 .characteristic-title {
-    font-size: clamp(0.9em, 1.5vh, 1.1em);  /* Minskad från 2vh/1.3em */
+    font-size: clamp(0.85em, 1.3vh, 1em);  /* FIX 3: Smaller title */
     color: #2dd4bf;
     font-weight: 600;
-    margin-bottom: clamp(6px, 1vh, 10px);  /* Minskad från 1.5vh/15px */
+    margin-bottom: clamp(4px, 0.8vh, 8px);  /* FIX 3: Reduced margin */
 }
 
 /* Characteristic text */
 .characteristic-text {
-    font-size: clamp(0.8em, 1.2vh, 0.95em);  /* Minskad från 1.5vh/1.1em */
+    font-size: clamp(0.75em, 1vh, 0.9em);  /* FIX 3: Smaller text */
     color: #e2e8f0;
-    line-height: 1.5;  /* Minskad från 1.6 */
+    line-height: 1.4;  /* FIX 3: Tighter line-height */
 }
 
 /* MacBook Pro specific adjustments för slide 002 */

@@ -29,13 +29,14 @@
             text-align: left !important;
             background: transparent !important;
             color: #e2e8f0 !important;
-            padding: 2vh 2vw !important;
+            padding: clamp(10px, 1.5vh, 20px) clamp(15px, 2vw, 30px) !important;  /* FIX 3: Reduced padding */
             max-width: min(1400px, calc(100vw - 2 * clamp(20px, 2vw, 40px))) !important;
             width: 100% !important;  /* Use 100% of parent, not 100vw */
             max-width: 100% !important;
             height: auto !important;
-            min-height: 96vh !important;
-            max-height: none !important;  /* Remove height restriction */
+            min-height: auto !important;  /* FIX 3: Remove min-height restriction */
+            max-height: 96vh !important;  /* FIX 3: Add max-height to prevent overflow */
+            overflow: hidden !important;  /* FIX 3: Prevent overflow */
             margin: 0 auto !important;
             display: flex !important;
             flex-direction: column !important;
