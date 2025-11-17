@@ -129,11 +129,23 @@ Parseren letar efter:
 - `ESC` - Översikt över alla slides
 - `F` - Fullscreen
 
+## Design och Layout
+
+**VIKTIGT: Mållayout är liggande 16:9/16:10**
+
+Presentationer är designade för liggande (landscape) skärmar med aspect ratio 16:9 eller 16:10. Alla slides ska passa på skärmen utan scrolling, med hjälp av:
+- Responsiva enheter: `clamp()`, `vh`, `vw` för font-sizes, margins och padding
+- `max-height: 96vh` på slide-containers för att säkerställa att innehållet passar på skärmen
+- Media queries för MacBook Pro (16:10) finns för finjusteringar
+
+**Inga responsiva anpassningar för smala/stående skärmar** - presentationer är endast för liggande projektorskärmar.
+
 ## Tips
 
 - Använd Cursor AI för att skapa och redigera slides i `index.html`
 - Presenter mode fungerar bäst med två skärmar - drag presenter-fönstret till din laptop och lämna publiksidan på projektorn
 - Speaker notes från `script.md` synkas automatiskt med slides när servern startar
+- När du skapar nya slides, använd `clamp()` och `vh/vw` enheter istället för fasta pixlar för att säkerställa att slides passar på olika projektorskärmar
 
 ## Development
 

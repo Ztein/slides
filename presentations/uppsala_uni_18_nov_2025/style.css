@@ -171,40 +171,7 @@ h1 {
 }
 
 /* Media queries för diagram-layout */
-@media (max-width: 1200px) {
-    .diagram {
-        flex-direction: column;
-        gap: 40px;
-    }
-
-    .arrow-container {
-        transform: rotate(90deg);
-        margin: -20px 0;
-    }
-
-    h1 {
-        font-size: 2.5em;
-    }
-
-    .box {
-        width: 240px;
-        height: 240px;
-    }
-
-    .material-icons {
-        font-size: 100px;
-    }
-
-    .features {
-        grid-template-columns: repeat(2, 1fr);
-    }
-}
-
-@media (max-width: 768px) {
-    .features {
-        grid-template-columns: 1fr;
-    }
-}
+/* OBS: Ingen responsive layout för smala skärmar - presentationer är designade för liggande 16:9/16:10 */
 
 /* === NAVIGATION (gemensam för alla slides) === */
 
@@ -269,25 +236,180 @@ h1 {
     text-align: center;
 }
 
-@media (max-width: 768px) {
-    .nav-controls {
-        bottom: 20px;
-        right: 20px;
-        padding: 12px 15px;
+/* OBS: Ingen responsive layout för smala skärmar - presentationer är designade för liggande 16:9/16:10 */
+
+/* === SLIDE 001 - TITLE SLIDE (specifik för 001) === */
+
+/* Större subtitle för title slide (font-size: 2em, margin-bottom: 80px) */
+.subtitle-large {
+    text-align: center;
+    font-size: clamp(1.2em, 3vh, 2em);
+    color: #2dd4bf;
+    margin-bottom: clamp(40px, 8vh, 80px);
+    font-weight: 500;
+}
+
+/* Presentatörsinfo */
+.presenter-info {
+    font-size: clamp(1em, 2vh, 1.5em);
+    color: #94a3b8;
+    margin-bottom: clamp(50px, 10vh, 100px);
+    line-height: 1.8;
+    text-align: center;
+}
+
+/* Agenda container */
+.agenda {
+    max-width: min(900px, 90vw);
+    margin: 0 auto;
+    text-align: left;
+}
+
+/* Agenda titel */
+.agenda-title {
+    font-size: clamp(1.2em, 2.5vh, 1.8em);
+    color: #2dd4bf;
+    margin-bottom: clamp(20px, 4vh, 40px);
+    text-align: center;
+    font-weight: 600;
+}
+
+/* Agenda item */
+.agenda-item {
+    display: flex;
+    align-items: flex-start;
+    gap: clamp(12px, 2vw, 20px);
+    margin-bottom: clamp(15px, 3vh, 25px);
+    font-size: clamp(1em, 2vh, 1.3em);
+    color: #e2e8f0;
+}
+
+/* Agenda ikon */
+.agenda-icon {
+    color: #2dd4bf;
+    font-size: clamp(24px, 3vw, 32px);
+    min-width: clamp(24px, 3vw, 32px);
+    margin-top: 2px;
+}
+
+/* Större h1 för title slide (font-size: 4.5em, margin-bottom: 40px, font-weight: 700) */
+.title-slide-h1 {
+    font-size: clamp(2rem, 6vh, 4.5rem);
+    margin-bottom: clamp(20px, 4vh, 40px);
+    font-weight: 700;
+}
+
+/* MacBook Pro specific adjustments för slide 001 */
+@media (max-height: 2000px) and (min-width: 2000px) {
+    .presenter-info {
+        margin-bottom: clamp(30px, 6vh, 80px);
     }
 
-    .nav-button {
-        width: 45px;
-        height: 45px;
+    .agenda-title {
+        margin-bottom: clamp(15px, 3vh, 30px);
     }
 
-    .nav-button .material-icons {
-        font-size: 28px;
+    .agenda-item {
+        margin-bottom: clamp(10px, 2vh, 20px);
+    }
+}
+
+/* === SLIDE 002 - LLM FLOW DIAGRAM (specifik för 002) === */
+
+/* Flow diagram */
+.flow-diagram {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: clamp(25px, 3vw, 40px);
+    margin: clamp(30px, 6vh, 60px) 0;
+    flex-wrap: wrap;
+}
+
+/* Flow box */
+.flow-box {
+    padding: clamp(20px, 3vh, 30px) clamp(30px, 4vw, 50px);
+    background: #0f172a;
+    border: 3px solid #2dd4bf;
+    border-radius: 12px;
+    font-size: clamp(1.1em, 2vh, 1.5em);
+    color: #ffffff;
+    font-weight: 600;
+    min-width: clamp(180px, 20vw, 200px);
+    text-align: center;
+}
+
+/* Highlighted flow box */
+.flow-box-highlight {
+    background: #2dd4bf;
+    color: #1a2332;
+}
+
+/* Flow box note (small text) */
+.flow-box-note {
+    font-size: 0.7em;
+}
+
+/* Flow arrow */
+.flow-arrow {
+    font-size: clamp(40px, 6vw, 60px);
+    color: #2dd4bf;
+}
+
+/* Characteristics grid */
+.characteristics {
+    max-width: min(1000px, 95vw);
+    margin: clamp(30px, 6vh, 60px) auto 0;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: clamp(20px, 3vw, 30px);
+}
+
+/* Characteristic card */
+.characteristic {
+    background: #0f172a;
+    border: 2px solid #2dd4bf;
+    border-radius: 12px;
+    padding: clamp(20px, 3vh, 30px);
+    text-align: center;
+}
+
+/* Characteristic icon */
+.characteristic-icon {
+    font-size: clamp(40px, 6vw, 60px);
+    color: #2dd4bf;
+    margin-bottom: clamp(12px, 2vh, 20px);
+}
+
+/* Characteristic title */
+.characteristic-title {
+    font-size: clamp(1em, 2vh, 1.3em);
+    color: #2dd4bf;
+    font-weight: 600;
+    margin-bottom: clamp(10px, 1.5vh, 15px);
+}
+
+/* Characteristic text */
+.characteristic-text {
+    font-size: clamp(0.9em, 1.5vh, 1.1em);
+    color: #e2e8f0;
+    line-height: 1.6;
+}
+
+/* MacBook Pro specific adjustments för slide 002 */
+@media (max-height: 2000px) and (min-width: 2000px) {
+    .flow-diagram {
+        margin: clamp(20px, 4vh, 50px) 0;
+        gap: clamp(15px, 2vw, 30px);
     }
 
-    .slide-indicator {
-        font-size: 0.95em;
-        min-width: 70px;
+    .characteristics {
+        margin-top: clamp(20px, 4vh, 50px);
+        gap: clamp(15px, 2vw, 25px);
+    }
+
+    .characteristic {
+        padding: clamp(15px, 2.5vh, 25px);
     }
 }
 
@@ -440,22 +562,7 @@ h1 {
 }
 
 /* Media queries för architecture-layout */
-@media (max-width: 1200px) {
-    .layer-box {
-        padding: 30px;
-    }
-
-    .servers-row {
-        gap: 30px;
-    }
-}
-
-@media (max-width: 768px) {
-    .servers-row {
-        flex-direction: column;
-        align-items: center;
-    }
-}
+/* OBS: Ingen responsive layout för smala skärmar - presentationer är designade för liggande 16:9/16:10 */
 
 /* MacBook Pro specific adjustments (16:10 aspect ratio, max-height: 2000px) */
 @media (max-height: 2000px) and (min-width: 2000px) {
