@@ -312,6 +312,16 @@ h1 {
 }
 
 /* Characteristics grid */
+/* FAS 2.4: Force grid layout för Reveal.js */
+.reveal .slides section .characteristics {
+    display: grid !important;
+    grid-template-columns: repeat(3, 1fr) !important;
+    max-width: min(1000px, 95vw);
+    margin: clamp(30px, 6vh, 60px) auto 0;
+    gap: clamp(20px, 3vw, 30px);
+}
+
+/* Fallback för non-Reveal contexts */
 .characteristics {
     max-width: min(1000px, 95vw);
     margin: clamp(30px, 6vh, 60px) auto 0;
