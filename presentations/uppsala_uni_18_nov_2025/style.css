@@ -1547,9 +1547,9 @@ h1:has(+ .architecture-flow) {
 .participants-vertical {
     display: flex;
     flex-direction: column;
-    gap: clamp(5px, 0.7vh, 7px); /* FIX: Ytterligare reducerad gap */
-    width: clamp(80px, 9vw, 110px); /* FIX: Fast width istället för min-width */
-    flex-shrink: 0; /* Förhindra att den krymper */
+    gap: clamp(5px, 0.7vh, 7px);
+    width: clamp(95px, 11vw, 130px); /* FIX: Ökad bredd för att få plats med "Server" (längsta ordet) */
+    flex-shrink: 0;
 }
 
 /* Interactions split - två kolumner parallellt */
@@ -1594,15 +1594,14 @@ h1:has(+ .architecture-flow) {
 
 /* Participant name */
 .participant-name {
-    font-size: clamp(0.65em, 1vh, 0.75em) !important; /* FIX: Drastiskt reducerad från 0.7em-0.8em */
+    font-size: clamp(0.7em, 1.1vh, 0.8em) !important; /* FIX: Balanserad storlek som passar bredden */
     font-weight: 600;
     color: #1a2332;
     text-align: left;
     white-space: nowrap;
-    overflow: hidden; /* FIX: Förhindra overflow */
-    text-overflow: ellipsis; /* FIX: Visa ... om texten är för lång */
-    flex: 1; /* FIX: Låt texten ta resten av platsen */
-    min-width: 0; /* FIX: Tillåt att den kan krympa */
+    flex: 1;
+    min-width: 0;
+    /* FIX: Inga overflow-hidden/ellipsis - låt texten synas helt */
 }
 
 /* Lifeline */
