@@ -286,7 +286,7 @@ h1 {
     justify-content: center !important;
     align-items: center !important;
     gap: clamp(25px, 3.5vw, 40px) !important;  /* FIX: More spacing between boxes and arrows */
-    margin: clamp(20px, 3.5vh, 35px) auto !important;  /* FIX: More vertical spacing */
+    margin: clamp(10px, 2vh, 20px) auto clamp(15px, 2.5vh, 25px) auto !important;  /* FIX: Less top margin, move diagram up */
     flex-wrap: wrap;
     width: 100%;  /* FIX 1: Ensure full width for centering */
     max-width: 100%;
