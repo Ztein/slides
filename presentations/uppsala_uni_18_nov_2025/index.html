@@ -35,7 +35,8 @@
             max-width: 100% !important;
         }
         
-        /* .slide-background-content är där Reveal.js sätter innehållet - detta är viktigast! */
+        /* Innehållet ligger nu DIREKT i section (ingen .slide wrapper) */
+        /* Reveal.js skapar .slide-background-content wrappers runt innehållet */
         .reveal .slides section .slide-background-content {
             display: flex !important;
             flex-direction: column !important;
@@ -50,16 +51,6 @@
             align-items: flex-start !important;
             justify-content: flex-start !important;
             margin: 0 auto !important;
-        }
-        
-        /* Fallback för slides som fortfarande har .slide wrapper */
-        .reveal .slides section .slide,
-        .reveal .slides section .slide-background-content .slide {
-            display: flex !important;
-            flex-direction: column !important;
-            width: 100% !important;
-            height: auto !important;
-            max-height: 96vh !important;
         }
         
         .reveal .slides section h1,
@@ -87,7 +78,6 @@
         <div class="slides">
             <!-- Slide 001: Title + Overview -->
             <section>
-                <div class="slide">
                     <h1 class="title-slide-h1">Model Context Protocol</h1>
                     <div class="subtitle-large">Connecting LLMs to External Systems</div>
                     
@@ -111,7 +101,6 @@
                             <div>Deep Dive: Model Context Protocol</div>
                         </div>
                     </div>
-                </div>
                 <aside class="notes"></aside>
             </section>
             
@@ -160,7 +149,6 @@
             
             <!-- Slide 003: Transformer Architecture -->
             <section>
-                <div class="slide">
                     <h1>Transformer Architecture (Simplified)</h1>
                     
                     <div class="architecture-flow">
@@ -218,13 +206,11 @@
                             </div>
                         </div>
                     </div>
-                </div>
                 <aside class="notes"></aside>
             </section>
             
             <!-- Slide 004: Tokens, Context Windows, and Limitations -->
             <section>
-                <div class="slide">
                     <h1>Tokens, Context Windows, and Limitations</h1>
                     
                     <div class="content-grid">
@@ -303,13 +289,11 @@
                             </div>
                         </div>
                     </div>
-                </div>
                 <aside class="notes"></aside>
             </section>
             
             <!-- Slide 005: The Problem - LLMs are Isolated -->
             <section>
-                <div class="slide">
                     <h1>The Problem - LLMs are Isolated</h1>
                     
                     <div class="isolation-container">
@@ -362,13 +346,11 @@
                             </div>
                         </div>
                     </div>
-                </div>
                 <aside class="notes"></aside>
             </section>
             
             <!-- Slide 006: Naive Solutions and Their Problems -->
             <section>
-                <div class="slide">
 <h1>Naive Solutions and Their Problems</h1>
         
         <div class="solutions-grid">
@@ -447,13 +429,11 @@
                 </div>
             </div>
         </div>
-                </div>
                 <aside class="notes"></aside>
             </section>
             
             <!-- Slide 007: Better Approaches - RAG vs Function Calling vs MCP -->
             <section>
-                <div class="slide">
 <h1>Better Approaches</h1>
         
         <div class="approaches-grid">
@@ -553,13 +533,11 @@
                 </div>
             </div>
         </div>
-                </div>
                 <aside class="notes"></aside>
             </section>
             
             <!-- Slide 008: Transition to MCP Deep Dive -->
             <section>
-                <div class="slide">
 <h1>Deep Dive: Model Context Protocol</h1>
         
         <div class="transition-content">
@@ -575,13 +553,11 @@
                 Architecture, primitives, use cases, and implementation
             </div>
         </div>
-                </div>
                 <aside class="notes"></aside>
             </section>
             
             <!-- Slide 009: What is MCP? -->
             <section>
-                <div class="slide">
 <h1>What is MCP?</h1>
         
         <div class="diagram">
@@ -642,13 +618,11 @@
                 <div class="feature-text">Open Standard</div>
             </div>
         </div>
-                </div>
                 <aside class="notes"></aside>
             </section>
             
             <!-- Slide 010: MCP Architecture -->
             <section>
-                <div class="slide">
 <h1>MCP Architecture</h1>
         
         <div class="architecture">
@@ -709,13 +683,11 @@
                 </div>
             </div>
         </div>
-                </div>
                 <aside class="notes"></aside>
             </section>
             
             <!-- Slide 011: The Three Primitives -->
             <section>
-                <div class="slide">
 <h1>The Three Primitives</h1>
         
         <div class="primitives-grid">
@@ -776,13 +748,11 @@
                 </div>
             </div>
         </div>
-                </div>
                 <aside class="notes"></aside>
             </section>
             
             <!-- Slide 012: Interaction Flow -->
             <section>
-                <div class="slide">
 <h1>Interaction Flow</h1>
         
         <div class="sequence-diagram">
@@ -903,13 +873,11 @@
                 </div>
             </div>
         </div>
-                </div>
                 <aside class="notes"></aside>
             </section>
             
             <!-- Slide 013: Use Case - File System Server -->
             <section>
-                <div class="slide">
 <h1>Use Case: File System Server</h1>
         
         <div class="split-container">
@@ -1014,13 +982,11 @@
                 </div>
             </div>
         </div>
-                </div>
                 <aside class="notes"></aside>
             </section>
             
             <!-- Slide 014: Use Case - Database Server -->
             <section>
-                <div class="slide">
 <h1>Use Case: Database Server</h1>
         
         <div class="diagram-container">
@@ -1108,13 +1074,11 @@
                 </div>
             </div>
         </div>
-                </div>
                 <aside class="notes"></aside>
             </section>
             
             <!-- Slide 015: Code Example -->
             <section>
-                <div class="slide">
 <h1>Code Example</h1>
         <div class="subtitle">Minimal Weather MCP Server in Python</div>
         
@@ -1177,13 +1141,11 @@ app = <span class="code-function">Server</span>(<span class="code-string">"weath
                 </div>
             </div>
         </div>
-                </div>
                 <aside class="notes"></aside>
             </section>
             
             <!-- Slide 016: Security Considerations -->
             <section>
-                <div class="slide">
 <h1>Security Considerations</h1>
         <div class="subtitle">
             The MCP server is your security boundary - implement these protections
@@ -1263,13 +1225,11 @@ app = <span class="code-function">Server</span>(<span class="code-string">"weath
                 <span class="highlight-emphasis">Critical:</span> The protocol itself is just transport. You must implement security in your server logic. The MCP server is your security boundary!
             </div>
         </div>
-                </div>
                 <aside class="notes"></aside>
             </section>
             
             <!-- Slide 017: MCP vs Alternatives -->
             <section>
-                <div class="slide">
 <h1>MCP vs Alternatives</h1>
         
         <div class="comparison-container">
@@ -1387,13 +1347,11 @@ app = <span class="code-function">Server</span>(<span class="code-string">"weath
                 <span class="advantage-emphasis">Key Advantage:</span> Write one MCP server, use it anywhere. As the ecosystem grows, pre-built servers for common needs will emerge - just like npm for JavaScript or PyPI for Python.
             </div>
         </div>
-                </div>
                 <aside class="notes"></aside>
             </section>
             
             <!-- Slide 018: Future Directions & Research -->
             <section>
-                <div class="slide">
 <h1>Future Directions & Research</h1>
         
         <div class="content-container">
@@ -1481,13 +1439,11 @@ app = <span class="code-function">Server</span>(<span class="code-string">"weath
                 </div>
             </div>
         </div>
-                </div>
                 <aside class="notes"></aside>
             </section>
             
             <!-- Slide 019: Summary & Key Takeaways -->
             <section>
-                <div class="slide">
 <h1>Summary & Key Takeaways</h1>
         
         <div class="content-wrapper">
@@ -1572,7 +1528,6 @@ app = <span class="code-function">Server</span>(<span class="code-string">"weath
                 <div class="questions-text">Questions?</div>
             </div>
         </div>
-                </div>
                 <aside class="notes"></aside>
             </section>
         </div>
