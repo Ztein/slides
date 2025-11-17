@@ -61,17 +61,257 @@
                 <aside class="notes"></aside>
             </section>
             
-            <!-- Slide 002: Flow -->
-            <!-- TODO: Add slide content -->
+            <!-- Slide 002: What is a Large Language Model? -->
+            <section>
+                <div class="slide">
+                    <h1>What is a Large Language Model?</h1>
+                    
+                    <div class="flow-diagram">
+                        <div class="flow-box">Input Text</div>
+                        <span class="material-icons flow-arrow">arrow_forward</span>
+                        <div class="flow-box flow-box-highlight">
+                            Neural Network<br><small class="flow-box-note">(Black Box)</small>
+                        </div>
+                        <span class="material-icons flow-arrow">arrow_forward</span>
+                        <div class="flow-box">Output Text</div>
+                    </div>
+
+                    <div class="characteristics">
+                        <div class="characteristic">
+                            <span class="material-icons characteristic-icon">memory</span>
+                            <div class="characteristic-title">Billions of Parameters</div>
+                            <div class="characteristic-text">
+                                Hundreds of billions of weights learned during training
+                            </div>
+                        </div>
+
+                        <div class="characteristic">
+                            <span class="material-icons characteristic-icon">database</span>
+                            <div class="characteristic-title">Massive Training Data</div>
+                            <div class="characteristic-text">
+                                Trained on internet text, books, code repositories, and more
+                            </div>
+                        </div>
+
+                        <div class="characteristic">
+                            <span class="material-icons characteristic-icon">trending_up</span>
+                            <div class="characteristic-title">Next Token Prediction</div>
+                            <div class="characteristic-text">
+                                Core operation: predict the next token in a sequence
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <aside class="notes"></aside>
+            </section>
             
             <!-- Slide 003: Transformer Architecture -->
-            <!-- TODO: Add slide content -->
+            <section>
+                <div class="slide">
+                    <h1>Transformer Architecture (Simplified)</h1>
+                    
+                    <div class="architecture-flow">
+                        <div class="flow-row">
+                            <div class="flow-item">
+                                <span class="material-icons flow-icon">text_fields</span>
+                                <div class="flow-content">
+                                    <div class="flow-title">Input Tokens</div>
+                                    <div class="flow-description">Text converted into numerical vectors</div>
+                                </div>
+                            </div>
+                            <span class="material-icons flow-arrow">arrow_downward</span>
+                        </div>
+
+                        <div class="flow-row">
+                            <div class="flow-item">
+                                <span class="material-icons flow-icon">layers</span>
+                                <div class="flow-content">
+                                    <div class="flow-title">Embeddings</div>
+                                    <div class="flow-description">Tokens converted to numerical representations</div>
+                                </div>
+                            </div>
+                            <span class="material-icons flow-arrow">arrow_downward</span>
+                        </div>
+
+                        <div class="flow-row">
+                            <div class="flow-item flow-highlight">
+                                <span class="material-icons flow-icon">visibility</span>
+                                <div class="flow-content">
+                                    <div class="flow-title">Attention Mechanism</div>
+                                    <div class="flow-description">Weighs importance of different parts of input when processing each token. Enables understanding of relationships and long-range dependencies.</div>
+                                </div>
+                            </div>
+                            <span class="material-icons flow-arrow">arrow_downward</span>
+                        </div>
+
+                        <div class="flow-row">
+                            <div class="flow-item">
+                                <span class="material-icons flow-icon">account_tree</span>
+                                <div class="flow-content">
+                                    <div class="flow-title">Feed-Forward Networks</div>
+                                    <div class="flow-description">Transform representations, building increasingly abstract features through layers</div>
+                                </div>
+                            </div>
+                            <span class="material-icons flow-arrow">arrow_downward</span>
+                        </div>
+
+                        <div class="flow-row">
+                            <div class="flow-item">
+                                <span class="material-icons flow-icon">bar_chart</span>
+                                <div class="flow-content">
+                                    <div class="flow-title">Output Probabilities</div>
+                                    <div class="flow-description">Probability distribution over possible next tokens</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <aside class="notes"></aside>
+            </section>
             
-            <!-- Slide 004: Tokenization -->
-            <!-- TODO: Add slide content -->
+            <!-- Slide 004: Tokens, Context Windows, and Limitations -->
+            <section>
+                <div class="slide">
+                    <h1>Tokens, Context Windows, and Limitations</h1>
+                    
+                    <div class="content-grid">
+                        <!-- Tokens Section -->
+                        <div class="section">
+                            <div class="section-title">
+                                <span class="material-icons section-icon">label</span>
+                                Tokens
+                            </div>
+                            <div class="token-example">
+                                <div class="token-text">"Hello world"</div>
+                                <div class="token-breakdown">
+                                    <span class="token">Hello</span>
+                                    <span class="token"> world</span>
+                                </div>
+                            </div>
+                            <div class="token-info">
+                                Text broken into chunks. In English, ~3/4 of a word per token. Everything is measured in tokens.
+                            </div>
+                        </div>
+
+                        <!-- Context Window Section -->
+                        <div class="section">
+                            <div class="section-title">
+                                <span class="material-icons section-icon">memory</span>
+                                Context Window
+                            </div>
+                            <div class="context-window">
+                                <div class="window-box">
+                                    <div class="window-text">8K - 200K+ tokens</div>
+                                </div>
+                                <div class="window-info">
+                                    Limited working memory. Even largest models can't fit massive codebases or document collections.
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Limitations Section -->
+                        <div class="section limitations">
+                            <div class="section-title">
+                                <span class="material-icons section-icon">warning</span>
+                                Key Limitations
+                            </div>
+                            <div class="limitations-grid">
+                                <div class="limitation">
+                                    <span class="material-icons limitation-icon">lock</span>
+                                    <div class="limitation-content">
+                                        <div class="limitation-title">Static Knowledge</div>
+                                        <div class="limitation-text">Only knows what was in training data. Can't access new information after training.</div>
+                                    </div>
+                                </div>
+
+                                <div class="limitation">
+                                    <span class="material-icons limitation-icon">block</span>
+                                    <div class="limitation-content">
+                                        <div class="limitation-title">No Tool Use</div>
+                                        <div class="limitation-text">Can't execute code, query databases, or call APIs - only generates text suggestions.</div>
+                                    </div>
+                                </div>
+
+                                <div class="limitation">
+                                    <span class="material-icons limitation-icon">history</span>
+                                    <div class="limitation-content">
+                                        <div class="limitation-title">No Memory</div>
+                                        <div class="limitation-text">Each conversation starts fresh. Doesn't remember previous sessions.</div>
+                                    </div>
+                                </div>
+
+                                <div class="limitation">
+                                    <span class="material-icons limitation-icon">error</span>
+                                    <div class="limitation-content">
+                                        <div class="limitation-title">Hallucination</div>
+                                        <div class="limitation-text">When uncertain, generates plausible-sounding but incorrect information.</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <aside class="notes"></aside>
+            </section>
             
-            <!-- Slide 005: Core Concept -->
-            <!-- TODO: Add slide content -->
+            <!-- Slide 005: The Problem - LLMs are Isolated -->
+            <section>
+                <div class="slide">
+                    <h1>The Problem - LLMs are Isolated</h1>
+                    
+                    <div class="isolation-container">
+                        <div class="llm-bubble">
+                            <span class="material-icons llm-icon">smart_toy</span>
+                            <div class="llm-label">LLM</div>
+                        </div>
+
+                        <div class="gap-indicator">❌ Disconnected ❌</div>
+
+                        <div class="external-systems">
+                            <div class="system-item">
+                                <span class="material-icons system-icon">storage</span>
+                                <div class="system-label">Databases</div>
+                            </div>
+
+                            <div class="system-item">
+                                <span class="material-icons system-icon">cloud</span>
+                                <div class="system-label">APIs</div>
+                            </div>
+
+                            <div class="system-item">
+                                <span class="material-icons system-icon">folder</span>
+                                <div class="system-label">File Systems</div>
+                            </div>
+
+                            <div class="system-item">
+                                <span class="material-icons system-icon">update</span>
+                                <div class="system-label">Real-time Data</div>
+                            </div>
+
+                            <div class="system-item">
+                                <span class="material-icons system-icon">person</span>
+                                <div class="system-label">User-specific Info</div>
+                            </div>
+
+                            <div class="system-item">
+                                <span class="material-icons system-icon">calendar_today</span>
+                                <div class="system-label">Calendars</div>
+                            </div>
+
+                            <div class="system-item">
+                                <span class="material-icons system-icon">email</span>
+                                <div class="system-label">Emails</div>
+                            </div>
+
+                            <div class="system-item">
+                                <span class="material-icons system-icon">code</span>
+                                <div class="system-label">Codebases</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <aside class="notes"></aside>
+            </section>
             
             <!-- Slide 006: Training vs Inference -->
             <!-- TODO: Add slide content -->
