@@ -1661,38 +1661,162 @@ app = <span class="code-function">Server</span>(<span class="code-string">"weath
             }
         }
 
+        // DIAGNOSTIC: Comprehensive DOM and CSS analysis
+        function diagnosticAnalysis() {
+            console.log('\n=== DIAGNOSTIC ANALYSIS START ===\n');
+            
+            const currentSlide = document.querySelector('.reveal .slides section.present');
+            if (!currentSlide) {
+                console.error('No current slide found!');
+                return;
+            }
+            
+            // 1. DOM STRUCTURE ANALYSIS
+            console.log('1. DOM STRUCTURE:');
+            console.log('   Section element:', currentSlide);
+            console.log('   Section tagName:', currentSlide.tagName);
+            console.log('   Section className:', currentSlide.className);
+            console.log('   Section id:', currentSlide.id);
+            
+            // Get ALL children recursively
+            function getAllChildren(element, depth = 0) {
+                const indent = '  '.repeat(depth);
+                const children = Array.from(element.children);
+                console.log(`${indent}${element.tagName}${element.className ? '.' + element.className.split(' ').join('.') : ''}${element.id ? '#' + element.id : ''}`);
+                children.forEach(child => getAllChildren(child, depth + 1));
+            }
+            
+            console.log('   Full DOM tree from section:');
+            getAllChildren(currentSlide);
+            
+            // 2. CHECK FOR REVEAL.JS WRAPPERS
+            console.log('\n2. REVEAL.JS WRAPPERS:');
+            const slideBackground = currentSlide.querySelector('.slide-background');
+            const slideBackgroundContent = currentSlide.querySelector('.slide-background-content');
+            console.log('   .slide-background exists:', !!slideBackground);
+            console.log('   .slide-background-content exists:', !!slideBackgroundContent);
+            
+            if (slideBackground) {
+                console.log('   .slide-background parent:', slideBackground.parentElement?.tagName);
+                console.log('   .slide-background children count:', slideBackground.children.length);
+            }
+            
+            if (slideBackgroundContent) {
+                console.log('   .slide-background-content parent:', slideBackgroundContent.parentElement?.tagName);
+                console.log('   .slide-background-content children count:', slideBackgroundContent.children.length);
+                console.log('   .slide-background-content first child:', slideBackgroundContent.firstElementChild?.tagName);
+            }
+            
+            // 3. CHECK WHERE CONTENT ACTUALLY IS
+            console.log('\n3. CONTENT LOCATION:');
+            const h1 = currentSlide.querySelector('h1');
+            const flowDiagram = currentSlide.querySelector('.flow-diagram');
+            console.log('   H1 element:', h1);
+            if (h1) {
+                console.log('   H1 parent:', h1.parentElement?.tagName, h1.parentElement?.className);
+                console.log('   H1 is direct child of section:', h1.parentElement === currentSlide);
+            }
+            console.log('   .flow-diagram element:', flowDiagram);
+            if (flowDiagram) {
+                console.log('   .flow-diagram parent:', flowDiagram.parentElement?.tagName, flowDiagram.parentElement?.className);
+                console.log('   .flow-diagram is direct child of section:', flowDiagram.parentElement === currentSlide);
+                if (slideBackgroundContent) {
+                    console.log('   .flow-diagram is in .slide-background-content:', slideBackgroundContent.contains(flowDiagram));
+                }
+            }
+            
+            // 4. COMPUTED STYLES ANALYSIS
+            console.log('\n4. COMPUTED STYLES FOR SECTION:');
+            const sectionStyles = window.getComputedStyle(currentSlide);
+            console.log('   display:', sectionStyles.display);
+            console.log('   flex-direction:', sectionStyles.flexDirection);
+            console.log('   text-align:', sectionStyles.textAlign);
+            console.log('   background:', sectionStyles.background);
+            console.log('   color:', sectionStyles.color);
+            console.log('   padding:', sectionStyles.padding);
+            console.log('   width:', sectionStyles.width);
+            console.log('   max-width:', sectionStyles.maxWidth);
+            console.log('   height:', sectionStyles.height);
+            console.log('   max-height:', sectionStyles.maxHeight);
+            
+            // Check for inline styles
+            console.log('   has inline style attribute:', currentSlide.hasAttribute('style'));
+            if (currentSlide.hasAttribute('style')) {
+                console.log('   inline style value:', currentSlide.getAttribute('style'));
+            }
+            
+            // 5. COMPUTED STYLES FOR .slide-background-content IF IT EXISTS
+            if (slideBackgroundContent) {
+                console.log('\n5. COMPUTED STYLES FOR .slide-background-content:');
+                const contentStyles = window.getComputedStyle(slideBackgroundContent);
+                console.log('   display:', contentStyles.display);
+                console.log('   flex-direction:', contentStyles.flexDirection);
+                console.log('   text-align:', contentStyles.textAlign);
+                console.log('   background:', contentStyles.background);
+                console.log('   color:', contentStyles.color);
+                console.log('   padding:', contentStyles.padding);
+                console.log('   width:', contentStyles.width);
+                console.log('   has inline style attribute:', slideBackgroundContent.hasAttribute('style'));
+                if (slideBackgroundContent.hasAttribute('style')) {
+                    console.log('   inline style value:', slideBackgroundContent.getAttribute('style'));
+                }
+            }
+            
+            // 6. COMPUTED STYLES FOR .flow-diagram IF IT EXISTS
+            if (flowDiagram) {
+                console.log('\n6. COMPUTED STYLES FOR .flow-diagram:');
+                const flowStyles = window.getComputedStyle(flowDiagram);
+                console.log('   display:', flowStyles.display);
+                console.log('   flex-direction:', flowStyles.flexDirection);
+                console.log('   justify-content:', flowStyles.justifyContent);
+                console.log('   align-items:', flowStyles.alignItems);
+                console.log('   has inline style attribute:', flowDiagram.hasAttribute('style'));
+                if (flowDiagram.hasAttribute('style')) {
+                    console.log('   inline style value:', flowDiagram.getAttribute('style'));
+                }
+            }
+            
+            // 7. CSS RULES THAT MATCH
+            console.log('\n7. CSS RULES ANALYSIS:');
+            const allStylesheets = Array.from(document.styleSheets);
+            console.log('   Total stylesheets:', allStylesheets.length);
+            allStylesheets.forEach((sheet, idx) => {
+                try {
+                    const rules = Array.from(sheet.cssRules || sheet.rules || []);
+                    const matchingRules = rules.filter(rule => {
+                        if (rule.selectorText) {
+                            try {
+                                return currentSlide.matches(rule.selectorText) || 
+                                       (slideBackgroundContent && slideBackgroundContent.matches(rule.selectorText)) ||
+                                       (flowDiagram && flowDiagram.matches(rule.selectorText));
+                            } catch (e) {
+                                return false;
+                            }
+                        }
+                        return false;
+                    });
+                    if (matchingRules.length > 0) {
+                        console.log(`   Stylesheet ${idx} (${sheet.href || 'inline'}): ${matchingRules.length} matching rules`);
+                        matchingRules.slice(0, 5).forEach(rule => {
+                            console.log(`     - ${rule.selectorText}`);
+                        });
+                    }
+                } catch (e) {
+                    console.log(`   Stylesheet ${idx}: Cannot access (CORS or other issue)`);
+                }
+            });
+            
+            console.log('\n=== DIAGNOSTIC ANALYSIS END ===\n');
+        }
+        
         // Load notes after Reveal.js is initialized
         Reveal.addEventListener('ready', () => {
             loadNotes();
             
-            // DEBUG: Log DOM structure för att förstå varför CSS inte fungerar
-            console.log('=== REVEAL.JS DOM DEBUG ===');
-            const currentSlide = document.querySelector('.reveal .slides section.present');
-            if (currentSlide) {
-                console.log('Current slide element:', currentSlide);
-                console.log('Slide computed display:', window.getComputedStyle(currentSlide).display);
-                console.log('Slide computed flex-direction:', window.getComputedStyle(currentSlide).flexDirection);
-                console.log('Slide-background:', currentSlide.querySelector('.slide-background'));
-                console.log('Slide-background-content:', currentSlide.querySelector('.slide-background-content'));
-                console.log('Direct children:', Array.from(currentSlide.children).map(c => ({tag: c.tagName, class: c.className})));
-                
-                // Check if content is in section or .slide-background-content
-                const slideContent = currentSlide.querySelector('.slide-background-content');
-                if (slideContent) {
-                    console.log('Content is in .slide-background-content');
-                    console.log('Slide-background-content computed display:', window.getComputedStyle(slideContent).display);
-                    console.log('Slide-background-content computed flex-direction:', window.getComputedStyle(slideContent).flexDirection);
-                } else {
-                    console.log('Content is directly in section (no .slide-background-content wrapper)');
-                }
-                
-                const flowDiagram = currentSlide.querySelector('.flow-diagram');
-                if (flowDiagram) {
-                    console.log('Flow-diagram found:', flowDiagram);
-                    console.log('Flow-diagram computed display:', window.getComputedStyle(flowDiagram).display);
-                    console.log('Flow-diagram computed flex-direction:', window.getComputedStyle(flowDiagram).flexDirection);
-                }
-            }
+            // Run diagnostic analysis
+            setTimeout(() => {
+                diagnosticAnalysis();
+            }, 100); // Small delay to ensure DOM is fully ready
         });
         
         // Also load notes when slides change (for presenter view)
