@@ -23,20 +23,34 @@
         /* Innehållet ligger DIREKT i section - rikta CSS mot section och dess direkta barn */
         
         /* Section styling */
+        /* PROBLEM IDENTIFIED: Reveal.js sets inline style display:block and fixed width (960px) */
+        /* SOLUTION: Override with !important and use JavaScript to remove inline styles */
         .reveal .slides section {
             text-align: left !important;
             background: transparent !important;
             color: #e2e8f0 !important;
             padding: 2vh 2vw !important;
             max-width: min(1400px, calc(100vw - 2 * clamp(20px, 2vw, 40px))) !important;
-            width: 100% !important;
+            width: 100vw !important;  /* Use viewport width instead of fixed 960px */
+            min-width: 100vw !important;
             height: auto !important;
-            max-height: 96vh !important;
+            min-height: 96vh !important;
+            max-height: none !important;  /* Remove height restriction */
             margin: 0 auto !important;
             display: flex !important;
             flex-direction: column !important;
             align-items: flex-start !important;
             justify-content: flex-start !important;
+        }
+        
+        /* Override Reveal.js inline styles - these have higher specificity */
+        .reveal .slides section[style] {
+            display: flex !important;
+            width: 100vw !important;
+            min-width: 100vw !important;
+            height: auto !important;
+            min-height: 96vh !important;
+            max-height: none !important;
         }
         
         /* Override Reveal.js black theme för section */
@@ -1568,6 +1582,8 @@ app = <span class="code-function">Server</span>(<span class="code-string">"weath
             controls: true,
             progress: true,
             center: false,
+            width: '100%',  // Use 100% width instead of default 960px
+            height: '100%',  // Use 100% height instead of default 700px
             touch: true,
             loop: false,
             rtl: false,
@@ -1848,6 +1864,19 @@ app = <span class="code-function">Server</span>(<span class="code-string">"weath
         // Load notes after Reveal.js is initialized
         Reveal.addEventListener('ready', () => {
             loadNotes();
+            
+            // FIX: Remove Reveal.js inline styles that override our CSS
+            // Reveal.js sets inline style="display: block; width: 960px; height: 340px" on sections
+            // We need to remove these or override them
+            const allSections = document.querySelectorAll('.reveal .slides section');
+            allSections.forEach(section => {
+                // Remove or override inline styles
+                section.style.removeProperty('display');
+                section.style.removeProperty('width');
+                section.style.removeProperty('height');
+                section.style.removeProperty('max-width');
+                section.style.removeProperty('max-height');
+            });
             
             // Run diagnostic analysis
             setTimeout(() => {
