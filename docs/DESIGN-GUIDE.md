@@ -50,13 +50,14 @@ h1 {
 ### 2.2 Title Slide H1
 ```css
 .title-slide-h1 {
-    font-size: clamp(1.3rem, 2.5vh, 2rem) !important;
+    font-size: clamp(1.8rem, 3.5vh, 2.8rem) !important;
     margin-bottom: clamp(10px, 1.5vh, 18px) !important;
     font-weight: 700;
     line-height: 1.2;
 }
 ```
-- **Lite större än vanlig H1** för title slide
+- **Betydligt större än vanlig H1** för title slide - ska vara DOMINANT
+- Storleksrelation till subtitle: H1 ska vara **minst 1.8x - 2x större** än subtitle
 - Är fortfarande läsbar och passar på skärmen
 
 ### 2.3 Subtitle/Undertitel
@@ -69,8 +70,9 @@ h1 {
 }
 ```
 - **Centrerad under H1**
-- Mindre än H1 men fortfarande tydlig
+- **Betydligt mindre än H1** - storleksrelation: subtitle ska vara ca 60-70% av H1-storlek
 - Teal-färg (#2dd4bf) för visuell distinktion
+- **Tydlig hierarki**: H1 är DOMINANT, subtitle är sekundär
 
 ### 2.4 Body Text
 - **Font-size**: `clamp(0.8em, 1.3vh, 0.95em)` till `clamp(0.9em, 1.5vh, 1.1em)`
