@@ -87,6 +87,11 @@ h1 {
     position: relative;
 }
 
+/* Icons in boxes - lagom stora */
+.box > .material-icons {
+    font-size: clamp(80px, 12vw, 120px);
+}
+
 .box-highlight {
     background: #2dd4bf;
     border-color: #2dd4bf;
@@ -160,7 +165,7 @@ h1 {
 }
 
 .feature .material-icons {
-    font-size: 56px;
+    font-size: clamp(40px, 5vw, 56px);  /* Lagom stora - minskat från fast 56px */
     color: #2dd4bf;
 }
 
