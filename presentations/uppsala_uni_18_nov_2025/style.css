@@ -868,73 +868,75 @@ h1:has(+ .architecture-flow) {
 }
 
 /* === SLIDE 005 - THE PROBLEM - LLMS ARE ISOLATED (specifik för 005) === */
+/* FIX: Systematisk reduktion för Reveal.js */
 
-/* Isolation container */
+/* Isolation container - FIX: Reduced for Reveal.js */
 .isolation-container {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 25px; /* FAST gap - mindre än originalet 50px för att få plats */
+    gap: clamp(12px, 1.5vh, 18px) !important; /* FIX: Reduced from 25px */
     max-width: min(1200px, 90vw);
     margin: 0 auto;
 }
 
-/* LLM bubble - central cirkel */
+/* LLM bubble - central cirkel - FIX: Reduced for Reveal.js */
 .llm-bubble {
-    width: clamp(200px, 25vw, 280px); /* Mindre än 300px max, responsiv */
-    height: clamp(200px, 25vw, 280px); /* Samma som width för cirkel */
-    border: 4px solid #2dd4bf;
+    width: clamp(150px, 18vw, 220px) !important; /* FIX: Reduced from 25vw/280px */
+    height: clamp(150px, 18vw, 220px) !important; /* FIX: Reduced */
+    border: 3px solid #2dd4bf !important; /* FIX: Reduced from 4px */
     border-radius: 50%;
     background: linear-gradient(135deg, #2dd4bf 0%, #14b8a6 100%);
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    gap: 12px; /* FAST gap */
+    gap: clamp(8px, 1vh, 10px) !important; /* FIX: Reduced from 12px */
     position: relative;
-    box-shadow: 0 0 40px rgba(45, 212, 191, 0.5);
+    box-shadow: 0 0 30px rgba(45, 212, 191, 0.4) !important; /* FIX: Reduced shadow */
 }
 
-/* LLM icon */
+/* LLM icon - FIX: Reduced for Reveal.js */
 .llm-icon {
-    font-size: clamp(40px, 5vw, 60px); /* FIX: Reduced from 8vw/90px for Reveal.js */
+    font-size: clamp(32px, 4vw, 48px) !important; /* FIX: Further reduced from 5vw/60px */
     color: #1a2332;
 }
 
-/* LLM label */
+/* LLM label - FIX: Reduced for Reveal.js */
 .llm-label {
-    font-size: clamp(1.3em, 2.5vh, 1.6em); /* Mindre än 1.8em max */
+    font-size: clamp(1.1em, 1.8vh, 1.3em) !important; /* FIX: Reduced from 2.5vh/1.6em */
     color: #1a2332;
     font-weight: 700;
+    line-height: 1.2 !important; /* FIX: Tighter line-height */
 }
 
-/* Gap indicator - "Disconnected" */
+/* Gap indicator - "Disconnected" - FIX: Reduced for Reveal.js */
 .gap-indicator {
     text-align: center;
-    font-size: clamp(1.2em, 2.2vh, 1.4em); /* Mindre än 1.5em max */
+    font-size: clamp(1em, 1.6vh, 1.2em) !important; /* FIX: Reduced from 2.2vh/1.4em */
     color: #ef4444;
     font-weight: 600;
-    margin: 8px 0; /* FAST margin - mindre än 20px */
+    margin: clamp(6px, 0.8vh, 8px) 0 !important; /* FIX: Reduced from 8px */
 }
 
-/* External systems grid */
+/* External systems grid - FIX: Reduced for Reveal.js */
 .external-systems {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    gap: clamp(15px, 2vw, 25px); /* Mindre än 30px max */
+    gap: clamp(10px, 1.5vw, 18px) !important; /* FIX: Reduced from 2vw/25px */
     width: 100%;
 }
 
-/* System item */
+/* System item - FIX: Reduced for Reveal.js */
 .system-item {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 10px; /* FAST gap - mindre än 15px */
-    padding: 15px clamp(15px, 2vw, 20px); /* FAST vertikal padding (15px), horisontell responsiv */
+    gap: clamp(8px, 1vh, 10px) !important; /* FIX: Reduced from 10px */
+    padding: clamp(10px, 1.2vh, 14px) clamp(12px, 1.5vw, 18px) !important; /* FIX: Reduced padding */
     background: #0f172a;
     border: 2px solid #64748b;
-    border-radius: 12px;
+    border-radius: 10px !important; /* FIX: Reduced from 12px */
     opacity: 0.6;
     transition: all 0.3s ease;
 }
@@ -942,12 +944,12 @@ h1:has(+ .architecture-flow) {
 .system-item:hover {
     opacity: 1;
     border-color: #2dd4bf;
-    transform: translateY(-5px);
+    transform: translateY(-3px) !important; /* FIX: Reduced transform */
 }
 
-/* System icon */
+/* System icon - FIX: Reduced for Reveal.js */
 .system-icon {
-    font-size: clamp(26px, 3.5vw, 36px); /* FIX: Reduced from 5vw/45px for Reveal.js */
+    font-size: clamp(22px, 3vw, 30px) !important; /* FIX: Further reduced from 3.5vw/36px */
     color: #64748b;
 }
 
@@ -955,12 +957,13 @@ h1:has(+ .architecture-flow) {
     color: #2dd4bf;
 }
 
-/* System label */
+/* System label - FIX: Reduced for Reveal.js */
 .system-label {
-    font-size: clamp(0.9em, 1.6vh, 1.05em); /* Mindre än 1.1em max */
+    font-size: clamp(0.8em, 1.3vh, 0.95em) !important; /* FIX: Reduced from 1.6vh/1.05em */
     color: #94a3b8;
     text-align: center;
     font-weight: 500;
+    line-height: 1.3 !important; /* FIX: Tighter line-height */
 }
 
 .system-item:hover .system-label {
