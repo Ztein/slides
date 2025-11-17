@@ -2246,3 +2246,148 @@ h1 {
     }
 }
 
+/* === SLIDE 016 - SECURITY CONSIDERATIONS (specifik för 016) === */
+
+/* Subtitle for slide 016 */
+.slide:has(.security-grid) .subtitle {
+    text-align: center;
+    font-size: clamp(1em, 1.8vh, 1.2em); /* Mindre än 1.3em max */
+    color: #94a3b8;
+    margin-bottom: 20px; /* FAST margin - mindre än 60px */
+    line-height: 1.5; /* Tightare än 1.6 */
+}
+
+/* Security grid - 3 kolumner */
+.security-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: clamp(22px, 3vw, 28px); /* Mindre än 35px max */
+    max-width: min(1200px, 95vw);
+    margin: 0 auto 25px; /* FAST margin-bottom - mindre än 50px */
+}
+
+/* Security item */
+.security-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 14px; /* FAST gap - mindre än 25px */
+    padding: clamp(20px, 2.8vh, 28px) clamp(18px, 2.5vw, 22px); /* FAST vertikal padding (20px min, 28px max) */
+    background: #0f172a;
+    border: 3px solid #2dd4bf;
+    border-radius: 12px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.security-item:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 10px 40px rgba(45, 212, 191, 0.3);
+}
+
+/* Security icon container - cirkel */
+.security-icon-container {
+    width: clamp(90px, 13vw, 105px); /* Mindre än 120px max */
+    height: clamp(90px, 13vw, 105px); /* Samma som width */
+    background: linear-gradient(135deg, #2dd4bf 0%, #14b8a6 100%);
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Material icons in security-icon-container */
+.security-icon-container .material-icons {
+    font-size: clamp(52px, 7.5vw, 62px); /* Mindre än 70px max */
+    color: #1a2332;
+}
+
+/* Security title */
+.security-title {
+    font-size: clamp(1.2em, 2.2vh, 1.4em); /* Mindre än 1.6em max */
+    color: #ffffff;
+    font-weight: 600;
+    text-align: center;
+}
+
+/* Security description */
+.security-description {
+    font-size: clamp(0.9em, 1.5vh, 1em); /* Mindre än 1.05em max */
+    color: #94a3b8;
+    text-align: center;
+    line-height: 1.5; /* Tightare än 1.6 */
+}
+
+/* Highlight box */
+.highlight-box {
+    max-width: min(1200px, 95vw);
+    margin: 0 auto;
+    padding: clamp(18px, 2.5vh, 25px) clamp(25px, 3.5vw, 35px); /* FAST vertikal padding (18px min, 25px max) */
+    background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+    border: 3px solid #ef4444;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    gap: 18px; /* FAST gap - mindre än 25px */
+}
+
+/* Highlight icon */
+.highlight-icon {
+    font-size: clamp(45px, 6.5vw, 55px); /* Mindre än 60px max */
+    color: #ef4444;
+    min-width: clamp(45px, 6.5vw, 55px); /* Samma som font-size */
+}
+
+/* Highlight text */
+.highlight-text {
+    font-size: clamp(1em, 1.8vh, 1.15em); /* Mindre än 1.25em max */
+    color: #e2e8f0;
+    line-height: 1.5; /* Tightare än 1.7 */
+}
+
+/* Highlight emphasis */
+.highlight-emphasis {
+    color: #ef4444;
+    font-weight: 700;
+}
+
+/* H1 margin-bottom justering för slide 016 */
+.slide:has(.security-grid) h1 {
+    margin-bottom: clamp(15px, 2vh, 25px); /* FAST margin - mindre än 30px */
+}
+
+/* MacBook Pro specific adjustments för slide 016 */
+@media (max-height: 2000px) and (min-width: 2000px) {
+    .slide:has(.security-grid) .subtitle {
+        margin-bottom: 18px;
+    }
+
+    .security-grid {
+        gap: clamp(20px, 2.5vw, 26px);
+        margin-bottom: 22px;
+    }
+
+    .security-item {
+        padding: clamp(18px, 2.5vh, 26px) clamp(16px, 2.2vw, 20px);
+        gap: 12px;
+    }
+
+    .security-icon-container {
+        width: clamp(85px, 12vw, 100px);
+        height: clamp(85px, 12vw, 100px);
+    }
+
+    .security-icon-container .material-icons {
+        font-size: clamp(48px, 7vw, 58px);
+    }
+
+    .highlight-box {
+        padding: clamp(16px, 2.2vh, 22px) clamp(22px, 3vw, 32px);
+        gap: 16px;
+    }
+
+    .highlight-icon {
+        font-size: clamp(42px, 6vw, 52px);
+        min-width: clamp(42px, 6vw, 52px);
+    }
+}
+
