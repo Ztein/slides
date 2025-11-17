@@ -32,9 +32,17 @@
             width: 100%;
         }
         
-        .reveal h1, .reveal h2, .reveal h3 {
-            color: #ffffff;
+        /* FAS 2.2: Override Reveal.js black theme */
+        .reveal .slides section {
+            background: transparent !important;
+            color: #e2e8f0 !important;
         }
+        .reveal .slides section h1,
+        .reveal .slides section h2,
+        .reveal .slides section h3 {
+            color: #ffffff !important;
+        }
+        
         .reveal .notes {
             display: none;
         }
