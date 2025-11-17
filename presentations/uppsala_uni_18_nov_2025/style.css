@@ -1348,3 +1348,112 @@ h1 {
     }
 }
 
+/* === SLIDE 011 - THE THREE PRIMITIVES (specifik för 011) === */
+
+/* Primitives grid */
+.primitives-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: clamp(25px, 3.5vw, 35px); /* Mindre än 50px max */
+    max-width: min(1300px, 95vw);
+    margin: 0 auto;
+}
+
+/* Primitive box */
+.primitive {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 18px; /* FAST gap - mindre än 30px */
+    padding: 25px clamp(20px, 2.5vw, 30px); /* FAST vertikal padding (25px), horisontell responsiv */
+    background: #0f172a;
+    border: 3px solid #2dd4bf;
+    border-radius: 12px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.primitive:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 10px 40px rgba(45, 212, 191, 0.3);
+}
+
+/* Primitive icon - stor cirkel */
+.primitive-icon {
+    width: clamp(100px, 15vw, 120px); /* Mindre än 140px max */
+    height: clamp(100px, 15vw, 120px); /* Samma som width */
+    background: linear-gradient(135deg, #2dd4bf 0%, #14b8a6 100%);
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Material icons in primitive-icon */
+.primitive-icon .material-icons {
+    font-size: clamp(55px, 8vw, 70px); /* Mindre än 80px max */
+    color: #1a2332;
+}
+
+/* Primitive title */
+.primitive-title {
+    font-size: clamp(1.4em, 2.8vh, 1.7em); /* Mindre än 2em max */
+    color: #ffffff;
+    font-weight: 600;
+    text-align: center;
+}
+
+/* Primitive description */
+.primitive-description {
+    font-size: clamp(1em, 1.8vh, 1.15em); /* Mindre än 1.2em max */
+    color: #94a3b8;
+    text-align: center;
+    line-height: 1.5; /* Tightare än 1.6 */
+}
+
+/* Primitive example */
+.primitive-example {
+    background: #1a2332;
+    padding: 12px clamp(12px, 1.5vw, 18px); /* FAST vertikal padding (12px) */
+    border-radius: 8px;
+    border-left: 4px solid #2dd4bf;
+    width: 100%;
+}
+
+/* Example label */
+.example-label {
+    font-size: clamp(0.75em, 1.2vh, 0.85em); /* Mindre än 0.9em max */
+    color: #64748b;
+    font-weight: 600;
+    text-transform: uppercase;
+    margin-bottom: 6px; /* FAST margin - mindre än 10px */
+}
+
+/* Example text */
+.example-text {
+    font-size: clamp(0.85em, 1.4vh, 0.95em); /* Mindre än 1em max */
+    color: #e2e8f0;
+    line-height: 1.4; /* Tightare än 1.5 */
+    font-family: 'Courier New', monospace;
+}
+
+/* MacBook Pro specific adjustments för slide 011 */
+@media (max-height: 2000px) and (min-width: 2000px) {
+    .primitives-grid {
+        gap: clamp(20px, 3vw, 30px);
+    }
+
+    .primitive {
+        gap: 15px;
+        padding: 22px clamp(18px, 2vw, 28px);
+    }
+
+    .primitive-icon {
+        width: clamp(90px, 13vw, 110px);
+        height: clamp(90px, 13vw, 110px);
+    }
+
+    .primitive-icon .material-icons {
+        font-size: clamp(50px, 7vw, 65px);
+    }
+}
+
