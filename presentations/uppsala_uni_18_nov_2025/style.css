@@ -1547,8 +1547,9 @@ h1:has(+ .architecture-flow) {
 .participants-vertical {
     display: flex;
     flex-direction: column;
-    gap: clamp(6px, 0.8vh, 8px); /* FIX: Reducerad gap */
-    min-width: clamp(70px, 8vw, 100px); /* FIX: Mindre min-width */
+    gap: clamp(5px, 0.7vh, 7px); /* FIX: Ytterligare reducerad gap */
+    width: clamp(80px, 9vw, 110px); /* FIX: Fast width istället för min-width */
+    flex-shrink: 0; /* Förhindra att den krymper */
 }
 
 /* Interactions split - två kolumner parallellt */
@@ -1557,44 +1558,51 @@ h1:has(+ .architecture-flow) {
     grid-template-columns: 1fr 1fr;
     gap: clamp(12px, 1.8vw, 20px);
     align-items: start;
+    min-width: 0; /* Tillåt att den kan krympa */
 }
 
 /* Participant item - för vertikal layout */
 .participant {
     display: flex;
-    flex-direction: row; /* FIX: Horisontell layout för vertikal lista */
+    flex-direction: row;
     align-items: center;
-    gap: clamp(4px, 0.5vw, 6px); /* FIX: Reducerad gap */
+    gap: 0; /* FIX: Ingen gap - box tar hela bredden */
     width: 100%;
 }
 
 /* Participant box - för vertikal layout */
 .participant-box {
     width: 100%;
-    padding: clamp(6px, 0.8vh, 8px) clamp(6px, 1vw, 10px); /* FIX: Reducerad padding */
+    padding: clamp(5px, 0.7vh, 7px) clamp(5px, 0.8vw, 8px); /* FIX: Ytterligare reducerad padding */
     background: #2dd4bf;
-    border-radius: 6px;
+    border-radius: 5px; /* FIX: Mindre border-radius */
     display: flex;
-    flex-direction: row; /* FIX: Horisontell layout - ikon och text sida vid sida */
+    flex-direction: row;
     align-items: center;
-    gap: clamp(5px, 0.7vw, 8px); /* FIX: Reducerad gap */
+    gap: clamp(4px, 0.6vw, 6px); /* FIX: Reducerad gap */
     justify-content: flex-start;
+    box-sizing: border-box; /* Inkludera padding i width */
 }
 
 /* Participant icon */
 .participant-icon {
-    font-size: clamp(18px, 2vw, 22px) !important; /* FIX: Reducerad från 20px-26px */
+    font-size: clamp(16px, 1.8vw, 20px) !important; /* FIX: Ytterligare reducerad */
     color: #1a2332;
-    flex-shrink: 0; /* Förhindra att ikonen krymper */
+    flex-shrink: 0;
+    min-width: clamp(16px, 1.8vw, 20px); /* FIX: Sätt min-width för ikonen */
 }
 
 /* Participant name */
 .participant-name {
-    font-size: clamp(0.7em, 1.2vh, 0.8em) !important; /* FIX: Drastiskt reducerad från 0.8em-0.95em */
+    font-size: clamp(0.65em, 1vh, 0.75em) !important; /* FIX: Drastiskt reducerad från 0.7em-0.8em */
     font-weight: 600;
     color: #1a2332;
-    text-align: left; /* FIX: Vänsterställd för horisontell layout */
-    white-space: nowrap; /* Förhindra radbrytning */
+    text-align: left;
+    white-space: nowrap;
+    overflow: hidden; /* FIX: Förhindra overflow */
+    text-overflow: ellipsis; /* FIX: Visa ... om texten är för lång */
+    flex: 1; /* FIX: Låt texten ta resten av platsen */
+    min-width: 0; /* FIX: Tillåt att den kan krympa */
 }
 
 /* Lifeline */
